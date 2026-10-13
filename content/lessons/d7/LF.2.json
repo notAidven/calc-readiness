@@ -1,0 +1,102 @@
+{
+  "node_id": "LF.2",
+  "title": "Write and graph line equations",
+  "mini_lesson": [
+    "The recorder shop cuts a straight scale from two settings alone: where the needle rests at zero, and how far it swings for each unit. Slope-intercept form packs a whole line into the same two numbers: $y = mx + b$, where $m$ sets how steep the line is and which way it tilts, and $b$ is the height where the line crosses the $y$-axis, the point $(0, b)$. Change one number and the line answers immediately: $m$ pivots it, and $b$ slides it up or down without changing its tilt.",
+    "To graph a line from its equation you never need a table of values. Start at the $y$-intercept, then walk one step of the slope: reading $m$ as $\\dfrac{\\text{rise}}{\\text{run}}$ tells you how far up or down to move for each step to the right. Two points fix the whole line, so a third point is only ever a check.",
+    "Two lines are parallel when their slopes are equal, since equal steepness means they never meet. They are perpendicular when their slopes are negative reciprocals, which is the same as saying $m_1 m_2 = -1$: flip the fraction, and change the sign as well. That product can only be formed when both slopes exist, so a pair holding a vertical line has to be settled from the picture rather than from the arithmetic.",
+    "When you know a slope and one point rather than the intercept, point-slope form is the faster start: $y - y_1 = m(x - x_1)$. It sits two moves away from slope-intercept form: distribute the slope across the bracket, then move the leftover constant across the equals sign. The slope survives both moves unchanged, so only $b$ is ever news."
+  ],
+  "slide_subtitles": [
+    "Slope-intercept form",
+    "Graphing from the equation",
+    "Parallel and perpendicular",
+    "Point-slope form"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Read the slope and the $y$-intercept of $y = -5x + 2$, then raise its intercept to $6$.",
+      "steps": [
+        "Compare $y = -5x + 2$ with $y = mx + b$: the number multiplying $x$ is $m$, and the number added on is $b$.",
+        "The number on $x$ is $-5$, so $m = -5$ and the line falls $5$ units for every step to the right.",
+        "The number added on is $2$, so $b = 2$ and the line crosses the $y$-axis at $(0, 2)$.",
+        "Raising the intercept to $6$ changes that second number only: $y = -5x + 6$.",
+        "The new line crosses at $(0, 6)$ and still falls $5$ per step, so it is the first line slid up by $4$."
+      ]
+    },
+    {
+      "prompt": "Graph $y = -\\dfrac{2}{3}x + 4$ from its intercept and one step of the slope.",
+      "steps": [
+        "The intercept is $b = 4$, so mark $(0, 4)$ first.",
+        "Read the slope as $\\dfrac{\\text{rise}}{\\text{run}} = \\dfrac{-2}{3}$: run $3$ to the right, then go $2$ down.",
+        "From $(0, 4)$ that one step lands on $(3, 2)$.",
+        "The line through $(0, 4)$ and $(3, 2)$ is the whole graph, and a third point such as $(6, 0)$ only confirms it."
+      ]
+    },
+    {
+      "prompt": "Decide whether $y = \\dfrac{5}{2}x - 1$ and $y = -\\dfrac{2}{5}x + 3$ are parallel, perpendicular, or neither.",
+      "steps": [
+        "Read a slope off each line: $m_1 = \\dfrac{5}{2}$ and $m_2 = -\\dfrac{2}{5}$.",
+        "They are not equal, so the two lines are not parallel.",
+        "Test the product instead: $\\dfrac{5}{2} \\times \\left(-\\dfrac{2}{5}\\right) = -\\dfrac{10}{10} = -1$.",
+        "A product of $-1$ means the slopes are negative reciprocals, so these two lines are perpendicular."
+      ]
+    },
+    {
+      "prompt": "A line has slope $3$ and passes through $(2, -5)$. Write it in slope-intercept form.",
+      "steps": [
+        "Point-slope form takes the slope and the point as they stand: $y - (-5) = 3(x - 2)$, which tidies to $y + 5 = 3(x - 2)$.",
+        "Distribute the slope across the bracket: $y + 5 = 3x - 6$.",
+        "Move the leftover constant across the equals sign by subtracting $5$: $y = 3x - 6 - 5$.",
+        "That leaves $y = 3x - 11$, the same line with its intercept now on show."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "linear-line-form-build", "gates": true },
+    { "after": 1, "id": "linear-line-graph-play", "gates": true },
+    { "after": 2, "id": "linear-line-pair-classify", "gates": true },
+    { "after": 3, "id": "linear-line-convert-order", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A line passes through $(-2, 5)$ and is perpendicular to the line $y = \\dfrac{1}{3}x + 1$. Write its equation in slope-intercept form, typed like `y = 4x - 7`.",
+    "accepted": [
+      "y = -3x - 1",
+      "y = -3*x - 1",
+      "y = -3x + (-1)",
+      "y = -1 - 3x",
+      "-3x - 1",
+      "-3*x - 1",
+      "-1 - 3x",
+      "f(x) = -3x - 1",
+      "y=-3x-1",
+      "y = -3x + -1",
+      "y = -3x - 1.0",
+      "y = -3*x - 1.0",
+      "-3x - 1.0",
+      "-3*x - 1.0",
+      "f(x) = -3x - 1.0",
+      "y = -3x + -1.0",
+      "y = -3x + (-1.0)"
+    ],
+    "hint": "Start with the slope of the given line: it is the number multiplying $x$, so that slope is $\\dfrac{1}{3}$. A perpendicular slope is the negative reciprocal, so flip that fraction over and change its sign. Put the new slope into $y = mx + b$, substitute $x = -2$ and $y = 5$, and solve the resulting equation for $b$.",
+    "worked_solution": [
+      "Read the given line's slope off the number multiplying $x$: it is $\\dfrac{1}{3}$.",
+      "Perpendicular means the negative reciprocal, so flip $\\dfrac{1}{3}$ to $3$ and change the sign: the new slope is $-3$.",
+      "Put that slope and the point $(-2, 5)$ into $y = mx + b$: $5 = -3(-2) + b$.",
+      "$-3(-2)$ is $6$, so $5 = 6 + b$, which gives $b = -1$.",
+      "With the slope and the intercept in hand, the line is `y = -3x - 1`."
+    ],
+    "worked_solution_params": {
+      "sa": 1,
+      "n": -3,
+      "given": -3,
+      "x1": -2,
+      "y1": 5,
+      "m": -3,
+      "c": -1,
+      "solved": 1
+    },
+    "variants": { "template_id": "d7.lf2.perpendicular-standard.l3", "count": 2 }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "node_id": "LF.3",
+  "title": "Build a linear model from a description or from data",
+  "mini_lesson": [
+    "The test bay keeps a strip chart of fuel burn against distance, and a run of readings there becomes one rule that predicts the next leg. A description of steady change hides two numbers: the **rate** is how much the output changes for each one unit of input, marked by *per*, *each* and *every*, and the **starting value** is what the output already is before the input starts counting, marked by *a flat fee*, *starts with* or *already has*. Put them together as $y = mx + b$, where the whole difference between the two is which one multiplies $x$: the rate is charged again for every unit of input, and the starting value happens once.",
+    "A data table almost never includes the row where $x = 0$, so the starting value has to be recovered rather than read. Find the rate first from any two rows, $m = \\dfrac{\\Delta y}{\\Delta x}$, remembering that the inputs may not step by one, then walk back from one row to $x = 0$, subtracting the rate once for every unit of input you step back. A model built from two rows should still land on a third, which is the cheapest check there is.",
+    "Every number in a model carries units: the rate is measured in output units per input unit, dollars per hour or liters per minute, while the starting value is the output when the input is zero, in output units alone. A model also has a stretch of inputs where it makes sense, and a negative count of hours sits outside it. Those units are what tell the two numbers apart when a description could be read either way round.",
+    "Now run the whole thing: read the rate and the starting value, write the model, then predict. A prediction inside the stretch of inputs the model came from is an **interpolation** and is usually safe, while one outside that stretch is an **extrapolation**, and the further out you reach the less the model can promise. The arithmetic is equally happy either way, which is why the distinction has to be made by hand."
+  ],
+  "slide_subtitles": [
+    "Rate and starting value",
+    "Building from a table",
+    "Units and meaning",
+    "Interpolate or extrapolate?"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A courier charges $18$ dollars to collect a parcel, then $6$ dollars for each mile. Write the model for the charge after $x$ miles.",
+      "steps": [
+        "*Each mile* marks the rate: the charge grows by $6$ dollars for every one mile, so $m = 6$.",
+        "The collection charge is paid before any distance is covered, so it is the starting value: $b = 18$.",
+        "Put them into $y = mx + b$ with the rate on $x$: $y = 6x + 18$.",
+        "Test the two roles at $x = 0$: the model gives $18$ dollars, the collection charge alone, counted once."
+      ]
+    },
+    {
+      "prompt": "A table gives $y = 17$ at $x = 3$, $y = 29$ at $x = 7$ and $y = 38$ at $x = 10$. Build its linear model.",
+      "steps": [
+        "Take the rate from the first two rows: $y$ climbs by $29 - 17 = 12$ while $x$ steps by $7 - 3 = 4$.",
+        "So $m = \\dfrac{12}{4} = 3$, a climb of $3$ for each single unit of input.",
+        "Walk back from $x = 3$ to $x = 0$, three units, subtracting the rate each time: $17 - 3 \\times 3 = 8$.",
+        "That recovered starting value is $b = 8$, so the model is $y = 3x + 8$.",
+        "Check it on the row it was not built from: at $x = 10$ the model gives $38$, which the table confirms."
+      ]
+    },
+    {
+      "prompt": "The model $y = 9x + 40$ gives the cost in dollars of $x$ hours of machine time. Say what each of its two numbers means.",
+      "steps": [
+        "The output is a cost in dollars and the input is a time in hours, so those are the units the two numbers have to carry.",
+        "The $9$ sits on $x$, so it is measured in dollars per hour: each extra hour adds $9$ dollars.",
+        "The $40$ stands alone, so it is measured in dollars: the cost at $x = 0$, before any hours are counted.",
+        "The units also fix which inputs make sense: $x = -2$ hours means nothing here, so the model speaks only for $x \\ge 0$.",
+        "So $y = 9x + 40$ reads as forty dollars before the machine runs, plus nine dollars for each hour it does."
+      ]
+    },
+    {
+      "prompt": "A crew's readings run from $x = 2$ to $x = 8$ and fit $y = 7x + 15$. Predict at $x = 5$ and at $x = 20$, then name each prediction.",
+      "steps": [
+        "At $x = 5$ the model gives $7 \\times 5 + 15 = 35 + 15 = 50$.",
+        "$5$ lies between $2$ and $8$, inside the stretch the readings covered, so that prediction is an interpolation.",
+        "At $x = 20$ the model gives $7 \\times 20 + 15 = 140 + 15 = 155$.",
+        "$20$ sits far outside the stretch from $2$ to $8$, so that one is an extrapolation, and nothing in the readings promises the rate still holds there.",
+        "Both numbers come out of the same arithmetic: $50$ is worth trusting, and $155$ is a reach."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "linear-model-rate-explore", "gates": true },
+    { "after": 1, "id": "linear-model-table-build", "gates": true },
+    { "after": 2, "id": "linear-model-claim-spot", "gates": true },
+    { "after": 3, "id": "linear-model-walkthrough", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A pool holds $320$ liters and a pump drains $15$ liters each minute. Write the right-hand side of $y = \\ldots$ for the liters left after $x$ minutes, then predict the liters left after $12$ minutes. Type the expression first, then the number, like `4x + 9, 57`.",
+    "accepted": [
+      "-15x + 320, 140",
+      "320 - 15x, 140",
+      "-15*x + 320, 140",
+      "320 - 15*x, 140",
+      "y = -15x + 320, 140",
+      "y = 320 - 15x, 140",
+      "-15x + 320; 140",
+      "320 - 15x; 140",
+      "-15x + 320, y = 140",
+      "320 - 15x, y = 140",
+      "-15x + 320 and 140",
+      "320 - 15x and 140",
+      "-15x + 320, 140 liters",
+      "320 - 15x, 140 liters",
+      "-15x + 320, 140.0",
+      "320 - 15x, 140.0",
+      "-15*x + 320, 140.0",
+      "-15*x + 320; 140",
+      "-15*x + 320 and 140",
+      "320 - 15*x, 140.0",
+      "320 - 15*x; 140",
+      "320 - 15*x and 140",
+      "y = -15x + 320, 140.0",
+      "y = -15x + 320; 140",
+      "y = -15x + 320 and 140",
+      "y = 320 - 15x, 140.0",
+      "y = 320 - 15x; 140",
+      "y = 320 - 15x and 140",
+      "-15x + 320; 140.0",
+      "320 - 15x; 140.0",
+      "-15x + 320, y = 140.0",
+      "-15x + 320; y = 140",
+      "-15x + 320 and y = 140",
+      "320 - 15x, y = 140.0",
+      "320 - 15x; y = 140",
+      "320 - 15x and y = 140",
+      "-15x + 320 and 140.0",
+      "320 - 15x and 140.0",
+      "-15x + 320; 140 liters",
+      "-15x + 320 and 140 liters",
+      "320 - 15x; 140 liters",
+      "320 - 15x and 140 liters",
+      "-15*x + 320; 140.0",
+      "-15*x + 320 and 140.0",
+      "320 - 15*x; 140.0",
+      "320 - 15*x and 140.0",
+      "y = -15x + 320; 140.0",
+      "y = -15x + 320 and 140.0",
+      "y = 320 - 15x; 140.0",
+      "y = 320 - 15x and 140.0",
+      "-15x + 320; y = 140.0",
+      "-15x + 320 and y = 140.0",
+      "320 - 15x; y = 140.0",
+      "320 - 15x and y = 140.0"
+    ],
+    "hint": "Take the two numbers apart before you write anything. The pool already holds $320$ liters before the pump starts, so that is the output at $x = 0$, and draining $15$ liters each minute is a rate that pushes the amount down, so it enters the model as $-15$. Build the right-hand side from those two, then substitute $x = 12$ and evaluate.",
+    "worked_solution": [
+      "The pool is full before the pump starts, so $320$ is the amount left at $x = 0$: it is the constant term.",
+      "Draining takes liters away each minute, so the rate enters as a negative: $-15$ per minute.",
+      "Those two build the model, giving the right-hand side $-15x + 320$.",
+      "Predict at $x = 12$ by substituting: $-15(12) + 320 = -180 + 320$.",
+      "That leaves $140$ liters, so the full answer is `-15x + 320, 140`."
+    ],
+    "worked_solution_params": { "rate": 15, "minutes": 12, "start": 320, "left": 140 },
+    "variants": { "template_id": "cfu.lf3.drain-model", "count": 2 }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "node_id": "EL.6",
+  "title": "Solve exponential and logarithmic equations",
+  "mini_lesson": [
+    "An apron capacity review reports that aircraft on the flight line double every quarter, that one aircraft stands there now, and that the hangar holds $32$. The briefing is asking when the hangar reaches its limit rather than how many will eventually stack up, and that question puts the unknown where arithmetic cannot reach it, up in the exponent. Where both sides can be written as powers of one base the exponents have to agree, because a power of $2$ climbs past every value exactly once and so never returns to one it has already taken.",
+    "Matching bases worked only because the number on the right was itself a power of $2$, and most numbers are not. What is wanted then is an operation that undoes an exponential, and a logarithm is exactly that: applied to both sides it keeps the equation true, and the power rule brings the exponent down in front, where it is an ordinary multiplier. One division finishes the job, so the answer is a quotient of two readings rather than a whole number, and either key serves as long as the same one is used on both sides.",
+    "An equation can hide the unknown inside a logarithm instead, and then the same two moves run the other way: a single logarithm converts straight to exponential form, since it is already a statement about an exponent. When two logarithms of one base are added there is nothing to convert yet, because conversion needs a single logarithm, and the product rule read backwards supplies one. Gathering before converting is not a matter of taste, since converting term by term would treat each logarithm as though it stood alone, and a sum of logarithms is the logarithm of a product.",
+    "A logarithmic equation can produce a root that solves the tidied quadratic without solving the equation that was asked, because a logarithm has nothing to say about a negative number, and a root like that is **extraneous**. So an equation of this kind ends by testing its roots in the original rather than in the rearranged form. A second look pays off in another shape too: an equation holding both $e^{2x}$ and $e^{x}$ becomes an ordinary quadratic once $e^{2x}$ is read as $\\left(e^{x}\\right)^{2}$, and its roots are values of $e^{x}$ that each still have to be undone."
+  ],
+  "slide_subtitles": [
+    "The unknown upstairs",
+    "No base will match",
+    "Gather first, then convert",
+    "Extraneous roots"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "One aircraft doubles every quarter and the hangar holds $32$. After how many quarters is the hangar full?",
+      "steps": [
+        "Doubling from one aircraft means the count after $t$ quarters is $2^{t}$, so the review is asking $2^{t} = 32$.",
+        "The limit is itself a power of that base, since $32 = 2^{5}$, which rewrites the question as $2^{t} = 2^{5}$.",
+        "One base on both sides forces the exponents to match, because a power of $2$ takes each value only once.",
+        "So $t = 5$: the hangar is full after five quarters, and no logarithm was needed."
+      ]
+    },
+    {
+      "prompt": "Solve $2^{t} = 40$, rounded to three decimal places.",
+      "steps": [
+        "No exponent can be read off, since $40$ sits between $2^{5} = 32$ and $2^{6} = 64$.",
+        "Take a logarithm of both sides, which keeps the equation true: $\\log(2^{t}) = \\log 40$.",
+        "The power rule brings the exponent down in front, where it is an ordinary multiplier: $t \\log 2 = \\log 40$.",
+        "Dividing by $\\log 2$ isolates it: $t = \\dfrac{\\log 40}{\\log 2} \\approx \\dfrac{1.602060}{0.301030} \\approx 5.322$.",
+        "That value sits between $5$ and $6$, exactly where $40$ sits between $32$ and $64$."
+      ]
+    },
+    {
+      "prompt": "Solve $\\log_{3} x = 4$, then gather $\\log_{2} x + \\log_{2}(x + 2) = 3$ and convert it.",
+      "steps": [
+        "The statement $\\log_{3} x = 4$ is already about an exponent, since it says $3$ raised to the $4$ is $x$.",
+        "Converting to exponential form finishes it outright: $x = 3^{4} = 81$.",
+        "The second equation has nothing to convert yet, because conversion needs a single logarithm.",
+        "The product rule read backwards gathers the sum: $\\log_{2}\\left(x(x + 2)\\right) = 3$.",
+        "Now the conversion has one logarithm to work on: $x(x + 2) = 2^{3} = 8$, an ordinary quadratic."
+      ]
+    },
+    {
+      "prompt": "Solve $\\log x + \\log(x - 3) = 1$, then solve $e^{2x} - 5e^{x} + 6 = 0$.",
+      "steps": [
+        "Gathering and converting the first equation gives $x(x - 3) = 10$, which rearranges to $x^{2} - 3x - 10 = 0$ and factors as $(x - 5)(x + 2) = 0$.",
+        "The quadratic offers $x = 5$ and $x = -2$, and $x = -2$ asks the original for $\\log(-2)$, which has no value, so that root is **extraneous**.",
+        "Testing $x = 5$ leaves both arguments positive, since they are $5$ and $2$, so the first equation's only solution is $x = 5$.",
+        "The second equation looks unsolvable until $e^{2x}$ is read as $\\left(e^{x}\\right)^{2}$, so writing $u$ for $e^{x}$ turns it into $u^{2} - 5u + 6 = 0$.",
+        "That factors as $(u - 2)(u - 3) = 0$, giving $u = 2$ and $u = 3$, both positive, which matters because an exponential is never anything else.",
+        "Each is a value of $e^{x}$ rather than of $x$, so undoing the exponential gives $x = \\ln 2$ and $x = \\ln 3$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "equation-same-base-stepper", "gates": true },
+    { "after": 1, "id": "equation-take-log-walkthrough", "gates": true },
+    { "after": 2, "id": "equation-gather-convert-match", "gates": true },
+    { "after": 3, "id": "equation-extraneous-spot", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Solve $\\log_{2} x + \\log_{2}(x - 6) = 4$. Enter one number.",
+    "accepted": ["8", "8.0"],
+    "hint": "Two logarithms of the same base are added, so nothing can be converted until they are gathered into one, and adding logarithms multiplies what is inside them. Convert the single logarithm you are left with, and the quadratic that appears has two roots. Only one of them leaves both of the original arguments positive, so test each root in the equation you were given.",
+    "worked_solution": [
+      "Both terms are logarithms of base $2$ added together, so the product rule read backwards gathers them into one: $\\log_{2}\\left(x(x - 6)\\right) = 4$.",
+      "Converting that single logarithm to exponential form gives $x(x - 6) = 2^{4} = 16$.",
+      "Expanding and collecting gives the quadratic $x^{2} - 6x - 16 = 0$, which factors as $(x - 8)(x + 2) = 0$, so the quadratic's roots are $x = 8$ and $x = -2$.",
+      "Testing $x = -2$ in the original equation asks for $\\log_{2}(-2)$, which is undefined, so that root is extraneous. Testing $x = 8$ leaves both arguments positive, $8$ and $2$, so the answer is $8$."
+    ],
+    "worked_solution_params": { "base": 2, "exponent": 4, "kept": 8, "rejected": 2 },
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "8"
+    },
+    "variants": { "template_id": "cfu.el6.solve-extraneous", "count": 2 }
+  }
+}

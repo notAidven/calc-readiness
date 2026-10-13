@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="580" viewBox="0 0 1024 580" font-family="ui-sans-serif, system-ui, sans-serif">
+<rect width="1024" height="580" fill="#f4f7f8"/>
+<text x="40" y="44" font-size="19" fill="#2f3b46" text-anchor="start">The routes accumulate: nine legs, drawn only between islands the learner has unlocked.</text>
+<text x="40" y="68" font-size="13" fill="#6d7f8c" text-anchor="start">Each leg is 28 world units — 41 CSS pixels at this scale, against islands that read 99px. Zero meshes: the overview is SVG.</text>
+<rect x="10" y="102" width="321.3333333333333" height="250" fill="#a9ccd6" rx="6"/>
+<line x1="31.5" y1="259.0" x2="33.8" y2="245.5" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<circle cx="28.6" cy="275.4" r="16.6" fill="#7fa96b" opacity="1"/>
+<circle cx="36.8" cy="228.1" r="17.6" fill="#7fa96b" opacity="1"/>
+<circle cx="36.8" cy="228.1" r="17.6" fill="none" stroke="#d98324" stroke-width="2.5"/>
+<circle cx="60.8" cy="185.6" r="17.6" fill="#93ab86" opacity="0.55"/>
+<circle cx="98.0" cy="153.8" r="17.6" fill="#93ab86" opacity="0.3"/>
+<circle cx="142.8" cy="136.7" r="16.6" fill="#93ab86" opacity="0.3"/>
+<circle cx="190.7" cy="135.6" r="17.6" fill="#93ab86" opacity="0.14"/>
+<circle cx="237.1" cy="151.1" r="17.6" fill="#93ab86" opacity="0.14"/>
+<circle cx="276.5" cy="182.5" r="19.1" fill="#93ab86" opacity="0.14"/>
+<circle cx="302.4" cy="226.3" r="18.1" fill="#93ab86" opacity="0.14"/>
+<circle cx="311.2" cy="275.4" r="18.1" fill="#93ab86" opacity="0.14"/>
+<text x="170.66666666666666" y="386" font-size="14" fill="#2f3b46" text-anchor="middle">2 unlocked — 1 leg</text>
+<rect x="351.3333333333333" y="102" width="321.3333333333333" height="250" fill="#a9ccd6" rx="6"/>
+<line x1="372.8" y1="259.0" x2="375.1" y2="245.5" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="386.8" y1="212.8" x2="393.5" y2="200.9" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="415.5" y1="174.1" x2="426.0" y2="165.2" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="455.8" y1="147.5" x2="468.6" y2="142.6" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<circle cx="370.0" cy="275.4" r="16.6" fill="#7fa96b" opacity="1"/>
+<circle cx="378.1" cy="228.1" r="17.6" fill="#7fa96b" opacity="1"/>
+<circle cx="402.2" cy="185.6" r="17.6" fill="#7fa96b" opacity="1"/>
+<circle cx="439.3" cy="153.8" r="17.6" fill="#7fa96b" opacity="1"/>
+<circle cx="484.1" cy="136.7" r="16.6" fill="#7fa96b" opacity="1"/>
+<circle cx="484.1" cy="136.7" r="16.6" fill="none" stroke="#d98324" stroke-width="2.5"/>
+<circle cx="532.0" cy="135.6" r="17.6" fill="#93ab86" opacity="0.55"/>
+<circle cx="578.4" cy="151.1" r="17.6" fill="#93ab86" opacity="0.3"/>
+<circle cx="617.8" cy="182.5" r="19.1" fill="#93ab86" opacity="0.3"/>
+<circle cx="643.8" cy="226.3" r="18.1" fill="#93ab86" opacity="0.14"/>
+<circle cx="652.6" cy="275.4" r="18.1" fill="#93ab86" opacity="0.14"/>
+<text x="512" y="386" font-size="14" fill="#2f3b46" text-anchor="middle">5 unlocked — 4 legs</text>
+<rect x="692.6666666666666" y="102" width="321.3333333333333" height="250" fill="#a9ccd6" rx="6"/>
+<line x1="714.1" y1="259.0" x2="716.4" y2="245.5" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="728.1" y1="212.8" x2="734.8" y2="200.9" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="756.9" y1="174.1" x2="767.3" y2="165.2" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="797.1" y1="147.5" x2="809.9" y2="142.6" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="842.1" y1="136.3" x2="855.8" y2="136.0" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="890.1" y1="141.2" x2="903.1" y2="145.5" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="933.5" y1="162.1" x2="944.2" y2="170.6" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="968.9" y1="198.9" x2="975.9" y2="210.7" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<line x1="988.3" y1="244.1" x2="990.7" y2="257.6" stroke="#d98324" stroke-width="3" stroke-linecap="round"/>
+<circle cx="711.3" cy="275.4" r="16.6" fill="#7fa96b" opacity="1"/>
+<circle cx="719.4" cy="228.1" r="17.6" fill="#7fa96b" opacity="1"/>
+<circle cx="743.5" cy="185.6" r="17.6" fill="#7fa96b" opacity="1"/>
+<circle cx="780.7" cy="153.8" r="17.6" fill="#7fa96b" opacity="1"/>
+<circle cx="825.5" cy="136.7" r="16.6" fill="#7fa96b" opacity="1"/>
+<circle cx="873.4" cy="135.6" r="17.6" fill="#7fa96b" opacity="1"/>
+<circle cx="919.8" cy="151.1" r="17.6" fill="#7fa96b" opacity="1"/>
+<circle cx="959.1" cy="182.5" r="19.1" fill="#7fa96b" opacity="1"/>
+<circle cx="985.1" cy="226.3" r="18.1" fill="#7fa96b" opacity="1"/>
+<circle cx="993.9" cy="275.4" r="18.1" fill="#7fa96b" opacity="1"/>
+<circle cx="993.9" cy="275.4" r="18.1" fill="none" stroke="#d98324" stroke-width="2.5"/>
+<text x="853.3333333333333" y="386" font-size="14" fill="#2f3b46" text-anchor="middle">10 unlocked — 9 legs</text>
+<text x="40" y="452" font-size="13" fill="#2f3b46" text-anchor="start">A leg is drawn iff BOTH its islands are unlocked, which is already what archipelagoView computes from node states — so the traced path is a derived</text>
+<text x="40" y="474" font-size="13" fill="#2f3b46" text-anchor="start">view of progress and stores nothing. It also cannot leak the ordering the haze exists to hide, because it never reaches a hazed island.</text>
+</svg>

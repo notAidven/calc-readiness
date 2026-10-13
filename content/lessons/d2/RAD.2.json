@@ -1,0 +1,101 @@
+{
+  "node_id": "RAD.2",
+  "title": "Adding root terms and clearing the denominator",
+  "mini_lesson": [
+    "A granary wall stacks mud bricks by the length of one side, and the keeper tallies bricks of the same length on a single line rather than measuring each one again. Root terms add the same way: when two terms hold the same root, only the count in front of it changes, so you add the numbers in front and leave the root untouched. Terms that match inside the radical like that are called **like radicals**, and they behave exactly the way $2x + 4x = 6x$ does.",
+    "Boards of different lengths go in different piles, and roots with different radicands do the same. Adding the radicands is not a rough version of adding the roots, it is a different calculation landing on a different number. There is no single length an unlike pair adds up to, so a sum of unlike roots is already its own finished answer.",
+    "Two boards can be the same length even when the tags on them read differently, and the only way to find out is to measure. Roots are the same, so **simplify each one first** and a shared root can appear where you did not expect one. Simplifying can just as easily confirm that the insides really do differ, in which case the answer honestly stays two terms, so either way you simplify before deciding and never after.",
+    "Every root so far has sat on a line of its own or on the top of a fraction, so what happens when one turns up on the **bottom**? It has to be cleared off, and clearing it is called **rationalizing the denominator**, which is a big name for one small move. A square root times itself gives back the number inside it, so multiplying the top and the bottom by that same root turns the bottom whole.",
+    "You may reasonably ask why a fraction can be multiplied by anything at all without changing it. The answer is that nothing arbitrary was used: a root over itself is a number over itself, which is $1$, and multiplying by $1$ leaves a value exactly where it was. So the tidied fraction and the original are one number written two ways, and only the look changed."
+  ],
+  "slide_subtitles": [
+    "Adding like radicals",
+    "What about unlike roots?",
+    "Simplify before adding",
+    "Clearing the denominator",
+    "Multiplying by one"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Two bricks of $\\sqrt{6}$ meters went into the wall, then four more of exactly that length. Add $2\\sqrt{6} + 4\\sqrt{6}$.",
+      "steps": [
+        "Both terms hold the same root, $\\sqrt{6}$, so they are like radicals.",
+        "The length never changed and only the count did, so add the numbers in front: $2 + 4 = 6$.",
+        "The root stays exactly as it was, giving $2\\sqrt{6} + 4\\sqrt{6} = 6\\sqrt{6}$."
+      ]
+    },
+    {
+      "prompt": "Check whether $\\sqrt{2} + \\sqrt{3}$ can be written as $\\sqrt{5}$.",
+      "steps": [
+        "The two terms hold different radicands, $2$ and $3$, so they are not like radicals.",
+        "Measure the sum: $\\sqrt{2}$ is about $1.41$ and $\\sqrt{3}$ is about $1.73$, so together they come to a little over $3.1$.",
+        "Now measure the guess on its own: $\\sqrt{5}$ is a shade over $2.2$, which is not the same number.",
+        "Nothing combines the two terms, so $\\sqrt{2} + \\sqrt{3}$ is already the finished answer."
+      ]
+    },
+    {
+      "prompt": "Add $\\sqrt{50} + \\sqrt{32}$.",
+      "steps": [
+        "The radicands $50$ and $32$ look unlike, so simplify each one before deciding.",
+        "Take the perfect square out of the first: $\\sqrt{50} = \\sqrt{25} \\cdot \\sqrt{2} = 5\\sqrt{2}$.",
+        "Do the same to the second: $\\sqrt{32} = \\sqrt{16} \\cdot \\sqrt{2} = 4\\sqrt{2}$.",
+        "Both now hold $\\sqrt{2}$, so they were like radicals all along and their counts add: $5 + 4 = 9$.",
+        "The sum is $9\\sqrt{2}$."
+      ]
+    },
+    {
+      "prompt": "Clear the root off the bottom of $\\dfrac{2}{\\sqrt{5}}$.",
+      "steps": [
+        "A root sits on the bottom, and $\\sqrt{5} \\cdot \\sqrt{5} = 5$ is what turns it whole.",
+        "Multiply the top and the bottom by that root: $\\dfrac{2}{\\sqrt{5}} \\cdot \\dfrac{\\sqrt{5}}{\\sqrt{5}}$.",
+        "The bottom becomes $5$ and the top becomes $2\\sqrt{5}$, so the fraction reads $\\dfrac{2\\sqrt{5}}{5}$.",
+        "The $2$ and the $5$ share no factor, so nothing reduces and the denominator is clear."
+      ]
+    },
+    {
+      "prompt": "Show that $\\dfrac{2}{\\sqrt{5}}$ and $\\dfrac{2\\sqrt{5}}{5}$ are the same number.",
+      "steps": [
+        "The move between them multiplied by $\\dfrac{\\sqrt{5}}{\\sqrt{5}}$, which is a number over itself and therefore $1$.",
+        "Work the first form out as a decimal: $\\sqrt{5}$ is about $2.236$, so $\\dfrac{2}{2.236}$ is about $0.894$.",
+        "Work the second out the same way: $2 \\times 2.236 = 4.472$, and $\\dfrac{4.472}{5}$ is about $0.894$.",
+        "The same digits came back, so the two forms name one value and only the look changed."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "like-radicals-sorter", "gates": true },
+    { "after": 1, "id": "unlike-sum-table", "gates": true },
+    { "after": 2, "id": "combine-radicals-builder", "gates": true },
+    { "after": 3, "id": "rationalize-solver", "gates": true },
+    { "after": 4, "id": "rationalize-explore", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Simplify $\\dfrac{\\sqrt{18} + \\sqrt{8}}{\\sqrt{5}}$. Combine the top first, then rationalize the denominator, and write the result as a simplified radical.",
+    "accepted": [
+      "sqrt(10)",
+      "sqrt10",
+      "1*sqrt(10)",
+      "1sqrt(10)",
+      "\\sqrt{10}",
+      "\\sqrt10",
+      "√10",
+      "1*√10",
+      "1√10"
+    ],
+    "hint": "Simplify each term on the top first, because two roots that look unlike may still be like radicals. Then clear the root off the bottom: a square root times itself gives back the number inside. Reduce if the numbers share a factor.",
+    "worked_solution": [
+      "Simplify the two roots on the top before adding: $\\sqrt{18} = 3\\sqrt{2}$ and $\\sqrt{8} = 2\\sqrt{2}$.",
+      "They turned out to be like radicals, so add their counts: $3\\sqrt{2} + 2\\sqrt{2} = 5\\sqrt{2}$.",
+      "Clear the root off the bottom by multiplying top and bottom by $\\sqrt{5}$: $\\dfrac{5\\sqrt{2}}{\\sqrt{5}} \\cdot \\dfrac{\\sqrt{5}}{\\sqrt{5}} = \\dfrac{5\\sqrt{10}}{5}$.",
+      "The $5$ above and below cancel, leaving $\\sqrt{10}$."
+    ],
+    "worked_solution_params": {
+      "shared": 2,
+      "first": 3,
+      "second": 2,
+      "bottom": 5,
+      "inside": 10
+    },
+    "variants": { "template_id": "cfu.rad2.combine-rationalize", "count": 2 }
+  }
+}

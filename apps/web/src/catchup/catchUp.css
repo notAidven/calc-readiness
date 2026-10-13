@@ -1,0 +1,488 @@
+/* ==========================================================================
+   THE CATCH-UP — the stop prompt, the founding's caption, and the stopped screen
+
+   `EraCatchUpPrompt.tsx` and `CatchUpFounding.tsx` carry the design reasoning;
+   this is the drawing of it.
+
+   ## Its own file, for `eraCeremony.css`'s reason
+
+   `styles.css` is shared by every surface in the app and several lanes are
+   editing this tree for the same demo. A mis-resolved CSS conflict does not fail
+   to compile, it silently draws the wrong thing. So this ships beside the
+   components that import it.
+
+   ## THE WELL IS BUDGETED AT 1024x580, AND THE BUDGET IS §10.22's
+
+   That record measures tier one at 192px against a 289px well with 97px spare,
+   and tier two fitting today ONLY because the two nine-node eras have no lesson
+   titles yet: once D6 and D9 land, the Atomic Age and Cyberpunk overflow by 47 to
+   95px at every well width. O-TX22 says build the scroll now rather than when the
+   content arrives, so `.catchup-disclosure__body` is scrollable from the day it
+   ships and the max-height is expressed against the viewport rather than pinned.
+
+   ## NO SCRIM, BECAUSE THE AGE IS THE EVIDENCE
+
+   §10.14: the learner is standing IN the age they are deciding about, with its
+   ground, its hall and its dressing already turned. A dimming scrim would hide
+   the one thing this surface has that the upfront dial did not. So the layer is
+   transparent and the well's own translucent fill is the only opaque surface,
+   which is the minimum that keeps dark type legible over bright ground —
+   `EraAdvanceCeremony`'s own trade, applied here.
+
+   ## NOTHING IS CARRIED BY MOTION
+
+   The layer rises in and the disclosure mark rotates. Both are decoration and
+   every mark is at its final position in a still frame, so the reduced-motion
+   blocks at the bottom remove the transitions and remove no information.
+   ========================================================================== */
+
+.catchup-stage {
+  position: absolute;
+  z-index: 40;
+  display: grid;
+  place-items: end center;
+  inset: 0;
+  padding: 0 16px 14px;
+  pointer-events: none;
+  animation: catchup-rise 220ms ease-out both;
+}
+
+@keyframes catchup-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* THE WELL. `min(560px, ...)` is §10.22's own middle measurement: at a 560px well
+   every era's tier two fits inside the 289px budget today, where 420px fails the
+   Classical Era by 23px. The height is a ceiling rather than a size, so a one-line
+   tier one draws a short well and does not reserve room it is not using.
+
+   ## ⚑ FLEX WITH A SCROLLING MIDDLE, AND A 1024x580 FRAME IS WHY
+
+   This was `display: grid` with the same `max-height`, and that is a defect a
+   dimension cannot see. A `max-height` on a grid whose content is taller does not
+   clamp the CHILDREN: they render outside the box. Measured on a real frame at the
+   lead's 1024x580 window with tier two open, the reject button's bottom edge sat at
+   **y=650 in a 580px window**, so all three roads were 70px below the fold and the
+   one the whole design depends on being hard to miss was the furthest off screen.
+   `catchUpShots.browser.test.tsx` is what caught it, and it caught it because the
+   assertion is on the BUTTON's box against the viewport rather than on the well's
+   own height — which is exactly the substitution `.cursor/rules/qa-verification.mdc`
+   is about: the well measured 452px and passed, and said nothing about the roads.
+
+   So the well is a column, the disclosure's body is the one flexible row, and the
+   roads and the footer are fixed. `min-height: 0` on the body is the load-bearing
+   half: without it a flex item refuses to shrink below its content and the overflow
+   comes straight back. */
+.catchup-well {
+  display: flex;
+  flex-direction: column;
+  /* TRIMMED AGAINST A REAL 1024x580 FRAME, twice. The first shape stacked all three roads
+     and stood 436px, leaving 124px of island. Two accept roads across took it to 415px,
+     which is 21px for a whole row and says the rows were never the cost: the padding, the
+     gaps and two separate footer lines were. Folding D-TH9's clause into the
+     lessons-stay-open line and tightening both takes it to the figure the frames record. */
+  gap: 5px;
+  width: min(560px, 100%);
+  max-height: min(72vh, 420px);
+  padding: 11px 16px 12px;
+  overflow: hidden;
+  border: 1px solid var(--game-panel-line);
+  border-radius: 18px;
+  background: var(--glass-fill-strong, #fff);
+  box-shadow: 0 10px 28px rgba(31, 51, 71, 0.16);
+  color: var(--game-ink);
+  pointer-events: auto;
+}
+
+/* Everything except the disclosure's body holds its natural height. Named as a set
+   rather than relying on flex defaults, because `flex-shrink` is 1 by default and a
+   squashed concept line is a subtler failure than an overflowing one. */
+.catchup-well > :not(.catchup-disclosure__body) {
+  flex: 0 0 auto;
+}
+
+/* ⚑ THE WELL'S OWN GAP IS THE ONLY VERTICAL RHYTHM IN IT, AND IT WAS NOT.
+
+   Read off a real 1024x580 frame: the card stood 420px, which is its whole
+   `max-height`, and the footer was clipped at the window's bottom edge. The cause
+   is a paragraph carrying the user agent's own 1em block margin: nothing in this
+   stylesheet zeroes it, `.catchup-title` sets `margin: 0` and the five `p`s do not,
+   so every line was costing about 32px more than its own height and the flex `gap`
+   was governing nothing.
+
+   It was survivable at four paragraphs and it is not at seven, which is what the
+   consequence lines cost. Zeroing it here rather than per class so a line added
+   later joins the rhythm instead of re-introducing the defect. */
+.catchup-well p,
+.catchup-well ul {
+  margin: 0;
+}
+
+/* OPEN, THE WELL IS ALLOWED MORE OF THE SCREEN, and the frames are why rather than a
+   preference. At the closed ceiling the fixed rows leave about 68px for tier two,
+   which is three lines: read off a real 1024x580 frame the summary was cut off
+   mid-word with the buttons immediately under it, and a sentence that stops mid-word
+   reads as truncated rather than as scrollable. Tier two is opt-in and momentary, so
+   a learner who asked for it may have more of the screen while they read. */
+.catchup-well[data-disclosure="open"] {
+  max-height: min(88vh, 512px);
+}
+
+/* Position, not judgement (§10.19). The HUD's smallest utility register, so the
+   walk's ordinal is the same size as every other counted thing on screen. */
+.catchup-ordinal {
+  color: var(--game-mist);
+  font-size: 0.6rem;
+  font-weight: 760;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.catchup-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* Tier one. The longest of the ten concepts is 52 characters (§10.22), which is a
+   single line at every well width a 1024px viewport admits. */
+.catchup-concept {
+  color: var(--game-mist);
+  font-size: 0.84rem;
+  line-height: 1.3;
+}
+
+/* THE DISCLOSURE, CLOSED. Descriptive and never interrogative (§10.23), with no
+   count badge and no alert glyph: the learner who never opens it has done nothing
+   wrong, and a control saying otherwise would contradict the ruling that the
+   residual is accepted rather than mitigated. */
+.catchup-disclosure__toggle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1px;
+  padding: 6px 12px;
+  border: 1px solid var(--game-panel-line);
+  border-radius: 12px;
+  background: var(--game-panel-2, rgba(31, 51, 71, 0.04));
+  color: var(--game-ink);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    background 120ms ease;
+}
+
+.catchup-disclosure__toggle:hover {
+  border-color: var(--game-blue);
+}
+
+.catchup-disclosure__mark {
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid var(--game-mist);
+  border-bottom: 1.5px solid var(--game-mist);
+  transform: rotate(45deg);
+  transition: transform 160ms ease;
+}
+
+.catchup-disclosure__mark[data-open="true"] {
+  transform: rotate(-135deg);
+}
+
+/* TIER TWO, AND THE SCROLL IS O-TX22 RATHER THAN A PRECAUTION. §10.22 projected an
+   overflow of 47 to 95px at the two nine-node eras "once D6 and D9 land". Measured at
+   this tip, they HAVE landed — all ten domains are in `LESSON_DOMAINS` and only three
+   nodes across two eras still have no title — so the overflow is live today rather
+   than waiting on somebody else's PR.
+
+   `flex: 1 1 auto` with `min-height: 0` is what makes the scroll actually bite: it
+   takes the room the fixed rows leave and gives the rest back to the scrollbar, so
+   the roads below it cannot be pushed off the bottom of a 580px window. The
+   `max-height` is a second ceiling for tall viewports, where there is room to spare
+   and a 400px wall of titles would be the wrong use of it. */
+.catchup-disclosure__body {
+  display: grid;
+  flex: 1 1 auto;
+  gap: 6px;
+  overflow-y: auto;
+  min-height: 0;
+  max-height: min(40vh, 260px);
+  padding: 2px 8px 2px 0;
+  /* THE SCROLLBAR IS THE AFFORDANCE, and it is visible on purpose. A clipped paragraph
+     with no visible edge reads as truncated copy rather than as a scroll, which is what
+     the first 1024x580 frame of this panel actually looked like. `stable` reserves the
+     gutter whether or not the content overflows, so opening the panel at a short era and
+     at a nine-skill one does not shift the text sideways. */
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  scrollbar-color: color-mix(in srgb, var(--game-ink) 30%, transparent) transparent;
+}
+
+/* A hairline over the roads, so the boundary between "content that scrolls" and
+   "controls that do not" is drawn rather than implied. Only while tier two is open,
+   because closed there is nothing above them to separate from. */
+.catchup-well[data-disclosure="open"] .catchup-roads {
+  padding-top: 7px;
+  border-top: 1px solid var(--game-panel-line);
+}
+
+.catchup-summary {
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.catchup-skills__heading {
+  color: var(--game-mist);
+  font-size: 0.6rem;
+  font-weight: 760;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.catchup-skills {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding-left: 16px;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+/* THE FRAMING SENTENCE: what the learner is standing in the middle of. Set at
+   the concept line's size and one step darker, because it is the sentence that
+   gives "stop here" a referent and the concept line is the one that can be
+   skimmed. */
+.catchup-framing {
+  color: var(--game-ink);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  opacity: 0.82;
+}
+
+/* THE TWO ROADS, STACKED, EACH WITH ITS CONSEQUENCE UNDER IT.
+
+   ## WHY THIS IS NOT TWO BUTTONS ACROSS, AND IT IS THE LEAD'S OWN OBJECTION
+
+   The shape before this was two filled buttons across plus one outlined button
+   beneath, which is a sentence about importance: "two options, plus an escape
+   hatch." Off a running build the lead read exactly that and said it was the
+   wrong sentence, because "stop here" is the only road that changes what the
+   learner will be asked to learn. So there are two roads, they are peers, and
+   the thing that distinguishes them is the line under each rather than the
+   weight of either.
+
+   ## THE HEIGHT IS PAID FOR RATHER THAN SPENT
+
+   Stacking a consequence line under each button is two rows the two-across
+   shape did not have. What pays for them is the footer: the forfeit line and
+   D-TH9's movability clause both used to sit down there, and both have moved
+   up under the road they describe, so the well trades two footer lines for two
+   note lines and one row of buttons for two. Measured against §10.14's own
+   argument for this surface at 1024x580 in `docs/design-refs/catch-up/`. */
+.catchup-roads {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.catchup-road {
+  display: grid;
+  gap: 2px;
+}
+
+.catchup-roads .city-action {
+  width: 100%;
+  text-align: center;
+}
+
+/* A ROAD'S OWN BUTTON: a peer of its sibling and not a primary.
+
+   Neither road may be preselected or louder (§10.5), so neither takes the
+   primary fill. What they take is a bordered, filled surface at the same weight
+   as each other, one step up from the well behind them, so the pair reads as
+   two answers to one question rather than as an action and a way out. */
+.catchup-roads .city-action-road {
+  padding: 8px 12px;
+  border: 1px solid var(--game-panel-line);
+  border-radius: 12px;
+  background: var(--game-panel-2, rgba(31, 51, 71, 0.05));
+  color: var(--game-ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.catchup-roads .city-action-road:hover {
+  border-color: var(--game-blue);
+  background: color-mix(in srgb, var(--game-blue) 8%, transparent);
+}
+
+/* The consequence, under its own road. It takes no warning colour and no icon
+   on either side: R33's fact on the way past, and taking either road is not an
+   error. Centred under a centred label so the pair reads as one block. */
+.catchup-road__note {
+  color: var(--game-mist);
+  font-size: 0.72rem;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.catchup-foot {
+  color: var(--game-mist);
+  font-size: 0.7rem;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.catchup-standing {
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+/* THE BUILDINGS THE ISLAND HAD NO ROOM FOR.
+
+   It takes NO warning colour and no icon, and that is the decision rather than an
+   omission: nothing has gone wrong for the learner, the buildings are theirs and are
+   waiting in the build menu, and a red triangle over "your city is complete" would
+   read as a failure they caused. So it is the same register as the clause above it,
+   one line lower, in the panel's own ink rather than in an error token.
+
+   It is set apart by a hairline instead, because it is the one line on the surface
+   that is about a state of the city rather than about the choice being offered. */
+.catchup-foot--waiting {
+  margin-top: 3px;
+  padding-top: 5px;
+  border-top: 1px solid var(--game-panel-line);
+  color: var(--game-ink);
+  opacity: 0.72;
+}
+
+/* The same sentence on the founding's caption and the hand-placing strip, where the
+   surrounding type is centred and smaller. */
+.catchup-founding__waiting {
+  max-width: 44ch;
+  margin: 2px 0 0;
+  color: var(--game-ink);
+  font-size: 0.68rem;
+  line-height: 1.35;
+  opacity: 0.75;
+  text-align: center;
+}
+
+/* ---- The founding's caption ------------------------------------------------
+   §10.17 keeps the beat LABELS and drops the advisor's four lines: "a caption
+   naming what you are watching is a smaller defect than a narrator asserting
+   something false about it", because the image under the caption differs every
+   time. So this is a caption and not a speech bubble, and there is no advisor
+   figure and no byline on it. */
+.catchup-founding {
+  position: absolute;
+  z-index: 40;
+  display: grid;
+  place-items: end center;
+  inset: 0;
+  padding: 0 16px 22px;
+  pointer-events: none;
+}
+
+/* `pointer-events: auto` against the layer's `none`, so the island underneath stays
+   clickable while the hand-placing strip's own button is not: the learner is using
+   the build menu and the grid while this is on screen, and a full-width layer that
+   swallowed clicks would make the road it exists to serve impossible. The founding
+   has no button and loses nothing by the same rule. */
+.catchup-founding__caption {
+  display: grid;
+  gap: 5px;
+  justify-items: center;
+  min-width: min(320px, 100%);
+  max-width: min(520px, 100%);
+  padding: 9px 18px 11px;
+  border: 1px solid var(--game-panel-line);
+  border-radius: 22px;
+  background: var(--glass-fill-strong, #fff);
+  box-shadow: 0 6px 18px rgba(31, 51, 71, 0.14);
+  color: var(--game-ink);
+  text-align: center;
+  pointer-events: auto;
+}
+
+.catchup-founding__era {
+  color: var(--game-mist);
+  font-size: 0.6rem;
+  font-weight: 760;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.catchup-founding__beat {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+/* The four tracks, the shipped beat rail's own instrument at the shipped size, so
+   a founding and an ordinary advance read as the same object. A picture of what
+   the caption already says, so it is hidden from the accessible tree. */
+.catchup-founding__rail {
+  display: flex;
+  gap: 3px;
+  width: min(260px, 100%);
+  height: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.catchup-founding__rail li {
+  flex: 1 1 0;
+  overflow: hidden;
+  min-width: 0;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--game-ink) 16%, transparent);
+}
+
+.catchup-founding__rail span {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--game-blue);
+}
+
+/* ---- Motion off -----------------------------------------------------------
+   The OS preference and the surface's own override, following `.era-door`. The
+   rise and the chevron rotation are the only motion here and neither carries
+   anything, so removing them removes no information. The FOUNDING's own clock is
+   not motion in this sense and is handled in the component: under reduced motion
+   it still advances, because the beats are the content rather than the animation. */
+@media (prefers-reduced-motion: reduce) {
+  .catchup-stage {
+    animation: none;
+  }
+
+  .catchup-disclosure__toggle,
+  .catchup-disclosure__mark {
+    transition: none;
+  }
+}
+
+.city-surface[data-reduced-motion="true"] .catchup-stage {
+  animation: none;
+}
+
+.city-surface[data-reduced-motion="true"] .catchup-disclosure__toggle,
+.city-surface[data-reduced-motion="true"] .catchup-disclosure__mark {
+  transition: none;
+}

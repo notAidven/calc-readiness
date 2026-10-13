@@ -1,0 +1,8 @@
+viewport: 1024x580, reducedMotion, one mount, camera untouched
+the winter took: 7 of 7 buildings
+after the carry-back the city draws as ruins: NUM.S, NUM.F, NUM.2, NUM.3, NUM.4, NUM.5
+frames differ by 110220 px of 593920 (18.56%)
+of which 36830 of 92800 fall in the settlement-only band 330,80 320x290 (39.7% of it)
+
+1-before-the-carry-back.png: the island as the player left it
+2-after-the-carry-back.png: the same island, same camera, after the press

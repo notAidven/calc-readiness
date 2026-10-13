@@ -1,0 +1,94 @@
+{
+  "node_id": "FUN.4",
+  "title": "Read graph features",
+  "mini_lesson": [
+    "In the control hall a recorder unrolls a strip chart all shift, one reading an hour, and the ink line it leaves behind is the **trace**. A function is **increasing** on an interval when its output grows as the input grows, **decreasing** when the output shrinks as the input grows, and **constant** when the output holds steady while the input moves on. Read the trace left to right, because the stretch being named is a stretch of the **input**: an answer to *where is it increasing* is an interval of input values between round brackets (so $(1,\\, 4)$ names every input strictly between $1$ and $4$), never a single point and never a reading.",
+    "Between a climb and a fall the trace has to turn, and the mark where it turns is a **maximum** if the trace was climbing into it and a **minimum** if it was falling into it. Every turning point carries two numbers that answer different questions: the input says **where** the turn happens, and the output says **what** the extreme value is. So a maximum is a value read off the vertical scale, and the hour it was reached is a different number with a different name.",
+    "A turn only beats the marks immediately either side of it, which is why it is called a **local** maximum or minimum. The **absolute** maximum is the largest output anywhere on the stretch being read, so it has to beat every mark rather than only its neighbors. Ends count: a trace can climb to a modest peak, dip, and then run off the end of the shift higher than that peak ever was, so the highest reading of the shift can sit at the end rather than at a turn.",
+    "Reading a whole trace is those three questions in order: which stretches of input it climbs on, which it falls on, and what its extreme readings are. Work left to right and settle one leg at a time, since a leg between two neighboring marks only ever does one thing. Two stretches can behave the same way without touching, so collect every stretch that matches and report each as an interval of inputs, joined by the **union** sign $\\cup$ when there is more than one, as in $(0,\\, 2) \\cup (5,\\, 9)$."
+  ],
+  "slide_subtitles": [
+    "Direction over an interval",
+    "Where a trace turns",
+    "Local against absolute",
+    "Reading a whole trace"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A chart opens at a reading of $4$ at hour $0$, climbs to $15$ at hour $5$, then falls to $7$ at hour $12$. On which stretch of hours is the reading increasing?",
+      "steps": [
+        "Compare the two marks at the ends of each leg, taking the earlier one first.",
+        "From hour $0$ to hour $5$ the reading goes from $4$ up to $15$, so the output grows as the input grows.",
+        "The stretch is named by its hours rather than by those readings, so it is written $(0,\\, 5)$.",
+        "So the reading is increasing on $(0,\\, 5)$, and the leg after it, where $15$ falls to $7$, is decreasing instead."
+      ]
+    },
+    {
+      "prompt": "A trace climbs to a turn at hour $5$, where the reading is $14$, and falls away after it. What is the maximum, and at what hour is it reached?",
+      "steps": [
+        "The trace climbs into the turn and falls away from it, so the turn is a maximum.",
+        "A turn carries two numbers, and they answer different questions: the hour it happened at, and the reading the pen reached there.",
+        "The hour is $5$, read off the horizontal scale, and the reading is $14$, read off the vertical one.",
+        "A maximum is a value, so the maximum is $14$, reached at hour $5$."
+      ]
+    },
+    {
+      "prompt": "A shift's marks are $(0,\\, 6)$, $(3,\\, 13)$, $(7,\\, 8)$ and $(12,\\, 17)$. What is the absolute maximum of the shift?",
+      "steps": [
+        "The turn at hour $3$ beats the marks either side of it, so $13$ is a local maximum.",
+        "The absolute maximum has to beat every mark, so compare all four readings: $6$, $13$, $8$ and $17$.",
+        "The largest is $17$, and it sits at the last hour of the shift rather than at a turn.",
+        "So the absolute maximum of the shift is $17$, and the local maximum of $13$ is not it."
+      ]
+    },
+    {
+      "prompt": "A shift's marks are $(0,\\, 5)$, $(2,\\, 11)$, $(6,\\, 3)$, $(9,\\, 3)$ and $(13,\\, 10)$. On which stretches of hours is the reading increasing?",
+      "steps": [
+        "Settle one leg at a time, comparing only the two marks at its ends: $5$ climbs to $11$, then $11$ falls to $3$, then $3$ holds at $3$, then $3$ climbs to $10$.",
+        "Two of those four legs climb, the first and the last, so both belong in the answer and the other two do not.",
+        "Name each stretch by its hours rather than its readings: the first is $(0,\\, 2)$ and the last is $(9,\\, 13)$.",
+        "They do not touch, so they cannot be run together into one interval. Joined by the union sign, the answer is $(0,\\, 2) \\cup (9,\\, 13)$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "feature-interval-classify", "gates": true },
+    { "after": 1, "id": "feature-extremum-spot", "gates": true },
+    { "after": 2, "id": "feature-trace-walkthrough", "gates": true },
+    { "after": 3, "id": "feature-table", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A strip chart from the control hall opens at a reading of $4$ at hour $0$, climbs steadily to $9$ at hour $3$, falls steadily to $2$ at hour $8$, then climbs steadily to $11$ at hour $12$, where the shift ends. On which stretch of hours is the reading decreasing, and what is the absolute maximum of the whole shift? Give the stretch in interval notation with round brackets, then the reading, like `(1, 5), 7`.",
+    "accepted": [
+      "(3, 8), 11",
+      "(3, 8); 11",
+      "(3, 8) and 11",
+      "[3, 8], 11",
+      "[3, 8]; 11",
+      "[3, 8] and 11",
+      "11, (3, 8)",
+      "11, [3, 8]",
+      "3 < x < 8, 11",
+      "3 <= x <= 8, 11"
+    ],
+    "hint": "Split the shift into its legs first, one between each pair of neighboring marks, and settle each leg on its own by comparing only the two readings at its ends. Then for the absolute maximum compare every mark on the chart, the two at the ends of the shift included, because a turn beats its immediate neighbors and says nothing about the rest.",
+    "worked_solution": [
+      "The marks in order are $(0,\\, 4)$, $(3,\\, 9)$, $(8,\\, 2)$ and $(12,\\, 11)$.",
+      "Take the legs one at a time: the reading climbs from hour $0$ to hour $3$, falls from hour $3$ to hour $8$, then climbs again from hour $8$ to hour $12$.",
+      "Only one leg falls, so the reading is decreasing across the stretch of hours from $3$ to $8$.",
+      "For the absolute maximum, compare every mark rather than only the turns: $4$, $9$, $2$ and $11$.",
+      "The largest of those is $11$, reached at the very end of the shift, so the turn at $9$ is only a local maximum.",
+      "Written as the prompt asks: `(3, 8), 11`."
+    ],
+    "worked_solution_params": {
+      "h1": 3,
+      "h2": 8,
+      "h3": 12,
+      "r0": 4,
+      "r1": 9,
+      "r2": 2,
+      "r3": 11
+    },
+    "variants": { "template_id": "cfu.fun4.read-features", "count": 2 }
+  }
+}

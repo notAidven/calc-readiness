@@ -1,0 +1,136 @@
+{
+  "node_id": "RAT.2",
+  "title": "Multiply and divide rational expressions",
+  "mini_lesson": [
+    "The tithe store scales a measure up when a barn's worth comes in and splits it down again when it leaves by the cartload. To multiply two rational expressions, factor every numerator and every denominator, cancel any factor that appears both above and below the fraction bar, then multiply what remains. Cancelling first is what keeps the work small: a factor struck out early never has to be multiplied out and factored again.",
+    "A cancelled factor does not stop being an excluded value. Read every **excluded value** from the **original** denominators, before anything cancels, because a value that would have made a denominator zero is still excluded once the factor is gone. The product and its simplified form agree everywhere except at those values, which is exactly why they have to be listed.",
+    "Division is multiplication by the **reciprocal**: $\\dfrac{a}{b} \\div \\dfrac{c}{d} = \\dfrac{a}{b} \\times \\dfrac{d}{c}$. Flip the divisor and you are back at an ordinary product, so the rest of the method does not change. Only the second fraction turns over; flipping the first one inverts the whole quotient instead.",
+    "Flipping the divisor adds one more excluded value. Whatever was in the **numerator** of the divisor is now in a denominator, so its zeros are excluded too, alongside the zeros of every original denominator. A zero in the first fraction's numerator is the one that costs you nothing: it only makes the quotient zero, not undefined."
+  ],
+  "slide_subtitles": [
+    "Multiplying rational expressions",
+    "Excluded values survive cancelling",
+    "Dividing by the reciprocal",
+    "What flipping excludes"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Multiply $\\dfrac{x^{2} - 9}{x + 5} \\times \\dfrac{x + 5}{x - 3}$.",
+      "steps": [
+        "Factor everything that factors: $x^{2} - 9 = (x - 3)(x + 3)$, so the product is $\\dfrac{(x - 3)(x + 3)}{x + 5} \\times \\dfrac{x + 5}{x - 3}$.",
+        "Across one multiplication the two bars act as a single bar, so any factor above may cancel with a matching factor below.",
+        "$(x + 5)$ appears above and below, and so does $(x - 3)$, so both of them go.",
+        "What is left above is $(x + 3)$ and what is left below is $1$, so the product is $x + 3$."
+      ]
+    },
+    {
+      "prompt": "List every excluded value of $\\dfrac{x - 1}{x + 4} \\times \\dfrac{x + 4}{x + 6}$.",
+      "steps": [
+        "Read the original denominators before touching anything: $x + 4$ is zero at $x = -4$, and $x + 6$ is zero at $x = -6$.",
+        "Cancelling the shared $(x + 4)$ leaves $\\dfrac{x - 1}{x + 6}$, whose only visible denominator is $x + 6$.",
+        "The cancelled factor was still underneath in the original, so $x = -4$ never became a legal value.",
+        "Both values are excluded: $x = -4$ and $x = -6$."
+      ]
+    },
+    {
+      "prompt": "Divide $\\dfrac{x^{2} - 1}{x + 4} \\div \\dfrac{x - 1}{x + 4}$.",
+      "steps": [
+        "Dividing by a fraction is multiplying by its reciprocal, and only the divisor turns over: $\\dfrac{x^{2} - 1}{x + 4} \\times \\dfrac{x + 4}{x - 1}$.",
+        "Factor the first numerator: $x^{2} - 1 = (x - 1)(x + 1)$.",
+        "Now $(x + 4)$ and $(x - 1)$ each appear above and below, so both cancel.",
+        "The quotient is $x + 1$."
+      ]
+    },
+    {
+      "prompt": "List every excluded value of $\\dfrac{x}{x + 3} \\div \\dfrac{x - 8}{x - 1}$.",
+      "steps": [
+        "Two denominators are already in view: $x + 3$ bars $x = -3$, and $x - 1$ bars $x = 1$.",
+        "Flip the divisor to get $\\dfrac{x}{x + 3} \\times \\dfrac{x - 1}{x - 8}$, which puts $x - 8$ underneath.",
+        "That new denominator bars $x = 8$, a value nothing in the original expression made you notice.",
+        "The dividend's own numerator $x$ is zero at $x = 0$, which only makes the quotient zero rather than undefined.",
+        "So three values are excluded: $x = -3$, $x = 1$ and $x = 8$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "rational-scale-cancel-play", "gates": true },
+    { "after": 1, "id": "rational-scale-dose-explore", "gates": true },
+    { "after": 2, "id": "rational-reciprocal-walkthrough", "gates": true },
+    { "after": 3, "id": "rational-divide-dose-sorter", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Evaluate $\\dfrac{x^{2} - 49}{x^{2} + 10x + 24} \\div \\dfrac{x - 7}{x + 6}$ in lowest terms and list every excluded value. Type the expression first, then the values, like `(x+1)/(x+2); x = -3, 5`.",
+    "accepted": [
+      "(x + 7)/(x + 4); x = -6, -4, 7",
+      "(x + 7)/(x + 4); x = -6, 7, -4",
+      "(x + 7)/(x + 4); x = -4, -6, 7",
+      "(x + 7)/(x + 4); x = 7, -6, -4",
+      "(x + 7)/(x + 4), x = -6, -4, 7",
+      "(x + 7)/(x + 4); -6, -4, 7",
+      "(x + 7)/(x + 4); x = -6, x = -4, x = 7",
+      "(x + 7)/(x + 4); x != -6, -4, 7",
+      "(x + 7)/(x + 4); x != -6, x != -4, x != 7",
+      "(x + 7)/(x + 4); x ≠ -6, -4, 7",
+      "(x + 7)/(x + 4); x ≠ -6, x ≠ -4, x ≠ 7",
+      "(7 + x)/(4 + x); x = -6, -4, 7",
+      "\\dfrac{x + 7}{x + 4}; x = -6, -4, 7",
+      "\\frac{x + 7}{x + 4}; x = -6, -4, 7",
+      "(x + 7)/(x + 4); x = -6; -4; 7",
+      "(x + 7)/(x + 4) and x = -6 and -4 and 7",
+      "(x + 7)/(x + 4), x = -6, 7, -4",
+      "(x + 7)/(x + 4); x = -6; 7; -4",
+      "(x + 7)/(x + 4) and x = -6 and 7 and -4",
+      "(x + 7)/(x + 4), x = -4, -6, 7",
+      "(x + 7)/(x + 4); x = -4; -6; 7",
+      "(x + 7)/(x + 4) and x = -4 and -6 and 7",
+      "(x + 7)/(x + 4), x = 7, -6, -4",
+      "(x + 7)/(x + 4); x = 7; -6; -4",
+      "(x + 7)/(x + 4) and x = 7 and -6 and -4",
+      "(x + 7)/(x + 4); x = -4, 7, -6",
+      "(x + 7)/(x + 4), x = -4, 7, -6",
+      "(x + 7)/(x + 4); x = -4; 7; -6",
+      "(x + 7)/(x + 4) and x = -4 and 7 and -6",
+      "(x + 7)/(x + 4); x = 7, -4, -6",
+      "(x + 7)/(x + 4), x = 7, -4, -6",
+      "(x + 7)/(x + 4); x = 7; -4; -6",
+      "(x + 7)/(x + 4) and x = 7 and -4 and -6",
+      "(x + 7)/(x + 4), -6, -4, 7",
+      "(x + 7)/(x + 4); -6; -4; 7",
+      "(x + 7)/(x + 4) and -6 and -4 and 7",
+      "(x + 7)/(x + 4), x = -6, x = -4, x = 7",
+      "(x + 7)/(x + 4); x = -6; x = -4; x = 7",
+      "(x + 7)/(x + 4) and x = -6 and x = -4 and x = 7",
+      "(x + 7)/(x + 4), x != -6, -4, 7",
+      "(x + 7)/(x + 4); x != -6; -4; 7",
+      "(x + 7)/(x + 4) and x != -6 and -4 and 7",
+      "(x + 7)/(x + 4), x ≠ -6, -4, 7",
+      "(x + 7)/(x + 4); x ≠ -6; -4; 7",
+      "(x + 7)/(x + 4) and x ≠ -6 and -4 and 7",
+      "(x + 7)/(x + 4), x != -6, x != -4, x != 7",
+      "(x + 7)/(x + 4); x != -6; x != -4; x != 7",
+      "(x + 7)/(x + 4) and x != -6 and x != -4 and x != 7",
+      "(x + 7)/(x + 4), x ≠ -6, x ≠ -4, x ≠ 7",
+      "(x + 7)/(x + 4); x ≠ -6; x ≠ -4; x ≠ 7",
+      "(x + 7)/(x + 4) and x ≠ -6 and x ≠ -4 and x ≠ 7",
+      "(7 + x)/(4 + x), x = -6, -4, 7",
+      "(7 + x)/(4 + x); x = -6; -4; 7",
+      "(7 + x)/(4 + x) and x = -6 and -4 and 7",
+      "\\dfrac{x + 7}{x + 4}, x = -6, -4, 7",
+      "\\dfrac{x + 7}{x + 4}; x = -6; -4; 7",
+      "\\dfrac{x + 7}{x + 4} and x = -6 and -4 and 7",
+      "\\frac{x + 7}{x + 4}, x = -6, -4, 7",
+      "\\frac{x + 7}{x + 4}; x = -6; -4; 7",
+      "\\frac{x + 7}{x + 4} and x = -6 and -4 and 7"
+    ],
+    "hint": "Flip the divisor before anything else, so the product becomes $\\dfrac{x^{2} - 49}{x^{2} + 10x + 24} \\times \\dfrac{x + 6}{x - 7}$. Now factor: the first numerator is a difference of two squares, and the first denominator needs the two numbers that multiply to $24$ and add to $10$. Write the excluded values down before you cancel anything, and remember that the divisor's numerator is a denominator now.",
+    "worked_solution": [
+      "Dividing by a fraction is multiplying by its reciprocal, so flip the divisor: $\\dfrac{x^{2} - 49}{x^{2} + 10x + 24} \\times \\dfrac{x + 6}{x - 7}$.",
+      "Factor what is left: $x^{2} - 49 = (x - 7)(x + 7)$, and $x^{2} + 10x + 24 = (x + 6)(x + 4)$.",
+      "Collect the excluded values now, before anything cancels. The first bottom bars $x = -6$ and $x = -4$, and the divisor's top became a bottom when it flipped, which bars $x = 7$.",
+      "Cancel the shared $(x - 7)$ and $(x + 6)$, leaving $\\dfrac{x + 7}{x + 4}$.",
+      "Typed as the prompt asks: `(x + 7)/(x + 4); x = -6, -4, 7`."
+    ],
+    "worked_solution_params": { "a": 7, "b": 6, "c": 4 },
+    "variants": { "template_id": "cfu.rat2.divide-exclusions", "count": 2 }
+  }
+}

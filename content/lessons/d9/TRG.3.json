@@ -1,0 +1,80 @@
+{
+  "node_id": "TRG.3",
+  "title": "Unit circle; reference angles for sine and cosine",
+  "mini_lesson": [
+    "A rotating antenna turns on its pad, and the engineer watching it records where the tip has got to as two readings: its horizontal reach, how far the tip sits left or right of the vertical axis, and its vertical reach, how far it sits above or below the horizontal axis. A circle of radius one centered at the origin is the **unit circle**, and the point a heading picks out on it carries the cosine of that heading as its first coordinate and the sine as its second, so the horizontal reach is the cosine and the vertical reach is the sine. What stays fixed at one unit is the distance out to the tip and not a total the two reaches divide up between them, so neither of them is ever more than one and a turn that lengthens one shortens the other.",
+    "The two axes cut the plane into four parts, and each part is a **quadrant**, numbered I through IV counterclockwise from the upper right. Which quadrant a heading lands in settles the sign of both readings before any value is worked out: right of the vertical axis the first coordinate is positive and left of it negative, while above the horizontal axis the second coordinate is positive and below it negative. Outside the first and third quadrants those two signs disagree, so a heading has to be signed twice rather than once.",
+    "Every heading that is not on an axis has an acute partner: measure from the terminal side to the nearer end of the horizontal axis and what you get is the **reference angle**, which always falls between $0^{\\circ}$ and $90^{\\circ}$. The nearer end is the one at $180^{\\circ}$ for a heading in the upper left or the lower left, and the one at $360^{\\circ}$ for a heading in the lower right. The sine and cosine of a heading have exactly the size that the sine and cosine of its reference angle have, and only the signs can differ, which the quadrant has already settled.",
+    "An exact value at a heading that is not acute is assembled rather than looked up, out of a size and a sign that come from different places. Where the reference angle is one of the three special angles, its size is a value the right triangles have already handed over, so nothing new has to be measured. The sign is the one the quadrant gives, so a single acute size serves four different headings and only the quadrant says which of them was asked for."
+  ],
+  "slide_subtitles": [
+    "Position on a turn",
+    "Quadrants and signs",
+    "The reference angle",
+    "Taking an exact value"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The tip of the antenna sits at the point $\\left(-\\dfrac{3}{5},\\, \\dfrac{4}{5}\\right)$ on the unit circle. Give its two reaches, and check that the tip is one unit from the center.",
+      "steps": [
+        "The first coordinate is the horizontal reach, so the tip sits $\\dfrac{3}{5}$ of a unit left of the vertical axis and the reading is $-\\dfrac{3}{5}$.",
+        "The second coordinate is the vertical reach, so the tip sits $\\dfrac{4}{5}$ of a unit above the horizontal axis and that reading is $\\dfrac{4}{5}$.",
+        "The distance out to the tip is $\\sqrt{\\left(-\\dfrac{3}{5}\\right)^{2} + \\left(\\dfrac{4}{5}\\right)^{2}} = \\sqrt{\\dfrac{9}{25} + \\dfrac{16}{25}} = \\sqrt{1} = 1$, so the point really is on the unit circle.",
+        "So the reaches are $-\\dfrac{3}{5}$ and $\\dfrac{4}{5}$, and at this heading they do not add to one, since $\\dfrac{3}{5} + \\dfrac{4}{5} = \\dfrac{7}{5}$: the one unit is the distance out to the tip."
+      ]
+    },
+    {
+      "prompt": "The antenna is aimed at a heading of $310^{\\circ}$. Say whether its horizontal reach and its vertical reach come out positive or negative.",
+      "steps": [
+        "A heading of $310^{\\circ}$ has passed $270^{\\circ}$ without coming back round to $360^{\\circ}$, so the terminal side lands in Quadrant IV.",
+        "Quadrant IV lies right of the vertical axis, so the first coordinate is positive and the horizontal reach is a rightward one.",
+        "It also lies below the horizontal axis, so the second coordinate is negative and the vertical reach is a downward one.",
+        "So at $310^{\\circ}$ the cosine is positive and the sine is negative, and no value had to be worked out to say so."
+      ]
+    },
+    {
+      "prompt": "Find the reference angle of a heading of $200^{\\circ}$.",
+      "steps": [
+        "A heading of $200^{\\circ}$ has passed the half turn at $180^{\\circ}$ without reaching $270^{\\circ}$, so its terminal side lies in the lower left.",
+        "The nearer end of the horizontal axis is therefore the one at $180^{\\circ}$, so the acute angle back to it is $200^{\\circ} - 180^{\\circ}$.",
+        "That subtraction gives $20^{\\circ}$, which sits between $0^{\\circ}$ and $90^{\\circ}$ as a reference angle has to.",
+        "So the reference angle of $200^{\\circ}$ is $20^{\\circ}$, and the sine and cosine of $200^{\\circ}$ have the size of the sine and cosine of $20^{\\circ}$."
+      ]
+    },
+    {
+      "prompt": "Find the exact value of $\\sin 120^{\\circ}$.",
+      "steps": [
+        "A heading of $120^{\\circ}$ has passed the quarter turn at $90^{\\circ}$ without reaching $180^{\\circ}$, so the terminal side lands in Quadrant II.",
+        "In Quadrant II the nearer end of the horizontal axis is the one at $180^{\\circ}$, so the reference angle is $180^{\\circ} - 120^{\\circ} = 60^{\\circ}$.",
+        "The sine of that acute angle is $\\sin 60^{\\circ} = \\dfrac{\\sqrt{3}}{2}$, which fixes the size of the reading.",
+        "Quadrant II lies above the horizontal axis, so the second coordinate is positive and $\\sin 120^{\\circ} = \\dfrac{\\sqrt{3}}{2}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "trg-unitcircle-explore", "gates": true },
+    { "after": 1, "id": "trg-quadrant-sorter", "gates": true },
+    { "after": 2, "id": "trg-reference-table", "gates": true },
+    { "after": 3, "id": "trg-reference-order", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A rotating antenna reaches one unit from the center of its pad and is aimed at a heading of $240^{\\circ}$. What is the horizontal reach of its tip, measured from the vertical axis with a leftward reach counting as negative? Enter one number, as a fraction in lowest terms.",
+    "accepted": ["-1/2"],
+    "hint": "The horizontal reach of the tip is the first coordinate of its point, which is the cosine of the heading, so the reading you want is $\\cos 240^{\\circ}$. Place the heading first: it has passed the half turn at $180^{\\circ}$ without reaching $270^{\\circ}$. That one fact settles both remaining moves, because the quadrant chooses the subtraction that gives the reference angle and it also decides the sign. Find the size first and leave the sign until you have something to put it on.",
+    "worked_solution": [
+      "The horizontal reach of the tip is the first coordinate of the point where the terminal side crosses the unit circle, so the reading asked for is $\\cos 240^{\\circ}$.",
+      "A heading of $240^{\\circ}$ has passed the half turn at $180^{\\circ}$ without reaching $270^{\\circ}$, so the terminal side lands in Quadrant III.",
+      "In Quadrant III the nearer end of the horizontal axis is the one at $180^{\\circ}$, so the reference angle is $240^{\\circ} - 180^{\\circ} = 60^{\\circ}$.",
+      "At that acute angle the cosine is $\\cos 60^{\\circ} = \\dfrac{1}{2}$, which fixes the size of the reading.",
+      "Quadrant III lies left of the vertical axis, so the first coordinate is negative and the antenna's horizontal reach is $-\\dfrac{1}{2}$."
+    ],
+    "worked_solution_params": { "isSine": 0, "deg": 240 },
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "-1/2",
+      "representation": "fraction",
+      "simplification": "reduced_fraction"
+    },
+    "variants": { "template_id": "cfu.trg3.circle-cosine", "count": 2 }
+  }
+}

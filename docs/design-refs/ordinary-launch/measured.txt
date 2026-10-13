@@ -1,0 +1,35 @@
+Measured on the frames in docs/design-refs/ordinary-launch, under an emulated
+prefers-reduced-motion: reduce, by ordinaryLaunchShots.browser.test.tsx in the same run.
+Every box is in CSS pixels, in the viewport named at the start of its line.
+Both surfaces are mounted through the real AccountBoundary with the Cognito service
+injected as a prop, so the account chrome and the front door are the shipped article.
+No module mock: see test/browserModeModuleMocker.test.ts.
+
+1024x580 front door / Create account: 320x45px at (352, 312), bottom y=357
+1024x580 front door / Sign in: 96x44px at (464, 365), bottom y=409
+1024x580 front door: widest painted edge x=1024
+1024x580 front door / Create account: text rgb(231, 250, 246) on painted rgb(0, 94, 82) = 7.13:1
+1024x580 front door / Sign in: text rgb(0, 59, 52) on painted rgb(251, 246, 235) = 11.63:1
+390x580 front door / Create account: 317x45px at (37, 286), bottom y=331
+390x580 front door / Sign in: 96x44px at (147, 339), bottom y=383
+390x580 front door: widest painted edge x=390
+390x580 front door / Create account: text rgb(231, 250, 246) on painted rgb(0, 94, 82) = 7.13:1
+390x580 front door / Sign in: text rgb(0, 59, 52) on painted rgb(251, 246, 235) = 11.63:1
+1024x580 launch / Take the diagnostic: 397x44px at (111, 381), bottom y=425
+1024x580 launch / Start at Era 1: 372x44px at (542, 381), bottom y=425
+1024x580 launch: widest painted edge x=1024
+1024x580 launch / title: 284px wide in a 803px masthead, 1 line(s)
+1024x580 launch / sheet: 860x291px, top y=171, bottom y=463
+1024x580 launch / account chrome covers 0px² of the masthead (chrome bottom y=56, masthead top y=185)
+1024x580 launch / Recommended tag: text rgb(90, 63, 14) on painted rgb(240, 223, 174) = 7.37:1
+1024x580 launch / Take the diagnostic: text rgb(64, 48, 12) on painted rgb(242, 193, 78) = 7.60:1
+1024x580 launch / Start at Era 1: text rgb(43, 54, 66) on painted rgb(239, 231, 214) = 9.99:1
+390x580 launch / Take the diagnostic: 338x44px at (26, 290), bottom y=334
+390x580 launch / Start at Era 1: 338x44px at (26, 460), bottom y=504
+390x580 launch: widest painted edge x=390
+390x580 launch / title: 218px wide in a 338px masthead, 1 line(s)
+390x580 launch / sheet: 370x480px, top y=77, bottom y=557
+390x580 launch / account chrome covers 0px² of the masthead (chrome bottom y=56, masthead top y=91)
+390x580 launch / Recommended tag: text rgb(90, 63, 14) on painted rgb(240, 223, 174) = 7.37:1
+390x580 launch / Take the diagnostic: text rgb(64, 48, 12) on painted rgb(242, 193, 78) = 7.60:1
+390x580 launch / Start at Era 1: text rgb(43, 54, 66) on painted rgb(239, 231, 214) = 9.99:1

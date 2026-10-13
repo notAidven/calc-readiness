@@ -1,0 +1,32 @@
+{
+  "source": "Color_scheme_lightened (2).pptx",
+  "slideCount": 4,
+  "width": 1600,
+  "height": 900,
+  "slides": [
+    {
+      "index": 1,
+      "src": "/presenter-deck/slide-01.png",
+      "title": "Calculus-Readiness City-Builder",
+      "alt": "Calculus-Readiness City-Builder, a remedial math app that sustains engagement from start to finish, by Gabriel Xiong, Evan Cabrera, and Anthony Zheng."
+    },
+    {
+      "index": 2,
+      "src": "/presenter-deck/slide-02.png",
+      "title": "The Retention Problem",
+      "alt": "The Retention Problem: 56 percent of developmental-math students never completed the sequence, according to PPIC."
+    },
+    {
+      "index": 3,
+      "src": "/presenter-deck/slide-03.png",
+      "title": "Our Solution",
+      "alt": "Our Solution: diagnose each student's missing prerequisites, teach those gaps and nothing else, and sustain engagement so students keep coming back."
+    },
+    {
+      "index": 4,
+      "src": "/presenter-deck/slide-04.png",
+      "title": "Live Demo",
+      "alt": "Live Demo: Diagnose, Learn, Practice, Advance."
+    }
+  ]
+}

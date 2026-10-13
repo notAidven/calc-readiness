@@ -1,0 +1,141 @@
+{
+  "node_id": "RAT.4",
+  "title": "Simplify complex and nested rational expressions",
+  "mini_lesson": [
+    "A tithe taken as a share of a share is still one division in the end, however many smaller measures sit inside it. A complex fraction has fractions in its numerator, its denominator, or both. Only one main bar divides the entire top by the entire bottom, and the shorter bars above and below it divide nothing outside their own fraction.",
+    "Two methods clear a complex fraction, and the first combines the numerator into one fraction and the denominator into one fraction, then treats the result as a division and multiplies by the reciprocal. That is addition and multiplication of rationals, stacked. Only the fraction under the main bar turns over, because that is the divisor; flipping the one above it inverts the whole answer.",
+    "The second method clears every inner denominator at once: multiply the entire numerator and the entire denominator by the least common denominator of the inner fractions. You multiplied by a form of $1$, so the value does not change and the inner bars disappear. Both methods give the same answer, so use whichever is shorter.",
+    "A complex fraction can exclude more values than its simplified form suggests. Every denominator that appears anywhere counts, including inner ones, and so does the entire denominator fraction: if that whole expression is zero, the division is undefined. A zero in the top's **inner numerator** costs you nothing, since it only makes part of the top zero, but the same zero in the bottom's inner numerator is excluded, because it is what makes the whole divisor zero."
+  ],
+  "slide_subtitles": [
+    "Complex fractions",
+    "Combine, then flip",
+    "Clearing every inner denominator",
+    "Hidden excluded values"
+  ],
+  "worked_examples": [
+    null,
+    {
+      "prompt": "Simplify $\\dfrac{\\dfrac{1}{2} + \\dfrac{1}{x}}{\\dfrac{3}{x}}$ by combining the top first.",
+      "steps": [
+        "Make the top one fraction over the LCD $2x$: $\\dfrac{1}{2} + \\dfrac{1}{x} = \\dfrac{x + 2}{2x}$.",
+        "The bottom is already one fraction, so the whole expression is $\\dfrac{x + 2}{2x} \\div \\dfrac{3}{x}$.",
+        "The divisor is the fraction under the main bar, so that is the one to turn over: $\\dfrac{x + 2}{2x} \\times \\dfrac{x}{3}$.",
+        "Cancel the $x$ above against the $x$ inside $2x$ below, which leaves $\\dfrac{x + 2}{6}$."
+      ]
+    },
+    {
+      "prompt": "Clear the inner denominators of $\\dfrac{\\dfrac{1}{2} - \\dfrac{1}{x}}{\\dfrac{1}{4} + \\dfrac{1}{x}}$.",
+      "steps": [
+        "The inner denominators are $2$, $x$ and $4$, and the smallest expression all three divide into is $4x$.",
+        "Multiply the entire top and the entire bottom by $4x$, which is multiplying by $\\dfrac{4x}{4x}$, a form of $1$.",
+        "The top becomes $\\dfrac{1}{2} \\times 4x - \\dfrac{1}{x} \\times 4x = 2x - 4$.",
+        "The bottom becomes $\\dfrac{1}{4} \\times 4x + \\dfrac{1}{x} \\times 4x = x + 4$.",
+        "Every inner bar is gone and the value is unchanged: $\\dfrac{2x - 4}{x + 4}$."
+      ]
+    },
+    {
+      "prompt": "List every excluded value of $\\dfrac{\\dfrac{x - 3}{x + 2}}{\\dfrac{x - 7}{x + 5}}$.",
+      "steps": [
+        "Two inner denominators appear, so start with them: $x + 2$ bars $x = -2$, and $x + 5$ bars $x = -5$.",
+        "The whole bottom fraction is what you divide by, and it is zero exactly when its own numerator is: $x - 7 = 0$ at $x = 7$.",
+        "So $x = 7$ is excluded too, even though no denominator is zero there.",
+        "The top's numerator $x - 3$ is zero at $x = 3$, which only makes the whole expression zero and is allowed.",
+        "Three values are excluded: $x = -5$, $x = -2$ and $x = 7$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "rational-nested-bar-play", "gates": true },
+    { "after": 1, "id": "rational-nested-flip-spot", "gates": true },
+    { "after": 2, "id": "rational-clear-lcd-builder", "gates": true },
+    { "after": 3, "id": "rational-nested-dose-sorter", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Simplify $\\dfrac{\\dfrac{1}{x} + \\dfrac{1}{4}}{\\dfrac{x + 4}{5}}$ by clearing the inner denominators. Write a single fraction in lowest terms and list every excluded value in increasing order. Type it the way this example is typed: `7/(2x); x = -3, 0`.",
+    "accepted": [
+      "5/(4x); x = -4, 0",
+      "5/(4x); x = 0, -4",
+      "5/(4*x); x = -4, 0",
+      "5/(4*x); x = 0, -4",
+      "5/(4x), x = -4, 0",
+      "5/(4x); x = -4, x = 0",
+      "5/(4x); x != -4, 0",
+      "5/(4x); x != 0, -4",
+      "5/(4x); x != -4, x != 0",
+      "5/(4x); x ≠ -4, 0",
+      "5/(4x); x ≠ 0, -4",
+      "5/(4x); x ≠ -4, x ≠ 0",
+      "5/(4x); -4, 0",
+      "5/(4x); 0, -4",
+      "(5)/(4x); x = -4, 0",
+      "5/(x*4); x = -4, 0",
+      "5/4x; x = -4, 0",
+      "\\dfrac{5}{4x}; x = -4, 0",
+      "\\frac{5}{4x}; x = -4, 0",
+      "5/(4x); x = -4; 0",
+      "5/(4x) and x = -4 and 0",
+      "5/(4x), x = 0, -4",
+      "5/(4x); x = 0; -4",
+      "5/(4x) and x = 0 and -4",
+      "5/(4*x), x = -4, 0",
+      "5/(4*x); x = -4; 0",
+      "5/(4*x) and x = -4 and 0",
+      "5/(4*x), x = 0, -4",
+      "5/(4*x); x = 0; -4",
+      "5/(4*x) and x = 0 and -4",
+      "5/(4x), x = -4, x = 0",
+      "5/(4x); x = -4; x = 0",
+      "5/(4x) and x = -4 and x = 0",
+      "5/(4x), x != -4, 0",
+      "5/(4x); x != -4; 0",
+      "5/(4x) and x != -4 and 0",
+      "5/(4x), x ≠ -4, 0",
+      "5/(4x); x ≠ -4; 0",
+      "5/(4x) and x ≠ -4 and 0",
+      "5/(4x), x != 0, -4",
+      "5/(4x); x != 0; -4",
+      "5/(4x) and x != 0 and -4",
+      "5/(4x), x ≠ 0, -4",
+      "5/(4x); x ≠ 0; -4",
+      "5/(4x) and x ≠ 0 and -4",
+      "5/(4x), x != -4, x != 0",
+      "5/(4x); x != -4; x != 0",
+      "5/(4x) and x != -4 and x != 0",
+      "5/(4x), x ≠ -4, x ≠ 0",
+      "5/(4x); x ≠ -4; x ≠ 0",
+      "5/(4x) and x ≠ -4 and x ≠ 0",
+      "5/(4x), -4, 0",
+      "5/(4x); -4; 0",
+      "5/(4x) and -4 and 0",
+      "5/(4x), 0, -4",
+      "5/(4x); 0; -4",
+      "5/(4x) and 0 and -4",
+      "(5)/(4x), x = -4, 0",
+      "(5)/(4x); x = -4; 0",
+      "(5)/(4x) and x = -4 and 0",
+      "5/(x*4), x = -4, 0",
+      "5/(x*4); x = -4; 0",
+      "5/(x*4) and x = -4 and 0",
+      "5/4x, x = -4, 0",
+      "5/4x; x = -4; 0",
+      "5/4x and x = -4 and 0",
+      "\\dfrac{5}{4x}, x = -4, 0",
+      "\\dfrac{5}{4x}; x = -4; 0",
+      "\\dfrac{5}{4x} and x = -4 and 0",
+      "\\frac{5}{4x}, x = -4, 0",
+      "\\frac{5}{4x}; x = -4; 0",
+      "\\frac{5}{4x} and x = -4 and 0"
+    ],
+    "hint": "Start with the numerator: $\\dfrac{1}{x} + \\dfrac{1}{4}$ is not one fraction until both parts are written over the LCD $4x$. Then the main bar represents division, so flip the denominator fraction and multiply. Read the excluded values from the original expression before you cancel anything: the inner denominator in the numerator, and the value that makes the entire denominator fraction equal to zero.",
+    "worked_solution": [
+      "Make the top a single fraction over the LCD $4x$: $\\dfrac{1}{x} + \\dfrac{1}{4} = \\dfrac{4 + x}{4x}$.",
+      "The main bar is a division, so flip what is underneath and multiply: $\\dfrac{4 + x}{4x} \\times \\dfrac{5}{x + 4}$.",
+      "Read the excluded values off the original, before anything cancels. The inner denominator bars $x = 0$, and the value emptying the divisor bars $x = -4$.",
+      "Now cancel the shared $(x + 4)$, which leaves $\\dfrac{5}{4x}$.",
+      "Typed as the prompt asks, in increasing order: `5/(4x); x = -4, 0`."
+    ],
+    "worked_solution_params": { "d": 4, "n": 5 },
+    "variants": { "template_id": "cfu.rat4.complex-clear", "count": 2 }
+  }
+}

@@ -1,0 +1,381 @@
+{
+  "schema": 1,
+  "sourceSha256": "65d2f4c526c2254d2261dbc6fb75f93d0927b8180ed7bf2721d5d7958b87bb3a",
+  "generator": "scripts/export-era7-building-models.mjs",
+  "batching": "world-transform + exact material/index/attribute signature",
+  "outputs": [
+    {
+      "file": "fun-1-site.glb",
+      "kind": "skill",
+      "id": "FUN.1",
+      "art": "spinning",
+      "stage": "site",
+      "committed": true,
+      "sourceMeshes": 26,
+      "shippedMeshes": 4,
+      "sha256": "8f0dbedd810e5e85dfe33f937cd98f42631595c12dc72e433929346f290c861d"
+    },
+    {
+      "file": "fun-1-construction.glb",
+      "kind": "skill",
+      "id": "FUN.1",
+      "art": "spinning",
+      "stage": "construction",
+      "committed": true,
+      "sourceMeshes": 642,
+      "shippedMeshes": 23,
+      "sha256": "5438d428f28b723adb646f37e14855ba603d6d584ebb3017454bb983aa96e19f"
+    },
+    {
+      "file": "fun-1-built.glb",
+      "kind": "skill",
+      "id": "FUN.1",
+      "art": "spinning",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 1738,
+      "shippedMeshes": 44,
+      "sha256": "3a85fa132b0c0b8ffed62a73990dc150e000d09422fdd198a43e3c685581cefe"
+    },
+    {
+      "file": "fun-7-site.glb",
+      "kind": "skill",
+      "id": "FUN.7",
+      "art": "exhibition",
+      "stage": "site",
+      "committed": true,
+      "sourceMeshes": 13,
+      "shippedMeshes": 4,
+      "sha256": "60b0d048c6200f6704ca7ae96302054e16e2d9924e6de4771725b1dbde3ef804"
+    },
+    {
+      "file": "fun-7-construction.glb",
+      "kind": "skill",
+      "id": "FUN.7",
+      "art": "exhibition",
+      "stage": "construction",
+      "committed": true,
+      "sourceMeshes": 61,
+      "shippedMeshes": 5,
+      "sha256": "182d289683e5b50f5aa03845fad065fbd0c2fd3e73b5f2cda0a7f9987bf72872"
+    },
+    {
+      "file": "fun-7-built.glb",
+      "kind": "skill",
+      "id": "FUN.7",
+      "art": "exhibition",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 800,
+      "shippedMeshes": 18,
+      "sha256": "09148406ba44fea64d6f432502793c051981ad52020e804ad6541c22cefc5806"
+    },
+    {
+      "file": "fun-2-site.glb",
+      "kind": "skill",
+      "id": "FUN.2",
+      "art": "cotton",
+      "stage": "site",
+      "committed": true,
+      "sourceMeshes": 26,
+      "shippedMeshes": 4,
+      "sha256": "0b01bad6dee076936107807e106b08b1ed0871048018c2fb8ea5713d5b551efb"
+    },
+    {
+      "file": "fun-2-construction.glb",
+      "kind": "skill",
+      "id": "FUN.2",
+      "art": "cotton",
+      "stage": "construction",
+      "committed": true,
+      "sourceMeshes": 812,
+      "shippedMeshes": 14,
+      "sha256": "c554cf1bced6c3258dbd8474a56ef2d7c0a86c5eaa0ce94b350b5f6f5f3d7c40"
+    },
+    {
+      "file": "fun-2-built.glb",
+      "kind": "skill",
+      "id": "FUN.2",
+      "art": "cotton",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 1256,
+      "shippedMeshes": 32,
+      "sha256": "5662c131b4d73dfde61e887738cc15e9c78187883efa637b2cd1311b20a6b562"
+    },
+    {
+      "file": "fun-3-site.glb",
+      "kind": "skill",
+      "id": "FUN.3",
+      "art": "locoshop",
+      "stage": "site",
+      "committed": true,
+      "sourceMeshes": 68,
+      "shippedMeshes": 8,
+      "sha256": "94ff58b9e6686ca2b70b0bf887dc1bed95eda3bb4b941b6f66b9b87a44fcd5e9"
+    },
+    {
+      "file": "fun-3-construction.glb",
+      "kind": "skill",
+      "id": "FUN.3",
+      "art": "locoshop",
+      "stage": "construction",
+      "committed": true,
+      "sourceMeshes": 106,
+      "shippedMeshes": 13,
+      "sha256": "5c5fa05fee054e262faa13436276139e64ab28ca2fe8ef66a1aa841ce4a72a06"
+    },
+    {
+      "file": "fun-3-built.glb",
+      "kind": "skill",
+      "id": "FUN.3",
+      "art": "locoshop",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 572,
+      "shippedMeshes": 40,
+      "sha256": "34ba4bded8372360a71a9d01b51125b1b602d6f072d20cce74e8426cb95ba67f"
+    },
+    {
+      "file": "fun-8-site.glb",
+      "kind": "skill",
+      "id": "FUN.8",
+      "art": "cannonworks",
+      "stage": "site",
+      "committed": true,
+      "sourceMeshes": 39,
+      "shippedMeshes": 4,
+      "sha256": "b8def4e8fc305e8fe3ad81de69ea066996f902f743c49bd2f0cfbd21defa60c6"
+    },
+    {
+      "file": "fun-8-construction.glb",
+      "kind": "skill",
+      "id": "FUN.8",
+      "art": "cannonworks",
+      "stage": "construction",
+      "committed": true,
+      "sourceMeshes": 108,
+      "shippedMeshes": 21,
+      "sha256": "e3f91e1e8bf1f734c66267ff3b4ce79b5fb1cfabfef22bdcf6243a766d866477"
+    },
+    {
+      "file": "fun-8-built.glb",
+      "kind": "skill",
+      "id": "FUN.8",
+      "art": "cannonworks",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 516,
+      "shippedMeshes": 55,
+      "sha256": "4d88cb68b436edba2c851b774bf35543c855610a9a5cbfdf02630dd3684d7815"
+    },
+    {
+      "file": "pol-5-site.glb",
+      "kind": "skill",
+      "id": "POL.5",
+      "art": "watertower",
+      "stage": "site",
+      "committed": true,
+      "sourceMeshes": 39,
+      "shippedMeshes": 4,
+      "sha256": "1d0cd0f6e9da77a9f3e582e56db943d1f180c3ed8290b77ac2cfa027308c6d54"
+    },
+    {
+      "file": "pol-5-construction.glb",
+      "kind": "skill",
+      "id": "POL.5",
+      "art": "watertower",
+      "stage": "construction",
+      "committed": true,
+      "sourceMeshes": 17,
+      "shippedMeshes": 9,
+      "sha256": "6dda696b634d9619ec646adffa352144d40b4740d89d553fade65a93d59d37af"
+    },
+    {
+      "file": "pol-5-built.glb",
+      "kind": "skill",
+      "id": "POL.5",
+      "art": "watertower",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 403,
+      "shippedMeshes": 32,
+      "sha256": "5916b1e08c352641af2b46ca87495986e13f6ff7455f91986c986ce03612ac59"
+    },
+    {
+      "file": "civic-industrial-cold-store-site.glb",
+      "kind": "civic",
+      "id": "industrial_cold_store",
+      "art": "foodworks",
+      "stage": "site",
+      "committed": false,
+      "sourceMeshes": 481,
+      "shippedMeshes": 40,
+      "sha256": "631221339b003fb0fc3586ec4c9dbaf6d5d9ac8cebdec422a28d0a805a8ed95b"
+    },
+    {
+      "file": "civic-industrial-cold-store-construction.glb",
+      "kind": "civic",
+      "id": "industrial_cold_store",
+      "art": "foodworks",
+      "stage": "construction",
+      "committed": false,
+      "sourceMeshes": 481,
+      "shippedMeshes": 40,
+      "sha256": "2947ce8c58282de5c8c748aca7eff101b026d72a273355061370c5377d103c42"
+    },
+    {
+      "file": "civic-industrial-cold-store-built.glb",
+      "kind": "civic",
+      "id": "industrial_cold_store",
+      "art": "foodworks",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 481,
+      "shippedMeshes": 40,
+      "sha256": "98d9b253ae68f670840b89d820774443a6dbac479d7fb112fd9cf02725cdec4b"
+    },
+    {
+      "file": "civic-industrial-workers-houses-site.glb",
+      "kind": "civic",
+      "id": "industrial_workers_houses",
+      "art": "workers",
+      "stage": "site",
+      "committed": false,
+      "sourceMeshes": 653,
+      "shippedMeshes": 27,
+      "sha256": "d2e4d75674668e79afc5851728ec55dba27a0edb79d726daadacd9f56a08886a"
+    },
+    {
+      "file": "civic-industrial-workers-houses-construction.glb",
+      "kind": "civic",
+      "id": "industrial_workers_houses",
+      "art": "workers",
+      "stage": "construction",
+      "committed": false,
+      "sourceMeshes": 653,
+      "shippedMeshes": 27,
+      "sha256": "2b5a31c2b75a0550e618dd7545cf38c1e75f43c44db422d50181b32ed5d06f2e"
+    },
+    {
+      "file": "civic-industrial-workers-houses-built.glb",
+      "kind": "civic",
+      "id": "industrial_workers_houses",
+      "art": "workers",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 653,
+      "shippedMeshes": 27,
+      "sha256": "548254e0fdbbba741c03e2924ea243956358cd3aa326eba68cb87cd139defa5b"
+    },
+    {
+      "file": "civic-industrial-public-baths-site.glb",
+      "kind": "civic",
+      "id": "industrial_public_baths",
+      "art": "station",
+      "stage": "site",
+      "committed": false,
+      "sourceMeshes": 444,
+      "shippedMeshes": 46,
+      "sha256": "c48542b7c99f0a98456ce3d36577d8f917101c3cbca58a167f786716279ace2f"
+    },
+    {
+      "file": "civic-industrial-public-baths-construction.glb",
+      "kind": "civic",
+      "id": "industrial_public_baths",
+      "art": "station",
+      "stage": "construction",
+      "committed": false,
+      "sourceMeshes": 444,
+      "shippedMeshes": 46,
+      "sha256": "52da11d0201ecf0ee77e37cc08ea8e71a3934378886aa3ca9bb72a0f902d478e"
+    },
+    {
+      "file": "civic-industrial-public-baths-built.glb",
+      "kind": "civic",
+      "id": "industrial_public_baths",
+      "art": "station",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 444,
+      "shippedMeshes": 46,
+      "sha256": "c4a879d0e5eda00f5b5c0083b118254b67eddb2de3ef95ffadf3ce640765267a"
+    },
+    {
+      "file": "civic-industrial-library-site.glb",
+      "kind": "civic",
+      "id": "industrial_library",
+      "art": "library",
+      "stage": "site",
+      "committed": false,
+      "sourceMeshes": 416,
+      "shippedMeshes": 32,
+      "sha256": "b74b74c58a493faee332dc8fd013433ab76ecceb37789c514d9a832e94948324"
+    },
+    {
+      "file": "civic-industrial-library-construction.glb",
+      "kind": "civic",
+      "id": "industrial_library",
+      "art": "library",
+      "stage": "construction",
+      "committed": false,
+      "sourceMeshes": 416,
+      "shippedMeshes": 32,
+      "sha256": "ab11085852a85ee2c78caafa78aeb7ff3b20f2006e9d10c171ca93823ed8c331"
+    },
+    {
+      "file": "civic-industrial-library-built.glb",
+      "kind": "civic",
+      "id": "industrial_library",
+      "art": "library",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 416,
+      "shippedMeshes": 32,
+      "sha256": "26b8c30e678d5c32d077d3bb2c450d56f90bc3285db0a73539c9d809df22c219"
+    },
+    {
+      "file": "townhall/townhall-industrial-site.glb",
+      "kind": "townhall",
+      "id": "industrial",
+      "art": "enginehouse",
+      "stage": "site",
+      "committed": false,
+      "sourceMeshes": 1239,
+      "shippedMeshes": 63,
+      "sha256": "1b7a3f56ecc040b39c73c4883e6d576a66638642b84e4728fe66748766d514f1"
+    },
+    {
+      "file": "townhall/townhall-industrial-construction.glb",
+      "kind": "townhall",
+      "id": "industrial",
+      "art": "enginehouse",
+      "stage": "construction",
+      "committed": false,
+      "sourceMeshes": 1239,
+      "shippedMeshes": 63,
+      "sha256": "8698a7f69947befc7018d0df1ff1c7acc06072fba266a79b688f5c12f9c3c741"
+    },
+    {
+      "file": "townhall/townhall-industrial-built.glb",
+      "kind": "townhall",
+      "id": "industrial",
+      "art": "enginehouse",
+      "stage": "built",
+      "committed": true,
+      "sourceMeshes": 1239,
+      "shippedMeshes": 63,
+      "sha256": "7d9a2e135d15b54c64cbec606e3780a0b5de950c497c0e5bca820a6db99099b6"
+    }
+  ],
+  "builtSet": {
+    "count": 11,
+    "sourceMeshes": 8518,
+    "shippedMeshes": 429
+  },
+  "shippingSet": {
+    "count": 23,
+    "sourceMeshes": 10475,
+    "shippedMeshes": 542
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@cr/item-bank",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Gabe. D1 item packs (single source): serving metadata + answer definitions. Feeds the diagnostic bank and the authoritative checker. Includes the authoring validation harness.",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --build"
+  },
+  "dependencies": {
+    "@cr/state-schema": "*",
+    "@cr/components": "*",
+    "@cr/skill-graph": "*",
+    "@cr/diagnostic": "*"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "node_id": "RAT.1",
+  "title": "Simplify rational expressions",
+  "mini_lesson": [
+    "The weaver's shop keeps every dye lot as one amount measured against another, and a measure of nothing is rubbed off the slate before anyone works from it. A rational expression is a ratio: one polynomial over another. The denominator cannot be zero, so any value of $x$ that makes the denominator zero is an **excluded value**, whatever the numerator happens to be doing there.",
+    "To simplify, **factor** the numerator and the denominator, then cancel common factors. Cancel whole factors only: a sum is not a factor yet, so none of its terms can cancel on their own. That is why $\\dfrac{x + 3}{3}$ is not $x$, since the $3$ underneath divides the whole numerator rather than one piece of it.",
+    "Cancelling a factor does **not** remove its excluded value. Read every excluded value from the **original** denominator, before anything cancels, because a cancelled factor can hide a restriction you still need to report. A simplified expression and the one it came from can therefore disagree at exactly one value of $x$, and the excluded value is what records the disagreement.",
+    "Now run the full simplification in order: factor, list the excluded values, then cancel. The final answer has two parts: the simplified expression and every value the original denominator excluded. Report only the expression and the answer is incomplete, because the reduced form accepts a value the original never did unless the restrictions travel with it."
+  ],
+  "slide_subtitles": [
+    "Excluded values",
+    "Cancel factors, not terms",
+    "Reading the original denominator",
+    "The full simplification"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Find every excluded value of $\\dfrac{x - 1}{x + 3}$.",
+      "steps": [
+        "Excluded values are read from the denominator alone, so look at $x + 3$.",
+        "Ask which value makes it zero: $x + 3 = 0$ gives $x = -3$.",
+        "At $x = -3$ the expression would divide by zero, so it has no value there.",
+        "The numerator $x - 1$ never enters the question, so the only excluded value is $x = -3$."
+      ]
+    },
+    {
+      "prompt": "Simplify $\\dfrac{x^{2} - 25}{2x + 10}$.",
+      "steps": [
+        "Factor the top as a difference of two squares: $x^{2} - 25 = (x - 5)(x + 5)$.",
+        "Factor the bottom by taking out the common $2$: $2x + 10 = 2(x + 5)$.",
+        "The expression is now $\\dfrac{(x - 5)(x + 5)}{2(x + 5)}$, and $(x + 5)$ stands as a whole factor above and below.",
+        "Cancel that shared factor, which leaves $\\dfrac{x - 5}{2}$."
+      ]
+    },
+    {
+      "prompt": "Compare $\\dfrac{x^{2} - 3x}{x^{2} - 9}$ with its reduced form $\\dfrac{x}{x + 3}$ at $x = 3$.",
+      "steps": [
+        "Factored, the original is $\\dfrac{x(x - 3)}{(x - 3)(x + 3)}$, and cancelling $(x - 3)$ gives $\\dfrac{x}{x + 3}$.",
+        "Put $x = 3$ into the original: its bottom becomes $(3 - 3)(3 + 3) = 0$, so there is nothing to evaluate.",
+        "Put $x = 3$ into the reduced form: $\\dfrac{3}{3 + 3} = \\dfrac{1}{2}$, a perfectly ordinary value.",
+        "The two forms disagree at that single value, so $x = 3$ has to be reported as excluded even though the factor causing it is gone."
+      ]
+    },
+    {
+      "prompt": "Simplify $\\dfrac{x^{2} + 2x - 8}{x^{2} + 6x + 8}$ and give both parts of the answer.",
+      "steps": [
+        "Factor both parts: $x^{2} + 2x - 8 = (x + 4)(x - 2)$, and $x^{2} + 6x + 8 = (x + 4)(x + 2)$.",
+        "Read the excluded values from that original bottom: $x = -4$ and $x = -2$.",
+        "Cancel the shared $(x + 4)$, which leaves $\\dfrac{x - 2}{x + 2}$.",
+        "Both parts together: the expression is $\\dfrac{x - 2}{x + 2}$, with $x = -4$ and $x = -2$ excluded."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "rational-forbidden-dose-explore", "gates": true },
+    { "after": 1, "id": "rational-reduce-play", "gates": true },
+    { "after": 2, "id": "rational-exclusion-classify", "gates": true },
+    { "after": 3, "id": "rational-simplify-order", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Simplify $\\dfrac{x^{2} - 64}{x^{2} - 3x - 40}$ to lowest terms and list every excluded value. Type the expression first, then the values, like `(x+1)/(x+2), x = 3, x = -4`.",
+    "accepted": [
+      "(x + 8)/(x + 5), x = 8, x = -5",
+      "(x + 8)/(x + 5), x = -5, x = 8",
+      "(x + 8)/(x + 5), x ≠ 8, x ≠ -5",
+      "(x + 8)/(x + 5), x ≠ -5, x ≠ 8",
+      "(x + 8)/(x + 5), x != 8, x != -5",
+      "(x + 8)/(x + 5), x != -5, x != 8",
+      "(x + 8)/(x + 5), x = 8, -5",
+      "(x + 8)/(x + 5), x = -5, 8",
+      "(x + 8)/(x + 5), 8, -5",
+      "(x + 8)/(x + 5), -5, 8",
+      "(x + 8)/(x + 5), x = 8 and x = -5",
+      "(x + 8)/(x + 5), x = -5 and x = 8",
+      "(x + 8)/(x + 5); x = 8, x = -5",
+      "(x + 8)/(x + 5); x = -5, x = 8",
+      "(8 + x)/(5 + x), x = 8, x = -5",
+      "(8 + x)/(5 + x), x = -5, x = 8",
+      "\\dfrac{x + 8}{x + 5}, x = 8, x = -5",
+      "\\dfrac{x + 8}{x + 5}, x = -5, x = 8",
+      "\\frac{x + 8}{x + 5}, x = 8, x = -5",
+      "\\frac{x + 8}{x + 5}, x = -5, x = 8",
+      "(x + 8)/(x + 5); x = 8; x = -5",
+      "(x + 8)/(x + 5) and x = 8 and x = -5",
+      "(x + 8)/(x + 5); x = -5; x = 8",
+      "(x + 8)/(x + 5) and x = -5 and x = 8",
+      "(x + 8)/(x + 5); x ≠ 8; x ≠ -5",
+      "(x + 8)/(x + 5) and x ≠ 8 and x ≠ -5",
+      "(x + 8)/(x + 5); x != 8; x != -5",
+      "(x + 8)/(x + 5) and x != 8 and x != -5",
+      "(x + 8)/(x + 5); x ≠ -5; x ≠ 8",
+      "(x + 8)/(x + 5) and x ≠ -5 and x ≠ 8",
+      "(x + 8)/(x + 5); x != -5; x != 8",
+      "(x + 8)/(x + 5) and x != -5 and x != 8",
+      "(x + 8)/(x + 5); x = 8; -5",
+      "(x + 8)/(x + 5) and x = 8 and -5",
+      "(x + 8)/(x + 5); x = -5; 8",
+      "(x + 8)/(x + 5) and x = -5 and 8",
+      "(x + 8)/(x + 5); 8; -5",
+      "(x + 8)/(x + 5) and 8 and -5",
+      "(x + 8)/(x + 5); -5; 8",
+      "(x + 8)/(x + 5) and -5 and 8",
+      "(8 + x)/(5 + x); x = 8; x = -5",
+      "(8 + x)/(5 + x) and x = 8 and x = -5",
+      "(8 + x)/(5 + x); x = -5; x = 8",
+      "(8 + x)/(5 + x) and x = -5 and x = 8",
+      "\\dfrac{x + 8}{x + 5}; x = 8; x = -5",
+      "\\dfrac{x + 8}{x + 5} and x = 8 and x = -5",
+      "\\frac{x + 8}{x + 5}; x = 8; x = -5",
+      "\\frac{x + 8}{x + 5} and x = 8 and x = -5",
+      "\\dfrac{x + 8}{x + 5}; x = -5; x = 8",
+      "\\dfrac{x + 8}{x + 5} and x = -5 and x = 8",
+      "\\frac{x + 8}{x + 5}; x = -5; x = 8",
+      "\\frac{x + 8}{x + 5} and x = -5 and x = 8"
+    ],
+    "hint": "Factor both parts before you cancel anything. The numerator is a difference of two squares, and the denominator needs the two numbers that multiply to $-40$ and add to $-3$. Write down the excluded values from the original denominator first, because one of its factors is about to disappear.",
+    "worked_solution": [
+      "The top is a difference of two squares: $x^{2} - 64 = (x - 8)(x + 8)$.",
+      "The bottom needs two numbers multiplying to $-40$ and adding to $-3$, which are $-8$ and $5$: $x^{2} - 3x - 40 = (x - 8)(x + 5)$.",
+      "Read the excluded values off the ORIGINAL bottom, while both factors are still there: $x = 8$ and $x = -5$.",
+      "Now cancel the shared $(x - 8)$, which leaves $\\dfrac{x + 8}{x + 5}$.",
+      "Typed as the prompt asks: `(x + 8)/(x + 5), x = 8, x = -5`."
+    ],
+    "worked_solution_params": { "a": 8, "b": 5 },
+    "variants": { "template_id": "cfu.rat1.reduce-exclusions", "count": 2 }
+  }
+}

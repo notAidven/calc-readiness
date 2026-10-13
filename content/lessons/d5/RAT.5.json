@@ -1,0 +1,137 @@
+{
+  "node_id": "RAT.5",
+  "title": "Graph and analyze rational functions",
+  "mini_lesson": [
+    "Beside the gun platform, a lead-lined cistern carries a depth-staff graduated the whole way down, and a mark or two on it names a reading the tank can never stand at: a dose the ranging chart cannot plot. A rational function $P(x)$ is the graph of a ratio, with output on the vertical axis and input on the horizontal axis. The denominator cannot be zero, so an input that empties it has no point above it on the chart, and the **domain** is the set of every other input, written in **set-builder form** as $\\{x \\mid x \\ne c\\}$ (the braces hold a collection and the bar is read as *such that*).",
+    "Two excluded values from the same denominator are both barred, but they can look very different on the ranging chart. If the factor causing one of them also appears in the **numerator**, it cancels and leaves a **hole** at that input. If the factor stays in the denominator, the graph has a **vertical asymptote** at that input instead, and the outputs grow without bound as it runs off the page.",
+    "The ranging chart gives you two intercepts for free. It crosses the $x$-axis where the **numerator** is zero, because a ratio is zero only when its numerator is, and it crosses the $y$-axis at $P(0)$ when $x = 0$ is in the domain. Neither intercept comes from the denominator alone, so read them from the simplified numerator.",
+    "Now look far to the left and right along the $x$-axis, as parallel sight lines on a perspective drawing converge toward a vanishing point no part of the sheet occupies. The outputs approach a **horizontal asymptote** determined by comparing the highest power in the numerator with the highest power in the denominator: a smaller numerator degree approaches $y = 0$, equal degrees approach the ratio of the leading coefficients, and a larger numerator degree has no horizontal asymptote at all. Only the leading terms matter that far out, because every lower power is swamped by them."
+  ],
+  "slide_subtitles": [
+    "Where the graph breaks",
+    "A hole or asymptote?",
+    "Finding the intercepts",
+    "The horizontal asymptote"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "State the domain of $P(x) = \\dfrac{2x}{x + 6}$.",
+      "steps": [
+        "Only an input that empties the denominator has to go, so solve $x + 6 = 0$.",
+        "That gives $x = -6$, where the ratio would ask for a division by zero.",
+        "Every other input still produces an output, so the chart is complete except for one missing point.",
+        "In set-builder form the domain is $\\{x \\mid x \\ne -6\\}$."
+      ]
+    },
+    {
+      "prompt": "For $P(x) = \\dfrac{(x - 1)(x + 5)}{(x - 1)(x + 2)}$, decide what happens at each barred input.",
+      "steps": [
+        "The denominator is zero at $x = 1$ and at $x = -2$, so both inputs are barred.",
+        "$(x - 1)$ appears above as well, so it cancels and leaves $\\dfrac{x + 5}{x + 2}$.",
+        "A cancelled factor leaves a hole, and the hole's height is whatever the reduced form gives there: $\\dfrac{1 + 5}{1 + 2} = 2$.",
+        "$(x + 2)$ never cancelled, so the outputs run off the chart as they approach $x = -2$.",
+        "So $P$ has a hole at $(1,\\, 2)$ and a vertical asymptote at $x = -2$."
+      ]
+    },
+    {
+      "prompt": "Find both intercepts of $P(x) = \\dfrac{x + 8}{x - 2}$.",
+      "steps": [
+        "A ratio is zero only when its numerator is, so set $x + 8 = 0$.",
+        "That gives $x = -8$, so the chart crosses the horizontal axis at $(-8,\\, 0)$.",
+        "For the other intercept, read the output at $x = 0$: $P(0) = \\dfrac{0 + 8}{0 - 2} = -4$.",
+        "The chart crosses the vertical axis at $(0,\\, -4)$, and $x = 0$ was available because the denominator is not zero there."
+      ]
+    },
+    {
+      "prompt": "Find the horizontal asymptote of $P(x) = \\dfrac{6x^{2} - x}{4x^{2} + 5}$.",
+      "steps": [
+        "Compare the highest power on top with the highest power underneath: both are $x^{2}$.",
+        "Equal degrees means the far-out behavior is set by the leading coefficients alone, $6$ above and $4$ below.",
+        "Every lower power is swamped that far from the origin, so the outputs settle toward $\\dfrac{6}{4}$.",
+        "Reduced, the horizontal asymptote is $y = \\dfrac{3}{2}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "rational-gauge-domain-explore", "gates": true },
+    { "after": 1, "id": "rational-hole-asymptote-play", "gates": true },
+    { "after": 2, "id": "rational-intercept-walkthrough", "gates": true },
+    { "after": 3, "id": "rational-end-behavior-table", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "For $P(x) = \\dfrac{3x^{2} - 9x - 12}{x^{2} - 5x + 4}$, report three things: the hole as a coordinate pair; the vertical asymptote as an $x$-value; and the horizontal asymptote as a $y$-value. Type it the way this example is typed: `(2, 7); x = -3; y = 5`.",
+    "accepted": [
+      "(4, 5); x = 1; y = 3",
+      "(4, 5), x = 1, y = 3",
+      "(4, 5); x = 1, y = 3",
+      "(4, 5), x = 1; y = 3",
+      "(4,5); x=1; y=3",
+      "(4, 5); 1; 3",
+      "(4, 5), 1, 3",
+      "(4, 5); y = 3; x = 1",
+      "hole (4, 5); x = 1; y = 3",
+      "hole: (4, 5); x = 1; y = 3",
+      "hole at (4, 5); x = 1; y = 3",
+      "(4, 5); hole; x = 1; y = 3",
+      "(4, 5); va x = 1; ha y = 3",
+      "(4, 5); va: x = 1; ha: y = 3",
+      "(4, 5); vertical asymptote x = 1; horizontal asymptote y = 3",
+      "(4, 5); asymptote x = 1; level y = 3",
+      "(4, 5); x = 1; y = 3.",
+      "hole (4, 5); vertical asymptote x = 1; horizontal asymptote y = 3",
+      "hole at (4, 5); vertical asymptote x = 1; horizontal asymptote y = 3",
+      "(x, y) = (4, 5); x = 1; y = 3",
+      "(4, 5); x = 1; y = 3.0",
+      "(4.0, 5.0); x = 1.0; y = 3.0",
+      "(4, 5) and x = 1 and y = 3",
+      "(4, 5) and 1 and 3",
+      "(4, 5), y = 3, x = 1",
+      "(4, 5) and y = 3 and x = 1",
+      "hole (4, 5), x = 1, y = 3",
+      "hole (4, 5) and x = 1 and y = 3",
+      "hole: (4, 5), x = 1, y = 3",
+      "hole: (4, 5) and x = 1 and y = 3",
+      "hole at (4, 5), x = 1, y = 3",
+      "hole at (4, 5) and x = 1 and y = 3",
+      "(4, 5), hole, x = 1, y = 3",
+      "(4, 5) and hole and x = 1 and y = 3",
+      "(4, 5), va x = 1, ha y = 3",
+      "(4, 5) and va x = 1 and ha y = 3",
+      "(4, 5), va: x = 1, ha: y = 3",
+      "(4, 5) and va: x = 1 and ha: y = 3",
+      "(4, 5), vertical asymptote x = 1, horizontal asymptote y = 3",
+      "(4, 5) and vertical asymptote x = 1 and horizontal asymptote y = 3",
+      "(4, 5), asymptote x = 1, level y = 3",
+      "(4, 5) and asymptote x = 1 and level y = 3",
+      "(4, 5), x = 1, y = 3.",
+      "(4, 5) and x = 1 and y = 3.",
+      "hole (4, 5), vertical asymptote x = 1, horizontal asymptote y = 3",
+      "hole (4, 5) and vertical asymptote x = 1 and horizontal asymptote y = 3",
+      "hole at (4, 5), vertical asymptote x = 1, horizontal asymptote y = 3",
+      "hole at (4, 5) and vertical asymptote x = 1 and horizontal asymptote y = 3",
+      "(x, y) = (4, 5), x = 1, y = 3",
+      "(x, y) = (4, 5) and x = 1 and y = 3",
+      "(4, 5), x = 1, y = 3.0",
+      "(4, 5) and x = 1 and y = 3.0",
+      "(4.0, 5.0), x = 1.0, y = 3.0",
+      "(4.0, 5.0) and x = 1.0 and y = 3.0"
+    ],
+    "hint": "Factor both parts before you read anything from the graph. The numerator is $3(x - 4)(x + 1)$ and the denominator is $(x - 4)(x - 1)$, so one factor cancels and one remains in the denominator. The hole sits at the cancelled factor's input, and its $y$-coordinate comes from the simplified function $\\dfrac{3(x + 1)}{x - 1}$.",
+    "worked_solution": [
+      "Factor both parts: the top is $3(x - 4)(x + 1)$ and the bottom is $(x - 4)(x - 1)$.",
+      "A factor that cancels marks a hole rather than an asymptote. $(x - 4)$ cancels, so the graph is punctured at $x = 4$, and what is left is $\\dfrac{3(x + 1)}{x - 1}$.",
+      "The hole's height comes from the reduced function at that input: $\\dfrac{3(4 + 1)}{4 - 1}$, which is $5$. The hole is at $(4, 5)$.",
+      "$(x - 1)$ survives in the bottom, so it is a genuine vertical asymptote: $x = 1$.",
+      "Top and bottom are both degree two, so the horizontal asymptote is the ratio of the leading coefficients, $\\dfrac{3}{1}$, which is $y = 3$.",
+      "Typed as the prompt asks: `(4, 5); x = 1; y = 3`."
+    ],
+    "worked_solution_params": {
+      "lead": 3,
+      "hole": 4,
+      "other": 1,
+      "vertical": 1,
+      "height": 5
+    },
+    "variants": { "template_id": "cfu.rat5.hole-asymptotes", "count": 2 }
+  }
+}

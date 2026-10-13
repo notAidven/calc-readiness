@@ -1,0 +1,227 @@
+/*
+ * THE ONBOARDING REPLAY CONTROL — its own stylesheet, and `winterDevSkip.css`'s sibling.
+ *
+ * Read that file first: it makes the argument for why a dev affordance gets a file of its own and
+ * why it is drawn to look like an instrument rather than like the game. This sheet is the same
+ * argument applied to a second control, and the values are deliberately the same values, because
+ * two dev panels that look subtly unlike each other are two things a reviewer has to learn to
+ * recognise instead of one.
+ *
+ * ## WHERE IT SITS, AND WHY IT IS NOT AT THE TOP OF THE CORNER
+ *
+ * `WinterDevSkip` pins to `top: 10px; right: 10px` and is free to, because it is only ever up
+ * while a winter is running and the ☰ Menu is not what anybody is reaching for then. This control
+ * is up during ordinary play, and the ☰ Menu is directly under that corner: covering it would
+ * take out the era door, How to play, Achievements and the dev seed at the same time.
+ *
+ * So it sits one HUD row lower, and the offset is written in the HUD's OWN tokens rather than as
+ * a measured nudge: `--space-lg` is the corner's inset, `--hud-chip-row` is the height of the
+ * chips in it, and `--space-sm` is the gap the corner stacks with. A retune of the chip row moves
+ * this with it instead of leaving it overlapping something.
+ *
+ * ## STACKING
+ *
+ * 65, the same rung `WinterDevSkip` takes, which is above the advisor stage (30) on purpose: a
+ * replay control underneath the thing it replays would be unreachable exactly when it is wanted.
+ * The two dev panels cannot be on screen together, because that one returns null outside a
+ * running winter and the winter defers onboarding.
+ *
+ * ## ⚑ IT COSTS SCREEN SPACE AND IT MUST NOT COST CLICKS
+ *
+ * This panel shipped `pointer-events: auto` on the container, which made its whole 206px box —
+ * chrome, eyebrow, padding and all — a wall in front of the city. `styles.css` already forbids
+ * that at `.economy-hud`, in the strongest terms it uses anywhere: *"the city relies on map
+ * clicks/drags for placing, moving, and selecting buildings, so this overlay must NEVER intercept
+ * pointer events over the 3D map. The container is `pointer-events: none` and ONLY the compact
+ * interactive bar opts back in."* `.catchup-founding` says the same. This panel is the third to
+ * follow the rule and the first to have been measured breaking it.
+ *
+ * What it cost, at 1024x580 on the demo route: the panel lays out at x 808..1014, y 68..232, and
+ * the reward popup's `Back to city` at x 855..958, y 58..98 — so that button's centre sits ten
+ * pixels inside the panel and could not be pressed at all. `output/ceremony-beat-frames.mjs` died
+ * there, the runbook grew a step telling a presenter to fold the panel before touching anything,
+ * and five of six per-era retheme figures could not be captured.
+ * `devPanelsPassClicksToTheIsland.browser.test.tsx` is the measurement, and it read 104 of 104
+ * background points swallowed before this rule and 0 after.
+ */
+
+.ob-replay {
+  position: fixed;
+  top: calc(var(--space-lg) + var(--hud-chip-row) + var(--space-sm));
+  right: 10px;
+  z-index: 65;
+  box-sizing: border-box;
+  width: 206px;
+  padding: 6px 9px 7px;
+  border: 1px solid #f0b429;
+  border-radius: 4px;
+  background: rgba(16, 22, 30, 0.96);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.42);
+  color: #e8eef4;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  line-height: 1.3;
+  text-align: left;
+  /* See the header. Every control below opts back in; nothing else may. */
+  pointer-events: none;
+}
+
+/*
+ * THE ONLY PARTS OF THE PANEL THAT TAKE A CLICK — and the reason this is a shape rather than a
+ * list of three class names.
+ *
+ * The moment row is generated from the era's moment table, so the number of buttons in this panel
+ * is data. A rule that named `.ob-replay__title`, `.ob-replay__restart` and `.ob-replay__moment`
+ * would be correct today and would silently make the next control anybody adds inert — which is
+ * the exact failure mode `pointer-events: none` on a container is notorious for, and the one the
+ * browser sweep exists to catch. Matching on what a control IS covers it the day it is written.
+ *
+ * The `__note` is deliberately NOT here. It is a readout rather than a control: it reports which
+ * press was last made, it announces itself through `aria-live`, and at 188x40 it is a fifth of the
+ * panel. Bought back for the island, at the price that a note long enough to overflow its bound
+ * cannot be scrolled to its last line.
+ */
+.ob-replay :is(button, a[href], input, select, textarea) {
+  pointer-events: auto;
+}
+
+.ob-replay__eyebrow {
+  margin: 0;
+  color: #f0b429;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* The heading IS the fold control, so the panel needs no second piece of chrome for it. */
+.ob-replay__title {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1px 0 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #e8eef4;
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ob-replay__title:hover {
+  color: #ffd77a;
+}
+
+.ob-replay__fold {
+  color: #9fb0c0;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+/* The request, full width, because it is the one press anybody demoing needs and the per-moment
+   row below is the working control rather than the headline. */
+.ob-replay__restart {
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 4px;
+  border: 1px solid #46586a;
+  border-radius: 3px;
+  background: #1d2833;
+  color: #e8eef4;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ob-replay__restart:hover {
+  border-color: #f0b429;
+  background: #2a3946;
+}
+
+/* A `<fieldset>` because the row really is a captioned set of controls; its default border,
+   padding and min-width are all wrong here and all reset. */
+.ob-replay__group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ob-replay__legend {
+  padding: 0;
+  color: #9fb0c0;
+  font-size: 9.5px;
+}
+
+/*
+ * ONE COLUMN PER MOMENT, sized from the count rather than pinned at three, so a fourth moment
+ * narrows the row instead of wrapping it into a second line and pushing the note down into the
+ * island. The number tops the id for the reason `WinterDevSkip` puts the score over the tier
+ * name: the id is the vocabulary the moment record is keyed on, so it is not the part that gets
+ * dropped for width.
+ */
+.ob-replay__row {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: 3px;
+  margin: 3px 0 6px;
+}
+
+.ob-replay__moment {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  padding: 3px;
+  border: 1px solid #46586a;
+  border-radius: 3px;
+  background: #1d2833;
+  color: #e8eef4;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ob-replay__moment:hover {
+  border-color: #f0b429;
+  background: #2a3946;
+}
+
+.ob-replay__step {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* The id is what the record is keyed on, so it is on the button in words. Truncated rather than
+   wrapped: a two-line button in one column and a one-line button in the next would make the row
+   ragged, and the full text is on the button's `aria-label` either way. */
+.ob-replay__moment-id {
+  overflow: hidden;
+  color: #9fb0c0;
+  font-size: 8px;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/*
+ * BOUNDED AND SCROLLING, which is what keeps the panel's own height a fact rather than a function
+ * of the last message: a moment heading names the era's material and can run to three lines in
+ * this column.
+ */
+.ob-replay__note {
+  max-height: 40px;
+  overflow-y: auto;
+  margin: 0;
+  color: #9fb0c0;
+  font-size: 9.5px;
+}

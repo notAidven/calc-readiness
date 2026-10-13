@@ -1,0 +1,440 @@
+/*
+ * Lane-scoped styles for the photo-of-work upload (v1). Like the diagnostic demo's
+ * `diagnostic-demo.css`, this is imported by its own component and never touches the
+ * shared `styles.css` or any teammate's lane. It reuses the shared design tokens
+ * (:root vars in styles.css) so it sits naturally in the lesson surface.
+ */
+
+.work-checker {
+  display: flex;
+  width: 100%;
+  max-width: 760px;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-self: center;
+  margin-inline: auto;
+}
+
+.work-checker > .work-upload,
+.work-checker > .work-parse {
+  width: 100%;
+  margin-top: 0;
+}
+
+.work-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--game-panel-line, var(--line));
+  border-radius: 14px;
+  background: var(--game-panel, var(--paper));
+  color: var(--ink);
+  text-align: left;
+}
+
+.work-upload__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.work-upload__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.work-upload__optional {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  border: 1px solid var(--game-panel-line, var(--line));
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.work-upload__blurb {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.work-upload__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: var(--space-xl) var(--space-lg);
+  border: 2px dashed var(--game-panel-line, var(--line));
+  border-radius: 12px;
+  background: var(--game-panel-2, var(--paper-deep));
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    background 120ms ease;
+}
+
+.work-upload__dropzone:hover,
+.work-upload__dropzone[data-dragging="true"] {
+  border-color: var(--game-blue, var(--civic));
+  background: color-mix(in oklab, var(--game-blue, var(--civic)) 8%, transparent);
+}
+
+.work-upload__icon {
+  width: 34px;
+  height: 34px;
+  color: var(--game-blue, var(--civic));
+}
+
+.work-upload__dropzone-primary {
+  font-weight: 600;
+}
+
+.work-upload__dropzone-secondary {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+/* The real <input> stays in the DOM (focusable target) but visually hidden; the
+   dropzone button opens it, and drops feed the same handler. */
+.work-upload__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.work-upload__preview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  border: 1px solid var(--game-panel-line, var(--line));
+  border-radius: 12px;
+  background: var(--game-panel-2, var(--paper-deep));
+}
+
+.work-upload__thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--game-panel-line, var(--line));
+  background: var(--paper);
+}
+
+.work-upload__preview-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.work-upload__filename {
+  font-weight: 600;
+  font-size: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.work-upload__filesize {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.work-upload__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.work-upload__actions:empty {
+  display: none;
+}
+
+.work-upload__btn {
+  appearance: none;
+  border: 1px solid var(--game-panel-line, var(--line));
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-weight: 600;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.work-upload__btn:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.work-upload__btn--primary {
+  background: var(--game-blue, var(--civic));
+  border-color: var(--game-blue-deep, var(--civic-dark));
+  color: #fff;
+}
+
+.work-upload__btn--ghost {
+  background: transparent;
+  color: var(--ink-soft);
+}
+
+.work-upload__status {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.work-upload__status[data-status="uploaded"] {
+  color: var(--game-valid, var(--civic));
+  font-weight: 600;
+}
+
+.work-upload__status[data-status="error"] {
+  color: var(--game-invalid, var(--brick));
+  font-weight: 600;
+}
+
+.work-upload__progress {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--game-panel-2, var(--paper-deep));
+}
+
+.work-upload__progress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--game-blue, var(--civic));
+  transition: width 160ms ease;
+}
+
+/*
+ * The v2 READING (`WorkParseCard.tsx`), styled as a hedge with a transcript inside it
+ * rather than as a verdict. Same tokens, same lane, never touches shared `styles.css`.
+ *
+ * The suspect line is marked with a WARM accent and a word ("check this line"), not with the
+ * red the checker uses for a wrong answer: the reading localizes where it stopped following
+ * the working, and it is wrong about that often enough (37.62% of pages carry a misread)
+ * that borrowing the grader's colour would be a lie about how much to trust it.
+ */
+
+.work-parse {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: var(--space-md, var(--space-sm)) var(--space-lg);
+  border: 1px dashed var(--game-panel-line, var(--line));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  color: var(--ink);
+  text-align: left;
+}
+
+.work-parse__headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.work-parse__blurb,
+.work-parse__caveat,
+.work-parse__status,
+.work-parse__authority {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.work-parse__authority {
+  padding-left: var(--space-sm);
+  border-left: 3px solid var(--game-warn, #c98a2b);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.work-parse__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  min-height: 44px;
+  cursor: pointer;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.work-parse__consent input {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--game-blue, var(--civic));
+}
+
+.work-parse__locator {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--game-warn, #c98a2b);
+}
+
+.work-parse__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding-left: 1.4em;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.9rem;
+}
+
+.work-parse__step {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.work-parse__step[data-suspect] .work-parse__step-text {
+  font-weight: 600;
+  border-bottom: 2px solid var(--game-warn, #c98a2b);
+}
+
+.work-parse__step-flag {
+  font-family: var(--font-body, inherit);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--game-warn, #c98a2b);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 1px 7px;
+  white-space: nowrap;
+}
+
+/*
+ * THE COACHING BLOCK.
+ *
+ * Deliberately quieter than the suspect-line flag above it. The flag is a pointer at one line
+ * and earns the warning hue; this is prose from a reader that is wrong about something on
+ * better than three pages in eight, so it is set as a note rather than as a verdict, and it
+ * carries no hue that any other surface uses for correctness.
+ */
+.work-parse__coaching {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-sm);
+  border: 1px solid var(--game-panel-line, var(--line));
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.work-parse__coaching-text {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.work-parse__coaching-lead {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+
+.work-parse__next-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.work-parse__actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.work-parse__btn {
+  appearance: none;
+  align-self: flex-start;
+  border: 1px solid var(--game-panel-line, var(--line));
+  border-radius: 10px;
+  padding: 7px 14px;
+  font-weight: 600;
+  font-size: 0.86rem;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.work-parse__btn:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.work-parse__btn--primary {
+  background: var(--game-blue, var(--civic));
+  border-color: var(--game-blue-deep, var(--civic-dark));
+  color: #fff;
+}
+
+.work-parse__btn--ghost {
+  background: transparent;
+  color: var(--ink-soft);
+}
+
+.work-upload__dropzone:focus-visible,
+.work-upload__btn:focus-visible,
+.work-parse__btn:focus-visible,
+.work-parse__consent input:focus-visible {
+  outline: 3px solid var(--game-blue, var(--civic));
+  outline-offset: 3px;
+}
+
+@media (max-height: 760px) {
+  .work-upload {
+    margin-top: var(--space-sm);
+    padding-block: var(--space-md);
+  }
+
+  .work-upload__dropzone {
+    padding-block: var(--space-md);
+  }
+
+  .work-parse {
+    padding-block: var(--space-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-upload__dropzone,
+  .work-upload__progress > span {
+    transition: none;
+  }
+}

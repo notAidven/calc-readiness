@@ -1,0 +1,19 @@
+era nine's crisis on the island, at 1024x580
+the camera rests at 105.8 over a drawn island of 46,
+which is 6.59 px per world unit, and the dolly runs
+0.5x to 2.6x.
+
+01-the-board-in-play-1024x580  dolly 1.000x  6.59 px per world unit
+02-every-reading-old-1024x580  dolly 1.000x  6.59 px per world unit
+03-five-readings-1024x580  dolly 0.500x  13.18 px per world unit
+04-five-readings-stale-1024x580  dolly 0.500x  13.18 px per world unit
+05-collar-four-reliefs-1024x580  dolly 0.500x  13.18 px per world unit
+06-collar-four-reliefs-stale-1024x580  dolly 0.500x  13.18 px per world unit
+07-cover-closed-and-lifted-1024x580  dolly 0.500x  13.18 px per world unit
+08-proposed-and-committed-1024x580  dolly 0.593x  11.12 px per world unit
+09-looked-and-read-apart-1024x580  dolly 0.593x  11.12 px per world unit
+10-two-distances-near-1024x580  dolly 0.500x  13.18 px per world unit
+11-two-distances-far-1024x580  dolly 2.600x  2.53 px per world unit
+12-fine-and-not-fine-1024x580  dolly 0.840x  7.84 px per world unit
+13-unsolved-ending-1024x580  dolly 1.000x  6.59 px per world unit
+14-cut-width-sheet-against-derived-1024x580  dolly 0.500x  13.18 px per world unit

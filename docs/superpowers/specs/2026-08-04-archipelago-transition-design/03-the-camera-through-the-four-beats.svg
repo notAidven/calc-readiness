@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="580" viewBox="0 0 1024 580" font-family="ui-sans-serif, system-ui, sans-serif">
+<rect width="1024" height="580" fill="#f4f7f8"/>
+<text x="40" y="44" font-size="19" fill="#2f3b46" text-anchor="start">Where the camera is, beat by beat — and what a person reads there.</text>
+<text x="40" y="68" font-size="13" fill="#6d7f8c" text-anchor="start">Lens zoom, against VILLAGE_CAMERA.maxDistanceRatio = 2.6. A view offset moves no camera, so none of this spends the depth budget.</text>
+<line x1="70" y1="130" x2="880" y2="130" stroke="#b04a3a" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="884" y="134" font-size="12" fill="#b04a3a" text-anchor="start">2.60 cap</text>
+<line x1="70" y1="270.63714377299715" x2="880" y2="270.63714377299715" stroke="#6d7f8c" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="884" y="274.63714377299715" font-size="12" fill="#6d7f8c" text-anchor="start">1.49 resting</text>
+<line x1="70" y1="189.08399850960296" x2="880" y2="189.08399850960296" stroke="#8a7fa8" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="884" y="193.08399850960296" font-size="12" fill="#8a7fa8" text-anchor="start">2.13 both islands</text>
+<polyline points="110,403.8581724070274 353.33333333333337,403.8581724070274 596.6666666666667,270.63714377299715 840,270.63714377299715" fill="none" stroke="#d98324" stroke-width="3"/>
+<circle cx="110" cy="403.8581724070274" r="7" fill="#d98324"/>
+<text x="110" y="385.8581724070274" font-size="14" fill="#2f3b46" text-anchor="middle">0.442</text>
+<text x="110" y="505" font-size="13" fill="#2f3b46" text-anchor="middle">one — Gather</text>
+<text x="110" y="520" font-size="12" fill="#6d7f8c" text-anchor="middle">closes on the crowd</text>
+<text x="110" y="540" font-size="12" fill="#1f7a5a" text-anchor="middle">person 23px</text>
+<circle cx="353.33333333333337" cy="403.8581724070274" r="7" fill="#d98324"/>
+<text x="353.33333333333337" y="385.8581724070274" font-size="14" fill="#2f3b46" text-anchor="middle">0.442</text>
+<text x="353.33333333333337" y="505" font-size="13" fill="#2f3b46" text-anchor="middle">two — Open the route</text>
+<text x="353.33333333333337" y="520" font-size="12" fill="#6d7f8c" text-anchor="middle">translates down the route</text>
+<text x="353.33333333333337" y="540" font-size="12" fill="#1f7a5a" text-anchor="middle">person 23px</text>
+<circle cx="596.6666666666667" cy="270.63714377299715" r="7" fill="#d98324"/>
+<text x="596.6666666666667" y="252.63714377299715" font-size="14" fill="#2f3b46" text-anchor="middle">1.492</text>
+<text x="596.6666666666667" y="505" font-size="13" fill="#2f3b46" text-anchor="middle">three — Raise</text>
+<text x="596.6666666666667" y="520" font-size="12" fill="#6d7f8c" text-anchor="middle">opens to the new island</text>
+<text x="596.6666666666667" y="540" font-size="12" fill="#b04a3a" text-anchor="middle">person 7px</text>
+<circle cx="840" cy="270.63714377299715" r="7" fill="#d98324"/>
+<text x="840" y="252.63714377299715" font-size="14" fill="#2f3b46" text-anchor="middle">1.492</text>
+<text x="840" y="505" font-size="13" fill="#2f3b46" text-anchor="middle">four — Settle</text>
+<text x="840" y="520" font-size="12" fill="#6d7f8c" text-anchor="middle">holds the whole island</text>
+<text x="840" y="540" font-size="12" fill="#b04a3a" text-anchor="middle">person 7px</text>
+<text x="40" y="455" font-size="12" fill="#6d7f8c" text-anchor="start">A person meets the 23px legibility bar in beats one and two, and is under it in three and four — which is true of the shipped ceremony today.</text>
+</svg>

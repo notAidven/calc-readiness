@@ -1,0 +1,1422 @@
+/*
+ * The Hard Winter prototype's own stylesheet, imported by `HardWinterSurface.tsx`.
+ *
+ * Component-scoped rather than appended to the shared `styles.css`, following
+ * `work-upload/work-upload.css`. Two reasons: this is a standalone prototype behind its
+ * own query parameter and should be deletable in one commit, and every rule here is
+ * prefixed `hw-` so nothing it does can reach the city, a lesson, or a widget.
+ *
+ * The palette is deliberately cold and legible rather than pretty. The frost has to be
+ * readable at a glance — where the line is, which way it will move next, and which
+ * building is one round from being a ruin — because every decision in the encounter is a
+ * spatial one made off this picture.
+ */
+
+/*
+ * THE PALETTE, DECLARED ON BOTH ROOTS THIS STYLESHEET HAS.
+ *
+ * `.hw-conclusion` is a SIBLING of `.hw-shell` and not a descendant, because a concluding screen
+ * that lived inside the crisis panel would be the crisis panel's fourth state rather than an
+ * event (D-CRISIS-30). Custom properties inherit down the tree and not sideways, so a card
+ * outside the shell resolved every `var(--hw-*)` to its fallback.
+ *
+ * MEASURED RATHER THAN REASONED, because it looked correct: at 1024x580 the card's
+ * `border-top-color` came back as `oklch(0.25 0.035 225)` — the inherited ink — in three of the
+ * five grades, and so did the ruin tiles' rule and the scarred tiles' rule. So the whole TONE
+ * channel was dead in exactly the outcomes it is there to separate, while the marks and the words
+ * carried on working, which is why every assertion about them passed.
+ * `winterConclusionSheet.browser.test.tsx` now reads the computed colours rather than the classes.
+ */
+.hw-shell,
+.hw-conclusion {
+  --hw-ink: #0d1b2a;
+  --hw-clear-0: #cfe3d2;
+  --hw-clear-1: #bcd9c4;
+  --hw-clear-2: #a8ceb6;
+  --hw-clear-3: #93c3a8;
+  --hw-clear-4: #7fb89a;
+  --hw-ice: #cfe8f5;
+  --hw-ice-edge: #4a9fd4;
+  /* The front: the island's own `frostFront` (`city/three/winterTones.ts`), so the two boards
+     mark the ground this round takes in one colour rather than two. */
+  --hw-ice-front: #3c7fa0;
+  --hw-warm: #ffb347;
+  --hw-water: #17384f;
+  --hw-abandoned: #8e9aa4;
+  --hw-ruin: #7a3b3b;
+}
+
+.hw-shell {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 24px clamp(16px, 4vw, 48px) 64px;
+  background: linear-gradient(180deg, #eef4f8 0%, #dbe7ef 100%);
+  color: var(--hw-ink);
+  font-family: "Nunito Variable", system-ui, sans-serif;
+}
+
+.hw-shell *,
+.hw-shell *::before,
+.hw-shell *::after {
+  box-sizing: inherit;
+}
+
+/* --------------------------------------------------------------- header */
+
+.hw-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(13, 27, 42, 0.12);
+}
+
+.hw-header h1 {
+  margin: 4px 0 0;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+}
+
+.hw-header .micro-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4b6a80;
+}
+
+.hw-header__meta {
+  text-align: right;
+}
+
+.hw-round {
+  margin: 0;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: 22px;
+}
+
+.hw-frost {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: #40607a;
+}
+
+.hw-note {
+  margin: 14px 0 20px;
+  padding: 10px 14px;
+  border-left: 4px solid var(--hw-ice-edge);
+  border-radius: 6px;
+  background: rgba(74, 159, 212, 0.1);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ----------------------------------------------------------------- body */
+
+.hw-body {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(320px, 480px) minmax(320px, 1fr);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .hw-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hw-board {
+  position: sticky;
+  top: 16px;
+}
+
+/* ----------------------------------------------------------------- grid */
+
+.hw-grid {
+  display: grid;
+  gap: 2px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--hw-water);
+  box-shadow: 0 6px 24px rgba(13, 27, 42, 0.18);
+}
+
+.hw-grid__row {
+  display: grid;
+  grid-template-columns: repeat(var(--hw-cols, 10), 1fr);
+  gap: 2px;
+}
+
+.hw-cell {
+  position: relative;
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid rgba(13, 27, 42, 0.08);
+  border-radius: 3px;
+  background: var(--hw-clear-0);
+  font: inherit;
+  color: var(--hw-ink);
+}
+
+button.hw-cell {
+  cursor: pointer;
+}
+
+button.hw-cell:focus-visible {
+  outline: 3px solid #1f6feb;
+  outline-offset: 2px;
+  z-index: 2;
+}
+
+.hw-cell--water {
+  border-color: transparent;
+  background: var(--hw-water);
+}
+
+.hw-cell--depth-0 {
+  background: var(--hw-clear-0);
+}
+.hw-cell--depth-1 {
+  background: var(--hw-clear-1);
+}
+.hw-cell--depth-2 {
+  background: var(--hw-clear-2);
+}
+.hw-cell--depth-3 {
+  background: var(--hw-clear-3);
+}
+.hw-cell--depth-4 {
+  background: var(--hw-clear-4);
+}
+
+.hw-cell--frozen {
+  background: var(--hw-ice);
+}
+
+/* The leading edge of the ground the frost already HOLDS. */
+.hw-cell--line {
+  box-shadow: inset 0 0 0 2px var(--hw-ice-edge);
+}
+
+/*
+ * THE GROUND THIS ROUND TAKES, and the one frost state that is true on load.
+ *
+ * `frozen` is empty until `end_round` runs, so at round one the board above draws nothing at
+ * all: no ice, no leading edge, 0 of 88 cells. This is what says where the frost starts. Drawn
+ * as a dashed inset in the front's own deep blue rather than as a fill, so it can sit over a
+ * clear cell's depth tone without claiming the ground has been taken — and so it is legible as a
+ * PATTERN and not by colour alone, which is the rule a state the player acts on is held to.
+ */
+.hw-cell--next {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 3px,
+    var(--hw-ice-front) 3px,
+    var(--hw-ice-front) 5px
+  );
+  box-shadow: inset 0 0 0 2px var(--hw-ice-front);
+}
+
+/* Warmth sits OVER the ice, because a fire on frozen ground is still a rescue. */
+.hw-cell--warded {
+  background: var(--hw-warm);
+  box-shadow: inset 0 0 0 2px #d97706;
+}
+
+.hw-cell--abandoned {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--hw-abandoned),
+    var(--hw-abandoned) 3px,
+    #77828b 3px,
+    #77828b 6px
+  );
+  box-shadow: none;
+}
+
+.hw-cell--built {
+  border-color: rgba(13, 27, 42, 0.55);
+  border-width: 2px;
+}
+
+.hw-cell__mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.hw-cell--ruin {
+  border-color: var(--hw-ruin);
+}
+
+.hw-cell--ruin .hw-cell__mark {
+  color: var(--hw-ruin);
+  font-size: 16px;
+}
+
+/* ------------------------------------------------- frost on the building
+ *
+ * THE THIRD BUILDING APPEARANCE, and it costs no art: the ice tone the ground already uses,
+ * rising up the building's own cell. Frost climbing a building is the same picture as frost
+ * taking ground, one scale down, so a player who can read the board already reads it.
+ *
+ * `::before` rather than `::after` because the tier preview owns `::after`, and a damaged
+ * building under a fire preview has to show both — that is exactly the moment a player is
+ * deciding whether this is the cell to warm.
+ *
+ * NEVER HUE ALONE, and here the tone is the redundant channel rather than the carrying one,
+ * because a damaged building is usually standing on ice already. The two that carry it are
+ * the HEIGHT of the rime and the NUMBER on `.hw-cell__hurt`.
+ */
+.hw-cell--hurt::before {
+  position: absolute;
+  content: "";
+  inset: auto 1px 1px 1px;
+  border-radius: 0 0 2px 2px;
+  background: linear-gradient(to top, var(--hw-ice-edge), var(--hw-ice));
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.hw-cell--hurt-1::before {
+  height: 30%;
+}
+
+.hw-cell--hurt-2::before {
+  height: 60%;
+}
+
+.hw-cell--hurt-3::before {
+  height: 88%;
+}
+
+/* The building's own mark rides over the rime, so a half-frozen building is still
+ * identifiable as which building it is. */
+.hw-cell--hurt .hw-cell__mark {
+  z-index: 1;
+  color: #123449;
+}
+
+/* Top-left, because the bottom-right slot belongs to the fire preview's score badge and
+ * both can be on the same cell at once. */
+.hw-cell__hurt {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  z-index: 2;
+  min-width: 11px;
+  padding: 0 1px;
+  border-radius: 3px;
+  background: var(--hw-ice-edge);
+  color: #fff;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 12px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hw-cell--selected {
+  outline: 3px solid #1f6feb;
+  outline-offset: 1px;
+  z-index: 1;
+}
+
+/* --------------------------------------------- the nested tier preview
+ *
+ * The fifth ground state, and the only PROVISIONAL one. Everything else on this board is a
+ * fact; this is a hypothesis about a declaration nobody has made, so it is drawn in a
+ * different register rather than as a fifth colour: the cell KEEPS its ground (ice stays
+ * ice, grass stays grass) and gains a ring plus a number. A warded cell is a solid warm
+ * fill, so the live state and the hypothetical one can never be mistaken for each other.
+ *
+ * NEVER HUE ALONE, and here that rule bites harder than usual: the three bands are nested
+ * and adjacent, so they must be told apart from each other as well as from the board. Two
+ * non-colour channels do it —
+ *
+ *   1. the NUMBER, which is the score that reaches the band (1, 2, 3). Unambiguous in
+ *      greyscale and the thing a player actually wants to know;
+ *   2. the STROKE — solid, dashed, dotted, innermost to outermost — which reads as
+ *      "certain, less certain, least certain" and matches what the bands mean.
+ *
+ * The tint is a third, redundant channel: one hue at three strengths, so a player who sees
+ * no colour at all loses nothing.
+ */
+
+.hw-cell--preview {
+  z-index: 1;
+}
+
+/*
+ * The ring is an ::after overlay rather than a border, for two reasons: a border would
+ * resize the cell and break the square-cell assertion the Chromium suite makes, and an
+ * overlay can sit ON TOP of the ice and the warm fill without replacing either.
+ */
+.hw-cell--preview::after {
+  position: absolute;
+  content: "";
+  inset: 1px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/*
+ * Innermost to outermost: solid and heavy, dashed and medium, dotted and light. The stroke
+ * WEIGHT moves with the style so the three are separable at a 34px cell, where 2px of dash
+ * against 2px of dot is not enough on its own. The tint is the third, redundant channel.
+ */
+.hw-cell--preview-weak::after {
+  border: 3px solid #6b2fa5;
+  background: rgba(123, 63, 181, 0.38);
+}
+
+.hw-cell--preview-steady::after {
+  border: 2.5px dashed #7b3fb5;
+  background: rgba(123, 63, 181, 0.22);
+}
+
+.hw-cell--preview-strong::after {
+  border: 1.5px dotted #7b3fb5;
+  background: rgba(123, 63, 181, 0.14);
+}
+
+/* ------------------------------------ the pull-back preview
+ *
+ * The OTHER provisional state, and the opposite kind: the fire preview outlines ground that
+ * would be held, this outlines ground that would be RUINED. Mistaking one for the other
+ * would invert the decision, so they share nothing but the fact of being provisional.
+ *
+ * Three cues, none of them hue on its own:
+ *
+ *   1. a CROSS on every cell in the ring, which is the same glyph a ruined building wears,
+ *      so "this becomes a ruin" is said in the vocabulary already on the board;
+ *   2. a HATCH, which is what already marks ground that has been given up — the preview is
+ *      a sparser version of the state it would produce, so the two read as before and after;
+ *   3. a hard dashed edge, against the fire preview's rings.
+ */
+.hw-cell--preview-abandon {
+  z-index: 1;
+}
+
+.hw-cell--preview-abandon::after {
+  position: absolute;
+  content: "";
+  inset: 1px;
+  border: 2px dashed #7a3b3b;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(122, 59, 59, 0.42),
+    rgba(122, 59, 59, 0.42) 3px,
+    rgba(122, 59, 59, 0.1) 3px,
+    rgba(122, 59, 59, 0.1) 6px
+  );
+  pointer-events: none;
+}
+
+/* The cross sits centre-left of the badge slot so a previewed ring cell that also holds a
+ * building shows the building's mark, the cross, and nothing overlapping. */
+.hw-cell__lose {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  color: #5c1f1f;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.hw-cell--built .hw-cell__lose {
+  /* A building already has a two-letter mark in the middle, so the cross moves to the
+   * corner rather than sitting on top of it. */
+  inset: auto 1px 0 auto;
+  font-size: 10px;
+}
+
+/* The score that would reach this cell. Bottom-right so it never sits under a building's
+ * two-letter mark, and on its own disc so it stays legible over ice, grass and warmth. */
+.hw-cell__need {
+  position: absolute;
+  right: 1px;
+  bottom: 0;
+  z-index: 2;
+  min-width: 11px;
+  padding: 0 1px;
+  border-radius: 3px;
+  background: #3d1a5c;
+  color: #fff;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 12px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hw-grid--aiming-fire button.hw-cell:hover {
+  background: var(--hw-warm);
+}
+
+.hw-grid--aiming-reinforce button.hw-cell--built:hover {
+  border-color: #1f6feb;
+}
+
+/* --------------------------------------------------------------- legend */
+
+.hw-legend {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #33556e;
+}
+
+.hw-swatch {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  border: 1px solid rgba(13, 27, 42, 0.3);
+  border-radius: 3px;
+  vertical-align: -3px;
+}
+
+/* The three preview swatches sit together as one key entry, so the nesting reads as a
+ * ladder rather than as three unrelated states. */
+.hw-legend__preview .hw-swatch {
+  margin-right: 2px;
+  background: var(--hw-clear-2);
+}
+
+.hw-legend__preview .hw-swatch:last-of-type {
+  margin-right: 6px;
+}
+
+/* --------------------------------------------------------------- panels */
+
+.hw-panel {
+  position: relative;
+  margin-bottom: 18px;
+  padding: 18px 20px;
+  border: 1px solid rgba(13, 27, 42, 0.1);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(13, 27, 42, 0.06);
+}
+
+.hw-panel h2 {
+  margin: 4px 0 8px;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.hw-panel p {
+  margin: 6px 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.hw-panel .section-index {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #0d1b2a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hw-actions {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.hw-action {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid rgba(13, 27, 42, 0.15);
+  border-radius: 10px;
+  background: #f5f9fb;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  color: var(--hw-ink);
+  cursor: pointer;
+}
+
+.hw-action small {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 12.5px;
+  color: #4b6a80;
+}
+
+.hw-action[aria-pressed="true"] {
+  border-color: var(--hw-ice-edge);
+  background: rgba(74, 159, 212, 0.12);
+}
+
+.hw-action:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.hw-ladder {
+  margin: 10px 0;
+  padding: 10px 12px 10px 28px;
+  border-radius: 8px;
+  background: #f5f9fb;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ------------------------------------------- the preview read-out */
+
+.hw-preview {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 2px dashed #7b3fb5;
+  border-radius: 8px;
+  background: rgba(123, 63, 181, 0.06);
+}
+
+/* The pull-back read-out is framed as a loss, so it does not borrow the fire preview's
+ * palette: the two panels answer opposite questions. */
+.hw-preview--abandon {
+  border-color: #7a3b3b;
+  background: rgba(122, 59, 59, 0.06);
+}
+
+.hw-preview__title {
+  margin: 0 0 4px;
+  font-weight: 700;
+}
+
+.hw-ladder--abandon {
+  margin: 0 0 8px;
+  padding: 0;
+  background: none;
+  list-style: none;
+}
+
+.hw-ladder--abandon li {
+  display: flex;
+  gap: 7px;
+  align-items: baseline;
+  padding: 3px 0;
+}
+
+.hw-preview__lose {
+  flex: 0 0 auto;
+  min-width: 16px;
+  border-radius: 4px;
+  background: #5c1f1f;
+  color: #fff;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+
+.hw-preview--abandon .hw-preview__note {
+  color: #7a3b3b;
+}
+
+/* THE ONE WRITE in the feature, boxed off from the read-outs around it: everything else
+   in the outcome panel describes what happened to a snapshot, and this is the control
+   that makes it happen to the real island. Warm rather than alarming — it is a choice
+   the player is offered, not a warning. */
+.hw-carry {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #d8b26a;
+  border-radius: 10px;
+  background: rgba(216, 178, 106, 0.1);
+}
+
+.hw-carry__note,
+.hw-carry__done {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.hw-carry__done {
+  font-weight: 650;
+  color: #6b4a12;
+}
+
+.hw-chip--carry {
+  justify-self: start;
+}
+
+.hw-ladder--preview {
+  margin: 0;
+  padding: 0;
+  background: none;
+  list-style: none;
+}
+
+.hw-ladder--preview li {
+  display: flex;
+  gap: 7px;
+  align-items: baseline;
+  padding: 3px 0;
+}
+
+/* The same badge the board uses, so the panel row and the ring on the grid are visibly the
+ * same claim. */
+.hw-preview__need {
+  flex: 0 0 auto;
+  min-width: 16px;
+  border-radius: 4px;
+  background: #3d1a5c;
+  color: #fff;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+
+/* Scoped through `.hw-panel` rather than flagged important, because `.hw-panel p` would
+ * otherwise win on specificity and this note is a `<p>` inside one. */
+.hw-panel .hw-preview__note {
+  margin: 6px 0 0;
+  color: #5b3a76;
+  font-size: 12.5px;
+  font-style: italic;
+}
+
+.hw-layout {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: #40607a;
+}
+
+.hw-commit {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(13, 27, 42, 0.15);
+}
+
+.hw-prompt-line {
+  font-weight: 700;
+  color: #1f6feb;
+}
+
+.hw-refusal {
+  color: #9b2226;
+  font-weight: 600;
+}
+
+/**
+ * A shield that broke when the round closed.
+ *
+ * NOT `.hw-refusal`'s red. A refusal is "you cannot do that, nothing was spent"; this is a
+ * thing that HAPPENED and cost the player something, and a shield doing exactly the job it was
+ * bought for is not an error. It takes the frost's own dark blue — the tone the island paints
+ * the ice front in, and the tone the building's own threat badge wears — so the line and the
+ * badge over the bare building are visibly the same subject.
+ */
+.hw-shield-spent {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border-left: 4px solid #3c7fa0;
+  background: rgba(60, 127, 160, 0.12);
+  color: #24455a;
+  font-weight: 600;
+}
+
+.hw-declared {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255, 179, 71, 0.16);
+}
+
+.hw-tally {
+  font-weight: 700;
+}
+
+.hw-question {
+  margin: 10px 0;
+  font-size: 17px;
+}
+
+.hw-verdict {
+  margin-top: 10px;
+}
+
+/* The verdict is carried by its sentence and by the mark's SHAPE as well as by the hue, so
+ * a player who cannot tell the two colours apart still reads the state. Neither colour is
+ * new: the tick takes the same green the payout box uses and the cross the same red the
+ * refusals use. */
+.hw-verdict[data-status="correct"] p {
+  color: #216e39;
+  font-weight: 700;
+}
+
+.hw-verdict[data-status="incorrect"] p {
+  color: #9b2226;
+  font-weight: 700;
+}
+
+.hw-verdict__mark {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+.hw-verdict__go {
+  margin-top: 10px;
+}
+
+/* ------------------------------------------------- the solution, every time
+ *
+ * The block that answers the question, shown after a right answer and after a wrong one.
+ * `WorkedSolution` inside it is the lesson surfaces' own component and brings its own
+ * dressing from `styles.css`, so this rule only has to give it room and a quiet caption for
+ * the answer line above it. It carries NO correctness colour of its own: it appears in both
+ * states and a hue here would be a fourth meaning for green and red.
+ */
+.hw-solution {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* The answer line is markdown, so `LessonProse` supplies the paragraph inside it. */
+.hw-panel .hw-solution__answer p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* The commit step's own block, so the score, what it earned and the control that spends it
+ * read as one thing rather than as three loose paragraphs. */
+.hw-commit--resolve {
+  border-top-style: solid;
+}
+
+.hw-panel .hw-earned {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255, 179, 71, 0.16);
+}
+
+.hw-magnitude {
+  font-weight: 700;
+}
+
+/*
+ * WHAT THE CONCLUDING SCREEN LEFT BEHIND, deleted rather than kept in case.
+ *
+ * `WinterConclusion` replaced the outcome panel in #332, and six rules went dead with it:
+ * `.hw-panel--outcome`, `.hw-roll` and its ruin variant (the building list, now `.hw-roll-tiles`),
+ * `.hw-payout` and its negative-balance variant (the net-material arithmetic, cut as bookkeeping),
+ * `.hw-seam` (the economy seam's idempotency key, cut as a developer artefact), `.hw-ground` (the
+ * held-ground box), and `.hw-fires` (the fires list, whose coordinates and cell counts were the
+ * island's own facts in grid indices).
+ *
+ * They are gone rather than commented out because every one of them names a class no source
+ * renders, and a stylesheet that still describes `.hw-panel--outcome` tells the next reader there
+ * is an outcome panel.
+ */
+.hw-dev__reading {
+  font-size: 12.5px;
+  color: #4b6a80;
+}
+
+.hw-log ol {
+  margin: 8px 0;
+  padding-left: 20px;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.hw-panel--dev {
+  background: #fffbea;
+  border-color: #e0c66a;
+}
+
+.hw-dev__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.hw-chip {
+  padding: 6px 12px;
+  border: 2px solid rgba(13, 27, 42, 0.2);
+  border-radius: 999px;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--hw-ink);
+  cursor: pointer;
+}
+
+.hw-chip[aria-pressed="true"] {
+  border-color: #1f6feb;
+  background: rgba(31, 111, 235, 0.12);
+}
+
+/*
+ * THE CONCLUSION IS OUTSIDE `.hw-shell`, so it is named here explicitly, and that is a fix for a
+ * measured defect rather than tidiness: `styles.css`'s own `.primary-action` is a full-width flex
+ * bar for the city's cards, this rule is what the winter overrides it with, and a descendant
+ * selector cannot reach a sibling. Measured at 1024x580 before it was named — the "New winter"
+ * button took 100% of the card, pushing the carry-back control onto a second row and costing the
+ * card 44px it does not have.
+ *
+ * `box-sizing` comes with it for the same reason: the reset at the top of this file is scoped to
+ * `.hw-shell *` too.
+ */
+.hw-conclusion,
+.hw-conclusion *,
+.hw-conclusion *::before,
+.hw-conclusion *::after {
+  box-sizing: border-box;
+}
+
+.hw-shell .primary-action,
+.hw-conclusion .primary-action {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 999px;
+  background: #0d1b2a;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hw-shell .primary-action:disabled,
+.hw-conclusion .primary-action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.hw-shell .lesson-player__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+.hw-shell .lesson-player__row input[type="text"] {
+  padding: 8px 10px;
+  border: 2px solid rgba(13, 27, 42, 0.25);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 16px;
+}
+
+.hw-shell .lesson-player__row button[type="submit"] {
+  padding: 9px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #1f6feb;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ------------------------------------------- the player's own city
+ *
+ * The live board is not one of the authored three, so its chip and its note say so. The
+ * note is the sandbox promise, and it is styled as reassurance rather than as a warning:
+ * somebody opening this to judge a tuning number needs to know the crisis cannot reach
+ * their island, and a red banner would say the opposite of what it means.
+ */
+
+.hw-chip--live {
+  border-color: #216e39;
+  background: rgba(33, 110, 57, 0.1);
+}
+
+.hw-chip--live[aria-pressed="true"] {
+  border-color: #216e39;
+  background: rgba(33, 110, 57, 0.22);
+}
+
+.hw-chip--live:disabled {
+  border-color: rgba(13, 27, 42, 0.2);
+  background: #fff;
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* The way back to the city. An anchor wearing the chip shape, so it needs the two
+   properties a chip built for <button> does not carry: anchors underline, and they are
+   inline rather than inline-block, which makes the pill's vertical padding overflow. */
+.hw-chip--leave {
+  display: inline-block;
+  margin-top: 6px;
+  text-decoration: none;
+}
+
+.hw-chip--leave:hover,
+.hw-chip--leave:focus-visible {
+  border-color: #1f6feb;
+  background: rgba(31, 111, 235, 0.12);
+}
+
+.hw-note--sandbox {
+  border-left-color: #216e39;
+  background: rgba(33, 110, 57, 0.09);
+}
+
+.hw-layout[data-layout="live"] {
+  font-weight: 700;
+  color: #1b5e33;
+}
+
+/* ------------------------------------------------- the concluding screen
+ *
+ * THE CRISIS ENDING AS AN EVENT, not as the surface's fourth panel.
+ *
+ * D-CRISIS-30's first clause is that a concluding screen must be an event rather than the last
+ * state of the HUD the crisis was played on, and era one's failure was the diagnostic one: the
+ * outcome was a `.hw-panel` in the same rail as the declare panel and the question panel, so the
+ * screen meaning *this is over* was the same object in the same place as the screen meaning
+ * *choose your next action*. Hence `position: fixed` and its own shape: it is not in the rail,
+ * it is over everything.
+ *
+ * FIXED, AND DELIBERATELY NOT SCRIMMED. `thaw.ts` has just reverted the island and left the
+ * ruins and the given-up ground standing on it, and this card is a commentary on that picture,
+ * so a full-screen scrim would take away the evidence for the card's own headline. The
+ * separation comes from the shadow, which darkens the immediate surround and leaves the rest of
+ * the city at full strength — the same call `winter-in-city.css` makes for the answering sheet
+ * and for the same reason.
+ *
+ * BOTTOM-ANCHORED AND NOT CENTRED, and that is a measurement rather than a taste.
+ *
+ * `three/winterFraming.ts` lifts the city's camera while a winter is open so the settlement is
+ * drawn in the strip the crisis band leaves free, and it does that ONCE for the whole encounter
+ * rather than per phase: *"a camera that re-framed itself on every phase change would lurch four
+ * times a round"*. So at the moment this card appears, the player's buildings are drawn in the
+ * UPPER part of the screen, and a centred popup would land squarely on the ruins it is listing.
+ * Anchored to the band's own footprint instead, it leaves the settlement exactly as visible at
+ * the end of the winter as it was while the winter was being played, which is the whole of
+ * *"agree with what the island is doing"*.
+ *
+ * SIZED FOR 1024x580, which is the window this is reviewed on and the one the panel it replaces
+ * overflowed. The ceilings are the crisis band's own, for the reason above;
+ * `test/winterCrisisBandMirror.test.ts` keeps those and `winterFraming.ts` in step, and this rule
+ * deliberately reuses them rather than choosing a third number nothing else knows about. A
+ * concluding screen has no next action to scroll toward, so the cap is paired with a scroller
+ * rather than left `visible`: that pair is the one shape that cannot draw content outside itself.
+ *
+ * WIDE AND SHORT, for the same reason the band is. Height is the scarce thing on a 580px window,
+ * and the strip of island beside a bottom-anchored card is the part nobody is looking at, so the
+ * card spends width to buy height: at 1024 it is 901px, which is what lets the verdict sit on one
+ * line and the building tiles go four abreast instead of two.
+ */
+.hw-conclusion {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 70;
+  width: min(1000px, 88vw);
+  height: fit-content;
+  min-height: 0;
+  max-height: min(58vh, 480px);
+  margin: 0 auto 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px 24px 20px;
+  border: 2px solid var(--hw-conclusion-accent, var(--hw-ice-edge));
+  /* The accent as a top rule as well as a border, so the card's own state has a second
+     channel on it before a single word is read. Never the only one: the eyebrow, the verdict
+     and every tile below carry it in words too (INV-CRISIS-16). */
+  border-top-width: 7px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 26px 90px rgba(13, 27, 42, 0.5);
+  color: var(--hw-ink);
+  font-family: "Nunito Variable", system-ui, sans-serif;
+  pointer-events: auto;
+}
+
+/*
+ * THE ACCENT PER GRADE, and every one of the four tones is already on the island.
+ *
+ * Taken rather than invented: a ruin wears `--hw-ruin` on the board, a scar is frost so it wears
+ * the frost's own blue, ground given up wears the abandoned grey, and a settlement that came
+ * through unmarked wears the clear ground's green. So the card's edge is the tone of the worst
+ * thing in it, which is the same tone that thing is wearing on the island behind the card. No
+ * hue here is new, and `bought` is deliberately the grey rather than a fifth colour: what the
+ * player spent was ground.
+ */
+.hw-conclusion[data-verdict="untouched"] {
+  --hw-conclusion-accent: #216e39;
+}
+
+.hw-conclusion[data-verdict="held"] {
+  --hw-conclusion-accent: var(--hw-ice-edge);
+}
+
+.hw-conclusion[data-verdict="bought"] {
+  --hw-conclusion-accent: #6f7b86;
+}
+
+/*
+ * The two worst grades take the ruin tone the island wears, DARKENED for a 2px edge.
+ *
+ * `--hw-ruin` is right on the board, where it fills a whole cell, and it is too muted to read as
+ * red on a hairline against white: measured against `#216e39`'s green on the same card, the brick
+ * read as "dark" rather than as an alarm. `#9b2226` is not a new hue either — it is the red this
+ * stylesheet already uses for a refusal, for an incorrect verdict and for a negative balance — and
+ * the TILES keep `--hw-ruin`, because there the rule is 4px against a tinted wash and the tile is
+ * what has to agree with the island.
+ */
+.hw-conclusion[data-verdict="mauled"],
+.hw-conclusion[data-verdict="lost"] {
+  --hw-conclusion-accent: #9b2226;
+}
+
+/* The EVENT half of the masthead: identical in every outcome, because "the crisis is over" is
+   true in every outcome. It is the lead's "crisis complete" doing the job he asked of it, and
+   it is quiet on purpose so the verdict under it is what the eye lands on. */
+.hw-conclusion__eyebrow {
+  margin: 0;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hw-conclusion-accent, var(--hw-ice-edge));
+}
+
+/* And the VERDICT half, which is derived and therefore the one line that differs across the
+   range. Set as the largest thing on the card, because it is the answer to the only question
+   the player has when it appears. */
+.hw-conclusion__verdict {
+  margin: 2px 0 10px;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+/*
+ * THE BODY IS TWO COLUMNS: the roll on one side, the report on the other.
+ *
+ * Measured at 1024x580 before it was: stacked, this card came to 325px for a clean winter and
+ * 466px for a ruinous one against a 290px box, so its own "New winter" control was 44px below its
+ * own fold at best and 176px at worst. A concluding screen has nothing to scroll toward, so
+ * nothing on it may be below its fold. Wrapping to one column below 620px of card width, which is
+ * where two columns stop being two readable columns.
+ */
+.hw-conclusion__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px 22px;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 760px) {
+  .hw-conclusion__body {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  }
+}
+
+/* ONE TILE PER BUILDING, ACROSS RATHER THAN DOWN, AND ONE LINE EACH. Six sentences down a column
+   is the list the glance-read is supposed to replace, and it is also six lines of a vertical
+   budget that is the scarcest thing on a 580px window. Two abreast inside the left column. */
+.hw-roll-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 4px 6px;
+  margin: 0 0 6px;
+  padding: 0;
+  list-style: none;
+}
+
+.hw-roll-tiles li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 6px;
+  align-items: baseline;
+  padding: 3px 8px;
+  border-left: 4px solid var(--hw-tile-tone);
+  border-radius: 5px;
+  background: var(--hw-tile-wash);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Three channels per tile: the tone on the rule, the mark in the glyph, and the state in words
+   on the second line. Two would satisfy INV-CRISIS-16; the mark is the one that makes the
+   whole roll readable in a glance rather than a read. */
+.hw-roll-tiles li[data-state="whole"] {
+  --hw-tile-tone: #216e39;
+  --hw-tile-wash: rgba(33, 110, 57, 0.07);
+}
+
+.hw-roll-tiles li[data-state="scarred"] {
+  --hw-tile-tone: var(--hw-ice-edge);
+  --hw-tile-wash: rgba(74, 159, 212, 0.1);
+}
+
+.hw-roll-tiles li[data-state="ruin"] {
+  --hw-tile-tone: var(--hw-ruin);
+  --hw-tile-wash: rgba(122, 59, 59, 0.09);
+}
+
+.hw-roll-tiles__mark {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--hw-tile-tone);
+}
+
+.hw-roll-tiles__name {
+  font-weight: 700;
+}
+
+.hw-roll-tiles__word {
+  color: #4b6a80;
+}
+
+/* Ground given up: a line rather than a tile, because it is not a building and putting it in a
+   roll of buildings is how a report starts being denominated in cells again. */
+.hw-conclusion__ground {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px;
+  margin: 0;
+  padding: 5px 8px;
+  border-left: 4px solid var(--hw-abandoned);
+  border-radius: 5px;
+  background: rgba(142, 154, 164, 0.14);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.hw-conclusion__ground .hw-roll-tiles__mark {
+  color: #5d6873;
+}
+
+.hw-conclusion__accuracy,
+.hw-conclusion__bill,
+.hw-conclusion__milestone {
+  margin: 0 0 6px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+/*
+ * THE MILESTONE LINE. It takes the card's own accent so it belongs to the event, and it is
+ * set at the body's type size rather than the verdict's: the verdict is the answer to the
+ * question the player has, and this is an aside about their history. Any larger and it
+ * would be a second headline competing with a derived one, which is the failure
+ * `WinterConclusion.tsx` opens by explaining. No badge, no border, no icon — a milestone
+ * that gained chrome would be a badge, and there is nowhere to collect it to.
+ */
+.hw-conclusion__milestone {
+  font-weight: 700;
+  color: var(--hw-conclusion-accent, var(--hw-ice-edge));
+}
+
+/* The accuracy line carries NO grade colour and no large face. The crisis writes no mastery
+   (INV-CRISIS-7), and a percentage set big beside a damage report would read as exactly the
+   gate this encounter is careful not to be. */
+.hw-conclusion__accuracy {
+  padding: 5px 8px;
+  border-radius: 5px;
+  background: rgba(13, 27, 42, 0.05);
+}
+
+.hw-conclusion .hw-carry {
+  gap: 4px;
+  margin-bottom: 0;
+  padding: 6px 8px;
+}
+
+.hw-conclusion .hw-carry__note,
+.hw-conclusion .hw-carry__done {
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.hw-conclusion__go {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.hw-conclusion__go .primary-action,
+.hw-conclusion__go .hw-chip--leave {
+  margin-top: 0;
+}
+
+/*
+ * AND THE CARD'S PRIMARY ACTION IS SIZED TO ITS LABEL, which needs `width` said out loud.
+ *
+ * `styles.css` sets `.primary-action { width: 100% }` for the city's own cards and the winter
+ * never overrode it, because inside a panel a full-width bar is the shipped look — the declaring
+ * band's "Commit and face 3 questions" is one. In a flex row it is not: measured at 1024x580 the
+ * button took all 861px of the row, blockified by the flex container, and pushed the carry-back
+ * control onto a second line for 44px this card does not have.
+ */
+.hw-conclusion__go .primary-action {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 8px 16px;
+}
+
+.hw-conclusion__go .hw-chip {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+/* A SHORT VIEWPORT TAKES THE BAND'S OWN SHORTER CEILING, the same pair of numbers for the same
+   reason: `winterFraming.ts` sizes the free strip from these, so the card and the camera agree
+   about where the island is at every height rather than at the tall ones. */
+@media (max-height: 760px) {
+  .hw-conclusion {
+    max-height: min(50vh, 420px);
+    padding: 14px 20px 16px;
+  }
+}
+
+/* Phone width: full-bleed at the bottom, which is the same answer `winter-in-city.css` gives
+   every phase there, and where `winterFraming` refuses to lift the frame at all so there is no
+   strip of island to protect. */
+@media (max-width: 560px) {
+  .hw-conclusion {
+    width: 100%;
+    max-height: 76vh;
+    margin: 0;
+    padding: 14px 16px 18px;
+    border-width: 7px 0 0;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+/* ------------------------------------------------- the settlement strip
+ *
+ * ONE ROW FOR THE SETTLEMENT AND THE ISLAND'S KEY, on the lead's instruction and against a
+ * window about 1024x580 wide.
+ *
+ * This replaces a bordered `.hw-panel` with a heading, up to four paragraphs and a bulleted
+ * fire list, which had a four-row legend stacked under it: nine rows for a settlement that had
+ * lost nothing, and the block that was bleeding off the foot of his window. Deliberately NOT a
+ * `.hw-panel`: a card announces itself, and this is a status line.
+ *
+ * Laid out as a flex row that WRAPS rather than a grid with named tracks, because the number of
+ * items on it changes with the state of the winter: scars, ruins, given-up ground and fires each
+ * appear only once they exist. Wrapping is what lets the strip grow by a line at the moment
+ * there is a line's worth of news and not before.
+ */
+.hw-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 8px 0 0;
+  padding: 7px 10px;
+  border-top: 1px solid rgba(13, 27, 42, 0.12);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* The warning takes its own row whenever it is present, which is the one thing on the strip
+   worth a row of its own: it names the building that becomes a ruin at the end of this round. */
+.hw-strip__risk {
+  flex: 1 0 100%;
+  margin: 0 0 2px;
+  font-weight: 700;
+  color: #9b2226;
+}
+
+.hw-strip__counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* A separating dot between items rather than a border, so a wrapped row does not leave a rule
+   hanging in mid-air. */
+.hw-strip__counts li + li::before {
+  margin-right: 14px;
+  color: rgba(13, 27, 42, 0.35);
+  content: "\00b7";
+}
+
+/* Each state takes the tone it already wears on the island and on the concluding screen, and
+   never carries the state in the tone alone: the word beside it says which it is. */
+.hw-strip__counts li[data-state="scarred"] strong {
+  color: #2c6b91;
+}
+
+.hw-strip__counts li[data-state="ruin"] strong {
+  color: var(--hw-ruin);
+}
+
+.hw-strip__counts li[data-state="given-up"] strong {
+  color: #5d6873;
+}
+
+.hw-strip__key {
+  flex: 0 1 auto;
+}
+
+/**
+ * A BUILDING THE FROST TOOK.
+ *
+ * Louder than `.hw-shield-spent` above and deliberately so: that line is protection working,
+ * and this is the encounter's only irreversible loss. It takes the crisis's own `lost` tone —
+ * `WINTER_SCENE_TONES.CHAR`, the char the badge over the rubble is drawn in — so the notice and
+ * the mark on the island are visibly the same subject, and it is the ONE crisis line with a
+ * filled rule rather than a tinted wash, because at `ruin_at: 1` a round can take several
+ * buildings at once and the list has to be found at a glance.
+ */
+.hw-frozen-notice {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border-left: 5px solid #3a342c;
+  background: rgba(58, 52, 44, 0.14);
+  color: #2c2822;
+  font-weight: 600;
+}
+
+.hw-frozen-notice strong {
+  display: block;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}

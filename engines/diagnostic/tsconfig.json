@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist", "rootDir": "src" },
+  "include": ["src/**/*"],
+  "//": "The D-END4 blueprint-scope guard derives its population by reading source with node:fs, because the composition points it must check live in three other workspaces and cannot be imported (services depends on this engine, not the reverse). It is excluded from tsc and runs under vitest's node runtime, exactly as engines/game excludes era-trial-population.test.ts and packages/economy excludes its two source-reading sweeps. The alternative -- `types: [\"node\"]` on this project -- is the one test/tsconfig.json takes and this project must not: it would make `import { readFileSync } from 'node:fs'` typecheck across the whole diagnostic engine, whose contract is a pure function of records. Measured at 26de83bf rather than assumed from the older note: @types/node is now a root devDependency, and removing this exclusion still fails with three TS2591s, because a root @types package is not auto-included in a workspace project.",
+  "exclude": ["src/blueprintScope.test.ts"],
+  "references": [
+    { "path": "../../packages/shared-state-schema" },
+    { "path": "../../packages/shared-components" },
+    { "path": "../../packages/skill-graph" }
+  ]
+}

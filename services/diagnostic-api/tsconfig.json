@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist", "rootDir": "src" },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../../packages/shared-mastery-service" },
+    { "path": "../diagnostic-runtime" },
+    { "path": "../../packages/db" },
+    { "path": "../../packages/image-hygiene" },
+    { "path": "../../engines/game" },
+    { "path": "../../packages/item-bank" },
+    { "path": "../../packages/skill-graph" },
+    { "path": "../../packages/shared-state-schema" }
+  ]
+}

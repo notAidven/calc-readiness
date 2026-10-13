@@ -1,0 +1,102 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`frozen forms (immutability guard) > pins the frozen content hashes (a template edit that changes a form must be explicit) 1`] = `
+[
+  {
+    "hash": "159d1e8e",
+    "id": "d1.num-s.l1:A:1000",
+  },
+  {
+    "hash": "cba6e5c7",
+    "id": "d1.num-f.l1:A:1001",
+  },
+  {
+    "hash": "8814df05",
+    "id": "d1.num-3.l1:A:1002",
+  },
+  {
+    "hash": "f0b25aa4",
+    "id": "d1.num-s.l2:A:1003",
+  },
+  {
+    "hash": "09591b9f",
+    "id": "d1.num-f.l2:A:1004",
+  },
+  {
+    "hash": "60c87e24",
+    "id": "d1.num-2.l2:A:1005",
+  },
+  {
+    "hash": "c05fe769",
+    "id": "d1.num-3.l2:A:1006",
+  },
+  {
+    "hash": "6465d193",
+    "id": "d1.num-4.l2:A:1007",
+  },
+  {
+    "hash": "92b24919",
+    "id": "d1.num-5.l2:A:1008",
+  },
+  {
+    "hash": "067053f7",
+    "id": "d1.num-2.l3:A:1009",
+  },
+  {
+    "hash": "6eaea937",
+    "id": "d1.num-4.l3:A:1010",
+  },
+  {
+    "hash": "6af8dcce",
+    "id": "d1.num-5.l3:A:1011",
+  },
+  {
+    "hash": "5cc940df",
+    "id": "d1.num-s.l1:B:2000",
+  },
+  {
+    "hash": "221a4279",
+    "id": "d1.num-f.l1:B:3001",
+  },
+  {
+    "hash": "299ce541",
+    "id": "d1.num-3.l1:B:2002",
+  },
+  {
+    "hash": "d1e48f87",
+    "id": "d1.num-s.l2:B:2003",
+  },
+  {
+    "hash": "1ee8bf26",
+    "id": "d1.num-f.l2:B:2004",
+  },
+  {
+    "hash": "60c3536d",
+    "id": "d1.num-2.l2:B:2005",
+  },
+  {
+    "hash": "0944a5de",
+    "id": "d1.num-3.l2:B:2006",
+  },
+  {
+    "hash": "f25056bf",
+    "id": "d1.num-4.l2:B:2007",
+  },
+  {
+    "hash": "5dc62f63",
+    "id": "d1.num-5.l2:B:2008",
+  },
+  {
+    "hash": "8ea01945",
+    "id": "d1.num-2.l3:B:2009",
+  },
+  {
+    "hash": "ac2109dc",
+    "id": "d1.num-4.l3:B:2010",
+  },
+  {
+    "hash": "e823bc84",
+    "id": "d1.num-5.l3:B:2011",
+  },
+]
+`;

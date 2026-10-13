@@ -1,0 +1,17 @@
+Measured beside the frames in docs/design-refs/build-catalogue, under an emulated
+prefers-reduced-motion: reduce, by buildCatalogFits.browser.test.tsx in the same run.
+The catalogue is opened from the learner's own Build button on the mock city, at the
+window named at the start of each line. Every figure is in CSS pixels.
+
+320x568 catalogue: frame 307x527 at y=33, content 525, hidden 0px, 6 cards, 0 cut, cue absent
+390x580 catalogue: frame 374x527 at y=45, content 525, hidden 0px, 6 cards, 0 cut, cue absent
+768x1024 catalogue: frame 737x605 at y=388, content 603, hidden 0px, 6 cards, 0 cut, cue absent
+844x390 catalogue: frame 760x340 at y=8, content 513, hidden 175px, 6 cards, 6 cut, cue "More below"
+844x390 catalogue scrolled to the end: last card bottom y=295 inside frame 8..382; 0 of 6 cards still partly cut; cue retired
+1024x580 catalogue: frame 760x518 at y=54, content 516, hidden 0px, 6 cards, 0 cut, cue absent
+1440x900 catalogue: frame 760x632 at y=220, content 630, hidden 0px, 6 cards, 0 cut, cue absent
+512x290-zoom200 catalogue: frame 492x244 at y=4, content 525, hidden 283px, 6 cards, 6 cut, cue "More below"
+512x290-zoom200 catalogue scrolled to the end: last card bottom y=196 inside frame 4..282; 6 of 6 cards still partly cut; cue retired
+1024x580-text200 catalogue: frame 760x523 at y=15, content 797, hidden 276px, 6 cards, 6 cut, cue "More below"
+1024x580-text200 catalogue scrolled to the end: last card bottom y=457 inside frame 15..572; 0 of 6 cards still partly cut; cue retired
+844x390 last card focused: 256..347 inside frame 8..348

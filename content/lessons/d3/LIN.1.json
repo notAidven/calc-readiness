@@ -1,0 +1,85 @@
+{
+  "node_id": "LIN.1",
+  "title": "Solve one-variable linear equations",
+  "mini_lesson": [
+    "The weighmaster has no authority to open the sealed crate of tin on one pan of the balance, so its weight in minas (the town's unit of weight) is whatever the crate's tally says, while the cast ingots stacked against it on the other pan have never been weighed. A level beam says the two pans hold the same amount, and writing that down with a symbol standing in for the unmeasured weight gives an **equation**: a statement that two amounts are equal. The symbol itself is a **variable**, and the value that makes both sides genuinely equal is the equation's **solution**.",
+    "Two things were done to the ingot weight before the beam ever saw it: it was multiplied, and then a loose weight was added. The balance allows one kind of move in reply and no other, because whatever comes off one pan has to come off the other or the beam tips. Undoing each of those with the move that reverses it is what an **inverse operation** is, and the coefficient in front of the variable records the multiplication, so dividing by it is the move that undoes it.",
+    "Some weighings put an unknown on both pans at once, so neither side is a plain number to work back from. A **term** is one of the separate pieces a single side of the balance is added out of, and a weighing like that carries variable terms on both sides. Gathering those onto a single pan is the only new move, and once the unknown sits on one pan the weighing is the kind already solved.",
+    "An answer that came out of several separate moves is worth testing, and an equation makes that cheap: put the value back in and see whether the two sides really do come out the same, since a value that fails is not a near miss but no solution at all. When an answer has to name every value that works it goes inside braces as a **solution set**, each of these weighings puts exactly one value in that set, and this answer field asks for that value on its own rather than the braces around it. Every weighing on this balance is **linear**, meaning the variable is only ever multiplied by a plain number and never by itself."
+  ],
+  "slide_subtitles": [
+    "Weighing a sealed crate",
+    "Undoing the moves",
+    "Crates on both pans",
+    "Checking the answer"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Three cast ingots of equal weight and a loose weight of $8$ minas balance a sealed crate marked $29$ minas. Write that weighing as an equation.",
+      "steps": [
+        "The one unmeasured quantity is the weight of a single ingot, so call it $x$.",
+        "Three ingots of that weight come to $3x$, and the loose weight adds $8$, so the right pan holds $3x + 8$.",
+        "The crate's tally puts $29$ on the left pan.",
+        "The beam hangs level, so the two pans are equal: the weighing is $3x + 8 = 29$."
+      ]
+    },
+    {
+      "prompt": "Solve $3x + 8 = 29$ for the weight $x$ of one ingot.",
+      "steps": [
+        "The $8$ went on last, so it is the outer layer and the only one of the two that comes away on its own.",
+        "Take $8$ off both pans and the weighing becomes $3x = 21$.",
+        "Three equal ingots weigh $21$ between them, so each one is a third of that.",
+        "Dividing both pans by $3$ leaves $x = 7$, so one ingot weighs $7$ minas."
+      ]
+    },
+    {
+      "prompt": "Solve $5x - 3 = 2x + 12$, where the unknown ingot weight sits on both pans.",
+      "steps": [
+        "Both pans carry the unknown, so clear it off one of them first: lift two ingots from each pan.",
+        "That leaves $3x - 3 = 12$, with the unknown on one pan only.",
+        "Add $3$ to both pans to clear the plain number: $3x = 15$.",
+        "Dividing both pans by $3$ gives $x = 5$, so each ingot weighs $5$ minas."
+      ]
+    },
+    {
+      "prompt": "Check that $x = 5$ really solves $5x - 3 = 2x + 12$, then write the answer as a solution set.",
+      "steps": [
+        "Substitute the value into the left pan: $5(5) - 3$ comes to $22$.",
+        "Substitute the same value into the right pan: $2(5) + 12$ comes to $22$ as well.",
+        "The two pans agree, so the beam would hang level and $5$ passes the test.",
+        "The answer written as a solution set is $\\{5\\}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "balance-beam-slider", "gates": true },
+    { "after": 1, "id": "solve-steps-order", "gates": true },
+    { "after": 2, "id": "both-pans-builder", "gates": true },
+    { "after": 3, "id": "solve-slip-spot", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A tally records four ingots with $5$ minas taken away balancing one ingot of the same weight with $22$ minas added. What does one ingot weigh? Enter one number.",
+    "accepted": ["9"],
+    "hint": "Both pans carry the unknown, so clear it off one of them first by lifting one ingot from each pan. That leaves the variable on a single side, with a plain number beside it and a coefficient in front of it.",
+    "worked_solution": [
+      "Write the tally as a balance, with one ingot's weight as $x$: $4x - 5 = x + 22$.",
+      "Lift one ingot from each pan so the unknown sits on one side only: $3x - 5 = 22$.",
+      "Add the $5$ back to both pans: $3x = 27$.",
+      "Three ingots weigh $27$, so divide by $3$: one ingot weighs $9$ minas."
+    ],
+    "worked_solution_template": "d3.lin1.both-sides.l2",
+    "worked_solution_params": {
+      "a": 4,
+      "b": -5,
+      "right": 1,
+      "d": 22,
+      "x0": 9,
+      "gathered": 3
+    },
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "9"
+    },
+    "variants": { "template_id": "d3.lin1.balance-word.l2", "count": 2 }
+  }
+}

@@ -1,0 +1,36 @@
+# classical at 1024x580, reduced motion
+
+island: grass 30, camera 69.0u
+ground art: unauthored
+citizen cloth: unauthored (#6e675c)
+population: 44, staged crowd: 44
+
+## the frame the scene put on the projection, read off the live camera
+  buildings: zoom 1.5209
+  everyday: zoom 1.5209
+  gathered: zoom 0.5139
+  gathered-crowd-only: zoom 0.5139
+  gathered-nobody: zoom 0.5139
+  islandFraming asks for 1.5209; ceremonyLens asks for 0.5139
+
+## a person, in CSS pixels, foot to crown
+  at the resting frame: 7.8px
+  at the gathered frame: 23.0px
+  the bar: 23px
+
+## silhouettes, by difference against the frame's own reference
+  everyday: 1791px over 26 separable masses, box x 390..668 y 105..335
+  gathered: 14342px over 41 separable masses, box x 200..822 y 51..229
+  per figure: 40.7px everyday, 326.0px gathered
+  crowd span: 178px measured against 175px predicted
+
+## the doubling, and whether it is gone
+  the shipped gathered frame differs from the crowd-only control by 1px, against
+  an everyday crowd of 1791px in this same run. Near zero means the scene stood
+  the everyday roster down itself; it was 7,176px in era one and 7,105px in era four
+  before `everydayCrowdRoster` existed. This frame is bistable at about 1px.
+
+## the advisor's own ground, which the crowd has to clear
+  the advisor's assembly is 272.6px of the bottom of the frame,
+  so its top edge is y 307.4 and the crowd's
+  lowest foot is y 229.

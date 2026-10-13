@@ -1,0 +1,62 @@
+{
+  "node_id": "FUN.3",
+  "title": "Piecewise functions",
+  "mini_lesson": [
+    "A goods office can charge one rate per ton up to a wagonload and a different rate beyond it, and that is still **one** rule for the charge rather than two separate ones. A **piecewise function** hands out a separate formula for each stretch of the input, and every formula carries the condition saying when it applies. So reading one starts with a question about the input rather than about the arithmetic: exactly one condition holds, because the stretches never overlap, and the formula beside it is the only formula allowed to touch this input.",
+    "Evaluating is therefore two moves in a fixed order: test the input against the conditions and keep the one formula it satisfies, then substitute into that formula and nothing else. Substituting into the wrong piece gives a number that is arithmetically perfect and simply not this function's value, which is why the choice has to come first. The other formulas are not wrong, they are about other inputs.",
+    "Where two stretches meet is the **break point**, and the inequality signs decide which piece owns it. A strict $<$ or $>$ leaves that input to its neighbor, while $\\le$ or $\\ge$ claims it, and exactly one piece may claim it or the function would hand back two values for a single input. Drawn on a graph, that ruling becomes a dot: the piece that owns the break point ends in a **closed** dot there, and the piece that does not ends in an **open** one.",
+    "Graphing follows the same order. Draw each formula only across the inputs its own condition allows, and stop it at the break point with the dot that condition has earned. When the two pieces meet at the same height the graph turns a corner, and when they meet at different heights it jumps, which is a break no single formula could ever produce."
+  ],
+  "slide_subtitles": [
+    "One rule per stretch",
+    "Choose, then substitute",
+    "Who owns the boundary",
+    "Drawing each piece"
+  ],
+  "worked_examples": [
+    null,
+    {
+      "prompt": "For $f(x) = x - 8$ when $x < -1$ and $f(x) = 5x + 1$ when $x \\ge -1$, find $f(-4)$.",
+      "steps": [
+        "Test the input against the conditions before touching either formula: $-4$ is less than $-1$, so the first condition holds and the second does not.",
+        "That makes $x - 8$ the only formula allowed to touch this input.",
+        "Substituting into that formula alone gives $f(-4) = -4 - 8 = -12$."
+      ]
+    },
+    null,
+    {
+      "prompt": "The rule $f(x) = 2x$ when $x \\le 3$ and $f(x) = x + 3$ when $x > 3$ is graphed. Does its graph jump at the break point?",
+      "steps": [
+        "Take the break point $x = 3$ to each formula in turn: the first gives $2(3) = 6$.",
+        "The second formula is not allowed at $3$ itself, so ask where it sets off: just past $3$ it starts from $3 + 3 = 6$.",
+        "Both pieces reach the same height there, so there is nothing to jump over and the two ends meet at $(3,\\, 6)$.",
+        "The graph changes slope at that point instead of breaking, which is a corner rather than a jump."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "piecewise-piece-classify", "gates": true },
+    { "after": 1, "id": "piecewise-evaluate-solver", "gates": true },
+    { "after": 2, "id": "piecewise-boundary-play", "gates": true },
+    { "after": 3, "id": "piecewise-graph-build", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A goods shed charges by the ton. For a load of $t$ tons the charge in dollars is $C(t) = 7t$ when $t < 5$, and $C(t) = 4t + 18$ when $t \\ge 5$. Find $C(5)$ and $C(2)$. Give the two charges separated by a comma. Put the charge for the $5$ ton load first, like `40, 20`.",
+    "accepted": ["38, 14", "38; 14", "38 and 14"],
+    "hint": "Read the conditions before you multiply anything. The second condition is $t \\ge 5$, and $\\ge$ takes in the number itself, so settle which formula the $5$ ton load belongs to first, then substitute that load into that one formula alone.",
+    "worked_solution": [
+      "Start with the $5$ ton load and test it. The first condition needs $t < 5$, which $5$ fails, and the second needs $t \\ge 5$, which $5$ satisfies, so the second formula owns it.",
+      "Substitute into that formula alone: $C(5) = 4 \\times 5 + 18 = 38$.",
+      "Now the $2$ ton load. Here $t < 5$ holds, so the first formula owns it: $C(2) = 7 \\times 2 = 14$.",
+      "The prompt asks for the heavier load first, so the two charges are written `38, 14`."
+    ],
+    "worked_solution_params": {
+      "breakAt": 5,
+      "rateLow": 7,
+      "rateHigh": 4,
+      "standing": 18,
+      "light": 2
+    },
+    "variants": { "template_id": "cfu.fun3.evaluate-by-piece", "count": 2 }
+  }
+}

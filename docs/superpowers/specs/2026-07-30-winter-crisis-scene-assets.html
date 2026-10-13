@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #E4E8E7; }
+  a { color: #2F5A63; }
+  a:hover { color: #1E3E45; }
+</style>
+</helmet>
+<div style="min-height:100%;background:#E4E8E7;font-family:'Nunito',sans-serif;color:#22282A;padding:56px 32px 96px;display:flex;flex-direction:column;align-items:center;gap:40px;">
+
+  <div style="width:100%;max-width:1080px;display:flex;flex-direction:column;gap:20px;">
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
+      <span style="font:800 13px/1 'Nunito',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E6B6E;">Scene asset batch</span>
+      <span style="font:600 13px/1 ui-monospace,monospace;color:#8A9699;">era 1 · midpoint crisis · temporary</span>
+    </div>
+    <h1 style="font:800 44px/1.06 'Nunito',sans-serif;margin:0;max-width:820px;text-wrap:pretty;">Winter Crisis — nine scene assets for the round island</h1>
+    <p style="font:600 17px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:720px;text-wrap:pretty;">Every asset below is a scene asset: three.js code or plain numbers. Nothing here is DOM and nothing here ships as HTML. The house style comes from the fair-weather design file — flat solid faces, low detail, silhouette-first, warm wood and stone in the buildings. The mood does not: the sky loses its blue, the key light loses its warmth, and the sea fades before the frame edge.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.06em;text-transform:uppercase;background:#CFD8D8;color:#2E3739;padding:9px 12px;border-radius:2px;">flat-shaded · no textures</span>
+      <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.06em;text-transform:uppercase;background:#CFD8D8;color:#2E3739;padding:9px 12px;border-radius:2px;">no glow · no bloom · no reflections</span>
+      <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.06em;text-transform:uppercase;background:#CFD8D8;color:#2E3739;padding:9px 12px;border-radius:2px;">4 lights total</span>
+      <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.06em;text-transform:uppercase;background:#CFD8D8;color:#2E3739;padding:9px 12px;border-radius:2px;">tilt 49° · fov 32 · heading 0–360°</span>
+    </div>
+  </div>
+
+  <div style="width:100%;max-width:1080px;background:#F2F5F4;border:1px solid #C9D2D2;padding:28px 30px 30px;display:flex;flex-direction:column;gap:18px;">
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <h2 style="font:800 22px/1.2 'Nunito',sans-serif;margin:0;">Named palette — use these names, not raw hex</h2>
+      <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#5E6B6E;margin:0;max-width:760px;">The fair-weather design file defines no CSS custom properties, so there are no token names to inherit. Its literal fills are carried forward under names below: wood, stone, ember and slush are the file's own values, cooled only where the light demands it. Everything prefixed <b>SNOW</b>, <b>ICE</b> or <b>SKY</b> is new and belongs to the crisis only.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px;">
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#EEF5F4;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">SNOW_LIT<br><span style="color:#7C888B;">#EEF5F4</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#E2EAEA;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">SNOW_MID<br><span style="color:#7C888B;">#E2EAEA</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#D9E3E2;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">SNOW_SHADE<br><span style="color:#7C888B;">#D9E3E2</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#CBD7D8;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">SNOW_DEEP<br><span style="color:#7C888B;">#CBD7D8</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#E7EEEE;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">ICE_PALE<br><span style="color:#7C888B;">#E7EEEE</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#C5D5D7;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">ICE_FACET<br><span style="color:#7C888B;">#C5D5D7</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#A9BFC4;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">ICE_SHADE<br><span style="color:#7C888B;">#A9BFC4</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#2F5A63;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">WATER_COLD<br><span style="color:#7C888B;">#2F5A63</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#9A8874;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">SLUSH_MID<br><span style="color:#7C888B;">#9A8874</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#6F6357;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">SLUSH_DARK<br><span style="color:#7C888B;">#6F6357</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#B08968;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">WOOD_LIT<br><span style="color:#7C888B;">#B08968</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#8D6648;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">WOOD_MID<br><span style="color:#7C888B;">#8D6648</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#5F4730;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">WOOD_DARK<br><span style="color:#7C888B;">#5F4730</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#B4AC98;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">STONE<br><span style="color:#7C888B;">#B4AC98</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#8D8878;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">STONE_DARK<br><span style="color:#7C888B;">#8D8878</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#3A342C;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">CHAR<br><span style="color:#7C888B;">#3A342C</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#FF9A37;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">FLAME<br><span style="color:#7C888B;">#FF9A37</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#D9622E;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">EMBER<br><span style="color:#7C888B;">#D9622E</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#AEB7B8;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">SMOKE_MID<br><span style="color:#7C888B;">#AEB7B8</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#828E90;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">SMOKE_DARK<br><span style="color:#7C888B;">#828E90</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#DCE0DE;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">SKY_OVERCAST<br><span style="color:#7C888B;">#DCE0DE</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="width:30px;height:30px;background:#D5DAD8;border:1px solid #C9D2D2;flex:none;"></span><span style="font:600 12px/1.35 ui-monospace,monospace;">FOG_NEAR<br><span style="color:#7C888B;">#D5DAD8</span></span></div>
+    </div>
+    <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">export const W = {
+  SNOW_LIT: 0xeef5f4, SNOW_MID: 0xe2eaea, SNOW_SHADE: 0xd9e3e2, SNOW_DEEP: 0xcbd7d8,
+  ICE_PALE: 0xe7eeee, ICE_FACET: 0xc5d5d7, ICE_SHADE: 0xa9bfc4, WATER_COLD: 0x2f5a63,
+  SLUSH_MID: 0x9a8874, SLUSH_DARK: 0x6f6357,
+  WOOD_LIT: 0xb08968, WOOD_MID: 0x8d6648, WOOD_DARK: 0x5f4730,
+  STONE: 0xb4ac98, STONE_DARK: 0x8d8878, CHAR: 0x3a342c,
+  FLAME: 0xff9a37, EMBER: 0xd9622e,
+  SMOKE_MID: 0xaeb7b8, SMOKE_DARK: 0x828e90,
+  SKY_OVERCAST: 0xdce0de, FOG_NEAR: 0xd5dad8,
+};
+
+// House rule, applied to every material this batch creates.
+export const flat = (o) =&gt; Object.assign({ flatShading: true, metalness: 0, roughness: 0.95 }, o);</pre>
+  </div>
+
+  <div style="width:100%;max-width:1080px;display:flex;flex-direction:column;gap:28px;">
+
+    <div style="background:#F2F5F4;border:1px solid #C9D2D2;padding:30px 30px 32px;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font:800 16px/1 'Nunito',sans-serif;background:#20282A;color:#EEF5F4;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;">1</span>
+        <h2 style="font:800 26px/1.15 'Nunito',sans-serif;margin:0;flex:1 1 260px;">The lighting preset</h2>
+        <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.08em;text-transform:uppercase;background:#2F5A63;color:#EAF1F1;padding:9px 12px;">Output: plain numeric values</span>
+      </div>
+      <p style="font:600 16px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:760px;text-wrap:pretty;">The same four lights, re-valued. Key drops to roughly a third of daylight intensity and goes near-white, so shadows stay present but shallow. Fill rises, which is what actually softens the hard shadow edge when you cannot blur it — the contrast ratio goes from about 4:1 to 1.7:1. Hemisphere ground bounce swaps warm earth for cold blue-white. Sky is grey with no blue in it at all. Fog pulls in from 96 to 68 world units so the sea dies before the frame edge.</p>
+      <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">// ── FAIR WEATHER (baseline, for the crossfade's t=0 end) ─────────────
+export const FAIR = {
+  exposure: 1.00,
+  sky: 0x9fd0e6,
+  fog: { color: 0xbfdbe4, near: 46, far: 132 },
+  hemi: { sky: 0xbfe2f2, ground: 0xa8895e, intensity: 0.90 },   // warm earth bounce
+  ambient: { color: 0xd8e2e8, intensity: 0.30 },
+  key: { color: 0xfff0d2, intensity: 1.55, pos: [-38, 54, 30], shadowIntensity: 1.00 },
+  fill: { color: 0xbcd8e8, intensity: 0.28, pos: [34, 38, -46] },
+};
+
+// ── WINTER CRISIS ────────────────────────────────────────────────────
+export const WINTER = {
+  exposure: 0.92,                    // ACES already applied; pull the top end down
+  sky: 0xdce0de,                     // flat grey-white, zero blue
+  fog: { color: 0xd5dad8, near: 24, far: 68 },   // sea gone before the frame edge
+  hemi: { sky: 0xe6eaea, ground: 0xc4d1d6, intensity: 0.88 },   // cold blue-white bounce
+  ambient: { color: 0xd8dee0, intensity: 0.46 },                // fill up, not down
+  key: { color: 0xf4f7f6, intensity: 0.58, pos: [-44, 70, 26], shadowIntensity: 0.55 },
+  fill: { color: 0xc9d6dc, intensity: 0.34, pos: [30, 44, -48] },
+};
+
+// key:fill ≈ 1.7:1 (was 4:1 in fair weather) — this is what reads as "overcast".
+// Daytime check: the darkest lit face still sits near 0.42 luminance. Not night.
+
+// ── APPLY / CROSSFADE ────────────────────────────────────────────────
+// Call every frame while the crisis arrives or leaves. t = 0 fair, 1 winter.
+// Onset 6 s, hold for the crisis, release 9 s (slower — thaw should feel earned).
+export function applyWeather(scene, renderer, lights, t) {
+  const e = t * t * (3 - 2 * t);                  // smoothstep, no easing lib
+  const mixC = (a, b) =&gt; new THREE.Color(a).lerp(new THREE.Color(b), e);
+  const mixN = (a, b) =&gt; a + (b - a) * e;
+
+  renderer.toneMappingExposure = mixN(FAIR.exposure, WINTER.exposure);
+  scene.background = mixC(FAIR.sky, WINTER.sky);
+  scene.fog.color.copy(mixC(FAIR.fog.color, WINTER.fog.color));
+  scene.fog.near = mixN(FAIR.fog.near, WINTER.fog.near);
+  scene.fog.far  = mixN(FAIR.fog.far,  WINTER.fog.far);
+
+  const { hemi, ambient, key, fill } = lights;    // the four that already exist
+  hemi.color.copy(mixC(FAIR.hemi.sky, WINTER.hemi.sky));
+  hemi.groundColor.copy(mixC(FAIR.hemi.ground, WINTER.hemi.ground));
+  hemi.intensity = mixN(FAIR.hemi.intensity, WINTER.hemi.intensity);
+
+  ambient.color.copy(mixC(FAIR.ambient.color, WINTER.ambient.color));
+  ambient.intensity = mixN(FAIR.ambient.intensity, WINTER.ambient.intensity);
+
+  key.color.copy(mixC(FAIR.key.color, WINTER.key.color));
+  key.intensity = mixN(FAIR.key.intensity, WINTER.key.intensity);
+  key.position.set(
+    mixN(FAIR.key.pos[0], WINTER.key.pos[0]),
+    mixN(FAIR.key.pos[1], WINTER.key.pos[1]),
+    mixN(FAIR.key.pos[2], WINTER.key.pos[2]));
+  // three r155+: shadow.intensity. Older builds: drop key.intensity to 0.44 instead.
+  if ('intensity' in key.shadow) key.shadow.intensity = mixN(1.0, WINTER.key.shadowIntensity);
+
+  fill.color.copy(mixC(FAIR.fill.color, WINTER.fill.color));
+  fill.intensity = mixN(FAIR.fill.intensity, WINTER.fill.intensity);
+}
+
+// Shadow camera, set once. Must cover the full r=30 disc plus drifts, not the r=22 grid.
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.left = -42; key.shadow.camera.right = 42;
+key.shadow.camera.top  =  42; key.shadow.camera.bottom = -42;
+key.shadow.camera.near = 1;   key.shadow.camera.far = 220;
+key.shadow.bias = -0.0006;    key.shadow.normalBias = 0.02;</pre>
+      <div style="background:#E7ECEB;border-left:3px solid #2F5A63;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font:800 12px/1 'Nunito',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#2F5A63;">Traded away</span>
+        <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#3E4A4C;margin:0;">The reference plates build their sky from three stacked translucent bands, which is a painted vertical gradient. There is no sky dome and no shader to hold it, so I substituted one flat colour plus a tighter linear fog — fog does the depth work the gradient was faking. The plates also darken toward the frame corners; that is a vignette, a post effect, and there is no post pipeline. Dropped, not substituted.</p>
+      </div>
+    </div>
+
+    <div style="background:#F2F5F4;border:1px solid #C9D2D2;padding:30px 30px 32px;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font:800 16px/1 'Nunito',sans-serif;background:#20282A;color:#EEF5F4;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;">2</span>
+        <h2 style="font:800 26px/1.15 'Nunito',sans-serif;margin:0;flex:1 1 260px;">The snow ground course</h2>
+        <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.08em;text-transform:uppercase;background:#2F5A63;color:#EAF1F1;padding:9px 12px;">Output: three.js code</span>
+      </div>
+      <p style="font:600 16px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:760px;text-wrap:pretty;">One mesh for the whole disc, not one per cell. The crisis grid stops at r=22 and the grass reaches r=30, so any per-cell course leaves an eight-unit green ring around the settlement — visible from every heading and unmistakably a bug. The course is a single faceted disc of radius 30.4 laid <i>over</i> the grass at y≈0.06, jittered per vertex so it facets under the flat shading instead of reading as a white plate, with a darker lip at the coast so the snow ends on a beach rather than at a clean circle.</p>
+      <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">import * as THREE from 'three';
+import { W, flat } from './winter-palette.js';
+
+const ISLAND_R = 30;      // visible grass disc
+const CRISIS_R = 22;      // gameplay grid — deliberately NOT the visual extent
+
+export function buildSnowCourse() {
+  const g = new THREE.CircleGeometry(ISLAND_R + 0.4, 84, 0, Math.PI * 2)
+    .rotateX(-Math.PI / 2)
+    .toNonIndexed();                       // per-face colour needs unshared verts
+
+  const p = g.attributes.position;
+  // Vertex jitter: hashed off position so it is stable across reloads and saves.
+  for (let i = 0; i &lt; p.count; i++) {
+    const x = p.getX(i), z = p.getZ(i);
+    const r = Math.hypot(x, z);
+    const h = Math.sin(x * 1.7 + z * 0.9) * Math.cos(z * 1.31 - x * 0.44);
+    const rim = Math.min(1, (ISLAND_R + 0.4 - r) / 2.2);   // flatten to 0 at the coast
+    p.setY(i, 0.06 + (0.10 + 0.10 * h) * rim);
+  }
+  g.computeVertexNormals();
+
+  // Three-tone facets. Depth of drift, not noise: deeper toward the middle.
+  const tones = [W.SNOW_LIT, W.SNOW_MID, W.SNOW_SHADE];
+  const col = new Float32Array(p.count * 3);
+  const c = new THREE.Color();
+  for (let f = 0; f &lt; p.count; f += 3) {
+    const cx = (p.getX(f) + p.getX(f + 1) + p.getX(f + 2)) / 3;
+    const cz = (p.getZ(f) + p.getZ(f + 1) + p.getZ(f + 2)) / 3;
+    const r = Math.hypot(cx, cz) / ISLAND_R;
+    const pick = r &gt; 0.94 ? W.SNOW_DEEP
+      : tones[(Math.abs(Math.round(cx * 3.1 + cz * 1.7)) % 3)];
+    c.set(pick).convertSRGBToLinear();
+    for (let k = 0; k &lt; 3; k++) col.set([c.r, c.g, c.b], (f + k) * 3);
+  }
+  g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+
+  const mat = new THREE.MeshStandardMaterial(flat({
+    vertexColors: true,
+    polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, // beat the grass
+  }));
+
+  const course = new THREE.Mesh(g, mat);
+  course.receiveShadow = true;
+  course.castShadow = false;              // a ground plane casting on itself = acne
+  course.name = 'snow-course';
+
+  // Coast lip: a low ring in SNOW_DEEP so the edge reads as banked, not cut.
+  const lipGeo = new THREE.RingGeometry(ISLAND_R - 0.7, ISLAND_R + 0.45, 84, 1)
+    .rotateX(-Math.PI / 2);
+  const lip = new THREE.Mesh(lipGeo, new THREE.MeshStandardMaterial(flat({ color: W.SNOW_DEEP })));
+  lip.position.y = 0.03;
+  lip.receiveShadow = true;
+
+  const group = new THREE.Group();
+  group.name = 'snow-ground';
+  group.add(course, lip);
+  return group;
+}
+
+// Arrival: scale the disc up from the middle over the onset, so the snow "spreads".
+// r = 0 → 30.4 in 6 s reads badly (a growing white pool); instead fade the whole
+// course in by moving it up from y = -0.4 to y = 0 and lerping vertex colours
+// toward the grass tone at t = 0. Depth-of-cover, not area-of-cover.</pre>
+      <div style="background:#E7ECEB;border-left:3px solid #2F5A63;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font:800 12px/1 'Nunito',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#2F5A63;">Traded away</span>
+        <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#3E4A4C;margin:0;">Plate 02 fades the snow into the grass with a soft blended edge — a feathered alpha, which needs either a texture or a shader. Substituted the hard SNOW_DEEP coast lip: it reads as snow banked at the shoreline, which is truer to how snow actually ends and costs one ring of triangles. The plate also stacks two half-transparent brown layers under the snow to fake subsurface warmth; dropped, since translucency over the terrain would fight the shadow map for no readable gain.</p>
+      </div>
+    </div>
+
+    <div style="background:#F2F5F4;border:1px solid #C9D2D2;padding:30px 30px 32px;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font:800 16px/1 'Nunito',sans-serif;background:#20282A;color:#EEF5F4;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;">3</span>
+        <h2 style="font:800 26px/1.15 'Nunito',sans-serif;margin:0;flex:1 1 260px;">Drifts against vertical surfaces</h2>
+        <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.08em;text-transform:uppercase;background:#2F5A63;color:#EAF1F1;padding:9px 12px;">Output: three.js code</span>
+      </div>
+      <p style="font:600 16px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:760px;text-wrap:pretty;">A drift is a sheared box: full height where it meets the wall, zero at its outer edge. Sizing is the whole job. At tilt 49° a one-storey building is about 3 units and reads roughly 90 px tall on a 1080-tall frame; a drift above 0.9 units starts eating the wall and the building stops reading as a building. Cap is 28% of wall height, hard-clamped to 0.9. Depth 0.9–1.3 so it survives the perspective from every heading.</p>
+      <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">import * as THREE from 'three';
+import { W, flat } from './winter-palette.js';
+
+const DRIFT_MAX_H = 0.9;          // measured ceiling: above this the silhouette goes
+
+const driftMat = new THREE.MeshStandardMaterial(flat({ color: W.SNOW_MID }));
+const driftMatLit = new THREE.MeshStandardMaterial(flat({ color: W.SNOW_LIT }));
+
+// One drift, local space: wall along +X at z = 0, drift banks out toward +Z.
+function driftGeometry(len, h, depth, seed = 1) {
+  const g = new THREE.BoxGeometry(len, h, depth, Math.max(2, Math.round(len)), 1, 1);
+  const p = g.attributes.position;
+  const rnd = (n) =&gt; (Math.sin(n * 12.9898 + seed * 78.233) * 43758.5453) % 1;
+
+  for (let i = 0; i &lt; p.count; i++) {
+    const x = p.getX(i), y = p.getY(i), z = p.getZ(i);
+    if (z &gt; 0) {                              // outer edge: collapse to the ground
+      if (y &gt; 0) p.setY(i, -h / 2 + h * 0.06);
+    } else if (y &gt; 0) {                       // wall edge: notch the crest
+      p.setY(i, y - h * 0.22 * Math.abs(rnd(x * 3.7)));
+      p.setZ(i, z - depth * 0.04);            // bite very slightly into the wall
+    }
+  }
+  g.translate(0, h / 2, depth / 2);           // sit on the ground, bank outward
+  g.computeVertexNormals();
+  return g;
+}
+
+// Attach drifts to a building. footprint = { w, d }, wallHeight in world units.
+export function addDrifts(building, footprint, wallHeight, windDeg = 315) {
+  const h = Math.min(DRIFT_MAX_H, wallHeight * 0.28);
+  const depth = 0.9 + h * 0.45;
+  const group = new THREE.Group();
+  group.name = 'drifts';
+
+  // Four walls; the two facing the wind get the full drift, the lee pair get 55%.
+  const sides = [
+    { rot: 0,             len: footprint.w, off: [0, 0, -footprint.d / 2] },
+    { rot: Math.PI,       len: footprint.w, off: [0, 0,  footprint.d / 2] },
+    { rot: -Math.PI / 2,  len: footprint.d, off: [ footprint.w / 2, 0, 0] },
+    { rot:  Math.PI / 2,  len: footprint.d, off: [-footprint.w / 2, 0, 0] },
+  ];
+  const wind = THREE.MathUtils.degToRad(windDeg);
+
+  sides.forEach((s, i) =&gt; {
+    const facing = Math.cos(s.rot - wind);            // 1 = into the wind
+    const scale = facing &gt; 0 ? 1 : 0.55;
+    const m = new THREE.Mesh(
+      driftGeometry(s.len * (0.72 + 0.2 * scale), h * scale, depth * scale, i + 1),
+      facing &gt; 0 ? driftMatLit : driftMat);
+    m.rotation.y = s.rot;
+    m.position.set(s.off[0], 0.04, s.off[2]);
+    m.castShadow = true;
+    m.receiveShadow = true;
+    group.add(m);
+  });
+
+  // Corner wedges: two small drifts rotated 45°, otherwise corners read hollow
+  // from headings between the axes.
+  [[1, 1], [-1, -1]].forEach(([sx, sz], i) =&gt; {
+    const m = new THREE.Mesh(driftGeometry(1.3, h * 0.8, depth * 0.8, 9 + i), driftMat);
+    m.rotation.y = Math.atan2(sx, sz) + Math.PI;
+    m.position.set(sx * footprint.w / 2 * 0.9, 0.04, sz * footprint.d / 2 * 0.9);
+    m.castShadow = true; m.receiveShadow = true;
+    group.add(m);
+  });
+
+  building.add(group);
+  return group;
+}
+
+// Same function serves walls, palisades and the hearth: pass the footprint you have.</pre>
+      <div style="background:#E7ECEB;border-left:3px solid #2F5A63;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font:800 12px/1 'Nunito',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#2F5A63;">Traded away</span>
+        <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#3E4A4C;margin:0;">The plates paint a soft occlusion smudge where drift meets wall — contact shadow, which needs AO or a blurred blob. Substituted a 0.04-unit bite into the wall plus the crest notch, so the seam is described by geometry instead of by a dark gradient. The plates also show drifts reaching halfway up the walls; at that size the building silhouette dies, so the measured 0.9 cap wins over the reference.</p>
+      </div>
+    </div>
+
+    <div style="background:#F2F5F4;border:1px solid #C9D2D2;padding:30px 30px 32px;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font:800 16px/1 'Nunito',sans-serif;background:#20282A;color:#EEF5F4;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;">4</span>
+        <h2 style="font:800 26px/1.15 'Nunito',sans-serif;margin:0;flex:1 1 260px;">Trodden paths</h2>
+        <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.08em;text-transform:uppercase;background:#2F5A63;color:#EAF1F1;padding:9px 12px;">Output: three.js code</span>
+      </div>
+      <p style="font:600 16px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:760px;text-wrap:pretty;">The paths are what keeps the settlement inhabited rather than abandoned, so they must survive the course on top of them. Since the snow layer sits above the terrain and cannot be booleaned out of, the slush ribbon is drawn just above the snow and flanked by two raised snow shoulders — the path reads as worn down between banks, which is what a trodden path actually is. Slush keeps the file's own warm brown, cooled about 15% toward the ice tone; it is the only warm value left in the scene, which is exactly why it reads.</p>
+      <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">import * as THREE from 'three';
+import { W, flat } from './winter-palette.js';
+
+const SNOW_TOP = 0.16;      // mean top of the snow course
+const PATH_Y   = SNOW_TOP + 0.015;
+const SHOULDER = 0.30;      // how far the banks rise above the snow top
+
+// pts: array of THREE.Vector2 in world XZ, the existing footpath spline sampled
+// every ~1.5 units. width: 1.4 for a lane, 2.2 for the market approach.
+export function buildTroddenPath(pts, width = 1.4) {
+  const half = width / 2;
+  const pos = [], col = [], colTmp = new THREE.Color();
+  const push = (x, y, z, hex) =&gt; {
+    pos.push(x, y, z);
+    colTmp.set(hex).convertSRGBToLinear();
+    col.push(colTmp.r, colTmp.g, colTmp.b);
+  };
+
+  const normals = pts.map((p, i) =&gt; {
+    const a = pts[Math.max(0, i - 1)], b = pts[Math.min(pts.length - 1, i + 1)];
+    return new THREE.Vector2(-(b.y - a.y), b.x - a.x).normalize();
+  });
+
+  for (let i = 0; i &lt; pts.length - 1; i++) {
+    const p0 = pts[i], p1 = pts[i + 1], n0 = normals[i], n1 = normals[i + 1];
+    // slight per-segment wander so the ribbon is not a ruled band
+    const w0 = half * (0.86 + 0.28 * Math.abs(Math.sin(i * 2.3)));
+    const w1 = half * (0.86 + 0.28 * Math.abs(Math.sin((i + 1) * 2.3)));
+    const tone = i % 3 === 0 ? W.SLUSH_DARK : W.SLUSH_MID;   // puddled, not uniform
+
+    const a = [p0.x + n0.x * w0, PATH_Y, p0.y + n0.y * w0];
+    const b = [p0.x - n0.x * w0, PATH_Y, p0.y - n0.y * w0];
+    const c = [p1.x + n1.x * w1, PATH_Y, p1.y + n1.y * w1];
+    const d = [p1.x - n1.x * w1, PATH_Y, p1.y - n1.y * w1];
+    push(...a, tone); push(...b, tone); push(...c, tone);
+    push(...b, tone); push(...d, tone); push(...c, tone);
+
+    // Shoulders: a thin snow bank on each side, raised above the course.
+    [[n0, n1, 1], [n0, n1, -1]].forEach(([m0, m1, s]) =&gt; {
+      const inner0 = [p0.x + m0.x * w0 * s, PATH_Y, p0.y + m0.y * w0 * s];
+      const inner1 = [p1.x + m1.x * w1 * s, PATH_Y, p1.y + m1.y * w1 * s];
+      const outer0 = [p0.x + m0.x * (w0 + 0.5) * s, SNOW_TOP + SHOULDER, p0.y + m0.y * (w0 + 0.5) * s];
+      const outer1 = [p1.x + m1.x * (w1 + 0.5) * s, SNOW_TOP + SHOULDER, p1.y + m1.y * (w1 + 0.5) * s];
+      push(...inner0, W.SNOW_SHADE); push(...outer0, W.SNOW_LIT); push(...inner1, W.SNOW_SHADE);
+      push(...outer0, W.SNOW_LIT);   push(...outer1, W.SNOW_LIT); push(...inner1, W.SNOW_SHADE);
+    });
+  }
+
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+  g.computeVertexNormals();
+
+  const mesh = new THREE.Mesh(g, new THREE.MeshStandardMaterial(flat({
+    vertexColors: true, side: THREE.DoubleSide, roughness: 0.9,
+    polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4,
+  })));
+  mesh.receiveShadow = true;
+  mesh.name = 'trodden-path';
+  return mesh;
+}
+
+// Wear model: paths only appear on links the sim actually used this era. Rebuild
+// the mesh when traffic changes; one buffer for all paths keeps it a single draw.</pre>
+      <div style="background:#E7ECEB;border-left:3px solid #2F5A63;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font:800 12px/1 'Nunito',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#2F5A63;">Traded away</span>
+        <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#3E4A4C;margin:0;">Plate 02 draws the paths as a 50%-opacity brown wash over the snow, which is a blend mode. Substituted opaque slush plus raised snow shoulders — the wash was standing in for "the snow is thinner here", and geometry says that more honestly. The plate's dark wet sheen on the slush is a specular highlight and is gone; roughness stays at 0.9 and the value difference carries it instead.</p>
+      </div>
+    </div>
+
+    <div style="background:#F2F5F4;border:1px solid #C9D2D2;padding:30px 30px 32px;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font:800 16px/1 'Nunito',sans-serif;background:#20282A;color:#EEF5F4;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;">5</span>
+        <h2 style="font:800 26px/1.15 'Nunito',sans-serif;margin:0;flex:1 1 260px;">The frozen lagoon</h2>
+        <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.08em;text-transform:uppercase;background:#2F5A63;color:#EAF1F1;padding:9px 12px;">Output: three.js code</span>
+      </div>
+      <p style="font:600 16px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:760px;text-wrap:pretty;">Three parts: a pale faceted sheet, dark cold open water beyond it, and a broken lip where they meet. The lip carries the read — without it, ice and water are two flat colours meeting along a line, which looks like a selection error rather than a freeze. Shove ice is a run of small tilted quads along the boundary, pale on the up-face, and it is the one place in the scene with a genuinely jagged edge.</p>
+      <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">import * as THREE from 'three';
+import { W, flat } from './winter-palette.js';
+
+// boundary: closed loop of THREE.Vector2 in world XZ, ~1.8 units apart, jittered.
+// Generate it from the lagoon outline pushed outward 3–6 units, then noise it:
+export function freezeBoundary(lagoonOutline, reach = 4.5) {
+  return lagoonOutline.map((p, i) =&gt; {
+    const n = p.clone().normalize();
+    const j = 0.6 * Math.sin(i * 1.7) + 0.35 * Math.cos(i * 3.9);
+    return p.clone().addScaledVector(n, reach + j);
+  });
+}
+
+export function buildFrozenLagoon(boundary) {
+  const group = new THREE.Group();
+  group.name = 'frozen-lagoon';
+
+  // ── 1. sheet ice: flat triangulated shape, per-face tones, tiny y jitter ──
+  const shape = new THREE.Shape(boundary);
+  const g = new THREE.ShapeGeometry(shape, 1).rotateX(Math.PI / 2).toNonIndexed();
+  const p = g.attributes.position;
+  const tones = [W.ICE_PALE, W.ICE_FACET, W.ICE_SHADE, W.ICE_PALE];
+  const col = new Float32Array(p.count * 3), c = new THREE.Color();
+  for (let f = 0; f &lt; p.count; f += 3) {
+    // Plates are near-flat: 0.05 max, or the ice looks like crumpled paper.
+    const lift = 0.06 + 0.05 * Math.abs(Math.sin(f * 0.37));
+    for (let k = 0; k &lt; 3; k++) p.setY(f + k, lift);
+    c.set(tones[(f / 3) % tones.length]).convertSRGBToLinear();
+    for (let k = 0; k &lt; 3; k++) col.set([c.r, c.g, c.b], (f + k) * 3);
+  }
+  g.computeVertexNormals();
+  g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  const sheet = new THREE.Mesh(g, new THREE.MeshStandardMaterial(flat({
+    vertexColors: true, roughness: 1.0,          // matte. ice here is pale, not glassy
+  })));
+  sheet.receiveShadow = true;
+  group.add(sheet);
+
+  // ── 2. open water beyond: flat, dark, cold, unlit-looking but still lit ──
+  const water = new THREE.Mesh(
+    new THREE.CircleGeometry(300, 6).rotateX(-Math.PI / 2),
+    new THREE.MeshStandardMaterial(flat({ color: W.WATER_COLD, roughness: 1.0 })));
+  water.position.y = -0.02;
+  water.name = 'open-water';
+  group.add(water);                              // replaces the fair-weather sea mat
+
+  // ── 3. shove ice: the boundary itself, as tilted plates ──
+  const plate = new THREE.BoxGeometry(1, 0.16, 0.9);
+  const matA = new THREE.MeshStandardMaterial(flat({ color: W.ICE_PALE, roughness: 1 }));
+  const matB = new THREE.MeshStandardMaterial(flat({ color: W.ICE_FACET, roughness: 1 }));
+  const lip = new THREE.Group();
+  boundary.forEach((pt, i) =&gt; {
+    const nxt = boundary[(i + 1) % boundary.length];
+    const dir = new THREE.Vector2().subVectors(nxt, pt);
+    const len = dir.length();
+    const m = new THREE.Mesh(plate, i % 2 ? matA : matB);
+    m.scale.set(len * 1.15, 1 + (i % 3) * 0.4, 0.8 + (i % 2) * 0.5);
+    m.position.set((pt.x + nxt.x) / 2, 0.05, (pt.y + nxt.y) / 2);
+    m.rotation.y = -Math.atan2(dir.y, dir.x);
+    m.rotation.z = THREE.MathUtils.degToRad(9 + (i % 4) * 5);   // tipped, jammed up
+    m.castShadow = true; m.receiveShadow = true;
+    lip.add(m);
+  });
+  group.add(lip);
+
+  return group;
+}
+
+// Thaw: drop `sheet` and `lip` in y over 3 s while lerping their vertex colours
+// toward WATER_COLD, then remove. Do not scale the sheet down — shrinking ice
+// reads as a shader wipe; sinking reads as melting.</pre>
+      <div style="background:#E7ECEB;border-left:3px solid #2F5A63;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font:800 12px/1 'Nunito',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#2F5A63;">Traded away</span>
+        <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#3E4A4C;margin:0;">Plate 03 gives the water a smooth teal-to-dark gradient and the ice a bright sheen band — a gradient mesh and a specular highlight, neither available. Substituted flat WATER_COLD (the plate's teal pushed cold and dark, since a warm teal sea under a grey sky is the single biggest tell that the winter was faked) plus four discrete ice tones. The plate's translucent ice showing water beneath is gone: transparency here would need refraction to read as anything but a dirty decal.</p>
+      </div>
+    </div>
+
+    <div style="background:#F2F5F4;border:1px solid #C9D2D2;padding:30px 30px 32px;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font:800 16px/1 'Nunito',sans-serif;background:#20282A;color:#EEF5F4;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;">6</span>
+        <h2 style="font:800 26px/1.15 'Nunito',sans-serif;margin:0;flex:1 1 260px;">Falling snow</h2>
+        <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.08em;text-transform:uppercase;background:#2F5A63;color:#EAF1F1;padding:9px 12px;">Output: three.js code</span>
+      </div>
+      <p style="font:600 16px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:760px;text-wrap:pretty;">Two layers, because the flake has two different jobs. Against the dark wood of a building, a pale flake reads on value. Against a grey-white sky it has almost no value to spend, so the sky layer uses a flake slightly darker than the sky and depends on motion and size instead. Flakes are square unlit points — the default point primitive, no sprite texture anywhere — and the volume is a cylinder that follows the camera target so density stays constant as the heading orbits.</p>
+      <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">import * as THREE from 'three';
+
+const R = 34, H = 26;      // volume: covers the r=30 disc plus overhang
+
+function layer({ count, size, color, opacity, fall, drift }) {
+  const pos = new Float32Array(count * 3);
+  const phase = new Float32Array(count);
+  for (let i = 0; i &lt; count; i++) {
+    const a = Math.random() * Math.PI * 2, r = Math.sqrt(Math.random()) * R;
+    pos.set([Math.cos(a) * r, Math.random() * H, Math.sin(a) * r], i * 3);
+    phase[i] = Math.random() * Math.PI * 2;
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+
+  const pts = new THREE.Points(g, new THREE.PointsMaterial({
+    size, color, opacity, transparent: true,
+    sizeAttenuation: true,        // near flakes big, far flakes small — the only depth cue
+    depthWrite: false,            // flakes must not occlude each other into grey blocks
+    fog: true,                    // far flakes die with the sea. keeps the frame from fizzing
+  }));
+  pts.userData = { phase, fall, drift, count };
+  pts.frustumCulled = false;
+  return pts;
+}
+
+export function buildFallingSnow() {
+  const g = new THREE.Group();
+  g.name = 'falling-snow';
+  // NEAR: reads against buildings. Bright, big, fast.
+  g.add(layer({ count: 900,  size: 0.20, color: 0xf4f9f8, opacity: 0.95, fall: 3.1, drift: 1.5 }));
+  // SKY: reads against the grey-white sky. Slightly DARKER than SKY_OVERCAST
+  // (0xdce0de) or it disappears; small and slow so it does not read as ash.
+  g.add(layer({ count: 1400, size: 0.11, color: 0xc3ced1, opacity: 0.85, fall: 1.9, drift: 0.9 }));
+  return g;
+}
+
+// Call each frame. target = the camera's orbit target (the volume rides with it).
+export function updateFallingSnow(group, dt, t, target) {
+  group.position.set(target.x, 0, target.z);
+  for (const pts of group.children) {
+    const { phase, fall, drift, count } = pts.userData;
+    const p = pts.geometry.attributes.position;
+    for (let i = 0; i &lt; count; i++) {
+      let y = p.getY(i) - fall * dt;
+      let x = p.getX(i) + (drift * 0.55 + Math.sin(t * 0.9 + phase[i]) * drift * 0.45) * dt;
+      let z = p.getZ(i) + Math.cos(t * 0.7 + phase[i]) * drift * 0.3 * dt;
+      if (y &lt; 0) { y += H; x -= drift * 6; }                  // recycle up, undo the lean
+      if (x * x + z * z &gt; R * R) { x = -x * 0.96; z = -z * 0.96; }
+      p.setXYZ(i, x, y, z);
+    }
+    p.needsUpdate = true;
+  }
+}
+
+// Onset/thaw: lerp material.opacity and material.size from 0. Do not lerp count —
+// spawning points mid-crisis pops visibly at this camera distance.
+// Budget: 2300 points, one draw call per layer, no texture, no shader.</pre>
+      <div style="background:#E7ECEB;border-left:3px solid #2F5A63;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font:800 12px/1 'Nunito',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#2F5A63;">Traded away</span>
+        <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#3E4A4C;margin:0;">Plate 06 draws flakes as soft round discs at varying opacity. Round needs an alpha sprite, i.e. a texture, so flakes are squares. At 0.11–0.20 world units they are 2–4 px on screen and the shape is not legible anyway — the trade costs nothing. The plate's brightest flakes also faintly light the snow beneath them; that is a light pool, forbidden, and dropped outright.</p>
+      </div>
+    </div>
+
+    <div style="background:#F2F5F4;border:1px solid #C9D2D2;padding:30px 30px 32px;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font:800 16px/1 'Nunito',sans-serif;background:#20282A;color:#EEF5F4;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;">7</span>
+        <h2 style="font:800 26px/1.15 'Nunito',sans-serif;margin:0;flex:1 1 260px;">Frost on a building</h2>
+        <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.08em;text-transform:uppercase;background:#2F5A63;color:#EAF1F1;padding:9px 12px;">Output: MeshStandardMaterial config</span>
+      </div>
+      <p style="font:600 16px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:760px;text-wrap:pretty;">No geometry changes, no mesh swap. Two moves: every material's colour lerps 45% toward the ice tone with saturation pulled down, and up-facing faces get rime through vertex colours only. Rime on up-faces is what makes frost read at 49° — you are looking mostly at roofs and tops of walls from this camera, so the up-face is where the treatment lands. The silhouette is byte-identical to the standing building, which is the requirement.</p>
+      <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">import * as THREE from 'three';
+import { W } from './winter-palette.js';
+
+const FROST_TINT = new THREE.Color(0xdce6e6);
+
+// ── The material config ──────────────────────────────────────────────
+// Clone, do not mutate: the same materials are shared with fair-weather instances.
+export function frostMaterial(base, amount = 1) {
+  const m = base.clone();
+  m.color = base.color.clone().lerp(FROST_TINT, 0.45 * amount);
+  const hsl = { h: 0, s: 0, l: 0 };
+  m.color.getHSL(hsl);
+  m.color.setHSL(hsl.h, hsl.s * (1 - 0.42 * amount), hsl.l);  // cold = desaturated
+  m.roughness = 1.0;          // frost is matte. gloss would be a lie here
+  m.metalness = 0;
+  m.emissive = new THREE.Color(0x000000);   // explicitly: frost does not glow
+  m.flatShading = true;                     // force-applied anyway; stated for the record
+  m.vertexColors = true;                    // rime rides in on the colour attribute
+  m.needsUpdate = true;
+  return m;
+}
+
+// ── Rime, as vertex colours. No new triangles, no texture. ───────────
+export function applyRime(root, amount = 1) {
+  const up = new THREE.Vector3(0, 1, 0);
+  const rimeC = new THREE.Color(W.SNOW_LIT), n = new THREE.Vector3(), c = new THREE.Color();
+
+  root.traverse((o) =&gt; {
+    if (!o.isMesh) return;
+    let g = o.geometry;
+    if (g.index) { g = g.toNonIndexed(); o.geometry = g; }     // per-face colour
+    const norm = g.attributes.normal, count = norm.count;
+    const col = new Float32Array(count * 3);
+
+    for (let f = 0; f &lt; count; f += 3) {
+      n.fromBufferAttribute(norm, f);
+      const facing = n.dot(up);                    // 1 = roof, 0 = wall, -1 = soffit
+      // Roofs and sills take rime; walls take a whisper; undersides take none.
+      const k = facing &gt; 0.35 ? 0.80 * amount
+        : facing &gt; -0.1 ? 0.18 * amount
+        : 0.0;
+      c.set(0xffffff).lerp(rimeC, k).convertSRGBToLinear();
+      // Multiplied against material.color, so 0xffffff = untouched.
+      const mix = new THREE.Color(1, 1, 1).lerp(c, k);
+      for (let i = 0; i &lt; 3; i++) col.set([mix.r, mix.g, mix.b], (f + i) * 3);
+    }
+    g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    o.material = frostMaterial(o.material, amount);
+  });
+}
+
+// Onset: call applyRime(building, amount) with amount 0 → 1 over the onset seconds,
+// or precompute at amount = 1 and lerp material.color only — cheaper, same read.
+// Restore: keep a handle on the original materials and re-assign; do not un-lerp.</pre>
+      <div style="background:#E7ECEB;border-left:3px solid #2F5A63;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font:800 12px/1 'Nunito',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#2F5A63;">Traded away</span>
+        <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#3E4A4C;margin:0;">Plate 04's middle state shows a faint sparkle sheen across the frost, which is either a texture or a specular lobe. Substituted matte rime concentrated on up-faces: the plate was using sparkle to say "this surface changed", and a value shift on the faces the camera actually sees says it without either. The plate also thickens the roof edge where frost gathers — that is geometry and belongs to the drift asset, not here, since the requirement is that the frosted building stay the same building.</p>
+      </div>
+    </div>
+
+    <div style="background:#F2F5F4;border:1px solid #C9D2D2;padding:30px 30px 32px;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font:800 16px/1 'Nunito',sans-serif;background:#20282A;color:#EEF5F4;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;">8</span>
+        <h2 style="font:800 26px/1.15 'Nunito',sans-serif;margin:0;flex:1 1 260px;">A ruined building</h2>
+        <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.08em;text-transform:uppercase;background:#2F5A63;color:#EAF1F1;padding:9px 12px;">Output: three.js code</span>
+      </div>
+      <p style="font:600 16px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:760px;text-wrap:pretty;">Same footprint, different silhouette. The rule that makes a ruin read from any heading: no two of the four walls share a height, one wall leans, and the roof is present but on the floor. A ruin whose walls are all half-height reads as a building under construction; a ruin with a stub, a shard and a lean reads as collapse. Snow settles on the rubble and on the fallen roof, which also says the ruin has been there a while.</p>
+      <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">import * as THREE from 'three';
+import { W, flat } from './winter-palette.js';
+
+const M = {
+  wall:  new THREE.MeshStandardMaterial(flat({ color: W.WOOD_MID })),
+  inner: new THREE.MeshStandardMaterial(flat({ color: W.WOOD_DARK })),
+  char:  new THREE.MeshStandardMaterial(flat({ color: W.CHAR })),
+  stone: new THREE.MeshStandardMaterial(flat({ color: W.STONE_DARK })),
+  snow:  new THREE.MeshStandardMaterial(flat({ color: W.SNOW_LIT })),
+};
+
+const box = (w, h, d, mat, x, y, z, ry = 0, rz = 0) =&gt; {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  m.position.set(x, y, z);
+  m.rotation.set(0, ry, rz);
+  m.castShadow = true;
+  m.receiveShadow = true;
+  return m;
+};
+
+// footprint stays identical to the standing building so the grid cell still fits.
+export function buildRuin(w = 3.2, d = 3.0, storey = 3.0) {
+  const g = new THREE.Group();
+  g.name = 'ruin';
+  const t = 0.28;                                   // wall thickness
+
+  // Four walls, four different heights. This is the whole silhouette read.
+  g.add(box(w, storey * 0.74, t, M.wall, 0, storey * 0.37, -d / 2));            // tallest, back
+  g.add(box(t, storey * 0.30, d * 0.62, M.wall, -w / 2, storey * 0.15, d * 0.1)); // low stub
+  g.add(box(t, storey * 0.58, d * 0.40, M.wall,  w / 2, storey * 0.29, -d * 0.2,
+            0, THREE.MathUtils.degToRad(-7)));                                   // leaning
+  g.add(box(w * 0.34, storey * 0.16, t, M.wall, -w * 0.30, storey * 0.08, d / 2)); // front: mostly gone
+
+  // A shard: one corner post still standing above the wall line. Reads at distance.
+  g.add(box(t * 1.2, storey * 0.96, t * 1.2, M.inner, -w / 2 + t, storey * 0.48, -d / 2 + t));
+
+  // Exposed interior floor, darker — stands in for the missing ambient occlusion.
+  const floor = box(w - t * 2, 0.08, d - t * 2, M.inner, 0, 0.06, 0);
+  floor.castShadow = false;
+  g.add(floor);
+
+  // The roof, collapsed inward: one tilted slab resting on the wall and the floor.
+  g.add(box(w * 0.86, 0.20, d * 0.72, M.char, w * 0.04, storey * 0.30, d * 0.02,
+            THREE.MathUtils.degToRad(6), THREE.MathUtils.degToRad(-34)));
+
+  // Charred beams: thin, long, crossing. Three is enough; five reads as debris soup.
+  g.add(box(0.16, 0.16, d * 1.05, M.char, -w * 0.18, 0.36, d * 0.06,
+            THREE.MathUtils.degToRad(22), THREE.MathUtils.degToRad(9)));
+  g.add(box(0.14, 0.14, w * 0.95, M.char,  w * 0.16, 0.22, -d * 0.18,
+            THREE.MathUtils.degToRad(-64), THREE.MathUtils.degToRad(-4)));
+  g.add(box(0.14, storey * 0.42, 0.14, M.char, w * 0.30, storey * 0.20, d * 0.30,
+            0, THREE.MathUtils.degToRad(28)));
+
+  // Rubble + snow caps. Cap is a separate small box, not a texture or a decal.
+  const rubble = [[-0.9, 0.6, 0.42], [0.7, -0.8, 0.52], [1.1, 0.9, 0.34], [-0.3, -1.1, 0.46]];
+  rubble.forEach(([x, z, s], i) =&gt; {
+    g.add(box(s, s * 0.7, s * 0.9, i % 2 ? M.stone : M.inner, x, s * 0.35, z,
+              i * 0.9, THREE.MathUtils.degToRad(i * 6 - 9)));
+    g.add(box(s * 0.92, 0.10, s * 0.82, M.snow, x, s * 0.7 + 0.05, z, i * 0.9));
+  });
+  // Snow on the fallen roof slab: the flattest large up-face in the ruin.
+  g.add(box(w * 0.62, 0.10, d * 0.50, M.snow, w * 0.10, storey * 0.30 + 0.30, d * 0.02,
+            THREE.MathUtils.degToRad(6), THREE.MathUtils.degToRad(-34)));
+
+  return g;   // 21 boxes. Same draw budget class as a standing building.
+}
+
+// Standing → ruined is a swap, not a morph: remove the standing group, add this,
+// spawn no dust (no particles for one-shot events; the smoke column owns that read).</pre>
+      <div style="background:#E7ECEB;border-left:3px solid #2F5A63;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font:800 12px/1 'Nunito',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#2F5A63;">Traded away</span>
+        <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#3E4A4C;margin:0;">Plate 04's ruin has a soft dark pool inside the walls, which is painted occlusion. Substituted the WOOD_DARK exposed floor and CHAR beams: a real value step where the plate had a gradient. The plate's smoke wisp curling out of the ruin is also gone — it needs alpha falloff, and if a ruin needs smoke it should use the fire column below rather than a second, weaker system.</p>
+      </div>
+    </div>
+
+    <div style="background:#F2F5F4;border:1px solid #C9D2D2;padding:30px 30px 32px;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font:800 16px/1 'Nunito',sans-serif;background:#20282A;color:#EEF5F4;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;">9</span>
+        <h2 style="font:800 26px/1.15 'Nunito',sans-serif;margin:0;flex:1 1 260px;">The fire — hearth and smoke column</h2>
+        <span style="font:700 12px/1 'Nunito',sans-serif;letter-spacing:0.08em;text-transform:uppercase;background:#D9622E;color:#FFF4EC;padding:9px 12px;">Output: three.js code</span>
+      </div>
+      <p style="font:600 16px/1.55 'Nunito',sans-serif;color:#48545A;margin:0;max-width:760px;text-wrap:pretty;">The hearth is three world units and disappears behind the first thing between it and the camera, so the column is the asset. It rises to 26 units — nine times the hearth, tall enough to clear every building and be found from the far side of the island — leans downwind, and widens from 0.9 to 3.8 units so it has mass at the top where it is read against the sky. Puffs are single-subdivision icosahedra: faceted from every heading, cheap, and no camera-facing billboard that would swim as the compass orbits. The flame is an unlit face. It lights nothing, and there is no halo on the snow.</p>
+      <pre style="margin:0;background:#20282A;color:#DCE6E5;font:500 13px/1.6 ui-monospace,monospace;padding:20px 22px;overflow-x:auto;white-space:pre;border-radius:2px;">import * as THREE from 'three';
+import { W, flat } from './winter-palette.js';
+
+// ── HEARTH: ~3 world units, one storey. Stone ring, ember bed, flame. ──
+export function buildHearth() {
+  const g = new THREE.Group();
+  g.name = 'hearth';
+  const stone = new THREE.MeshStandardMaterial(flat({ color: W.STONE }));
+  const stoneD = new THREE.MeshStandardMaterial(flat({ color: W.STONE_DARK }));
+
+  for (let i = 0; i &lt; 9; i++) {
+    const a = (i / 9) * Math.PI * 2;
+    const h = 0.85 + (i % 3) * 0.22;
+    const m = new THREE.Mesh(new THREE.BoxGeometry(0.7, h, 0.55), i % 2 ? stone : stoneD);
+    m.position.set(Math.cos(a) * 1.15, h / 2, Math.sin(a) * 1.15);
+    m.rotation.y = -a + (i % 2 ? 0.2 : -0.15);
+    m.castShadow = true; m.receiveShadow = true;
+    g.add(m);
+  }
+
+  // Ember bed: a low disc, EMBER, unlit so it does not pretend to be a light source.
+  const bed = new THREE.Mesh(
+    new THREE.CircleGeometry(1.0, 7).rotateX(-Math.PI / 2),
+    new THREE.MeshBasicMaterial({ color: W.EMBER }));
+  bed.position.y = 0.14;
+  g.add(bed);
+
+  // Flame: two nested 5-sided cones, MeshBasicMaterial = bright FACE, lights nothing.
+  const flame = new THREE.Group();
+  flame.name = 'flame';
+  const outer = new THREE.Mesh(new THREE.ConeGeometry(0.85, 1.9, 5, 1),
+    new THREE.MeshBasicMaterial({ color: W.EMBER }));
+  outer.position.y = 1.05;
+  const inner = new THREE.Mesh(new THREE.ConeGeometry(0.48, 1.35, 5, 1),
+    new THREE.MeshBasicMaterial({ color: W.FLAME }));
+  inner.position.y = 0.95;
+  inner.rotation.y = 0.6;
+  flame.add(outer, inner);
+  // No light of any kind is added here. Four lights, scene-wide, is the budget.
+  g.add(flame);
+
+  g.userData.flame = flame;
+  return g;   // total height 3.0 including flame tip
+}
+
+// ── SMOKE COLUMN: the asset that actually marks the fire's position. ──
+const COL_H = 26, PUFFS = 11, LEAN = 0.17;   // lean per world unit of height, downwind
+
+export function buildSmokeColumn(windDeg = 315) {
+  const g = new THREE.Group();
+  g.name = 'smoke-column';
+  const wind = THREE.MathUtils.degToRad(windDeg);
+  const dirX = Math.cos(wind), dirZ = Math.sin(wind);
+
+  for (let i = 0; i &lt; PUFFS; i++) {
+    const f = i / (PUFFS - 1);                       // 0 at the hearth, 1 at the top
+    const y = 2.6 + f * COL_H;
+    const r = 0.9 + f * 2.9;                         // mass where it is read: the top
+    const tone = i % 3 === 0 ? W.SMOKE_DARK : W.SMOKE_MID;
+    const m = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(r, 0),           // 20 faceted faces, reads from 360°
+      new THREE.MeshStandardMaterial(flat({
+        color: tone,
+        transparent: true,
+        opacity: 0.92 - f * 0.42,                    // thins out, never disappears
+        depthWrite: false,
+        roughness: 1.0,
+      })));
+    m.position.set(dirX * y * LEAN, y, dirZ * y * LEAN);
+    m.scale.set(1, 0.78 + f * 0.3, 1);               // slightly squashed = wind-sheared
+    m.rotation.set(f * 1.3, i * 0.7, f * 0.4);
+    m.castShadow = false;                            // a shadow-casting cloud of
+    m.receiveShadow = false;                         // transparent balls reads as a bug
+    g.add(m);
+  }
+  g.userData = { wind, t0: Math.random() * 10 };
+  return g;
+}
+
+export function updateFire(hearth, column, dt, t) {
+  // Flame: scale jitter only. No colour cycling (ACES makes it read as a hue shift),
+  // no light, no flicker on anything else in the scene.
+  const flame = hearth.userData.flame;
+  flame.scale.set(
+    1 + Math.sin(t * 7.1) * 0.06,
+    1 + Math.sin(t * 9.3) * 0.14,
+    1 + Math.cos(t * 6.4) * 0.06);
+
+  // Column: each puff rises, grows, fades, then recycles to the bottom.
+  const { wind, t0 } = column.userData;
+  const dirX = Math.cos(wind), dirZ = Math.sin(wind);
+  column.children.forEach((m, i) =&gt; {
+    let y = m.position.y + dt * 1.15;
+    if (y &gt; 2.6 + COL_H) y = 2.6;
+    const f = (y - 2.6) / COL_H;
+    m.position.set(dirX * y * LEAN + Math.sin(t * 0.5 + i) * 0.35, y,
+                   dirZ * y * LEAN + Math.cos(t * 0.4 + i + t0) * 0.35);
+    const r = (0.9 + f * 2.9) / (0.9 + 2.9 * (i / (PUFFS - 1)));   // geometry is fixed size
+    m.scale.set(r, r * (0.78 + f * 0.3), r);
+    m.material.opacity = 0.92 - f * 0.42;
+    m.rotation.y += dt * 0.12;                       // slow tumble, no swim
+  });
+}
+
+// Findability check at tilt 49° / fov 32: the column top sits ~26 units up, which is
+// ~5.5× a one-storey roofline on screen. From the opposite rim of the r=30 disc it
+// still clears the horizon line of the island. That is the whole point of the asset.</pre>
+      <div style="background:#E7ECEB;border-left:3px solid #D9622E;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">
+        <span style="font:800 12px/1 'Nunito',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:#D9622E;">Traded away</span>
+        <p style="font:600 15px/1.5 'Nunito',sans-serif;color:#3E4A4C;margin:0;">Plate 05 gives the flame an orange halo and paints warm light on the snow around the hearth. Both are forbidden — no bloom, no local lights — and both are dropped with nothing substituted, because the honest alternative (faking a light pool with a bright disc on the ground) would be the one thing in the batch that looks like a decal. The flame is a bright face and the snow beside it is exactly as cold as the snow anywhere else. The plate's smoke is also a round-capped, blurred, semi-transparent stroke; substituted the faceted puff stack, which is the same silhouette built from faces that can actually exist here. Note the column does use alpha — that is blending, not glow, and nothing about it needs post-processing.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="width:100%;max-width:1080px;background:#20282A;color:#DCE6E5;padding:30px;display:flex;flex-direction:column;gap:14px;">
+    <h2 style="font:800 22px/1.2 'Nunito',sans-serif;margin:0;color:#F2F5F4;">Nothing in this batch is shippable HTML</h2>
+    <p style="font:600 15px/1.55 'Nunito',sans-serif;color:#AFBDBE;margin:0;max-width:780px;text-wrap:pretty;">Assets 2–9 are three.js source. Asset 1 is a table of numbers. This page is the specification that carries them; the page itself is not an asset and must not be embedded anywhere in the game. Every gradient, soft shadow, blur and glow you see on this page is a property of this document and stops at its edge.</p>
+    <p style="font:600 15px/1.55 'Nunito',sans-serif;color:#AFBDBE;margin:0;max-width:780px;text-wrap:pretty;">Two things worth deciding before implementation. First: the snow course covers the full r=30 disc, so a per-cell "is this cell frozen" query is now a gameplay concern only and no longer describes what the player sees — the visual and the sim are deliberately decoupled. Second: the crisis crossfade is asymmetric by design, six seconds in and nine out, so the thaw feels like relief rather than a toggle.</p>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}"></script>
+</body>
+</html>

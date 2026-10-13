@@ -1,0 +1,28 @@
+Measured on the frames at 1024x580, under an emulated
+prefers-reduced-motion: reduce. Written by onboardingAdvisorShots.browser.test.tsx in
+the same run as the frames.
+
+BEFORE, the reel's caption figure: 56x56px, covering 0.5% of the 1024x580 window
+the crisis figure, which is the register asked for: 255x255px, covering 11.0% of the 1024x580 window
+AFTER, the onboarding figure: 255x255px, covering 11.0% of the 1024x580 window
+the onboarding figure is 4.6x the reel caption's width, and figure plus bubble span 91% of the window's width
+the Build pill: 129x57px at x=879, y=507, with the bubble ending at x=916
+the ring round it: 141x69px at x=873, y=501
+painted at the pill's middle: rgb(253, 248, 235) unlit, rgb(242, 195, 83) lit, against rgb(243, 195, 83) at the end of the pill the bubble never reaches
+BEFORE, the "place" coach-mark: 258x88px, covering 3.8% of the 1024x580 window, and all it says is: Drag a building onto an open plot.
+the advisor on the opening frame: 255x255px, 255px of its height inside the 1024x580 window, top at y=307, covering 11.0% of the viewport
+moment 1 (advisor): no control named, so no ring
+moment 2 (buildings): ring on "build", 141x69px at x=873, y=501
+moment 3 (place): ring on "build", 141x69px at x=873, y=501
+moment 4 (lessons): ring on "viewport", 1024x580px at x=0, y=0
+moment 5 (resources): ring on "economy", 92x35px at x=22, y=17
+moment 6 (population): ring on "population", 186x35px at x=21, y=156
+moment 7 (livability): ring on "livability", 186x60px at x=21, y=179
+moment 8 (happiness): ring on "happiness", 186x61px at x=21, y=227
+moment 9 (civic): ring on "cityLife", 208x189px at x=10, y=106
+moment 10 (era): ring on "town", 208x56px at x=10, y=54
+moment 11 (crisis): ring on "viewport", 1024x580px at x=0, y=0
+the stood-down advisor: 410x302px at x=16, y=260, covering 20.9% of the 1024x580 window, with the Build pill it rings at x=879, y=507
+the City life panel above him ends at y=289, and his bubble starts at y=260
+the confirm bar on the island: 550x100px at x=458, y=368, against his bubble at x=98..426, y=274..563
+after the real placement the status line reads: Look at that! Your first building is standing on your island.

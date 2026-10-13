@@ -1,0 +1,100 @@
+{
+  "node_id": "POL.2",
+  "title": "Factor polynomials",
+  "mini_lesson": [
+    "A yard has a heap of cut slab standing against the wall and an order to lay all of it as one rectangular court. Area alone does not say what shape to set out, so the mason works backwards from the total to a pair of side lengths that produce it. To **factor** a polynomial is to write it as a product of simpler polynomials, each of which is a **factor** of it, so expanding and factoring are one relationship read in opposite directions.",
+    "Before hunting for sides, look for the measure every term already shares: the largest such common measure is the **greatest common factor**. A **trinomial** is a polynomial with three terms, and one with a common measure still buried inside it will not split into whole-number sides. So the common measure comes out first every time, and missing it makes the search that follows look impossible when it is only premature.",
+    "With the common measure gone, what is usually left is a trinomial, and multiplying $(x + p)(x + q)$ out gives $x^{2} + (p + q)x + pq$. Reading those two coefficients back says the pair multiplies to the constant and adds to the middle coefficient, and the signs answer to the same two conditions: a negative constant needs one negative in the pair, and a negative middle term with a positive constant needs both of them negative. A leading coefficient other than $1$ changes those conditions rather than merely lengthening the list, because then the pair has to multiply to the constant times the leading coefficient and is used to split the middle term so that the two sides come out by grouping.",
+    "One shape is worth knowing on sight, and a court makes it obvious: cut a square basin out of one corner of a square court, and the paving left over reassembles into a single rectangle. A **difference of two squares** is a subtraction of one square quantity from another, and it always splits as $a^{2} - b^{2} = (a + b)(a - b)$. The same expression with a plus sign in front of the second square does not factor over the whole numbers at all.",
+    "A second shape recurs often enough to earn a name. When a trinomial's outer terms are both squares and its middle term is twice the product of the two quantities being squared, the trinomial is a **perfect square trinomial** and its two sides are identical. That test is worth doing in that order rather than by eye, since two trinomials can share their outer squares while only one of them is a square.",
+    "Four terms with no factor common to all of them still have a route, and it runs through the pairs. Taking a common factor out of the first two and out of the last two can leave the same bracket standing in both halves, and that bracket is then a common factor of the whole amount even though no single number or power was common at the start. This method is called factoring by **grouping**, and it works only when the two brackets come out identical, which is the check on whether the terms were paired the right way round."
+  ],
+  "slide_subtitles": [
+    "Working back to sides",
+    "The common measure",
+    "Finding the pair",
+    "Difference of two squares",
+    "Perfect square trinomials",
+    "Grouping four terms"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The heap comes to $x^{2} + 9x + 20$ square paces. Find a pair of side lengths that lays it as one rectangle.",
+      "steps": [
+        "The sides have the shape $(x + p)(x + q)$, and multiplying that out has to return the area.",
+        "Setting out $(x + 4)$ by $(x + 5)$ gives $x^{2} + 5x + 4x + 20$.",
+        "The two strips collect, so that is $x^{2} + 9x + 20$, which is the heap exactly.",
+        "So $x^{2} + 9x + 20 = (x + 4)(x + 5)$, and multiplying the sides back out is what checked it."
+      ]
+    },
+    {
+      "prompt": "Take the common measure out of $6x^{2} + 15x$.",
+      "steps": [
+        "Both terms are divisible by $3$, and both carry at least one $x$, so $3x$ divides the whole amount.",
+        "Nothing larger divides both, so $3x$ is the greatest common factor.",
+        "Dividing each term by $3x$ leaves $2x$ and $5$.",
+        "So $6x^{2} + 15x = 3x(2x + 5)$, and whatever is left inside the bracket is factored afterwards."
+      ]
+    },
+    {
+      "prompt": "Factor $x^{2} + 11x + 24$.",
+      "steps": [
+        "The pair has to multiply to $24$ and add to $11$.",
+        "The pairs multiplying to $24$ are $1$ and $24$, then $2$ and $12$, then $3$ and $8$, then $4$ and $6$.",
+        "Only $3$ and $8$ add to $11$, and both are positive because the constant and the middle term are.",
+        "So $x^{2} + 11x + 24 = (x + 3)(x + 8)$."
+      ]
+    },
+    {
+      "prompt": "Factor $x^{2} - 64$.",
+      "steps": [
+        "Both parts are squares: $x^{2}$ is $x$ squared and $64$ is $8^{2}$.",
+        "One square is being subtracted from the other, so this is a difference of two squares.",
+        "With $a = x$ and $b = 8$, the rule $a^{2} - b^{2} = (a + b)(a - b)$ gives $(x + 8)(x - 8)$.",
+        "Multiplying back out gives $x^{2} - 8x + 8x - 64$, and the two middle terms cancel, which is why no middle term appears."
+      ]
+    },
+    {
+      "prompt": "Factor $x^{2} + 20x + 100$.",
+      "steps": [
+        "The outer terms are both squares: $x^{2}$ is $x$ squared and $100$ is $10^{2}$.",
+        "Twice the product of $x$ and $10$ is $20x$, which is exactly the middle term.",
+        "All three conditions hold, so the two sides are identical: $x^{2} + 20x + 100 = (x + 10)^{2}$.",
+        "Had the middle term been $21x$, the outer squares would be unchanged and the trinomial would not be a square at all."
+      ]
+    },
+    {
+      "prompt": "Factor $x^{3} + 3x^{2} + 2x + 6$ by grouping.",
+      "steps": [
+        "No factor is common to all four terms, so pair them: the first two, then the last two.",
+        "The first two share $x^{2}$, which comes out as $x^{2}(x + 3)$.",
+        "The last two share $2$, which comes out as $2(x + 3)$.",
+        "Both halves now carry $(x + 3)$, so it comes out of the whole amount, leaving $(x + 3)(x^{2} + 2)$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "factor-pairs-match", "gates": true },
+    { "after": 1, "id": "common-measure-classify", "gates": true },
+    { "after": 2, "id": "factor-pair-stepper", "gates": true },
+    { "after": 3, "id": "difference-squares-drag", "gates": true },
+    { "after": 4, "id": "perfect-square-sorter", "gates": true },
+    { "after": 5, "id": "grouping-order", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Factor $2x^{2} + 2x - 24$ completely.",
+    "accepted": ["2(x + 4)(x - 3)", "2(x - 3)(x + 4)", "2*(x + 4)*(x - 3)", "2(x+4)(x-3)"],
+    "hint": "Check every term for a measure they all share before any pair is hunted for, because a common measure comes out first. Whatever is left is an ordinary trinomial whose two numbers multiply to its constant and add to its middle coefficient.",
+    "worked_solution": [
+      "Every coefficient is divisible by $2$, so that comes out in front: $2x^{2} + 2x - 24 = 2(x^{2} + x - 12)$.",
+      "Inside the bracket the two numbers multiply to $-12$ and add to $1$. A negative product means they have opposite signs.",
+      "The pair is $4$ and $-3$, so the trinomial factors as $(x + 4)(x - 3)$.",
+      "Completely factored, that is $2(x + 4)(x - 3)$."
+    ],
+    "worked_solution_params": { "k": 2, "plus": 4, "minus": 3 },
+    "variants": {
+      "template_id": "cfu.pol2.measure-then-factor",
+      "count": 2
+    }
+  }
+}

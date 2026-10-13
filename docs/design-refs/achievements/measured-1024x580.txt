@@ -1,0 +1,10 @@
+moment-earned: the moment 348x55 at (338,70), 3% of the window, line "Your first age is behind you."
+moment-earned: clear of the ☰ Menu and the era chips, the Town capsule, the Build dock, the camera controls
+moment-over-a-damaged-city: the moment 348x75 at (338,70), 4% of the window, line "A crisis came, and your city is still standing."
+moment-over-a-damaged-city: the repair panel 320x179 at (688,200), 10% of the window
+list-mixed: the card 430x319 at (297,130), 23% of the window
+list-mixed: well 209px tall, all 4 rows fully inside it
+list-mixed: first-age EARNED "Your first age is behind you."
+list-mixed: first-mastery EARNED "You took a skill all the way to mastery."
+list-mixed: crisis-behind-you NOT YET "See a crisis through, and bring what it did home."
+list-mixed: learning-through-ruin NOT YET "Finish a skill while a ruin is still standing."

@@ -1,0 +1,13 @@
+The advisor at crisis size, measured on the frame at 1024x580.
+Written by advisorWardrobeShots.browser.test.tsx, in the same run as the frames.
+
+prehistoric: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563
+neolithic: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563
+bronze_age: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563
+classical: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563
+medieval: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563
+renaissance: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563
+industrial: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563
+atomic_age: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563
+information_age: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563
+cyberpunk: figure 255px tall, 255px of it inside the 1024x580 window (100%), top at y=307, bottom at y=563

@@ -1,0 +1,26 @@
+digraph domains {
+  rankdir=LR;
+  fontname="Helvetica"; labelloc=t; fontsize=16;
+  label="Domain-tier dependency view (D6 Functions is the pivotal hub)";
+  node [shape=box style="rounded,filled" fontname="Helvetica" fontsize=11 fillcolor="#eef2ff" color="#334155"];
+  edge [color="#475569"];
+
+  D1 [label="D1 Real Numbers\n& Arithmetic" fillcolor="#dbeafe"];
+  D2 [label="D2 Exponents\n& Radicals"];
+  D3 [label="D3 Linear\nEquations"];
+  D4 [label="D4 Polynomials\n& Quadratics"];
+  D5 [label="D5 Rational\nExpressions"];
+  D6 [label="D6 Functions\n& Graphs" fillcolor="#fde68a"];
+  D7 [label="D7 Linear\nFunctions"];
+  D8 [label="D8 Exp\n& Log"];
+  D9 [label="D9 Trigonometry"];
+
+  D1 -> D2; D1 -> D3; D1 -> D4; D1 -> D6;
+  D4 -> D5;
+  D3 -> D5;
+  D4 -> D6;
+  D2 -> D8;
+  D6 -> D7; D6 -> D8; D6 -> D9;
+  D7 -> D6 [style=dashed label="slope feeds\navg-rate" fontsize=9 constraint=false];
+  D2 -> D9;
+}

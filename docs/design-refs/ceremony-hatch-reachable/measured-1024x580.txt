@@ -1,0 +1,44 @@
+# the ceremony's dev hatch at 1024x580
+
+diagnostic summary, before the city:
+  "Back to city" {"button":[855,58,103,40],"onTop":"ob-replay__eyebrow","reachable":false}
+
+every fixed overlay on the ceremony, x y w h:
+  z=    5  16, 16, 300, 283        hud
+  z=    5  688, 16, 320, 34        hud
+  z=    5  944, 154, 64, 272       hud
+  z=   13  769, 412, 245, 86       coach-mark-place
+  z= auto  82, 527, 125, 20        oru-advisor__part
+  z= auto  16, 307, 255, 255       oru-advisor__part
+  z= auto  96, 425, 94, 92         oru-advisor__part
+  z= auto  91, 420, 105, 43        oru-advisor__part
+  z= auto  121, 417, 46, 19        oru-advisor__part
+  z= auto  103, 346, 82, 79        oru-advisor__part
+  z= auto  101, 339, 85, 24        oru-advisor__part
+  z= auto  16, 307, 255, 255       oru-advisor__part
+  z= auto  52, 309, 41, 23         oru-advisor__part
+  z=   65  10, 10, 268, 243        catchup-dev-skip
+  z=    6  463, 16, 99, 33         economy-hud
+  z=   40  16, 520, 96, 44         audio-settings
+  z=   66  10, 10, 252, 162        era-dev-skip
+
+the ceremony's and the city's own furniture, x y w h:
+  16, 307, 255, 255       the advisor
+  241, 380, 675, 183      his bubble
+  267, 438, 623, 6        the beat rail
+  0, 494, 1024, 86        the HUD dock
+
+hit test at each control's own centre:
+  reachable  era-dev-skip
+  reachable  era-dev-skip-fold
+  reachable  era-dev-skip-next
+  reachable  era-dev-skip-step
+  reachable  era-dev-skip-top
+  reachable  era-dev-skip-gathering
+  reachable  era-dev-skip-expansion
+  reachable  era-dev-skip-rebuild
+  reachable  era-dev-skip-retheme
+  reachable  era-ceremony-check
+  COVERED    catchup-dev-skip  <- era-dev-skip-expansion
+
+1 of 11 covered

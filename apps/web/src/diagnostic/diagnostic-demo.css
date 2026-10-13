@@ -1,0 +1,1658 @@
+/* ==========================================================================
+   Diagnostic UI — themed to match the live city (gabe/diagnostic-theme-align)
+
+   ALL diagnostic styling lives here, scoped under `.diagnostic-demo`, so it never
+   touches the shared `styles.css` or a teammate's lane. The diagnostic overlay
+   mounts INSIDE `.city-shell` (see App.tsx SurfaceOverlay), so the game's custom
+   properties — `--game-*`, `--glass-*`, `--panel-*` (defined on `.city-shell` in
+   Evan's styles.css) — ALREADY INHERIT here. We reference them DIRECTLY, with
+   literal fallbacks so the `?graph` dev route (GraphProbe renders `.diagnostic-demo`
+   OUTSIDE `.city-shell`) still resolves. Nothing in a city file is imported or
+   changed.
+
+   The look mirrors the built city: warm frosted "glass" panels (`--glass-fill` +
+   blur + `--glass-line`), an 18px `--panel-radius`, soft `--panel-shadow`, a
+   build-blue primary (`--game-blue`), gold reserved for reward, and the
+   Fredoka/Nunito pairing. The old neo-brutalist ink borders + offset shadows are
+   gone. D1 seeding plots keep a terracotta identity via diagnostic-LOCAL
+   `--dgx-d1*` values (not exposed as shared CSS vars).
+
+   The `.surface-overlay*--diagnostic` rules at the bottom are the only selectors
+   not under `.diagnostic-demo`; they make the diagnostic take over the full
+   viewport and apply solely to the diagnostic overlay.
+   ========================================================================== */
+
+.diagnostic-demo {
+  /* Mirror the game's panel language. */
+  --dgx-radius: var(--panel-radius, 18px);
+  --dgx-radius-sm: 12px;
+  --dgx-radius-pill: 999px;
+  --dgx-border: 1px solid var(--game-panel-line, #e2d8c6);
+  --dgx-line: 1px solid var(--glass-line, #e2d8c6);
+  --dgx-shadow: var(--panel-shadow, 0 14px 30px rgba(31, 51, 71, 0.16));
+  /* Elastic settle, matching `.city-action`/`.build-card` juice. */
+  --dgx-transition: 150ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Diagnostic-LOCAL D1 terracotta for seeding plots — deliberately NOT a shared
+     `--game-*` var; it only lives in the diagnostic. */
+  --dgx-d1: #c98a5e;
+  --dgx-d1-deep: #a86f45;
+
+  display: grid;
+  gap: var(--space-2xl);
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  color: var(--game-slate, #2b3642);
+}
+
+/* --- Identity chip -------------------------------------------------------- */
+
+.diagnostic-demo .diagnostic-identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+}
+
+/* Frosted pill, mirroring `.city-chip` / `.unlock-celebration-chip`. */
+.diagnostic-demo .diagnostic-identity__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px 14px;
+  border: 1px solid var(--glass-line, #e2d8c6);
+  border-radius: var(--dgx-radius-pill);
+  background: var(--glass-fill, rgba(251, 247, 240, 0.94));
+  box-shadow: 0 4px 12px rgba(31, 51, 71, 0.1);
+  color: var(--glass-text, #2b3642);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* Keep the green "online" dot. */
+.diagnostic-demo .diagnostic-identity__badge::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--game-valid, #6fbf73);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--game-valid, #6fbf73) 28%, transparent);
+  content: "";
+}
+
+.diagnostic-demo .diagnostic-identity__mode {
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.diagnostic-demo .diagnostic-identity__signout {
+  border: 1px solid var(--glass-line, #e2d8c6);
+  border-radius: var(--dgx-radius-pill);
+  padding: 6px 14px;
+  background: var(--glass-fill, rgba(251, 247, 240, 0.94));
+  color: var(--game-blue-deep, #2f6091);
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 550;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition:
+    background var(--dgx-transition),
+    border-color var(--dgx-transition),
+    transform var(--dgx-transition);
+}
+
+.diagnostic-demo .diagnostic-identity__signout:hover {
+  border-color: var(--game-blue, #3e7cb1);
+  background: #fff;
+}
+
+.diagnostic-demo .diagnostic-identity__signout:active {
+  transform: scale(0.95);
+}
+
+/*
+ * WHO YOU ARE SIGNED IN AS IS NOT SOMETHING TO READ WHILE ANSWERING A QUESTION.
+ *
+ * The chip is worth its space on the overview (am I about to write this to my account?) and
+ * on the results (whose placement is this?), and on the question screen it is a pill saying
+ * an email address above the one thing the learner is there to do. It cost 31px plus the
+ * grid's 24px gap on a 580px-tall laptop, which is 9% of the viewport, and that was the
+ * single largest piece of chrome the question screen was carrying.
+ *
+ * `display: none` rather than an unrendered branch, deliberately: it keeps ONE identity bar
+ * in the runner rather than a second copy of the decision about where it belongs, and the
+ * grid drops a `display: none` child's gap with it, so the space really is returned.
+ *
+ * Last in this block so its (0, 3, 0) does not sit above the (0, 2, 0) rules it overrides.
+ */
+.diagnostic-runner[data-phase="running"] .diagnostic-identity {
+  display: none;
+}
+
+/* --- Shared primitives ---------------------------------------------------- */
+
+/* Eyebrows / kickers → the game's `.micro-label` / `.hud-kicker` look. */
+.diagnostic-demo .dgx-eyebrow {
+  display: inline-block;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.62rem;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Frosted "glass" panel — the shared card look across the game. */
+.diagnostic-demo .dgx-card {
+  border: 1px solid var(--glass-line, #e2d8c6);
+  border-radius: var(--panel-radius, 18px);
+  background: var(--glass-fill, rgba(251, 247, 240, 0.94));
+  box-shadow: var(--panel-shadow, 0 14px 30px rgba(31, 51, 71, 0.16));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* Buttons → `.city-action` (default), `.city-action-primary`, `.city-action-ghost`. */
+.diagnostic-demo .dgx-btn {
+  display: inline-flex;
+  gap: var(--space-sm);
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 18px;
+  border: 1px solid var(--game-panel-line, #e2d8c6);
+  border-radius: var(--dgx-radius-sm);
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(31, 51, 71, 0.08);
+  color: var(--game-slate, #2b3642);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    transform var(--dgx-transition),
+    background 120ms ease,
+    box-shadow 120ms ease,
+    border-color 120ms ease,
+    filter 120ms ease;
+}
+
+.diagnostic-demo .dgx-btn:hover:not(:disabled) {
+  border-color: var(--game-blue, #3e7cb1);
+  background: #f4f9fd;
+}
+
+.diagnostic-demo .dgx-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.diagnostic-demo .dgx-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.diagnostic-demo .dgx-btn--primary {
+  border-color: var(--game-blue-deep, #2f6091);
+  background: linear-gradient(
+    180deg,
+    #5093c6 0%,
+    var(--game-blue, #3e7cb1) 65%,
+    #356ea1 100%
+  );
+  box-shadow:
+    0 8px 18px rgba(46, 96, 145, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.diagnostic-demo .dgx-btn--primary:hover:not(:disabled) {
+  border-color: var(--game-blue-deep, #2f6091);
+  background: linear-gradient(
+    180deg,
+    #5093c6 0%,
+    var(--game-blue, #3e7cb1) 65%,
+    #356ea1 100%
+  );
+  filter: brightness(1.05);
+}
+
+.diagnostic-demo .dgx-btn--ghost {
+  background: transparent;
+  box-shadow: none;
+  color: var(--game-slate-2, #5b6b7a);
+}
+
+.diagnostic-demo .dgx-btn--ghost:hover:not(:disabled) {
+  border-color: var(--game-slate-2, #5b6b7a);
+  background: var(--game-panel-2, #f0e9db);
+}
+
+.diagnostic-demo .dgx-btn--wide {
+  padding-inline: 30px;
+  font-size: 0.98rem;
+}
+
+.diagnostic-demo .dgx-glyph {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.diagnostic-demo .dgx-btn__arrow {
+  width: 17px;
+  height: 17px;
+  transition: transform var(--dgx-transition);
+}
+
+.diagnostic-demo .dgx-btn:hover:not(:disabled) .dgx-btn__arrow {
+  transform: translateX(3px);
+}
+
+.diagnostic-demo .dgx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.diagnostic-demo .dgx-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid color-mix(in oklab, currentColor 35%, transparent);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: dgx-spin 0.7s linear infinite;
+}
+
+@keyframes dgx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Intro: overview + how-it-works + blueprint --------------------------- */
+
+.diagnostic-demo .dgx-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(var(--space-2xl), 4vw, 56px);
+  align-items: start;
+}
+
+.diagnostic-demo .dgx-brief {
+  align-self: start;
+}
+
+.diagnostic-demo .dgx-brief__title {
+  margin: var(--space-md) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+  font-weight: 640;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.diagnostic-demo .dgx-lede {
+  max-width: 46ch;
+  margin: var(--space-lg) 0 0;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.diagnostic-demo .dgx-brief__duration {
+  display: none;
+}
+
+/* How-it-works: numbered, plain-language steps. */
+.diagnostic-demo .dgx-how {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: var(--dgx-line);
+}
+
+.diagnostic-demo .dgx-how__steps {
+  display: grid;
+  gap: var(--space-lg);
+  margin: var(--space-lg) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: dgx-step;
+}
+
+.diagnostic-demo .dgx-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.diagnostic-demo .dgx-step__num {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    #5093c6 0%,
+    var(--game-blue, #3e7cb1) 65%,
+    #356ea1 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.diagnostic-demo .dgx-step__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.diagnostic-demo .dgx-step__text {
+  max-width: 52ch;
+  margin: 5px 0 0;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/*
+ * Blueprint panel: what the diagnostic is, in the shape a learner about to sit it needs.
+ *
+ * It held the roster of every skill in the scope until the product lead reported it as
+ * *"this super intimidating laundry list"*. `DiagnosticRunner.tsx`'s `TYPICAL_QUESTIONS`
+ * records what replaced it and why.
+ */
+.diagnostic-demo .dgx-blueprint {
+  overflow: hidden;
+}
+
+.diagnostic-demo .dgx-blueprint__head {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: var(--dgx-line);
+  background: color-mix(in oklab, var(--game-panel-2, #f0e9db) 55%, transparent);
+}
+
+.diagnostic-demo .dgx-blueprint__head h2 {
+  margin: var(--space-xs) 0 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.diagnostic-demo .dgx-tag {
+  padding: 6px 12px;
+  border: 1px solid var(--glass-line, #e2d8c6);
+  border-radius: var(--dgx-radius-pill);
+  background: var(--glass-fill, rgba(251, 247, 240, 0.94));
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.62rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/*
+ * THE TWO FIGURES, where sixty-two skill rows used to be.
+ *
+ * Side by side rather than stacked, because they are one answer read two ways ("about this
+ * many questions, about this long") and a learner should take them in together. They wrap
+ * to one column below the panel's own comfortable width rather than shrinking, since a
+ * figure that has to be squinted at is worse than a figure on its own line.
+ */
+.diagnostic-demo .dgx-shape {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-md);
+  margin: 0;
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: var(--dgx-line);
+  list-style: none;
+}
+
+.diagnostic-demo .dgx-shape__cell {
+  display: grid;
+  gap: 2px;
+}
+
+.diagnostic-demo .dgx-shape__value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.diagnostic-demo .dgx-shape__label {
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+/* The three sentences the roster was standing in for: the breadth, why the count above is
+   not the number of questions, and what a learner is left holding at the end. */
+.diagnostic-demo .dgx-blueprint__body {
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.diagnostic-demo .dgx-blueprint__body p {
+  max-width: 46ch;
+  margin: 0;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.diagnostic-demo .dgx-blueprint__body strong {
+  color: var(--game-slate, #2b3642);
+  font-weight: 650;
+}
+
+.diagnostic-demo .dgx-note {
+  margin: 0;
+  padding: var(--space-lg) var(--space-xl);
+  border-top: var(--dgx-line);
+  background: color-mix(in oklab, var(--game-panel-2, #f0e9db) 55%, transparent);
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+/* --- Question: one at a time, one submit --------------------------------- */
+
+/*
+ * THE QUESTION SCREEN IS A SINGLE FOLD, and every measurement below is bought for that.
+ *
+ * The owner's note was *"the questions are tiny relative to the full screen"*. Measured on a
+ * 1024x580 laptop before this pass, the screen spent 212px — 37% of the viewport — on chrome
+ * above the first word of the question, and then every one of the 43 questions an
+ * administration serves ran past the bottom of it, the worst by 254px, with Submit ITSELF
+ * below the fold on 14 of them. So the prompt was both small AND pushing its own submit
+ * button out of sight, and making the type bigger without buying that room back would have
+ * made the second problem worse to fix the first.
+ *
+ * So the prompt grew and the furniture around it shrank, and the column widened from 720px
+ * to 820px so a long prompt wraps to fewer lines at the larger size.
+ * `questionScreenFits.browser.test.tsx` measures both halves over every question a real
+ * administration serves, at that viewport, on the learner's own mount.
+ */
+.diagnostic-demo .dgx-probe {
+  max-width: 880px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.diagnostic-demo .dgx-probe__head {
+  display: grid;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+  justify-items: center;
+}
+
+/* The question screen's head only: the counter sits beside the skill rather than over it. */
+.diagnostic-demo .dgx-probe__head--question {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: var(--space-md);
+  row-gap: var(--space-xs);
+}
+
+/*
+ * The skill name, and it is deliberately no longer the biggest thing on the screen. It was
+ * 1.7rem over a 1.2rem question, so the label shouted and the question a learner is here to
+ * answer whispered under it. The question is now the largest type on the card, which is the
+ * hierarchy the screen should have had.
+ */
+.diagnostic-demo .dgx-probe__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* `.diagnostic-item` is kept (test hook); `.dgx-item` carries the frosted look. */
+.diagnostic-demo .diagnostic-item.dgx-item {
+  display: grid;
+  gap: var(--space-md);
+  /*
+   * The vertical padding answers the VIEWPORT'S HEIGHT and the horizontal its width. Both
+   * used to scale on `3vw`, which is the wrong axis for the half of it that costs a learner
+   * their Submit button: a 1024x580 laptop and a 1024x1400 monitor were charged the same
+   * 31px top and bottom, and only one of them could afford it.
+   */
+  padding: clamp(var(--space-md), 2.4vh, var(--space-2xl))
+    clamp(var(--space-lg), 2.4vw, var(--space-2xl));
+  border: 1px solid var(--glass-line, #e2d8c6);
+  border-radius: var(--panel-radius, 18px);
+  background: var(--glass-fill, rgba(251, 247, 240, 0.94));
+  box-shadow: var(--panel-shadow, 0 14px 30px rgba(31, 51, 71, 0.16));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.diagnostic-demo .dgx-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+/*
+ * `.dgx-item__skill` and `.dgx-item__level` used to sit here, dressing the meta strip above
+ * the question. The strip is gone from the probe card (see `DiagnosticRunner`'s `SectionView`
+ * for why), and `.dgx-item__meta` stays because `GraphProbe` still uses it.
+ */
+
+/* Typeset prompt (via MathText). */
+.diagnostic-demo .dgx-prompt--expression {
+  display: grid;
+  gap: var(--space-sm);
+  padding: clamp(var(--space-md), 2.4vh, var(--space-xl)) var(--space-lg);
+  border-radius: var(--dgx-radius-sm);
+  background: linear-gradient(
+    180deg,
+    var(--game-harbor, #eaf4fb),
+    color-mix(in oklab, var(--game-harbor, #eaf4fb) 25%, #fff)
+  );
+  text-align: center;
+}
+
+.diagnostic-demo .dgx-prompt__kicker {
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.62rem;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/*
+ * THE QUESTION ITSELF, and the two sizes the owner's "tiny" was about.
+ *
+ * Both are `clamp()` rather than a fixed size: the floor is what a 390px phone gets, the
+ * middle term tracks the viewport, and the cap stops a wide monitor turning a word problem
+ * into a poster. The floors are what `questionScreenFits.browser.test.tsx` pins, so a
+ * regression to the old 1.2rem / 2rem fails there rather than in somebody's screenshot.
+ *
+ * `line-height` came down with the size going up. At 1.6 a three-line prompt spent 110px of
+ * a 580px laptop on the gaps between its own lines; 1.45 is still comfortable at this size
+ * and the ten pixels are the difference between Submit being on the screen and not.
+ */
+.diagnostic-demo .dgx-prompt--prose {
+  display: block;
+  font-size: clamp(1.3rem, 1.05rem + 0.6vw, 1.5rem);
+  line-height: 1.45;
+  text-align: center;
+}
+
+.diagnostic-demo .dgx-math--block {
+  display: block;
+}
+
+.diagnostic-demo .dgx-math--block .katex {
+  font-size: clamp(2.15rem, 1.75rem + 1vw, 2.6rem);
+}
+
+.diagnostic-demo .dgx-math--inline .katex {
+  font-size: 1.08em;
+  padding-inline: 0.08em;
+}
+
+.diagnostic-demo .dgx-prompt__text {
+  white-space: pre-wrap;
+}
+
+/*
+ * THE ANSWER ROW lives in `diagnostic-answer.css`, beside the component, and is NOT styled
+ * from here.
+ *
+ * It was `MathInput` restyled by a block of `.diagnostic-demo .cr-math-input …` rules, whose
+ * one text field could not submit `RAT.1`'s structured rational answer at all and gave no
+ * notation cue for the solution-set and coordinate shapes the widened scope asks. The
+ * control is now the same dispatcher lesson practice uses (`lessons/PracticeAnswer.tsx`), so
+ * the notation note and the placeholder come from the one notation dispatch in
+ * `answerFormat.ts` and a diagnostic question speaks the grammar the practice question after
+ * it does.
+ *
+ * Its stylesheet moved out with it because the completion ceremony's final check mounts the
+ * same row, and rules scoped to `.diagnostic-demo` are rules only one of the two hosts gets.
+ *
+ * NO right/wrong feedback, and now by construction rather than by neutralizing colours:
+ * `PracticeAnswer` renders no verdict, so there are no `data-state` variants left to
+ * override. The only message the row can show is a refused empty submit.
+ */
+
+/*
+ * The strip under the card: the reassurance, and the way out of a question.
+ *
+ * ONE ROW rather than two stacked blocks, and that is the reassurance doing a second job.
+ * "There are no consequences for wrong answers" is the sentence that makes "I haven't
+ * learned this yet" safe to press, so the two are read together; stacking them also cost
+ * ~38px of a 580px laptop, which is the difference between this strip being on the screen
+ * and being under it on the taller questions.
+ */
+.diagnostic-demo .dgx-probe__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: var(--space-md);
+  row-gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.diagnostic-demo .dgx-probe__reassure {
+  margin: 0;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/*
+ * DELIBERATELY QUIET. Submit is a 200px filled pill in the build blue; this is underlined
+ * text in the muted slate the reassurance beside it is set in, with no fill, no border and
+ * no shadow. A learner who can answer should not have to decide between two buttons.
+ */
+.diagnostic-demo .dgx-probe__unsure {
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  color: var(--game-slate-2, #5b6b7a);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color var(--dgx-transition);
+}
+
+.diagnostic-demo .dgx-probe__unsure:hover:not(:disabled) {
+  color: var(--game-blue-deep, #2f6091);
+}
+
+.diagnostic-demo .dgx-probe__unsure:disabled {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+/* --- Results: ten subject areas, each a door onto its own skills ---------- */
+
+/*
+ * COMPRESSED TO A SCREEN, on the lead's ask: "it shouldnt just show this laundry list of
+ * skills… basically just compress it and make it a lot more understandable."
+ *
+ * Measured on the learner's own mount (`diagnosticResultsShots.browser.test.tsx`, which
+ * mounts the App's diagnostic takeover chrome rather than a bare component), the sixty-two
+ * card grid this replaces was 5,150px tall at 1024x580: 4,570px of scroll, with "Build my
+ * city" at y=5099. Every size below is set against that 580px window and nothing here is a
+ * comfortable-viewport number.
+ */
+.diagnostic-demo .dgx-results {
+  display: grid;
+  gap: var(--space-md);
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* The runner's own 32px rhythm between the identity chip and the phase view, tightened for
+   THIS phase only. `:has` rather than a phase attribute on the shared root, so the whole
+   change stays inside the results lane. */
+.diagnostic-demo:has(.dgx-results) {
+  gap: var(--space-lg);
+}
+
+/* Smaller than the intro's headline, and only here: this screen has to seat a summary, ten
+   rows and its actions in the same window the intro spends on a promise. */
+.diagnostic-demo .dgx-results__head h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 640;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.diagnostic-demo .dgx-results__lede {
+  max-width: 72ch;
+  margin: 5px 0 0;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/*
+ * THE TALLY — questions asked, skills mastered, subject areas tested out.
+ *
+ * Three figures, because the areas below cannot make the adaptive claim on their own: a
+ * reader has no idea whether ten rows cost eight questions or eighty. A ROW rather than three
+ * cards: the cards were 92px of chrome for three numbers, and the numbers are the content.
+ * Auto-fit so a 390px phone stacks it instead of shrinking the numerals.
+ */
+.diagnostic-demo .dgx-tally {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-sm);
+  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--game-panel-line, #e2d8c6);
+  border-radius: 14px;
+  background: var(--glass-fill-strong, #fff);
+  list-style: none;
+}
+
+.diagnostic-demo .dgx-tally__cell {
+  display: flex;
+  gap: 7px;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.diagnostic-demo .dgx-tally__value {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 640;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.diagnostic-demo .dgx-tally__label {
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* HOW MUCH OF THIS WAS MEASURED. One line, above the fold, replacing a footnote that used to
+   be repeated on all sixty-two cards plus a boxed legend beneath them. */
+.diagnostic-demo .dgx-provenance {
+  margin: 0;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+/* A truncated administration is a materially different artifact from a completed one, and
+   the learner is told so rather than shown a coverage figure that reads as complete. */
+.diagnostic-demo .dgx-results__truncated {
+  margin: 0;
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--game-clay, #c98b6b);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--game-clay, #c98b6b) 12%, #fff);
+  color: var(--game-clay-deep, #9a5b3f);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/*
+ * THE TEN AREAS. Two columns at 900px, one on a phone, and an OPEN area spans the row so its
+ * skills get the full width rather than half of it.
+ *
+ * Two rather than three, measured rather than assumed: three columns is four rows instead of
+ * five, and it leaves about 140px for a name, so six of the ten wrap to a second line and the
+ * grid comes out 198px against two columns' 184px. The narrower grid is taller in rows and
+ * shorter on the screen, and it reads better.
+ */
+.diagnostic-demo .dgx-areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.diagnostic-demo .dgx-area {
+  border: 1px solid var(--game-panel-line, #e2d8c6);
+  border-radius: 12px;
+  background: var(--glass-fill-strong, #fff);
+}
+
+/* An area with every skill behind the learner. Blue tint rather than green: this screen has
+   no pass/fail palette, and the tick is the channel that is not colour. */
+.diagnostic-demo .dgx-area[data-standing="all"] {
+  border-color: color-mix(in oklab, var(--game-blue, #3e7cb1) 45%, #e2d8c6);
+  background: color-mix(in oklab, var(--game-blue, #3e7cb1) 7%, #fff);
+}
+
+.diagnostic-demo .dgx-area:has(> [aria-expanded="true"]) {
+  grid-column: 1 / -1;
+}
+
+.diagnostic-demo .dgx-area__toggle {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  width: 100%;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.diagnostic-demo .dgx-area__tick {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--game-blue-deep, #2f6091);
+}
+
+.diagnostic-demo .dgx-area__tick--empty {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--game-panel-line, #e2d8c6);
+  border-radius: 50%;
+}
+
+.diagnostic-demo .dgx-area__name {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: 0.83rem;
+  font-weight: 550;
+  line-height: 1.2;
+}
+
+.diagnostic-demo .dgx-area__count {
+  flex: none;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.76rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ONE bar, filled by the fraction of the area mastered. The meter this replaces was per
+   SKILL and had four states, which is the "3 tier thing" the lead asked to lose. */
+.diagnostic-demo .dgx-area__bar {
+  flex: none;
+  overflow: hidden;
+  width: 34px;
+  height: 6px;
+  border-radius: var(--dgx-radius-pill);
+  background: var(--game-panel-2, #f0e9db);
+}
+
+.diagnostic-demo .dgx-area__bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--game-blue, #3e7cb1), #5a9bd0);
+}
+
+.diagnostic-demo .dgx-area__mark {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-right: 3px;
+  border-right: 1.5px solid var(--game-mist, #5b6b7a);
+  border-bottom: 1.5px solid var(--game-mist, #5b6b7a);
+  /* Translate FIRST, so the nudge that centres the chevron is in the row's frame rather than
+     in the rotated one, where "up" and "down" would shift it in opposite directions. */
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform var(--dgx-transition);
+}
+
+.diagnostic-demo .dgx-area__mark[data-open="true"] {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.diagnostic-demo .dgx-area__skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2px var(--space-lg);
+  margin: 0;
+  padding: 0 9px 8px;
+  list-style: none;
+}
+
+/* One skill, one row: name, the binary, and how we know. */
+.diagnostic-demo .dgx-finding {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: baseline;
+  padding: 4px 0;
+  border-top: 1px solid color-mix(in oklab, var(--game-panel-line, #e2d8c6) 60%, #fff);
+}
+
+.diagnostic-demo .dgx-finding__name {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.84rem;
+  line-height: 1.3;
+}
+
+.diagnostic-demo .dgx-finding__state {
+  flex: none;
+  padding: 2px 9px;
+  border-radius: var(--dgx-radius-pill);
+  background: var(--game-panel-2, #f0e9db);
+  color: var(--game-slate-2, #5b6b7a);
+  font-size: 0.63rem;
+  font-weight: 760;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* NO pass/fail red or green: mastered takes the build-blue this product already uses for
+   "already yours", and not-mastered stays neutral because it is a starting point. */
+.diagnostic-demo .dgx-finding[data-mastered="true"] .dgx-finding__state {
+  background: color-mix(in oklab, var(--game-blue, #3e7cb1) 16%, #fff);
+  color: var(--game-blue-deep, #2f6091);
+}
+
+/* Wide enough for "from the map" on ONE line and pinned there, so the rows line up in a
+   column instead of every inferred skill costing a second line. */
+.diagnostic-demo .dgx-finding__source {
+  flex: none;
+  width: 5.4rem;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.66rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.diagnostic-demo .dgx-finding__source::before {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 5px;
+  border-radius: 2px;
+  vertical-align: baseline;
+  content: "";
+}
+
+.diagnostic-demo .dgx-finding__source[data-source="measured"]::before {
+  background: var(--game-blue, #3e7cb1);
+}
+
+.diagnostic-demo .dgx-finding__source[data-source="inferred"]::before {
+  border: 1.5px dashed var(--game-blue, #3e7cb1);
+}
+
+/* Progress banner (post retake only). */
+.diagnostic-demo .dgx-gain {
+  display: grid;
+  gap: 4px;
+  padding: var(--space-lg) var(--space-xl);
+  border: 1px solid
+    color-mix(in oklab, var(--game-blue, #3e7cb1) 40%, var(--game-panel-line, #e2d8c6));
+  border-radius: var(--dgx-radius-sm);
+  background: linear-gradient(
+    120deg,
+    color-mix(in oklab, var(--game-blue, #3e7cb1) 12%, #fff),
+    #fff
+  );
+}
+
+.diagnostic-demo .dgx-gain__value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 660;
+  color: var(--game-blue-deep, #2f6091);
+}
+
+.diagnostic-demo .dgx-gain__value span {
+  margin-left: var(--space-sm);
+  color: var(--game-mist, #5b6b7a);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.diagnostic-demo .dgx-gain__value--muted {
+  color: var(--game-mist, #5b6b7a);
+  font-size: 1.05rem;
+}
+
+/* --- Seeding: results become buildings (D1 terracotta) ------------------- */
+
+.diagnostic-demo .dgx-seed,
+.diagnostic-demo .dgx-handoff {
+  display: grid;
+  gap: var(--space-xl);
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  justify-items: center;
+  text-align: center;
+}
+
+.diagnostic-demo .dgx-seed__head,
+.diagnostic-demo .dgx-handoff__head {
+  display: grid;
+  gap: var(--space-sm);
+  justify-items: center;
+}
+
+.diagnostic-demo .dgx-seed__head h2,
+.diagnostic-demo .dgx-handoff__head h2 {
+  margin: var(--space-sm) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-weight: 640;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.diagnostic-demo .dgx-seed__lede,
+.diagnostic-demo .dgx-handoff__lede {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.diagnostic-demo .dgx-seed__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-md);
+  align-items: end;
+  width: 100%;
+  margin: var(--space-md) 0 0;
+  padding: var(--space-2xl) var(--space-lg) 0;
+  list-style: none;
+  border-bottom: 3px solid var(--game-panel-line, #e2d8c6);
+  border-radius: 3px;
+}
+
+/* One plot: a stylized building whose height reflects the 0–3 seed. */
+.diagnostic-demo .dgx-plot {
+  display: grid;
+  gap: var(--space-md);
+  justify-items: center;
+  align-content: end;
+}
+
+.diagnostic-demo .dgx-plot__scene {
+  display: grid;
+  align-items: end;
+  justify-items: center;
+  width: 100%;
+  height: 130px;
+}
+
+.diagnostic-demo .dgx-plot__building {
+  position: relative;
+  display: block;
+  width: min(72px, 88%);
+  height: var(--dgx-plot-h, 20px);
+  border: 2px solid var(--dgx-d1-deep);
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, var(--dgx-d1) 0%, var(--dgx-d1-deep) 100%);
+  transform-origin: bottom center;
+  animation: dgx-rise 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--dgx-plot-delay, 0ms);
+}
+
+/* Level 0 → an empty, dashed timber/parchment ghost plot (nothing built yet). */
+.diagnostic-demo .dgx-plot[data-level="0"] .dgx-plot__building {
+  --dgx-plot-h: 16px;
+  border-style: dashed;
+  border-color: color-mix(
+    in oklab,
+    var(--dgx-d1-deep) 55%,
+    var(--game-panel-line, #e2d8c6)
+  );
+  border-bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--game-panel-2, #f0e9db) 0,
+    var(--game-panel-2, #f0e9db) 6px,
+    color-mix(in oklab, var(--game-panel-line, #e2d8c6) 70%, #fff) 6px,
+    color-mix(in oklab, var(--game-panel-line, #e2d8c6) 70%, #fff) 12px
+  );
+}
+
+.diagnostic-demo .dgx-plot[data-level="1"] .dgx-plot__building {
+  --dgx-plot-h: 52px;
+}
+
+.diagnostic-demo .dgx-plot[data-level="2"] .dgx-plot__building {
+  --dgx-plot-h: 86px;
+}
+
+.diagnostic-demo .dgx-plot[data-level="3"] .dgx-plot__building {
+  --dgx-plot-h: 120px;
+}
+
+/* Level 3 earns a reward-gold rooftop pennant. */
+.diagnostic-demo .dgx-plot[data-level="3"] .dgx-plot__building::before {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 2px;
+  height: 13px;
+  background: var(--dgx-d1-deep);
+  content: "";
+}
+
+.diagnostic-demo .dgx-plot[data-level="3"] .dgx-plot__building::after {
+  position: absolute;
+  top: -13px;
+  left: calc(50% + 1px);
+  width: 12px;
+  height: 9px;
+  background: var(--game-gold, #f2c14e);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  content: "";
+}
+
+.diagnostic-demo .dgx-plot__windows {
+  position: absolute;
+  inset: 10px 12px 0;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--game-gold, #f2c14e) 70%, #fff) 1.6px,
+    transparent 2px
+  );
+  background-size: 14px 16px;
+  opacity: 0.85;
+}
+
+.diagnostic-demo .dgx-plot[data-level="0"] .dgx-plot__windows,
+.diagnostic-demo .dgx-plot[data-level="1"] .dgx-plot__windows {
+  display: none;
+}
+
+.diagnostic-demo .dgx-plot__label {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+}
+
+.diagnostic-demo .dgx-plot__name {
+  color: var(--game-slate, #2b3642);
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 14ch;
+}
+
+.diagnostic-demo .dgx-plot__level {
+  font-size: 0.62rem;
+  font-weight: 760;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--game-mist, #5b6b7a);
+}
+
+.diagnostic-demo .dgx-plot__level[data-level="3"] {
+  color: var(--game-gold-strong, #e9a92f);
+}
+
+@keyframes dgx-rise {
+  from {
+    transform: scaleY(0.04);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* --- Hand-off: your starting city ---------------------------------------- */
+
+.diagnostic-demo .dgx-handoff__skyline {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 130px;
+  margin: 0;
+  padding: 0 var(--space-md);
+  border-bottom: 3px solid var(--game-panel-line, #e2d8c6);
+  border-radius: 3px;
+  list-style: none;
+}
+
+.diagnostic-demo .dgx-plot--settled {
+  display: block;
+}
+
+.diagnostic-demo .dgx-plot--settled .dgx-plot__building {
+  width: 46px;
+  animation: none;
+}
+
+.diagnostic-demo .dgx-handoff__roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+/* Chips → frosted `.city-chip` pill. */
+.diagnostic-demo .dgx-chip {
+  padding: 8px 14px;
+  border: 1px solid var(--glass-line, #e2d8c6);
+  border-radius: var(--dgx-radius-pill);
+  background: var(--glass-fill, rgba(251, 247, 240, 0.94));
+  box-shadow: 0 4px 12px rgba(31, 51, 71, 0.1);
+  color: var(--glass-text, #2b3642);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 550;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.diagnostic-demo .dgx-chip[data-level="0"] {
+  border-style: dashed;
+  color: var(--game-mist, #5b6b7a);
+}
+
+.diagnostic-demo .dgx-chip[data-level="2"],
+.diagnostic-demo .dgx-chip[data-level="3"] {
+  border-color: var(--game-blue, #3e7cb1);
+  background: color-mix(in oklab, var(--game-blue, #3e7cb1) 12%, #fff);
+  color: var(--game-blue-deep, #2f6091);
+}
+
+/* --- States: loading / error --------------------------------------------- */
+
+.diagnostic-demo .dgx-status {
+  display: grid;
+  gap: var(--space-md);
+  max-width: 520px;
+  margin: var(--space-2xl) auto;
+  padding: var(--space-2xl);
+  border: 1px solid var(--glass-line, #e2d8c6);
+  border-radius: var(--panel-radius, 18px);
+  background: var(--glass-fill, rgba(251, 247, 240, 0.94));
+  box-shadow: var(--panel-shadow, 0 14px 30px rgba(31, 51, 71, 0.16));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.diagnostic-demo .dgx-status__spinner {
+  justify-self: center;
+  width: 34px;
+  height: 34px;
+  border: 3px solid var(--game-panel-2, #f0e9db);
+  border-top-color: var(--game-blue, #3e7cb1);
+  border-radius: 50%;
+  animation: dgx-spin 0.8s linear infinite;
+}
+
+.diagnostic-demo .dgx-status p {
+  margin: 0;
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.9rem;
+}
+
+.diagnostic-demo .dgx-skeleton {
+  display: grid;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.diagnostic-demo .dgx-skeleton span {
+  height: 12px;
+  border-radius: var(--dgx-radius-pill);
+  background: linear-gradient(
+    90deg,
+    var(--game-panel-2, #f0e9db) 25%,
+    color-mix(in oklab, var(--game-panel-2, #f0e9db) 55%, #fff) 37%,
+    var(--game-panel-2, #f0e9db) 63%
+  );
+  background-size: 400% 100%;
+  animation: dgx-shimmer 1.4s ease infinite;
+}
+
+.diagnostic-demo .dgx-skeleton span:nth-child(2) {
+  width: 80%;
+}
+
+.diagnostic-demo .dgx-skeleton span:nth-child(3) {
+  width: 60%;
+}
+
+@keyframes dgx-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* Error → muted-rose `--game-invalid`, not an alarm-red. */
+.diagnostic-demo .dgx-error {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+  margin: 0;
+  padding: var(--space-lg) var(--space-xl);
+  border: 1px solid var(--game-invalid, #e0736c);
+  border-radius: var(--dgx-radius-sm);
+  background: color-mix(in oklab, var(--game-invalid, #e0736c) 12%, #fff);
+  color: color-mix(in oklab, var(--game-invalid, #e0736c) 65%, #3a2320);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.diagnostic-demo .dgx-error svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-top: 1px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- GraphProbe extras (dev `?graph` route; inherits this sheet) ---------- */
+
+.diagnostic-demo .dgx-item__prompt-text {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+.diagnostic-demo .dgx-item__node {
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.62rem;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.diagnostic-demo .dgx-item__answered {
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.diagnostic-demo .dgx-empty {
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.85rem;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .diagnostic-demo .dgx-intro {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .diagnostic-demo .dgx-brief__duration {
+    display: block;
+    margin: var(--space-md) 0 0;
+    color: var(--game-ink, #24364b);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .diagnostic-demo .dgx-shape__cell--duration {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .diagnostic-demo .dgx-seed__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: var(--space-xl);
+  }
+
+  .diagnostic-demo .dgx-math--block .katex {
+    font-size: 1.6rem;
+  }
+
+  .diagnostic-demo .cr-math-input__controls {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .diagnostic-demo .cr-math-input__field {
+    border-radius: var(--dgx-radius-sm);
+  }
+
+  .diagnostic-demo .cr-math-input__submit {
+    border-radius: var(--dgx-radius-sm);
+    margin-left: 0;
+  }
+}
+
+/* --- Reduced motion ------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .diagnostic-demo .dgx-btn,
+  .diagnostic-demo .dgx-area__mark {
+    transition: none;
+  }
+
+  .diagnostic-demo .dgx-spinner,
+  .diagnostic-demo .dgx-status__spinner,
+  .diagnostic-demo .dgx-skeleton span,
+  .diagnostic-demo .dgx-plot__building {
+    animation: none;
+  }
+
+  .diagnostic-demo .dgx-plot__building {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Full-screen immersive overlay — the ONLY non-`.diagnostic-demo` selectors
+   here. The shared `.surface-overlay` (styles.css) blurs the city behind a
+   centered card; for the diagnostic we take over the whole viewport so no city
+   bleeds through and onboarding reads as its own focused step. Colors are
+   harmonized to the game (calm harbor wash, frosted head), keeping the overlay
+   opaque and immersive.
+   ========================================================================== */
+
+.surface-overlay--diagnostic {
+  padding: 0;
+  background: var(--game-harbor, #eaf4fb);
+  background-image:
+    radial-gradient(
+      1200px 480px at 78% -8%,
+      color-mix(in oklab, var(--game-blue, #3e7cb1) 12%, transparent),
+      transparent
+    ),
+    radial-gradient(
+      1000px 520px at 0% 108%,
+      color-mix(in oklab, var(--game-panel, #fbf7f0) 90%, transparent),
+      transparent
+    );
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.surface-overlay-frame--diagnostic {
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  min-height: 100dvh;
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+
+.surface-overlay-head--diagnostic {
+  background: var(--glass-fill, rgba(251, 247, 240, 0.94));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-line, #e2d8c6);
+}
+
+.surface-overlay-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--game-slate, #2b3642);
+}
+
+.surface-overlay-brand::before {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--game-blue, #3e7cb1);
+  content: "";
+}
+
+/*
+ * The takeover's own inset. The VERTICAL half answers the viewport's HEIGHT, which is the
+ * axis it is spent on: at `5vw` a 1024x580 laptop was charged 51px top and bottom for
+ * breathing room it does not have, while a tall monitor with room to spare got the same. At
+ * `3.4vh` the short laptop pays 20px and the tall monitor pays more than it used to.
+ */
+.surface-overlay-body--diagnostic {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(var(--space-lg), 3.4vh, var(--space-4xl))
+    clamp(var(--space-lg), 4vw, var(--space-3xl));
+}
+
+/*
+ * THE RESULTS PHASE PAYS LESS FOR ITS MARGINS, and only the results phase.
+ *
+ * `5vw` is 51px of padding at the top and another 51 at the bottom of a 580px window, which
+ * is 102px the longest of the three screens cannot spend: measured, it is the difference
+ * between "Build my city" sitting at y=618 and sitting on the screen. Conditioned on
+ * `.dgx-results` rather than edited in place, because the intro and the question screens are
+ * other people's lanes and neither of them is short of room.
+ */
+.surface-overlay-body--diagnostic:has(.dgx-results) {
+  padding-block: clamp(var(--space-lg), 2.5vw, var(--space-2xl));
+}
+
+/*
+ * A SHORT SCREEN GETS ITS ROOM BACK, and every value below is vertical only.
+ *
+ * The horizontal rhythm is a reading-width decision and is untouched; the vertical one was
+ * sized on a tall window and is what pushes the answer off a short one. Measured on the
+ * learner's own overlay mount at **1024x580** — a real laptop, and the viewport
+ * `.cursor/rules/qa-verification.mdc` asks a spatial claim to be judged at — the question
+ * card's Submit button sat 95px below the fold: 507px of chrome stood above an answer field
+ * on a screen with 580px in it.
+ *
+ * `max-height` rather than a breakpoint on width, because the thing in short supply is
+ * height and a wide short window is exactly the case a width query misses. 700px is above
+ * the 580 measured and below a 768-tall laptop, so it catches the screens that are actually
+ * squeezed without touching the ones that are not.
+ *
+ * Nothing here hides anything: every element on the card is still rendered and still
+ * legible, every tap target stays at or above 44px, and the preview still reserves its line
+ * so the button cannot jump as the learner types. What changes is the air between them.
+ *
+ * **The target is one claim and it is asserted rather than eyeballed**:
+ * `diagnosticFirstScreens.browser.test.tsx` measures the Submit button against the fold on
+ * the real overlay mount, so a row added back to this card fails there rather than being
+ * discovered in a demo. Every value below is one of the cuts that got it there, and each
+ * gave up presentation a tall window can afford and a short one cannot.
+ */
+@media (max-height: 700px) {
+  .surface-overlay-body--diagnostic {
+    padding: var(--space-lg) clamp(var(--space-lg), 4vw, var(--space-3xl));
+  }
+
+  .diagnostic-demo .dgx-probe__head {
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  /* Still the biggest thing on the card, and still a display face: the question's skill is
+     what a learner orients by. It gives up the size it was given for a taller window. */
+  .diagnostic-demo .dgx-probe__title {
+    font-size: 1.35rem;
+  }
+
+  .diagnostic-demo .diagnostic-item.dgx-item {
+    gap: var(--space-sm);
+    padding: var(--space-md) clamp(var(--space-xl), 3vw, var(--space-3xl));
+  }
+
+  /* Only the panelled prompt shape has padding to give up. `.dgx-prompt--prose` — the
+     inline-math sentence most diagnostic items use — has none, and its leading is left
+     alone: 1.6 at 1.2rem is what makes a question with a stacked fraction in the middle of
+     it readable, and tightening it buys about six pixels on a four-line prompt. */
+  .diagnostic-demo .dgx-prompt--expression {
+    padding: var(--space-lg);
+  }
+
+  /* The identity chip is a between-questions affordance sitting above every question. It
+     keeps its dot, its name and its contrast, and gives up its padding. */
+  .diagnostic-demo .diagnostic-identity__badge {
+    padding: 3px 12px;
+    font-size: 0.72rem;
+  }
+
+  .diagnostic-demo .dgx-probe__reassure {
+    margin-top: var(--space-sm);
+  }
+
+  /* The answer row's own three gaps, and its submit — which keeps a 44px tap target. */
+  .diagnostic-demo .dgx-answer {
+    gap: var(--space-xs);
+  }
+
+  .diagnostic-demo .dgx-answer__submit {
+    min-height: 44px;
+  }
+
+  .diagnostic-demo .dgx-answer .cr-math-preview {
+    min-height: 2rem;
+  }
+}

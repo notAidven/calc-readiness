@@ -1,0 +1,122 @@
+{
+  "node_id": "LF.4",
+  "title": "Solve systems of linear equations",
+  "mini_lesson": [
+    "Two pumps feeding the cooling tower start from different levels and fill at different rates, and the reading that matters is the minute their levels agree. A **solution** of a system is one pair $(x, y)$ that satisfies **both** equations at once, which is exactly the point where the two graphs cross. Equal slopes are what separate both of the other cases from a crossing: parallel lines share no point, so the system has no solution, while two equations describing the same line share every point, so the system has infinitely many, and the intercepts are what decide between the two.",
+    "**Substitution** trades two unknowns for one: isolate a variable wherever it is cheapest, usually where its coefficient is $1$, replace that variable in the **other** equation by the expression you found, and solve the single-variable equation that is left. Then put that value back into the rearranged equation, which is the quickest place to recover the partner coordinate. The trap is putting the **expression** back into the equation it came from instead: the variable cancels and leaves something like $-2 = -2$, which is true for every pair on that line and so confirms nothing.",
+    "**Elimination** removes a variable by adding: scale one or both equations until one variable's coefficients are **opposites**, add the equations, and that variable disappears, leaving a single-variable equation to solve. Back-substitute exactly as before. Opposites, not merely equal coefficients, are what make the sum lose a variable: adding $3y$ to $3y$ keeps it.",
+    "Both methods reach the same pair, so choose by shape: substitution when a variable already stands alone or carries a coefficient of $1$, elimination when both equations are lined up as $ax + by = c$. Whichever you use, finish by checking the pair in **both** original equations, because an arithmetic slip often still satisfies one of them."
+  ],
+  "slide_subtitles": [
+    "Where two lines cross",
+    "Substitution",
+    "Elimination",
+    "Choosing a method"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Decide whether $(4, 1)$ solves the system $x + 2y = 6$ and $3x - y = 11$.",
+      "steps": [
+        "Put $(4, 1)$ into the first equation: $4 + 2(1) = 6$, which is what that equation asks for.",
+        "A pair on one line only is no solution, so put it into the second as well: $3(4) - 1 = 11$, which that equation asks for too.",
+        "Compare $(2, 2)$, which also gives $6$ in the first equation but $3(2) - 2 = 4$ in the second.",
+        "Only $(4, 1)$ satisfies both at once, so it is the solution of the system and the point where the two lines cross."
+      ]
+    },
+    {
+      "prompt": "Solve $x - 3y = -2$ and $2x + y = 10$ by substitution.",
+      "steps": [
+        "The $x$ in the first equation carries a coefficient of $1$, so it is the cheapest to isolate: $x = 3y - 2$.",
+        "Replace $x$ in the **other** equation by that expression: $2(3y - 2) + y = 10$.",
+        "One unknown is left: $6y - 4 + y = 10$, so $7y = 14$ and $y = 2$.",
+        "Back-substitute to recover the partner: $x = 3(2) - 2 = 4$.",
+        "The solution is $(4, 2)$, and $2(4) + 2 = 10$ checks it in the equation that was substituted into."
+      ]
+    },
+    {
+      "prompt": "Solve $3x + y = 10$ and $x - 2y = -6$ by elimination.",
+      "steps": [
+        "The $y$ terms are $y$ and $-2y$: doubling the first equation turns them into $2y$ and $-2y$, which are opposites.",
+        "Scale the first equation only: $6x + 2y = 20$, sitting beside $x - 2y = -6$.",
+        "Add the two equations: $2y$ and $-2y$ cancel, leaving $7x = 14$.",
+        "Divide by $7$: $x = 2$.",
+        "Back-substitute into $3x + y = 10$: $6 + y = 10$, so $y = 4$ and the solution is $(2, 4)$."
+      ]
+    },
+    {
+      "prompt": "Solve $y = 4 - x$ and $2x + 3y = 9$ by the cheaper method, then check the pair.",
+      "steps": [
+        "$y$ already stands alone in $y = 4 - x$, so substitution costs no rearranging, while elimination would first have to line both equations up.",
+        "Replace $y$ in the other equation: $2x + 3(4 - x) = 9$.",
+        "Distribute and collect: $2x + 12 - 3x = 9$, so $-x = -3$ and $x = 3$.",
+        "Recover the partner: $y = 4 - 3 = 1$.",
+        "Check $(3, 1)$ in **both** originals: $1 = 4 - 3$ holds and $2(3) + 3(1) = 9$ holds, so the pair is right."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "linear-system-graph-explore", "gates": true },
+    { "after": 1, "id": "linear-system-substitute-play", "gates": true },
+    { "after": 2, "id": "linear-system-eliminate-build", "gates": true },
+    { "after": 3, "id": "linear-system-walkthrough", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Solve the system $4x + 3y = -1$ and $3x - 2y = 12$. Give the solution as an ordered pair, typed like `(5, -2)`.",
+    "accepted": [
+      "(2, -3)",
+      "(2,-3)",
+      "( 2, -3 )",
+      "(2, -3.0)",
+      "(2.0, -3.0)",
+      "x = 2, y = -3",
+      "x = 2, y = -3.",
+      "x=2, y=-3",
+      "x=2,y=-3",
+      "x = 2 and y = -3",
+      "y = -3, x = 2",
+      "2, -3",
+      "2,-3",
+      "(x, y) = (2, -3)",
+      "(x,y)=(2,-3)",
+      "x = 2, y = -3.0",
+      "x = 2; y = -3",
+      "x = 2; y = -3.",
+      "x = 2 and y = -3.",
+      "x = 2 and y = -3.0",
+      "y = -3, x = 2.0",
+      "y = -3; x = 2",
+      "y = -3 and x = 2",
+      "2, -3.0",
+      "2; -3",
+      "2 and -3",
+      "x = 2; y = -3.0",
+      "y = -3; x = 2.0",
+      "y = -3 and x = 2.0",
+      "2; -3.0",
+      "2 and -3.0"
+    ],
+    "hint": "Line the two equations up and pick the variable that is cheapest to cancel. The $y$ terms are $3y$ and $-2y$, so multiply the first equation by $2$ and the second by $3$ to turn them into $6y$ and $-6y$. Adding those scaled equations leaves a single-variable equation in $x$, and once you have $x$, put it back into $4x + 3y = -1$ to get $y$.",
+    "worked_solution": [
+      "The $y$ terms are the cheapest to cancel. Scale the first equation by $2$ and the second by $3$: $8x + 6y = -2$ and $9x - 6y = 36$.",
+      "Add the scaled equations. The $y$ terms cancel outright, leaving $17x = 34$.",
+      "Divide by $17$: $x = 2$.",
+      "Put that back into $4x + 3y = -1$: $8 + 3y = -1$, so $3y = -9$ and $y = -3$.",
+      "The two lines meet at `(2, -3)`."
+    ],
+    "worked_solution_template": "d7.lf4.elimination.l3",
+    "worked_solution_params": {
+      "x0": 2,
+      "y0": -3,
+      "a1": 4,
+      "b1": 3,
+      "a2": 3,
+      "b2": -2,
+      "c1": -1,
+      "c2": 12,
+      "m1": 2,
+      "m2": 3,
+      "keepX": 1
+    },
+    "variants": { "template_id": "d7.lf4.elimination.l2", "count": 2 }
+  }
+}

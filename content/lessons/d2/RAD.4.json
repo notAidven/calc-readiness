@@ -1,0 +1,110 @@
+{
+  "node_id": "RAD.4",
+  "title": "Roots with a variable inside",
+  "mini_lesson": [
+    "A square root undoes a square, so $\\sqrt{x^{2}}$ looks as though it ought to simplify straight back to $x$. The only way to find out is to test it on actual numbers, and one test is not enough, because a negative number has to be tried alongside a positive one. Squaring throws a minus sign away, and the root has no way of knowing the sign was ever there.",
+    "One answer coming back for two different starting numbers means the root kept how far each one sat from zero and dropped the sign. Distance from zero with the sign dropped is called the **absolute value** of $x$ and is written between two upright bars as $|x|$, which is why $\\sqrt{x^{2}} = |x|$ rather than $x$. The bars are not there to stop the root returning a negative, since it never does: they record the sign that squaring threw away, which is the one thing $x$ on its own cannot do.",
+    "A cube does not throw the sign away, since multiplying three negatives still leaves a negative, so a cube root has a negative to hand back and hands it back with no bars. Odd and even roots also differ in what they will accept, because nothing real squared gives a negative, so **$\\sqrt{-49}$ is not a real number** while $\\sqrt[3]{-64} = -4$ is perfectly ordinary. Bars are therefore only ever needed under an **even** root, and even then the test runs on the answer you were about to write rather than on the root: if that expression could itself be negative, the bars go on.",
+    "A square root asks what was multiplied by itself, so a variable with an **even** exponent has its answer ready made: an even exponent splits into two equal halves, and the root hands one half back. An odd exponent will not split evenly, so peel one copy off, halve what is left, and leave the spare copy under the root. Those odd cases never need bars, because such a root is only a real number when the variable is already at or above zero.",
+    "Most roots carry a number **and** a variable inside, and each of them gives up whatever it can. Working them one at a time is what keeps anything from being dropped: take perfect squares out of the number until none are left, then halve what the variable's exponent allows. Whatever neither of them could use stays behind under the root."
+  ],
+  "slide_subtitles": [
+    "Undoing a square",
+    "Absolute value",
+    "When are bars needed?",
+    "Taking a variable out",
+    "Number and variable together"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Test whether $\\sqrt{x^{2}}$ simplifies to $x$, first at $x = 7$ and then at $x = -7$.",
+      "steps": [
+        "Put in $x = 7$: squaring gives $49$, and $\\sqrt{49} = 7$, which is the number that went in.",
+        "Now put in $x = -7$: squaring gives $49$ again, since two negatives multiply to a positive.",
+        "The root of that is still $7$, so a negative number went in and a positive one came out.",
+        "One of the two tests failed, so $\\sqrt{x^{2}}$ and $x$ are not the same thing."
+      ]
+    },
+    {
+      "prompt": "Write $\\sqrt{x^{2}}$ correctly, then check it at $x = -7$.",
+      "steps": [
+        "The root kept the distance from zero and dropped the sign, and that is exactly what absolute value does.",
+        "So the simplified form is $\\sqrt{x^{2}} = |x|$.",
+        "Check it where $x$ on its own failed: at $x = -7$ the bars give $\\lvert -7 \\rvert = 7$.",
+        "The root of $(-7)^{2}$ is also $7$, so the form with bars holds where $x$ did not."
+      ]
+    },
+    {
+      "prompt": "Decide which of $\\sqrt[3]{x^{3}}$, $\\sqrt{x^{2}}$ and $\\sqrt[4]{x^{8}}$ needs bars.",
+      "steps": [
+        "The first sits under an odd root, and a cube root hands a negative back when it is given one, so $\\sqrt[3]{x^{3}} = x$ with no sign to record.",
+        "The other two sit under even roots, so each answer has to be tested before it is written.",
+        "The answer for $\\sqrt{x^{2}}$ would be $x$, and $x$ could be negative, so the bars go on: $\\sqrt{x^{2}} = \\lvert x \\rvert$.",
+        "The answer for $\\sqrt[4]{x^{8}}$ would be $x^{2}$, and a square is never negative.",
+        "So $\\sqrt[4]{x^{8}} = x^{2}$ needs no bars, and the test ran on the answer rather than on the root each time."
+      ]
+    },
+    {
+      "prompt": "Simplify $\\sqrt{x^{8}}$, then $\\sqrt{x^{9}}$.",
+      "steps": [
+        "The first exponent is even, and $x^{8}$ is $x^{4}$ multiplied by itself, so the root hands back the half: $\\sqrt{x^{8}} = x^{4}$.",
+        "No bars are needed there, since $x^{4}$ is a square and a square is never negative.",
+        "The second exponent is odd, so peel one copy off: $x^{9} = x^{8} \\cdot x$.",
+        "Half of $8$ is $4$, so $x^{4}$ steps out and the spare $x$ stays under the root: $\\sqrt{x^{9}} = x^{4}\\sqrt{x}$."
+      ]
+    },
+    {
+      "prompt": "Simplify $\\sqrt{72x^{5}}$.",
+      "steps": [
+        "Take the number first: $72 = 36 \\cdot 2$, so $\\sqrt{72} = 6\\sqrt{2}$.",
+        "Now the variable: $x^{5}$ is $x^{4} \\cdot x$, and half of $4$ is $2$, so $x^{2}$ comes out.",
+        "The spare $x$ had nowhere else to go, so it stays under the root beside the $2$.",
+        "Putting the pieces together gives $\\sqrt{72x^{5}} = 6x^{2}\\sqrt{2x}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "magnitude-root-play", "gates": true },
+    { "after": 1, "id": "sqrt-square-spot", "gates": true },
+    { "after": 2, "id": "root-parity-builder", "gates": true },
+    { "after": 3, "id": "variable-radicand-builder", "gates": true },
+    { "after": 4, "id": "mixed-radicand-solver", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Nobody wrote down whether $x$ is positive or negative. Write $\\sqrt{36x^{6}}$ in simplified form. Type an absolute value as `abs(x)` or `|x|`.",
+    "accepted": [
+      "6*abs(x^3)",
+      "6abs(x^3)",
+      "6*|x^3|",
+      "6|x^3|",
+      "6*abs(x)^3",
+      "6abs(x)^3",
+      "6*|x|^3",
+      "6|x|^3",
+      "abs(6*x^3)",
+      "abs(6x^3)",
+      "|6*x^3|",
+      "|6x^3|",
+      "6*x^2*abs(x)",
+      "6x^2abs(x)",
+      "6*x^2*|x|",
+      "6x^2|x|"
+    ],
+    "hint": "Work the number and the variable one at a time. An even exponent under a square root halves. Then ask the bars question about the answer you are about to write, not about the root: could that expression be negative?",
+    "worked_solution": [
+      "Split the root across the two factors: $\\sqrt{36x^{6}} = \\sqrt{36} \\cdot \\sqrt{x^{6}}$.",
+      "The number is a perfect square, so $\\sqrt{36} = 6$.",
+      "An even exponent halves under a square root, so $\\sqrt{x^{6}}$ gives $x^{3}$.",
+      "Now ask the bars question about $x^{3}$, not about the root. Nobody said $x$ is positive, so $x^{3}$ can be negative, and a square root never returns a negative value.",
+      "The cube therefore needs bars: the simplified form is $6\\lvert x^{3} \\rvert$, typed `6*abs(x^3)`."
+    ],
+    "worked_solution_params": { "varIndex": 0, "coefficient": 6, "half": 3 },
+    "check": {
+      "answer_type": "expression",
+      "answer_key": "6*abs(x^3)",
+      "simplification": "simplified_radical",
+      "allowed_symbols": ["x", "y", "n", "t"]
+    },
+    "variants": { "template_id": "cfu.rad4.odd-half-bars", "count": 2 }
+  }
+}

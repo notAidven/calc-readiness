@@ -1,0 +1,75 @@
+{
+  "node_id": "FUN.5",
+  "title": "Average rate of change",
+  "mini_lesson": [
+    "In the telemetry loft a chart recorder inks one long strip of paper, and every question put to it is a question about change: how far the reading moved, and how long it took to move. The **average rate of change** of a quantity over an interval is the change in the quantity divided by the change in the input. It answers *per hour* rather than *how much*, so one number describes a whole stretch of the trace instead of a value at a single moment.",
+    "When the quantity arrives as a rule rather than as a trace, the same definition does the work. For a function $f$ and two inputs $a$ and $b$, the average rate of change from $a$ to $b$ is $\\dfrac{f(b) - f(a)}{b - a}$. Whatever the rule does between the two ends never enters the calculation.",
+    "The subtraction on top carries a sign, and the sign is part of the answer. The bottom is always positive, because the interval runs forward and it is the earlier input that gets subtracted, so the top settles the sign on its own: a quantity that ends higher than it started makes the top positive and reports a positive rate, and one that ends lower makes the top negative and reports a negative rate. Measuring the size of the gap and dropping the direction turns a fall into a rise.",
+    "An average rate belongs to an interval, never to a moment. Widen the window or slide it along and the same trace hands back a different average, because only the two endpoints are consulted. A rate is therefore quoted together with the interval it was taken over."
+  ],
+  "slide_subtitles": [
+    "Change over an interval",
+    "From a function rule",
+    "Rising and falling",
+    "Two windows, two averages"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A recorder reads $8$ units at hour $1$ and $38$ units at hour $6$. What is the average rate of change per hour over that window?",
+      "steps": [
+        "An average rate compares two changes, so take the change in the reading first: $38 - 8 = 30$ units.",
+        "The change that goes underneath is the change in the input, which here is the hours: $6 - 1 = 5$.",
+        "Divide the change in the reading by the change in the hours: $\\dfrac{30}{5} = 6$.",
+        "So the reading averages $6$ units per hour over that window."
+      ]
+    },
+    {
+      "prompt": "For $f(x) = x^{2} + 3x$, find the average rate of change from $x = 2$ to $x = 6$.",
+      "steps": [
+        "Evaluate at both ends: $f(6) = 36 + 18 = 54$ and $f(2) = 4 + 6 = 10$.",
+        "Subtract in the same direction top and bottom, so the top is $54 - 10 = 44$ and the bottom is $6 - 2 = 4$.",
+        "Divide: $\\dfrac{44}{4} = 11$.",
+        "So the average rate of change from $x = 2$ to $x = 6$ is $11$."
+      ]
+    },
+    {
+      "prompt": "A reading falls from $60$ units at hour $1$ to $25$ units at hour $6$. What is the average rate of change per hour?",
+      "steps": [
+        "Subtract in the direction the window runs, later reading first: $25 - 60 = -35$ units.",
+        "The window is $6 - 1 = 5$ hours long, and that stays positive.",
+        "So the rate is $\\dfrac{-35}{5} = -7$ units per hour.",
+        "The minus sign belongs to the answer: reporting $7$ would describe a reading that climbed."
+      ]
+    },
+    {
+      "prompt": "A trace reads $5$ units at hour $0$, $45$ at hour $4$ and $35$ at hour $10$. Find the average rate per hour from hour $0$ to hour $4$, and then from hour $0$ to hour $10$.",
+      "steps": [
+        "The first window runs from $5$ to $45$ over $4$ hours, so it averages $\\dfrac{40}{4} = 10$ units per hour.",
+        "The second window runs from $5$ to $35$ over $10$ hours, so it averages $\\dfrac{30}{10} = 3$ units per hour.",
+        "Only the endpoints were consulted either time, so the fall from $45$ to $35$ inside the wider window never entered the arithmetic.",
+        "So the same trace averages $10$ units per hour over the shorter window and $3$ over the longer one."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "rate-average-explore", "gates": true },
+    { "after": 1, "id": "rate-walkthrough", "gates": true },
+    { "after": 2, "id": "rate-table", "gates": true },
+    { "after": 3, "id": "rate-interval-slider", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A recorder marks the pressure at three points in one shift: $4$ units at hour $0$, $28$ units at hour $3$, and $16$ units at hour $6$. Work out the average rate of change per hour from hour $0$ to hour $6$, and then the average rate of change per hour from hour $3$ to hour $6$. Give the two rates in that order, separated by a comma.",
+    "accepted": ["2, -4", "2,-4", "2 , -4", "2 and -4", "2; -4", "2;-4"],
+    "hint": "Take the two windows one at a time. For the whole shift only the marks at its two ends count, so subtract the reading at hour $0$ from the reading at hour $6$ and divide by the $6$ hours between them. Then run the same two steps on the window from hour $3$ to hour $6$, keeping whatever sign the subtraction gives.",
+    "worked_solution": [
+      "Over the whole shift only the endpoints count: the reading runs from $4$ units at hour $0$ to $16$ units at hour $6$.",
+      "The change in the reading is $16 - 4 = 12$ units, and the change in the hours is $6 - 0 = 6$.",
+      "So the average rate over the whole shift is $\\dfrac{12}{6} = 2$ units per hour.",
+      "Now take the second window on its own: the reading runs from $28$ units at hour $3$ to $16$ units at hour $6$, a change of $16 - 28 = -12$ units over $6 - 3 = 3$ hours.",
+      "That window averages $\\dfrac{-12}{3} = -4$ units per hour, so the trace climbed across the shift as a whole while falling across its last stretch.",
+      "The two rates are $2$ units per hour and $-4$ units per hour, typed as `2, -4`."
+    ],
+    "worked_solution_params": { "t1": 3, "t2": 6, "v0": 4, "v1": 28, "v2": 16 },
+    "variants": { "template_id": "cfu.fun5.average-rate", "count": 2 }
+  }
+}

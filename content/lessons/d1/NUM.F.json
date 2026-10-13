@@ -1,0 +1,84 @@
+{
+  "node_id": "NUM.F",
+  "title": "Fractions",
+  "mini_lesson": [
+    "The camp splits a day's catch into equal shares before any of it goes on the drying racks, so parts of a whole get counted out all day. A **fraction** names part of a whole: the **denominator** on the bottom says how many equal parts the whole was cut into, and the **numerator** on top counts how many of those parts you have. The bottom number comes first, because until you know how big one part is, counting parts tells you nothing.",
+    "Different-looking fractions can share the **same value**: these are **equivalent fractions**. Multiply or divide top and bottom by the same nonzero number, and the amount does not move; only the number of pieces it is counted in does.",
+    "Numerators can only be combined once the pieces they count are the same size, which is what a **common denominator** buys you. Rewriting both fractions over a number that both denominators divide into makes every piece the same size, and the least such number keeps the arithmetic small. Combining before that adds pieces of two different sizes, which is the mistake this order exists to prevent.",
+    "Multiplying fractions needs no common denominator, since nothing is being combined: you are taking a part of a part. Slicing a whole one way and then the other cuts it into as many pieces as the two denominators multiply to, and the block you keep is as many as the two numerators multiply to. That is why the rule is to multiply straight across and then write the product in **lowest terms**, where the top and the bottom share no factor above $1$.",
+    "Dividing asks how many of one amount fit inside another, so dividing by a piece smaller than a whole gives an answer larger than the one you started with. Counting those pieces is the same as multiplying by the divisor's **reciprocal**, which is that fraction turned upside down. Only the divisor turns over, because the amount being divided has not changed."
+  ],
+  "slide_subtitles": [
+    "Parts of a fraction",
+    "Equivalent fractions",
+    "A common denominator",
+    "Multiplying fractions",
+    "Dividing by a fraction"
+  ],
+  "worked_examples": [
+    null,
+    {
+      "prompt": "Rewrite $\\dfrac{6}{14}$ in larger pieces, then in smaller ones.",
+      "steps": [
+        "Start from $\\dfrac{6}{14}$ and divide the top and the bottom by the same number, $2$.",
+        "The top becomes $6 \\div 2 = 3$ and the bottom becomes $14 \\div 2 = 7$, so the fraction reads $\\dfrac{3}{7}$.",
+        "Nothing was taken away, only recounted in bigger pieces, so $\\dfrac{6}{14} = \\dfrac{3}{7}$.",
+        "Scaling up works the same way: multiply the top and the bottom of $\\dfrac{3}{7}$ by $5$.",
+        "All three name one amount counted in different size pieces: $\\dfrac{6}{14} = \\dfrac{3}{7} = \\dfrac{15}{35}$."
+      ]
+    },
+    {
+      "prompt": "Add $\\dfrac{3}{8} + \\dfrac{5}{12}$.",
+      "steps": [
+        "The two fractions in $\\dfrac{3}{8} + \\dfrac{5}{12}$ count pieces of different sizes, so first find a number that both $8$ and $12$ divide into.",
+        "The multiples of $8$ run $8, 16, 24$ and the multiples of $12$ run $12, 24$, so the least common denominator is $24$.",
+        "Rewrite the first fraction. Since $8 \\times 3 = 24$, its numerator scales by $3$ as well, giving $\\dfrac{9}{24}$.",
+        "Rewrite the second fraction. Since $12 \\times 2 = 24$, its numerator scales by $2$ as well, giving $\\dfrac{10}{24}$.",
+        "The pieces now match, so add the numerators and keep the denominator: $\\dfrac{9}{24} + \\dfrac{10}{24} = \\dfrac{19}{24}$, which shares no factor top and bottom."
+      ]
+    },
+    {
+      "prompt": "Multiply $\\dfrac{4}{9} \\times \\dfrac{3}{8}$ and write it in lowest terms.",
+      "steps": [
+        "Multiply straight across: $\\dfrac{4}{9} \\times \\dfrac{3}{8} = \\dfrac{4 \\times 3}{9 \\times 8}$.",
+        "Working out each product gives $\\dfrac{12}{72}$.",
+        "The top and the bottom share a factor of $12$, so divide each by it: $\\dfrac{12 \\div 12}{72 \\div 12}$.",
+        "In lowest terms the product is $\\dfrac{1}{6}$."
+      ]
+    },
+    {
+      "prompt": "How many pieces of size $\\dfrac{3}{10}$ fit into $\\dfrac{7}{8}$?",
+      "steps": [
+        "Dividing by $\\dfrac{3}{10}$ asks how many pieces that size fit into $\\dfrac{7}{8}$, so turn the divisor over and multiply: $\\dfrac{7}{8} \\times \\dfrac{10}{3}$.",
+        "Multiply straight across: $\\dfrac{7 \\times 10}{8 \\times 3} = \\dfrac{70}{24}$.",
+        "The top and the bottom are both even, so divide each by $2$: $\\dfrac{70 \\div 2}{24 \\div 2}$.",
+        "In lowest terms the quotient is $\\dfrac{35}{12}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "fraction-parts-explore", "gates": true },
+    { "after": 1, "id": "equivalent-fraction-play", "gates": true },
+    { "after": 2, "id": "common-denominator-multiples", "gates": true },
+    { "after": 3, "id": "fraction-multiply-play", "gates": true },
+    { "after": 4, "id": "fraction-divide-play", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Multiply and write in lowest terms: $\\dfrac{2}{5} \\times \\dfrac{5}{6}$.",
+    "accepted": ["1/3"],
+    "worked_solution_params": { "a": 2, "b": 5, "c": 5, "e": 6, "n": 1, "d": 3 },
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "1/3",
+      "representation": "fraction",
+      "simplification": "reduced_fraction"
+    },
+    "hint": "Start by multiplying straight across: $\\dfrac{2 \\times 5}{5 \\times 6} = \\dfrac{10}{30}$. Then look for a common factor in the top and bottom; you can cancel before you multiply, too. What fraction do you get in lowest terms?",
+    "worked_solution": [
+      "Multiplying fractions goes straight across, top with top and bottom with bottom: $\\dfrac{2 \\times 5}{5 \\times 6} = \\dfrac{10}{30}$.",
+      "The top and the bottom share a factor of $10$, so divide each by it: $\\dfrac{10 \\div 10}{30 \\div 10}$.",
+      "In lowest terms the product is $\\dfrac{1}{3}$."
+    ],
+    "variants": { "template_id": "cfu.numf.multiply-reduce", "count": 2 }
+  }
+}

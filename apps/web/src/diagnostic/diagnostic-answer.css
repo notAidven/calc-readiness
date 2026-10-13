@@ -1,0 +1,194 @@
+/*
+ * THE DIAGNOSTIC ANSWER ROW'S OWN STYLESHEET, imported by the component.
+ *
+ * Unscoped and component-owned, which is the reason it is a file rather than a block in
+ * `diagnostic-demo.css`: TWO surfaces mount this row — the diagnostic and the completion
+ * ceremony's final check — and they load different stylesheets. The rules it replaced were
+ * `.diagnostic-demo .cr-math-input …`, i.e. scoped to one of the two, and the ceremony got
+ * its look from `styles.css`'s global `.cr-math-input` instead. Splitting the same control's
+ * appearance across two files keyed on which host mounted it is how the two came to differ,
+ * so the row now carries its own.
+ *
+ * ## THE FIELD IS STYLED HERE, AND THIS FILE USED TO SAY THE OPPOSITE
+ *
+ * It said: *"The FIELD itself is deliberately not styled here. It is `PracticeAnswer`'s, and
+ * its border, radius, keypad strip and preview all live in `styles.css` beside the practice
+ * surfaces that share it."* That was false, and it was false in a way nothing could feel.
+ *
+ * In `styles.css` a math answer field is painted by **`.lesson-player__row input`** — the
+ * padding, the 1px `--ink` border, the 8px radius, all of it. That selector is the LESSON
+ * row's. The diagnostic's form is `.dgx-answer`, so none of it applied, and
+ * `.cr-math-answer > input` (the only other rule that reaches the field) sets `flex` and
+ * `width` and no dressing at all. Measured on the learner's own mount at 1024x580, the
+ * diagnostic's answer field computed to `border: 2px inset rgb(118, 118, 118)` and
+ * `border-radius: 0px` — the user agent's raw `<input>`, 21px tall, directly under a fully
+ * painted card.
+ *
+ * That is a REGRESSION and it is datable. `a16133e8` ("Diagnostic UI: align theme with the
+ * game") dressed this surface's field as `.diagnostic-demo .cr-math-input__field`: a
+ * `--game-panel-line` border, `--dgx-radius-sm`, a white ground and a `--game-blue` focus
+ * ring. `#492` replaced `MathInput` with the shared `PracticeAnswer`, and those rules went
+ * out with the class name they were scoped to. The field has been undressed since.
+ *
+ * So the rules below are `a16133e8`'s, re-expressed against the control that is actually
+ * mounted. What is still `PracticeAnswer`'s, and is deliberately not touched here, is the
+ * COLUMN: the notation note and the preview keep the shared component's own spacing so this
+ * surface cannot drift from the ceremony and the crisis rows
+ * (`ceremonyAnswerRow.browser.test.tsx` pins those three against each other).
+ */
+
+.dgx-answer {
+  display: grid;
+  gap: var(--space-sm);
+  justify-items: center;
+  box-sizing: border-box;
+  max-width: 460px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/*
+ * THE FIELD, dressed to the game's own panel tokens rather than to the user agent.
+ *
+ * `.dgx-answer input` reaches all three shapes the row dispatches into — the plain text
+ * field, the expression half of a rational answer, and its exclusions half — because the
+ * defect was never about one of them: none of the three was painted.
+ */
+.dgx-answer input[type="text"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--game-panel-line, #e2d8c6);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--game-slate, #2b3642);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.dgx-answer input[type="text"]::placeholder {
+  color: var(--game-mist, #5b6b7a);
+  opacity: 0.85;
+}
+
+/*
+ * The focus ring is the surface's own blue rather than the platform's, and it is drawn as an
+ * `outline` so it cannot change the field's box: a focus treatment that reflows the answer
+ * row moves the submit button under the learner's cursor as they tab into it.
+ */
+.dgx-answer input[type="text"]:focus-visible {
+  border-color: var(--game-blue, #3e7cb1);
+  outline: 3px solid color-mix(in oklab, var(--game-blue, #3e7cb1) 35%, transparent);
+  outline-offset: 0;
+}
+
+.dgx-answer__label {
+  color: var(--game-mist, #5b6b7a);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* The dispatched control fills the column, whichever shape it took: one text field, the
+   field plus its notation column, or the rational answer's two labelled fields. */
+.dgx-answer > .cr-math-answer,
+.dgx-answer > .cr-rational-answer,
+.dgx-answer > input {
+  width: 100%;
+}
+
+/*
+ * ROOM FOR THE FOCUS RING over the rational answer's field labels.
+ *
+ * `.city-shell :focus-visible` draws `3px` at `outline-offset: 2px`, so a focused input's
+ * ring sits 5px outside its border box, and `.cr-rational-answer__field`'s own gap is 2px.
+ * Measured on a 1024x580 frame of `RAT.1`: the label ran 361..372 and the input 374..395, so
+ * the ring started at 369 and drew a line straight through "SIMPLIFIED EXPRESSION" — which is
+ * how it looked, a struck-out label on the first question of D5.
+ *
+ * Widened HERE rather than in the shared rule, which is not fastidiousness: the lesson row
+ * publishes `--cr-rational-input-offset: calc(0.72rem + 2px)` off that same 2px so a sibling
+ * Check button can align to the input rather than the label, and moving the gap without
+ * moving that would misalign a button in another lane to fix a ring in this one.
+ */
+.dgx-answer .cr-rational-answer__field {
+  gap: 8px;
+}
+
+.dgx-answer__actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/*
+ * The submit is its own element rather than welded to the field's right edge, which is
+ * what `MathInput` did. It has to be: the control below it can now be TWO fields stacked
+ * (`rational_answer`), and there is no single right edge to weld to.
+ */
+.dgx-answer__submit {
+  min-height: 48px;
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  border: 1px solid var(--civic-dark);
+  border-radius: 999px;
+  background: var(--civic);
+  color: oklch(0.97 0.02 182);
+  font-family: var(--font-display, inherit);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+
+.dgx-answer__submit:hover:not(:disabled) {
+  background: var(--civic-dark);
+}
+
+.dgx-answer__submit:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.dgx-answer__submit:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+/*
+ * THE REFUSAL BAR: what a press that could not be accepted looks like.
+ *
+ * It used to be a bare coloured line with a reserved `min-height: 1.2em`, held open whether or
+ * not it said anything so the submit could not jump. It no longer needs holding open, because
+ * it sits BELOW the submit: the row grows downward and nothing above it moves. So the element
+ * renders only when there is something to say, which is also what lets a test assert that a
+ * readable miss produces no bar at all rather than a bar containing a space.
+ *
+ * Drawn as a bar rather than a line because the report was that there was no bar
+ * ("putting in 'a' doesnt display an error bar"): a tinted panel with a border reads as a
+ * refusal at a glance, where a one-line colour shift beneath a large green button does not.
+ *
+ * `clay` rather than a red: this instrument never marks anything wrong, and the one thing the
+ * bar must not look like is a verdict. Same family as the rest of the diagnostic's warm chrome.
+ */
+.dgx-answer__notice {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid color-mix(in oklab, var(--game-clay-deep, #9a5b3f) 45%, transparent);
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--game-clay-deep, #9a5b3f) 8%, transparent);
+  color: var(--game-clay-deep, #9a5b3f);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* The empty-field case is a nudge rather than a refusal to read, so it stays quiet: no panel,
+   just the line it always was. Only "we could not read that" earns the bar. */
+.dgx-answer__notice[data-tone="empty"] {
+  padding: 0;
+  border-color: transparent;
+  background: none;
+}

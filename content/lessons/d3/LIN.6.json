@@ -1,0 +1,76 @@
+{
+  "node_id": "LIN.6",
+  "title": "Solve absolute-value inequalities",
+  "mini_lesson": [
+    "An inspector at the gate passes a stamped weight when its error is small enough and rejects it otherwise, so both halves of that call are absolute-value statements carrying an inequality sign instead of an equals sign. Each of them describes a stretch of the scale rather than two isolated weights, and the two stretches turn out to be shaped nothing like each other. Which of the two shapes an answer takes is settled entirely by which way the inequality sign points.",
+    "Take the passes first. Saying the distance from the standard is at most the tolerance is saying the weight sits somewhere in one band, ends included, and in symbols the quantity inside the bars is squeezed between the negative tolerance and the positive one. A sign pointing towards the bars, $<$ or $\\le$, always produces one single band, because sitting close to the standard is one condition and not two.",
+    "A weight fails by being more than the tolerance away from the standard, and that happens in two disconnected ways, below the band or above it, with nothing in between failing at all. So the failures cannot be one stretch: each piece is a **ray**, the part of the scale that runs one way from an endpoint and never stops, and the two are joined by the union symbol. A sign pointing away from the bars, $>$ or $\\ge$, always produces this two-piece shape, because drifting far from the standard can happen on either side.",
+    "Both shapes so far were settled by the same two decisions in a fixed order: which way the sign points, and then what the arithmetic gives. So what changes when a coefficient sits inside the bars? The order does not, but the coefficient brings a division with it, and that division reverses both signs when the coefficient is negative."
+  ],
+  "slide_subtitles": [
+    "Passing the inspection",
+    "Inside the tolerance",
+    "Outside the tolerance",
+    "Solving one from scratch"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The gate's tolerance for the $60$ mina standard is $2$. Write the passing weights and the failing weights as absolute-value statements.",
+      "steps": [
+        "The error of a weight $w$ against that standard is $\\lvert w - 60 \\rvert$.",
+        "A weight passes when its error is $2$ or less, which is $\\lvert w - 60 \\rvert \\le 2$.",
+        "It fails when its error is more than $2$, which is $\\lvert w - 60 \\rvert > 2$.",
+        "Those two statements cover every stamped weight between them, since an error is either at most $2$ or more than $2$."
+      ]
+    },
+    {
+      "prompt": "Solve $\\lvert w - 60 \\rvert \\le 2$ and give the passing weights as an interval.",
+      "steps": [
+        "The sign points towards the bars, so the answer is one band.",
+        "The bars say $w - 60$ sits no more than $2$ from zero, which unpacks into $-2 \\le w - 60 \\le 2$.",
+        "Add $60$ right across all three parts: $58 \\le w \\le 62$.",
+        "Both signs were the at-most kind, so neither end is left out: the passing weights are $[58, 62]$."
+      ]
+    },
+    {
+      "prompt": "Solve $\\lvert w - 60 \\rvert > 2$ and give the failing weights in interval notation.",
+      "steps": [
+        "The sign points away from the bars, so the answer will be two rays rather than one band.",
+        "The quantity inside sits more than $2$ from zero on one side or the other, giving $w - 60 > 2$ or $w - 60 < -2$.",
+        "Adding $60$ to each of those gives $w > 62$ or $w < 58$.",
+        "Taken in order and joined with a union, the failing weights are $(-\\infty, 58) \\cup (62, \\infty)$."
+      ]
+    },
+    {
+      "prompt": "Solve $\\lvert 3x - 3 \\rvert \\ge 15$ and give the answer in interval notation.",
+      "steps": [
+        "The sign points away from the bars, so the shape is two rays before any arithmetic happens: $3x - 3 \\ge 15$ or $3x - 3 \\le -15$.",
+        "The first of those gives $3x \\ge 18$ and then $x \\ge 6$.",
+        "The second gives $3x \\le -12$ and then $x \\le -4$.",
+        "Both divisions were by a positive $3$, so neither sign reversed.",
+        "Taken in order and joined with a union, that is $(-\\infty, -4] \\cup [6, \\infty)$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "tolerance-pass-sorter", "gates": true },
+    { "after": 1, "id": "abs-band-table", "gates": true },
+    { "after": 2, "id": "abs-union-builder", "gates": true },
+    { "after": 3, "id": "abs-inequality-order", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A gate rule reads $\\lvert x - 20 \\rvert < 5$. Give the solution in interval notation.",
+    "accepted": ["(15, 25)"],
+    "hint": "The sign points towards the bars, so decide which of the two shapes the answer has before solving anything. Then write the compound inequality the bars unpack into and add the same number right across it.",
+    "worked_solution": [
+      "The sign points towards the bars, so this is the shape whose answer is one stretch between two numbers rather than two stretches running outwards.",
+      "That shape unpacks into a single compound inequality: $-5 < x - 20 < 5$.",
+      "Add $20$ right across all three parts: $15 < x < 25$.",
+      "Neither end is included, so both brackets are round: the gate admits $(15, 25)$."
+    ],
+    "worked_solution_template": "d3.lin6.band.l1",
+    "worked_solution_params": { "centre": 20, "tolerance": 5, "closed": 0 },
+    "check": { "answer_type": "interval", "answer_key": "(15, 25)" },
+    "variants": { "template_id": "d3.lin6.union.l2", "count": 2 }
+  }
+}

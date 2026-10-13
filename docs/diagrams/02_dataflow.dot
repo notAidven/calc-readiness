@@ -1,0 +1,30 @@
+digraph dataflow {
+  rankdir=TB;
+  fontname="Helvetica"; labelloc=t; fontsize=16;
+  label="Core data-flow: the student journey (placement writes only; one mastery service)";
+  node [shape=box style="rounded,filled" fontname="Helvetica" fontsize=10 fillcolor="#eef2ff" color="#334155"];
+  edge [fontname="Helvetica" fontsize=9 color="#475569"];
+
+  // ordered steps down the page; each step is one message
+  s1  [label="1. Student takes diagnostic (~2 items/node, branching)" fillcolor="#e0f2fe"];
+  s2  [label="2. Diagnostic -> Student State:\nWRITE placement_estimate (once; NOT mastery)" fillcolor="#dcfce7"];
+  s3  [label="3. Student State -> Game:\nread placement_estimate + mastery(=0)" fillcolor="#fde8d0"];
+  s4  [label="4. Game -> Student:\nrender seeded city (buildings sized by placement, storms)" fillcolor="#e0f2fe"];
+  s5  [label="5. Student -> Game: enter a neighborhood / building" fillcolor="#e0f2fe"];
+  s6  [label="6. Game -> Lesson: launch lesson for node" fillcolor="#e0f2fe"];
+  s7  [label="7. Lesson -> Student: tutor, check, practice (hints, scaffolding)" fillcolor="#e0f2fe"];
+  s8  [label="8. Student -> Lesson: work through practice" fillcolor="#e0f2fe"];
+  s9  [label="9. Lesson -> Mastery Service:\nsubmitAssessmentEvidence(lesson responses)" fillcolor="#dcfce7"];
+  s10 [label="10. Mastery Service -> Student State:\nwrite mastery = max(existing, evidenced), completion_status" fillcolor="#bbf7d0"];
+  s11 [label="11. Student State -> Game: read updated mastery" fillcolor="#fde8d0"];
+  s12 [label="12. Game -> Student: building completes / storm checkpoint" fillcolor="#e0f2fe"];
+
+  n1 [shape=note fillcolor="#fff7ed" label="Storm battle at neighborhood checkpoint:\ncheckpoint-only; sets flag once ALL nodes mastered\n(storm never masters a node)"];
+  n2 [shape=note fillcolor="#fff7ed" label="Mastery is monotonic (no decay in v1)"];
+
+  s1 -> s2 -> s3 -> s4 -> s5 -> s6 -> s7 -> s8 -> s9 -> s10 -> s11 -> s12;
+  s12 -> n1 [style=invis];
+  n1 -> n2 [style=invis];
+  { rank=same; s12; n1; }
+  { rank=same; s10; n2; }
+}

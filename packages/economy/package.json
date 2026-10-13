@@ -1,0 +1,15 @@
+{
+  "name": "@cr/economy",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Gabe. Pure economy rules core (ZERO I/O): idempotent grant, atomic spend, deterministic event ids, XP curve, rolling cap, cosmetic catalog descriptors, island condition/repair math, era materials and the two capacities. No DB, no network, no framework.",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --build"
+  },
+  "dependencies": {
+    "@cr/mastery-service": "*",
+    "@cr/skill-graph": "*"
+  }
+}

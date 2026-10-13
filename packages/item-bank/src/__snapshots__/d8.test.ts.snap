@@ -1,0 +1,186 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`D8 pool content pin (a template edit that changes the pool must be explicit) > pins the frozen D8 practice pool ids + content hashes 1`] = `
+[
+  {
+    "difficulty": 1,
+    "hash": "1a01e6a5",
+    "id": "d8.el1.evaluate.l1:practice:90000",
+    "node": "EL.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "d1c05a8f",
+    "id": "d8.el1.decay-value.l2:practice:90001",
+    "node": "EL.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "272164c4",
+    "id": "d8.el1.classify.l2:practice:90002",
+    "node": "EL.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "31db94cf",
+    "id": "d8.el1.percent-growth.l3:practice:90003",
+    "node": "EL.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "c1e91e2f",
+    "id": "d8.el1.continuous.l3:practice:90004",
+    "node": "EL.1",
+  },
+  {
+    "difficulty": 1,
+    "hash": "14b81c4c",
+    "id": "d8.el2.asymptote.l1:practice:90005",
+    "node": "EL.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "a7d0bac1",
+    "id": "d8.el2.intercept.l2:practice:90006",
+    "node": "EL.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "580edee0",
+    "id": "d8.el2.anchor-point.l2:practice:90007",
+    "node": "EL.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "35900bc2",
+    "id": "d8.el2.transform-rhs.l3:practice:90008",
+    "node": "EL.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "3410fb58",
+    "id": "d8.el2.which-transform.l3:practice:90009",
+    "node": "EL.2",
+  },
+  {
+    "difficulty": 1,
+    "hash": "92a538e4",
+    "id": "d8.el3.evaluate-common.l1:practice:90010",
+    "node": "EL.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "fd4234ec",
+    "id": "d8.el3.evaluate-base.l2:practice:90011",
+    "node": "EL.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "3a112cbe",
+    "id": "d8.el3.to-exponential.l2:practice:90012",
+    "node": "EL.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "38bc5f56",
+    "id": "d8.el3.evaluate-natural.l3:practice:90013",
+    "node": "EL.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "01c5578c",
+    "id": "d8.el3.missing-base.l3:practice:90014",
+    "node": "EL.3",
+  },
+  {
+    "difficulty": 1,
+    "hash": "e2865bc1",
+    "id": "d8.el4.asymptote.l1:practice:90015",
+    "node": "EL.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "2ca2aac6",
+    "id": "d8.el4.domain.l2:practice:90016",
+    "node": "EL.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "85bc7392",
+    "id": "d8.el4.x-intercept.l2:practice:90017",
+    "node": "EL.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "c9f8a78d",
+    "id": "d8.el4.domain-shift.l3:practice:90018",
+    "node": "EL.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "d1eab497",
+    "id": "d8.el4.evaluate-point.l3:practice:90019",
+    "node": "EL.4",
+  },
+  {
+    "difficulty": 1,
+    "hash": "335a5b43",
+    "id": "d8.el5.expand-product.l1:practice:90020",
+    "node": "EL.5",
+  },
+  {
+    "difficulty": 2,
+    "hash": "116479ca",
+    "id": "d8.el5.expand-power.l2:practice:90021",
+    "node": "EL.5",
+  },
+  {
+    "difficulty": 2,
+    "hash": "84e71dbb",
+    "id": "d8.el5.condense-sum.l2:practice:90022",
+    "node": "EL.5",
+  },
+  {
+    "difficulty": 3,
+    "hash": "91895c88",
+    "id": "d8.el5.expand-quotient.l3:practice:90023",
+    "node": "EL.5",
+  },
+  {
+    "difficulty": 3,
+    "hash": "e0490277",
+    "id": "d8.el5.change-base-value.l3:practice:90024",
+    "node": "EL.5",
+  },
+  {
+    "difficulty": 1,
+    "hash": "a8e13cd4",
+    "id": "d8.el6.same-base.l1:practice:90025",
+    "node": "EL.6",
+  },
+  {
+    "difficulty": 2,
+    "hash": "340368db",
+    "id": "d8.el6.log-single.l2:practice:90026",
+    "node": "EL.6",
+  },
+  {
+    "difficulty": 2,
+    "hash": "33935e1f",
+    "id": "d8.el6.take-log.l2:practice:90027",
+    "node": "EL.6",
+  },
+  {
+    "difficulty": 3,
+    "hash": "dcf0f787",
+    "id": "d8.el6.extraneous.l3:practice:90028",
+    "node": "EL.6",
+  },
+  {
+    "difficulty": 3,
+    "hash": "60568602",
+    "id": "d8.el6.exp-quadratic.l3:practice:90029",
+    "node": "EL.6",
+  },
+]
+`;

@@ -1,0 +1,299 @@
+/* -------------------------------------------------------------------------- */
+/* THE FIRST-BUILDING TASK — the one place in onboarding the learner acts,     */
+/* and since the 2026-08-05 review it draws no board at all.                   */
+/*                                                                             */
+/* It replaces `firstBuildingBoard.css`, which styled two 62px tiles and a     */
+/* ghost that travelled between them inside the speech bubble. The lead's      */
+/* verdict on that: "they should actually have to place the building and not   */
+/* just drag a house into a 2d box." So the tiles are gone, the ghost is gone, */
+/* and what is left is a line of instruction, one shortcut button and a status */
+/* line, beside a live island the learner is building on for real.             */
+/* -------------------------------------------------------------------------- */
+
+.ob-task {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+}
+
+/* The imperative. A step up in weight from the status line under it, because it is the thing
+   to read first and it stays put while the status changes underneath. */
+.ob-task__line {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* THE SHORTCUT, not the instruction. The Build pill is ringed on this moment and the status
+   line names it in words; this exists for the learner who still cannot find it, which on the
+   first screen anybody sees is a cheap thing to insure against. */
+.ob-task__open {
+  min-height: 34px;
+  padding-block: 4px;
+  font-size: 0.86rem;
+}
+
+/* The status line, and the last child, which is the `aria-live` contract every widget in
+   this codebase follows. `data-state` never carries the meaning on its own: the sentence
+   does, and the colour is reinforcement. */
+.ob-task__status {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.ob-task__status[data-state="wrong"] {
+  color: var(--signal-deep);
+  font-weight: 700;
+}
+
+.ob-task__status[data-state="solved"] {
+  color: var(--civic-dark);
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* STANDING DOWN — the advisor gets out of the learner's way for one moment.   */
+/*                                                                             */
+/* THE PROBLEM THIS SOLVES IS GEOMETRIC AND IT IS THE WHOLE REASON THE OLD     */
+/* BOARD EXISTED. `.crisis-call-stage` is a full-screen `z-index: 30` layer    */
+/* that takes pointer events, and `.crisis-call-speech` is a 900px assembly    */
+/* along the bottom of the window. A learner cannot open a Build menu they     */
+/* cannot click, and cannot pick a cell on ground the speech bubble is sitting */
+/* on top of.                                                                  */
+/*                                                                             */
+/* So on the gated moment, and only there, the layer stops taking clicks and   */
+/* the assembly shrinks into the bottom-left corner. It is the SAME components */
+/* in the same stylesheet with a state on them, not a second advisor: "do not  */
+/* invent a second advisor" is only enforceable if there is nothing to drift.  */
+/* -------------------------------------------------------------------------- */
+
+/* The layer is see-through to the pointer; the speech is not. Everything outside the bubble
+   is the live city, which is exactly what the modal `aria-modal` version forbids. */
+.crisis-call-stage[data-standing-down="true"] {
+  pointer-events: none;
+}
+
+.crisis-call-stage[data-standing-down="true"] .crisis-call-speech {
+  /* Small enough to leave the island, the Build pill and the City life panel all reachable,
+     and still him rather than a toast: the figure keeps its proportions and its bubble. */
+  --crisis-figure: clamp(84px, 16vh, 116px);
+  width: min(410px, 100%);
+  pointer-events: auto;
+}
+
+.crisis-call-stage[data-standing-down="true"] .crisis-call-speech__said {
+  /* 48vh was 278px at the lead's window, which put the bubble's top at about y=281: under the
+     City life panel he is not talking about on this frame, and over nothing else. It is a
+     ceiling rather than a size, and the browser suite measures what the content actually
+     takes.
+
+     ⚑ IT GREW BY 20px ON 2026-08-09, and the 20 is the stepper's. Back and Next were 26px
+     boxes, under the 44px floor a first-run control owes a thumb, and giving them that floor
+     added 18px to the row inside this corner. `onboardingAdvisorShots.browser.test.tsx` caught
+     the consequence at once: the slide clipped 17px of ITSELF, silently and in the middle, so
+     the frame that tells a learner what to do next was drawing part of it. The ceiling only
+     grows the bubble UPWARD (it is anchored above the dock), so the confirm bar it must stay
+     clear of is unaffected, and the same suite asserts that separately. */
+  max-height: min(calc(48vh + 20px), calc(100vh - 2 * var(--space-lg)));
+  padding: 3px var(--space-lg);
+  font-size: 0.94em;
+}
+
+/* Every one of these is a few pixels off a 273px corner, and together they are the difference
+   between a panel that fits and a panel that silently scrolls its own instructions away. The
+   browser suite measures the result rather than trusting the arithmetic. */
+.crisis-call-stage[data-standing-down="true"] .crisis-call-walkthrough {
+  gap: 4px;
+  margin-top: 4px;
+  padding-top: 4px;
+}
+
+.crisis-call-stage[data-standing-down="true"] .ob-task {
+  gap: 4px;
+}
+
+.crisis-call-stage[data-standing-down="true"] .ob-task__open {
+  min-height: 28px;
+  padding-block: 2px;
+}
+
+.crisis-call-stage[data-standing-down="true"] .ob-task__status {
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+/* The bubble's own tail is measured up from `--crisis-figure`, so it follows the shrink with
+   no second rule. What does not follow is the tail's SIZE, which would read as a spike on a
+   116px figure. */
+.crisis-call-stage[data-standing-down="true"] .crisis-call-speech__bubble {
+  --crisis-tail: 16px;
+}
+
+/* The shout is the biggest type on the screen at full size and it cannot stay that way in a
+   430px corner panel, where it would push the task and the controls out of the bubble. */
+.crisis-call-stage[data-standing-down="true"] .crisis-call-lede {
+  font-size: 0.98rem;
+  line-height: 1.28;
+}
+
+.crisis-call-stage[data-standing-down="true"] .crisis-call-slide__step {
+  font-size: 0.62rem;
+}
+
+/* ⚑ THE BYLINE COMES OFF THIS FRAME, AND THE FRAMES ARE WHY RATHER THAN TASTE.
+   `.crisis-call-slide` is the walkthrough's scrolling row, so a panel with more content than
+   room does not spill: it CLIPS, silently, in the middle. Photographed at 1024x580 before this
+   rule, the shortcut button and the whole status line were below the fold with the stepper
+   still visible under them, so the one frame that tells the learner what to do next drew
+   neither. The corner is 273px tall between the City life panel and the dock, and the content
+   wanted about 310.
+
+   The byline goes because his figure is six inches away and the bubble has a tail pointing at
+   it. The teaching sentence stays: a learner should not have to complete the action before the
+   explanation of that action becomes readable. The all-beat browser guard holds it in frame. */
+.crisis-call-stage[data-standing-down="true"] .crisis-call-byline {
+  display: none;
+}
+
+/* The dots are decoration and they are the first thing to go when the row is this narrow. */
+.crisis-call-stage[data-standing-down="true"] .crisis-call-dots {
+  display: none;
+}
+
+/* And so is his standing offer to be asked again from the menu. It is true on every other
+   frame and it is not what this one is about; the room it takes is room the task line, the
+   status line and the stepper need in a 430px panel. */
+.crisis-call-stage[data-standing-down="true"] .crisis-call-closing {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* AND THE ONE HUD CONTROL THAT HAS TO MOVE OUT OF HIS WAY                     */
+/*                                                                             */
+/* `.hud-placement` is the confirm bar that finishes a placement: centred,     */
+/* `bottom: 112px`, `min(560px, 94vw)` wide. At 1024x580 that is x 232 to 792, */
+/* and `.hud` is `z-index: 5` against the stage's 30 — so the one button a     */
+/* learner MUST press to finish would be painted behind the panel telling them */
+/* to press it, and the stood-down bubble measures x 98 to 446 there.          */
+/*                                                                             */
+/* ⚑ MEASURED RATHER THAN GUESSED, AND THE FIRST TRY WAS WRONG. Lifting the    */
+/* bar STRAIGHT UP (`bottom: 232px`) put it at y 248 to 348 against a bubble at */
+/* y 292 to 563: still overlapping, and the shots suite said so in those        */
+/* numbers rather than the frame quietly shipping. Raising it further would run */
+/* it into the City life panel, which reaches y 290 on the same edge.           */
+/*                                                                             */
+/* So it moves SIDEWAYS instead. He is bottom-LEFT while stood down, so the bar */
+/* goes right and narrows enough to clear him: x 480 to 1000 against his 446.   */
+/* Both are scoped to the attribute `OnboardingAdvisor` sets on <body> for      */
+/* exactly this moment, so nothing about ordinary play moves.                   */
+/*                                                                             */
+/* `onboardingAdvisorShots.browser.test.tsx` asserts the two boxes are disjoint */
+/* at 1024x580, on the live island, every run.                                  */
+/* -------------------------------------------------------------------------- */
+
+body[data-ob-stand-down="true"] .hud-placement {
+  z-index: 34;
+  justify-content: flex-end;
+}
+
+/* Narrowed only as far as it has to be. At its native `min(560px, 94vw)` a right-aligned bar
+   starts at x=440 against a bubble ending at 426, and the first try at 520 bought the clearance
+   by squeezing the bar's own text column until "PLACING - VALID - 0 DEGREES" wrapped and the
+   hint ran under Cancel. 550 clears by 24px and leaves the bar reading as it always does. */
+body[data-ob-stand-down="true"] .city-placement {
+  width: min(550px, 94vw);
+}
+
+/* Below the breakpoint where he already goes full-width there is no corner to
+   clear into, so the bar keeps its own centred geometry and the two share the
+   screen the way the phone layout already stacks everything else. */
+@media (max-width: 700px) {
+  body[data-ob-stand-down="true"] .hud-placement {
+    justify-content: center;
+  }
+}
+
+/* A phone has no corner to retreat into, so the panel keeps the full width it already had
+   and only the pointer-transparency of the layer survives. */
+@media (max-width: 560px) {
+  .crisis-call-stage[data-standing-down="true"] .crisis-call-speech {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) and (max-height: 700px) {
+  /* A phone has no side-by-side room for the live surface, the advisor figure and the action.
+     On guided surface visits the live city is the figure, so the repeated portrait and tail
+     yield their height to the action and the persistent Back/Next/Skip controls. */
+  .crisis-call-stage[data-standing-down="true"]:is(
+    [data-beat="lessons"],
+    [data-beat="civic"],
+    [data-beat="townhall"],
+    [data-beat="bay"]
+  ) {
+    padding-bottom: 4px;
+  }
+
+  .crisis-call-stage[data-standing-down="true"]:is(
+      [data-beat="lessons"],
+      [data-beat="civic"],
+      [data-beat="townhall"],
+      [data-beat="bay"]
+    )
+    .crisis-call-speech__figure,
+  .crisis-call-stage[data-standing-down="true"]:is(
+      [data-beat="lessons"],
+      [data-beat="civic"],
+      [data-beat="townhall"],
+      [data-beat="bay"]
+    )
+    .crisis-call-closing,
+  .crisis-call-stage[data-standing-down="true"]:is(
+      [data-beat="lessons"],
+      [data-beat="civic"],
+      [data-beat="townhall"],
+      [data-beat="bay"]
+    )
+    .crisis-call-dots,
+  .crisis-call-stage[data-standing-down="true"]:is(
+      [data-beat="lessons"],
+      [data-beat="civic"],
+      [data-beat="townhall"],
+      [data-beat="bay"]
+    )
+    .crisis-call-speech__bubble::before,
+  .crisis-call-stage[data-standing-down="true"]:is(
+      [data-beat="lessons"],
+      [data-beat="civic"],
+      [data-beat="townhall"],
+      [data-beat="bay"]
+    )
+    .crisis-call-speech__bubble::after {
+    display: none;
+  }
+
+  .crisis-call-stage[data-standing-down="true"]:is(
+      [data-beat="lessons"],
+      [data-beat="civic"],
+      [data-beat="townhall"],
+      [data-beat="bay"]
+    )
+    .crisis-call-speech__said {
+    max-height: calc(100vh - 2 * var(--space-sm));
+  }
+
+  /* The compact task has its own live shortcut. Keep the dock behind the speech instead of
+     lifting the same Build control over Skip and Next where the phone has no spare corner. */
+  body[data-ob-stand-down="true"] .hud-dock[data-spotlit="live"] {
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  body[data-ob-stand-down="true"] .ob-spotlight[data-anchor="build"] {
+    display: none;
+  }
+}

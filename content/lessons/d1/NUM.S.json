@@ -1,0 +1,74 @@
+{
+  "node_id": "NUM.S",
+  "title": "Signed numbers",
+  "mini_lesson": [
+    "The camp reads the water against a notched stake, where marks above the waterline and marks below it run in opposite directions. A **sign** points a number towards one direction on the line: right for positive, left for negative. **Absolute value** throws the direction away and keeps only the distance from zero, so two numbers on opposite sides can be exactly as far out as each other.",
+    "To **add** signed numbers, read each addend as a move along the line: a positive addend moves right and a negative addend moves left. Where you land after the last move is the sum. Adding a negative is the error-prone one of the two, because it travels left while the arithmetic still reads as addition.",
+    "**Subtracting** a number is the same as **adding its opposite**, which is the number sitting the same distance from zero on the other side. Rewriting every subtraction as an addition means the left-and-right moves you already know handle both operations, so there is no second procedure to remember.",
+    "For **multiplication and division**, the size of the answer never depends on the signs: work the sizes and you have it. The signs settle one thing only, which side of zero the result lands on, and they settle it the same way for both operations: **same signs give a positive**, **different signs give a negative**."
+  ],
+  "slide_subtitles": [
+    "Signs and absolute value",
+    "Adding along the line",
+    "Adding the opposite",
+    "Multiplying and dividing signs"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Two readings off the stake: $-11$ notches and $7$ notches. Which of them sits farther from zero?",
+      "steps": [
+        "Read the signs first: $-11$ sits left of zero and $7$ sits right of zero.",
+        "Absolute value asks only how far, so drop the direction from the first number: $|{-11}| = 11$.",
+        "The same move on the second number gives $|7| = 7$.",
+        "Since $11$ is greater than $7$, the reading $-11$ lies farther from zero than $7$ does, even though $-11$ is the smaller number."
+      ]
+    },
+    {
+      "prompt": "Add $-12 + 5$ by walking the line.",
+      "steps": [
+        "Plot the first addend: start the marker at $-12$, twelve units left of zero.",
+        "The second addend is $5$, and a positive addend moves right.",
+        "Count five single steps to the right, one tick at a time.",
+        "The fifth step lands the marker on $-7$, so $-12 + 5 = -7$."
+      ]
+    },
+    {
+      "prompt": "Work out $6 - (-11)$.",
+      "steps": [
+        "Start from $6 - (-11)$.",
+        "The opposite of $-11$ is $11$, the number the same distance from zero on the other side.",
+        "Subtracting is adding the opposite, so rewrite the expression as $6 + 11$.",
+        "Both addends point right, so the moves pile up and $6 - (-11) = 17$."
+      ]
+    },
+    {
+      "prompt": "Multiply $(-7) \\times 8$, then divide that product by $-7$.",
+      "steps": [
+        "Work the sizes first: $7 \\times 8 = 56$.",
+        "The two signs differ, so the product is negative: $(-7) \\times 8 = -56$.",
+        "Now divide that product by $-7$, again starting with the sizes: $56 \\div 7 = 8$.",
+        "The two signs match this time, so the quotient is positive: $(-56) \\div (-7) = 8$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "absolute-value-explore", "gates": true },
+    { "after": 1, "id": "signed-addition-walkthrough", "gates": true },
+    { "after": 2, "id": "subtract-as-add-play", "gates": true },
+    { "after": 3, "id": "sign-rules-table", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "The water sits level with the mark cut on the stake, so the reading is $0$ notches. It falls $8$ notches, then rises $6$. What is the reading now, counting notches above the mark as positive?",
+    "accepted": ["-2"],
+    "hint": "The signs are different, so two things decide the result: its size and its sign. For the size, subtract the smaller absolute value from the larger: $|{-8}| - |6|$. For the sign, keep the sign of the addend that is farther from zero. Which addend is farther from zero, and what sign does that give your answer?",
+    "worked_solution": [
+      "Falling $8$ notches and then rising $6$ from a reading of $0$ is the sum $-8 + 6$.",
+      "The signs differ, so the size of the answer is the difference of the distances from zero: $|{-8}| - |6| = 8 - 6 = 2$.",
+      "The sign comes from whichever addend is farther from zero, and that is $-8$, so the answer is negative.",
+      "The water now reads $-2$ notches, two below the mark."
+    ],
+    "worked_solution_params": { "a": 8, "b": 6, "sa": 1, "sb": 0 },
+    "check": { "answer_type": "numeric", "answer_key": "-2" },
+    "variants": { "template_id": "d1.num-s.l1", "count": 2 }
+  }
+}

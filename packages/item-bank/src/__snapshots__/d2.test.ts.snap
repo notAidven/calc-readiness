@@ -1,0 +1,156 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`D2 pool content pin (a template edit that changes the pool must be explicit) > pins the frozen D2 practice pool ids + content hashes 1`] = `
+[
+  {
+    "difficulty": 1,
+    "hash": "934d880c",
+    "id": "d2.exp.product.l1:practice:60000",
+    "node": "EXP.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "c74666c0",
+    "id": "d2.exp.net.l2:practice:60001",
+    "node": "EXP.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "08527241",
+    "id": "d2.exp.power.l2:practice:60002",
+    "node": "EXP.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "5b2b53a4",
+    "id": "d2.exp.twovar.l3:practice:60003",
+    "node": "EXP.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "89e58599",
+    "id": "d2.exp.build.l3:practice:60004",
+    "node": "EXP.1",
+  },
+  {
+    "difficulty": 1,
+    "hash": "6e21170a",
+    "id": "d2.rad1.eval.l1:practice:60005",
+    "node": "RAD.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "1e8c012b",
+    "id": "d2.rad1.simplify.l2:practice:60006",
+    "node": "RAD.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "276eda39",
+    "id": "d2.rad1.quotient.l2:practice:60007",
+    "node": "RAD.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "28ffb725",
+    "id": "d2.rad1.coeff.l3:practice:60008",
+    "node": "RAD.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "905ddd2d",
+    "id": "d2.rad1.build.l3:practice:60009",
+    "node": "RAD.1",
+  },
+  {
+    "difficulty": 1,
+    "hash": "89783398",
+    "id": "d2.rad2.combine-like.l1:practice:60010",
+    "node": "RAD.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "e7534678",
+    "id": "d2.rad2.simplify-combine.l2:practice:60011",
+    "node": "RAD.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "ed4e48de",
+    "id": "d2.rad2.rationalize-unit.l2:practice:60012",
+    "node": "RAD.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "23513feb",
+    "id": "d2.rad2.rationalize-coeff.l3:practice:60013",
+    "node": "RAD.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "563ef911",
+    "id": "d2.rad2.build.l3:practice:60014",
+    "node": "RAD.2",
+  },
+  {
+    "difficulty": 1,
+    "hash": "996ef64e",
+    "id": "d2.rad3.eval.l1:practice:60015",
+    "node": "RAD.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "9ed6e2e2",
+    "id": "d2.rad3.to-radical.l2:practice:60016",
+    "node": "RAD.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "97e2c51f",
+    "id": "d2.rad3.to-exponent.l2:practice:60017",
+    "node": "RAD.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "fc0b150e",
+    "id": "d2.rad3.negeval.l3:practice:60018",
+    "node": "RAD.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "7cbcdd0e",
+    "id": "d2.rad3.simplify.l3:practice:60019",
+    "node": "RAD.3",
+  },
+  {
+    "difficulty": 1,
+    "hash": "eef05bf1",
+    "id": "d2.rad4.magnitude.l1:practice:60020",
+    "node": "RAD.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "cce76366",
+    "id": "d2.rad4.extract.l2:practice:60021",
+    "node": "RAD.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "7d85e91c",
+    "id": "d2.rad4.realroot.l2:practice:60022",
+    "node": "RAD.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "ad67f05a",
+    "id": "d2.rad4.mixed.l3:practice:60023",
+    "node": "RAD.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "9a5d63b4",
+    "id": "d2.rad4.twovar.l3:practice:60024",
+    "node": "RAD.4",
+  },
+]
+`;

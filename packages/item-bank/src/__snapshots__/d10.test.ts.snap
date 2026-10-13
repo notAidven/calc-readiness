@@ -1,0 +1,66 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`D10 pool content pin (a template edit that changes the pool must be explicit) > pins the frozen D10 practice pool ids + content hashes 1`] = `
+[
+  {
+    "difficulty": 1,
+    "hash": "8e863734",
+    "id": "d10.geo1.hypotenuse.l1:practice:130000",
+    "node": "GEO.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "6304ab5e",
+    "id": "d10.geo1.leg.l2:practice:130001",
+    "node": "GEO.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "c204a72e",
+    "id": "d10.geo1.angle-third.l2:practice:130002",
+    "node": "GEO.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "2a5935a9",
+    "id": "d10.geo1.exact-diagonal.l3:practice:130003",
+    "node": "GEO.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "004b8c27",
+    "id": "d10.geo1.similar-side.l3:practice:130004",
+    "node": "GEO.1",
+  },
+  {
+    "difficulty": 1,
+    "hash": "762b8729",
+    "id": "d10.geo2.rect-area.l1:practice:130005",
+    "node": "GEO.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "29228241",
+    "id": "d10.geo2.perimeter.l2:practice:130006",
+    "node": "GEO.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "c52b9f71",
+    "id": "d10.geo2.prism-volume.l2:practice:130007",
+    "node": "GEO.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "8796c758",
+    "id": "d10.geo2.cylinder-volume-exact.l3:practice:130008",
+    "node": "GEO.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "b6d5b777",
+    "id": "d10.geo2.prism-surface-area.l3:practice:130009",
+    "node": "GEO.2",
+  },
+]
+`;

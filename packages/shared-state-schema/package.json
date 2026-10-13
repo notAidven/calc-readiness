@@ -1,0 +1,11 @@
+{
+  "name": "@cr/state-schema",
+  "version": "0.0.0",
+  "private": true,
+  "description": "FROZEN. The student_node_state + assessment record types + neighborhood_state. Contracts sec1-2. Changing this is an all-hands event.",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --build"
+  }
+}

@@ -1,0 +1,156 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`D3 pool content pin (a template edit that changes the pool must be explicit) > pins the frozen D3 practice pool ids + content hashes 1`] = `
+[
+  {
+    "difficulty": 1,
+    "hash": "c0bcb7a8",
+    "id": "d3.lin1.two-step.l1:practice:110000",
+    "node": "LIN.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "bb825015",
+    "id": "d3.lin1.balance-word.l2:practice:110001",
+    "node": "LIN.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "52331f27",
+    "id": "d3.lin1.both-sides.l2:practice:110002",
+    "node": "LIN.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "03aeb9a1",
+    "id": "d3.lin1.distribute.l3:practice:110003",
+    "node": "LIN.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "61150563",
+    "id": "d3.lin1.negative-coefficient.l3:practice:110004",
+    "node": "LIN.1",
+  },
+  {
+    "difficulty": 1,
+    "hash": "29d223c1",
+    "id": "d3.lin3.kerb-width.l1:practice:110005",
+    "node": "LIN.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "7bf9ee45",
+    "id": "d3.lin3.melt-tin.l2:practice:110006",
+    "node": "LIN.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "08e2d0c5",
+    "id": "d3.lin3.duty-count.l2:practice:110007",
+    "node": "LIN.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "56207d72",
+    "id": "d3.lin3.mould-face.l3:practice:110008",
+    "node": "LIN.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "e9af83fb",
+    "id": "d3.lin3.assay-edge.l3:practice:110009",
+    "node": "LIN.3",
+  },
+  {
+    "difficulty": 1,
+    "hash": "8229e70d",
+    "id": "d3.lin4.one-step.l1:practice:110010",
+    "node": "LIN.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "bd755f69",
+    "id": "d3.lin4.two-step.l2:practice:110011",
+    "node": "LIN.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "3b2b9e44",
+    "id": "d3.lin4.negative-coefficient.l2:practice:110012",
+    "node": "LIN.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "8d405b32",
+    "id": "d3.lin4.compound-and.l3:practice:110013",
+    "node": "LIN.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "bd489440",
+    "id": "d3.lin4.compound-or.l3:practice:110014",
+    "node": "LIN.4",
+  },
+  {
+    "difficulty": 1,
+    "hash": "261d95fb",
+    "id": "d3.lin5.shift.l1:practice:110015",
+    "node": "LIN.5",
+  },
+  {
+    "difficulty": 2,
+    "hash": "3b019701",
+    "id": "d3.lin5.coefficient.l2:practice:110016",
+    "node": "LIN.5",
+  },
+  {
+    "difficulty": 2,
+    "hash": "a45b72c2",
+    "id": "d3.lin5.isolate.l2:practice:110017",
+    "node": "LIN.5",
+  },
+  {
+    "difficulty": 3,
+    "hash": "7b52bd93",
+    "id": "d3.lin5.degenerate.l3:practice:110018",
+    "node": "LIN.5",
+  },
+  {
+    "difficulty": 3,
+    "hash": "88af381f",
+    "id": "d3.lin5.scaled.l3:practice:110019",
+    "node": "LIN.5",
+  },
+  {
+    "difficulty": 1,
+    "hash": "2c175949",
+    "id": "d3.lin6.band.l1:practice:110020",
+    "node": "LIN.6",
+  },
+  {
+    "difficulty": 2,
+    "hash": "0f2f3986",
+    "id": "d3.lin6.union.l2:practice:110021",
+    "node": "LIN.6",
+  },
+  {
+    "difficulty": 2,
+    "hash": "3e94f389",
+    "id": "d3.lin6.scaled-band.l2:practice:110022",
+    "node": "LIN.6",
+  },
+  {
+    "difficulty": 3,
+    "hash": "cecf7951",
+    "id": "d3.lin6.scaled-union.l3:practice:110023",
+    "node": "LIN.6",
+  },
+  {
+    "difficulty": 3,
+    "hash": "b023be1d",
+    "id": "d3.lin6.set-builder.l3:practice:110024",
+    "node": "LIN.6",
+  },
+]
+`;

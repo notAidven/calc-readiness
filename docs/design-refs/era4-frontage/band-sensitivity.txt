@@ -1,0 +1,85 @@
+=== band 0.10 ===
+B · THE WORST DOOR ON EACH BUILDING — the rule must hold for whichever one it picks
+
+building                   doors  worstReach  bay0.55 bay0.8  bay1.15 fallback 0.55
+-----------------------------------------------------------------------------------
+The Cottages               10     1.06        FAILS   FAILS   FAILS   FAILS
+The Baths                  1      1.86        HOLDS   HOLDS   HOLDS   HOLDS
+The Fountain               0      0.00        FAILS   FAILS   FAILS   FAILS
+The Grain Dock             4      2.88        HOLDS   HOLDS   HOLDS   HOLDS
+POL.1 Stonecutter’s Shop   1      2.28        HOLDS   HOLDS   HOLDS   HOLDS
+POL.2 Barracks             7      0.88        FAILS   FAILS   FAILS   FAILS
+POL.3 Customs House        0      0.94        FAILS   FAILS   FAILS   FAILS
+POL.4 Wine Cellars         0      0.00        FAILS   FAILS   FAILS   FAILS
+POL.8 Surveyor’s Shop      1      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+Senate House (hub)         3      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+
+C · WIDEST UNBROKEN WALL ON THE ENTRANCE'S OWN PLANE — can a 1.05-wide plate be fixed at all
+=== band 0.12 ===
+B · THE WORST DOOR ON EACH BUILDING — the rule must hold for whichever one it picks
+
+building                   doors  worstReach  bay0.55 bay0.8  bay1.15 fallback 0.55
+-----------------------------------------------------------------------------------
+The Cottages               10     1.06        FAILS   FAILS   FAILS   FAILS
+The Baths                  1      1.86        HOLDS   HOLDS   HOLDS   HOLDS
+The Fountain               0      0.12        FAILS   FAILS   FAILS   FAILS
+The Grain Dock             4      2.88        HOLDS   HOLDS   HOLDS   HOLDS
+POL.1 Stonecutter’s Shop   1      2.28        HOLDS   HOLDS   HOLDS   HOLDS
+POL.2 Barracks             7      0.88        FAILS   FAILS   FAILS   FAILS
+POL.3 Customs House        0      0.94        FAILS   FAILS   FAILS   FAILS
+POL.4 Wine Cellars         0      0.00        FAILS   FAILS   FAILS   FAILS
+POL.8 Surveyor’s Shop      1      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+Senate House (hub)         3      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+
+C · WIDEST UNBROKEN WALL ON THE ENTRANCE'S OWN PLANE — can a 1.05-wide plate be fixed at all
+=== band 0.20 ===
+B · THE WORST DOOR ON EACH BUILDING — the rule must hold for whichever one it picks
+
+building                   doors  worstReach  bay0.55 bay0.8  bay1.15 fallback 0.55
+-----------------------------------------------------------------------------------
+The Cottages               10     1.06        FAILS   FAILS   FAILS   FAILS
+The Baths                  1      1.86        HOLDS   HOLDS   HOLDS   HOLDS
+The Fountain               0      0.12        FAILS   FAILS   FAILS   FAILS
+The Grain Dock             4      2.88        HOLDS   HOLDS   HOLDS   HOLDS
+POL.1 Stonecutter’s Shop   1      2.28        HOLDS   HOLDS   HOLDS   HOLDS
+POL.2 Barracks             7      0.88        FAILS   FAILS   FAILS   FAILS
+POL.3 Customs House        0      0.94        FAILS   FAILS   FAILS   FAILS
+POL.4 Wine Cellars         0      2.26        HOLDS   HOLDS   HOLDS   HOLDS
+POL.8 Surveyor’s Shop      1      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+Senate House (hub)         3      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+
+C · WIDEST UNBROKEN WALL ON THE ENTRANCE'S OWN PLANE — can a 1.05-wide plate be fixed at all
+=== band 0.30 ===
+B · THE WORST DOOR ON EACH BUILDING — the rule must hold for whichever one it picks
+
+building                   doors  worstReach  bay0.55 bay0.8  bay1.15 fallback 0.55
+-----------------------------------------------------------------------------------
+The Cottages               10     1.12        HOLDS   FAILS   FAILS   HOLDS
+The Baths                  1      1.86        HOLDS   HOLDS   HOLDS   HOLDS
+The Fountain               0      0.12        FAILS   FAILS   FAILS   FAILS
+The Grain Dock             4      2.88        HOLDS   HOLDS   HOLDS   HOLDS
+POL.1 Stonecutter’s Shop   1      2.28        HOLDS   HOLDS   HOLDS   HOLDS
+POL.2 Barracks             7      0.88        FAILS   FAILS   FAILS   FAILS
+POL.3 Customs House        0      1.00        FAILS   FAILS   FAILS   FAILS
+POL.4 Wine Cellars         0      2.26        HOLDS   HOLDS   HOLDS   HOLDS
+POL.8 Surveyor’s Shop      1      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+Senate House (hub)         3      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+
+C · WIDEST UNBROKEN WALL ON THE ENTRANCE'S OWN PLANE — can a 1.05-wide plate be fixed at all
+=== band 0.45 ===
+B · THE WORST DOOR ON EACH BUILDING — the rule must hold for whichever one it picks
+
+building                   doors  worstReach  bay0.55 bay0.8  bay1.15 fallback 0.55
+-----------------------------------------------------------------------------------
+The Cottages               10     1.12        HOLDS   FAILS   FAILS   HOLDS
+The Baths                  1      1.86        HOLDS   HOLDS   HOLDS   HOLDS
+The Fountain               0      0.12        FAILS   FAILS   FAILS   FAILS
+The Grain Dock             4      2.88        HOLDS   HOLDS   HOLDS   HOLDS
+POL.1 Stonecutter’s Shop   1      2.46        HOLDS   HOLDS   HOLDS   HOLDS
+POL.2 Barracks             7      0.88        FAILS   FAILS   FAILS   FAILS
+POL.3 Customs House        0      1.00        FAILS   FAILS   FAILS   FAILS
+POL.4 Wine Cellars         0      2.26        HOLDS   HOLDS   HOLDS   HOLDS
+POL.8 Surveyor’s Shop      1      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+Senate House (hub)         3      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+
+C · WIDEST UNBROKEN WALL ON THE ENTRANCE'S OWN PLANE — can a 1.05-wide plate be fixed at all

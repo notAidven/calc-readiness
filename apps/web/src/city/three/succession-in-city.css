@@ -1,0 +1,99 @@
+.succession-in-city {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.succession-in-city .sx-shell {
+  position: fixed;
+  background: transparent;
+  pointer-events: none;
+}
+
+.succession-in-city .sx-viewport {
+  pointer-events: none;
+}
+
+.succession-in-city .sx-side,
+.succession-in-city .sx-city-beat,
+.succession-in-city .sx-conclusion {
+  pointer-events: auto;
+}
+
+.succession-in-city__loading {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 12px 16px;
+  background: #f5efe2;
+  border: 2px solid #7d7463;
+  border-radius: 8px;
+  pointer-events: auto;
+}
+
+.succession-in-city--refused {
+  display: grid;
+  place-items: center;
+  background: rgb(41 40 35 / 55%);
+  pointer-events: auto;
+}
+
+.succession-in-city--refused section {
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 20px 22px;
+  background: #f5efe2;
+  border: 2px solid #7d7463;
+  border-radius: 10px;
+}
+
+.succession-in-city--refused h2 {
+  margin: 0 0 8px;
+}
+
+.succession-in-city--refused p {
+  line-height: 1.5;
+}
+
+.succession-in-city--refused button {
+  min-height: 44px;
+  padding: 8px 14px;
+}
+
+@media (width <= 560px) {
+  .succession-in-city .sx-side {
+    max-height: 48dvh;
+  }
+
+  .succession-in-city .sx-shell[data-phase="response"] .sx-side {
+    max-height: 52dvh;
+  }
+
+  .succession-in-city .sx-shell[data-phase="answering"] .sx-side {
+    max-height: 76dvh;
+  }
+
+  .succession-in-city .sx-districts {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 1px 0 3px;
+    scrollbar-width: thin;
+  }
+
+  .succession-in-city .sx-district {
+    flex: 0 0 58px;
+  }
+
+  .succession-in-city .sx-city-beat {
+    top: 8px;
+    right: 8px;
+    left: auto;
+    width: min(230px, calc(100vw - 16px));
+    padding: 0.5rem 0.6rem;
+  }
+
+  .succession-in-city .sx-conclusion {
+    max-height: 52dvh;
+  }
+}

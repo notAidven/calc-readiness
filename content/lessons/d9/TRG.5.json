@@ -1,0 +1,82 @@
+{
+  "node_id": "TRG.5",
+  "title": "Graph sine and cosine: amplitude, period, phase shift",
+  "mini_lesson": [
+    "Out along the relay line an engineer describing a signal starts with three numbers: how strong it is, how often it comes back around, and how far behind the first link a second one is running. A signal that repeats the same pattern over and over is **periodic**, and the first of those three numbers is its **amplitude**, the reach from the level it swings about out to a peak. A meter hands over neither the level nor the reach directly, though: what it reports is the highest reading and the lowest one.",
+    "That level has a name of its own. It is the **midline**, and the constant on the end of the rule is what puts the whole signal on it, so in $y = a\\sin(bx) + d$ the midline is $y = d$. The second number is the **period**, the distance along $x$ the signal runs before it repeats itself, and inside $\\sin(bx)$ the argument has to cover a whole turn of $2\\pi$ before a cycle can close, so a bigger coefficient gives a *shorter* cycle.",
+    "Two links carrying the same signal can still disagree about when it arrives. The **phase shift** is how far along $x$ a trace has slid, and in $y = a\\sin(b(x - c))$ it is $c$: subtracting inside means every part of the signal happens further along, so the copy arrives *later* and the trace moves right, while a negative $c$ moves it left and the copy arrives early. The shift is measured against $x$ itself rather than against the argument, so a rule written as $\\sin(bx - k)$ has to be factored before $c$ can be read off it.",
+    "The four readings do not interfere with each other, which is what makes a trace readable at a glance: changing the strength leaves the level alone, and sliding the trace changes nothing about how often it repeats. Two of them are copied straight out of the rule and two have to be worked out: the size of the number out front is the amplitude and the constant on the end is the midline, while the period is $2\\pi$ shared out by the coefficient beside $x$, and the shift is only there to be read once the inside has been written with that coefficient standing outside a bracket holding $x$ and one constant. From those, the highest reading a signal takes is its midline plus its amplitude and the lowest is its midline minus it, so the distance from the lowest up to the highest is twice the amplitude."
+  ],
+  "slide_subtitles": [
+    "Strength from two readings",
+    "Period and midline",
+    "How far behind",
+    "Every reading at once"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A link reports a highest reading of $12$ and a lowest reading of $2$. Give the level it swings about and its amplitude.",
+      "steps": [
+        "The level sits halfway between the two readings, which is their sum shared in two: $\\dfrac{12 + 2}{2} = 7$.",
+        "The amplitude is the reach from that level out to either reading, which is their difference shared in two: $\\dfrac{12 - 2}{2} = 5$.",
+        "Both checks agree: $7 + 5 = 12$ at the top and $7 - 5 = 2$ at the bottom.",
+        "So this signal swings about $7$ with an amplitude of $5$."
+      ]
+    },
+    {
+      "prompt": "Give the midline and the period of $y = 2\\sin(5x) + 3$.",
+      "steps": [
+        "The constant on the end sets the level, so the midline is $y = 3$.",
+        "One cycle closes when the inside has covered a whole turn, so the closing heading is where $5x = 2\\pi$.",
+        "Dividing by $5$ gives $x = \\dfrac{2\\pi}{5}$, and that distance along $x$ is the period.",
+        "So the midline is $y = 3$ and the period is $\\dfrac{2\\pi}{5}$, and the $2$ out front changed neither of them: it sets how far the trace reaches either side of the midline."
+      ]
+    },
+    {
+      "prompt": "Read the phase shift of $y = \\sin\\left(2x - \\dfrac{\\pi}{4}\\right)$.",
+      "steps": [
+        "The shift is measured against $x$, so the inside has to be rewritten with the coefficient standing outside a bracket.",
+        "Taking $2$ out of $2x - \\dfrac{\\pi}{4}$ leaves $2\\left(x - \\dfrac{\\pi}{8}\\right)$.",
+        "Comparing that with $b(x - c)$ gives $c = \\dfrac{\\pi}{8}$.",
+        "Subtracting inside sends every part of the signal further along, so the trace has slid $\\dfrac{\\pi}{8}$ to the right."
+      ]
+    },
+    {
+      "prompt": "A link carries $y = -4\\cos(5x) + 3$. Give its highest reading, its lowest, and the distance between them.",
+      "steps": [
+        "The amplitude is the size of the number out front, so it is $4$ even though the coefficient reads $-4$.",
+        "The constant on the end puts the midline at $y = 3$.",
+        "The highest reading is the midline plus the amplitude, $3 + 4 = 7$.",
+        "The lowest reading is the midline minus it, $3 - 4 = -1$.",
+        "From $-1$ up to $7$ is $8$, which is twice the amplitude, as it has to be."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "trg-amplitude-slider", "gates": true },
+    { "after": 1, "id": "trg-period-table", "gates": true },
+    { "after": 2, "id": "trg-phase-drag", "gates": true },
+    { "after": 3, "id": "trg-feature-label", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A link carries the signal $y = 3\\sin(2x) - 1$. Give the largest value that signal ever reaches. Enter one number.",
+    "accepted": ["2"],
+    "hint": "Two of the numbers in the rule decide this and one of them does not. Start with the level the signal swings about, which is the constant on the end, and then ask how far above that level a peak sits, which is the number out front. The coefficient beside $x$ changes how often the peak comes around, not how high it is.",
+    "worked_solution": [
+      "The constant on the end sets the level the signal swings about, so the midline of $y = 3\\sin(2x) - 1$ is $y = -1$.",
+      "The number out front is the amplitude, so the trace reaches $3$ above that level and $3$ below it.",
+      "The coefficient $2$ inside changes only how often the cycle comes around, so it has no say in how high the signal gets.",
+      "Sine's own largest value is $1$, and at that heading the rule gives $3 \\times 1 - 1$.",
+      "So the largest value the signal reaches is $2$."
+    ],
+    "worked_solution_params": {
+      "amplitude": 3,
+      "coefficient": 2,
+      "midline": -1,
+      "wantsMax": 1,
+      "isSine": 1
+    },
+    "check": { "answer_type": "numeric", "answer_key": "2" },
+    "variants": { "template_id": "cfu.trg5.max-value", "count": 2 }
+  }
+}

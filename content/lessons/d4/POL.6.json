@@ -1,0 +1,105 @@
+{
+  "node_id": "POL.6",
+  "title": "Describe polynomial end behavior from degree and leading coefficient",
+  "mini_lesson": [
+    "A press room is costed by the sheet, and the estimator has a rule giving the cost of a run of $x$ sheets. Every part of that rule matters for a run of ten sheets, and one part of it alone decides whether a very long run comes out dearer than the paper it is printed on. What a graph does at its far LEFT and far RIGHT is its **end behavior**, and the term carrying the largest exponent (the **leading term**) is the only part of a polynomial that decides it.",
+    "So the reading begins by finding that one term, and finding it is a question about exponents rather than about position on the page. The **degree** of a polynomial is the largest exponent on the variable anywhere in it, and the **leading coefficient** is the number multiplying that term, sign included. Standard form writes the powers descending so the leading term comes first, but a polynomial does not have to arrive that way, and a product with nothing multiplied out hides the term until its brackets are read together.",
+    "The degree settles the first of two independent questions: whether the two ends agree. An even power turns a negative input positive, so a large negative $x$ and a large positive $x$ send $f(x)$ the same way and the ends point together, while an odd power keeps the sign of its input and the ends part company. The degree says nothing at all about which way either end goes, which is the confusion worth spending a moment on: a negative leading coefficient turns both ends of an even-degree graph downward without making them disagree.",
+    "The leading coefficient settles the second question, and it settles it at the right-hand end: for a large positive $x$ the leading term takes the sign of its coefficient, so a positive one sends the RIGHT end up and a negative one sends it down. Put the two readings together and there are four cases and no others, since the coefficient fixes the right end and the parity of the degree says whether the left end matches it. Reading a graph's ends is therefore always the same four moves: find the term of highest degree, take its exponent, take its sign, and describe."
+  ],
+  "slide_subtitles": [
+    "The term that survives",
+    "Finding the leading term",
+    "Degree: do ends agree?",
+    "The leading coefficient"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A run of $x$ sheets costs $f(x) = x^{3} + 20x^{2} + 300$ pence. Say which part of that rule decides the cost of a very long run.",
+      "steps": [
+        "At $x = 10$ the leading term is $1000$ while the other two come to $2000 + 300 = 2300$, so it is smaller than everything else put together.",
+        "At $x = 100$ the leading term is $1000000$ while the other two come to $200300$, so the order has already reversed.",
+        "A cube climbs faster than a square and a constant does not climb at all, so every further step widens that gap.",
+        "So a long run is costed by $x^{3}$ alone, and that term with the largest exponent is the one deciding the ends of the graph."
+      ]
+    },
+    {
+      "prompt": "Give the leading term of $(3x^{2} + 4)(2x^{4} - 1)$, with nothing multiplied out.",
+      "steps": [
+        "Take the leading term of each bracket on its own: $3x^{2}$ from the first and $2x^{4}$ from the second.",
+        "The degrees add, because the highest power of the product comes from multiplying those two: $2 + 4 = 6$.",
+        "The leading coefficients multiply: $3 \\times 2 = 6$.",
+        "So the leading term is $6x^{6}$, and no other pairing of terms can reach degree $6$."
+      ]
+    },
+    {
+      "prompt": "Say whether the two ends of $f(x) = -4x^{3}(x^{2} + 7)$ agree or oppose, without settling which way either one goes.",
+      "steps": [
+        "Nothing is multiplied out, so the degree has to be built: the $x^{3}$ outside and the $x^{2}$ inside give $3 + 2 = 5$.",
+        "That exponent is odd, and whether a number is odd or even is its parity, which is the whole of what this question turns on.",
+        "An odd power keeps the sign of whatever goes into it, so a large negative input and a large positive input land on opposite sides of zero.",
+        "So the two ends oppose each other, and the minus sign on $-4$ never came into it."
+      ]
+    },
+    {
+      "prompt": "Describe both ends of $f(x) = 12x - 5x^{4} + 1$.",
+      "steps": [
+        "The powers are out of order, so the term of highest degree is $-5x^{4}$ and not the term written first.",
+        "Its exponent is $4$, which is even, so the two ends agree.",
+        "Its coefficient is $-5$, which is negative, so the RIGHT end goes down.",
+        "The ends agree and the right one goes down, so the graph goes down on the left and down on the right."
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "after": 0,
+      "id": "leading-term-dominance-table",
+      "gates": true
+    },
+    {
+      "after": 1,
+      "id": "leading-term-match",
+      "gates": true
+    },
+    {
+      "after": 2,
+      "id": "end-behavior-parity-sorter",
+      "gates": true
+    },
+    {
+      "after": 3,
+      "id": "end-behavior-describe-order",
+      "gates": true
+    }
+  ],
+  "cfu": {
+    "prompt": "Give the leading term of $f(x) = -5(2x - 3)(x + 1)^{3}$. Write it as a coefficient times a power of $x$, using ^ for the power, for example 5x^9.",
+    "accepted": ["-10x^4", "-10*x^4"],
+    "hint": "Nothing has to be multiplied out. Take the degree first: the exponents on the factors add, and a bracket raised to a power contributes its own exponent. Then take the coefficient, which is the product of the brackets' leading coefficients and the number standing outside them.",
+    "worked_solution": [
+      "Each factor contributes its own leading term. The linear bracket contributes $2x$, and the repeated bracket contributes $x^{3}$.",
+      "The degrees add: $1 + 3 = 4$.",
+      "The coefficients multiply: $\\left(-5\\right) \\times 2 = -10$.",
+      "So the leading term is $-10x^{4}$, typed as -10x^4."
+    ],
+    "worked_solution_params": {
+      "outer": -5,
+      "inner": 2,
+      "shift": 3,
+      "root": -1,
+      "multiplicity": 3,
+      "degree": 4,
+      "lead": -10
+    },
+    "check": {
+      "answer_type": "expression",
+      "answer_key": "-10x^4",
+      "allowed_symbols": ["x"]
+    },
+    "variants": {
+      "template_id": "d4.pol6.leading-term-factored.l2",
+      "count": 2
+    }
+  }
+}

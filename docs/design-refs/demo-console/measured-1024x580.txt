@@ -1,0 +1,79 @@
+viewport 1024x580, reduced motion, learner's mount (no ?dev)
+
+== 1. cold load http://localhost:5173/?reset ==
+  frame -> docs/design-refs/demo-console/01-cold-load-the-console-and-the-title-card-1024x580.png
+the console on a cold load: 15 controls
+  REACHABLE demo-route-fold                {"x":20,"y":29,"w":196,"h":15}
+  REACHABLE demo-route-era-prehistoric     {"x":20,"y":64,"w":37,"h":21}
+  REACHABLE demo-route-era-neolithic       {"x":60,"y":64,"w":37,"h":21}
+  REACHABLE demo-route-era-bronze_age      {"x":100,"y":64,"w":37,"h":21}
+  REACHABLE demo-route-era-classical       {"x":139,"y":64,"w":37,"h":21}
+  REACHABLE demo-route-era-medieval        {"x":179,"y":64,"w":37,"h":21}
+  REACHABLE demo-route-era-renaissance     {"x":20,"y":88,"w":37,"h":21}
+  REACHABLE demo-route-era-industrial      {"x":60,"y":88,"w":37,"h":21}
+  REACHABLE demo-route-era-atomic_age      {"x":100,"y":88,"w":37,"h":21}
+  REACHABLE demo-route-era-information_age {"x":139,"y":88,"w":37,"h":21}
+  REACHABLE demo-route-era-cyberpunk       {"x":179,"y":88,"w":37,"h":21}
+  REACHABLE demo-route-crisis-winter       {"x":20,"y":129,"w":196,"h":31}
+  REACHABLE demo-route-crisis-succession   {"x":20,"y":163,"w":196,"h":31}
+  REACHABLE demo-route-crisis-plague       {"x":20,"y":198,"w":196,"h":31}
+  REACHABLE demo-route-crisis-intrusion    {"x":20,"y":232,"w":196,"h":31}
+  0 of 15 COVERED
+  console box:    {"x":10,"y":10,"w":216,"h":350}
+  title card box: {"x":232,"y":96,"w":560,"h":388}
+  Start box:      {"x":316,"y":351,"w":190,"h":50}
+  console/title-card overlap: 0px^2
+  console covers 12.7% of the window
+
+== 2. press era 4 on the console ==
+  url now: http://localhost:5173/?era=classical
+  legend reads: QUEUED: ERA 4 · CLASSICAL ERA
+  frame -> docs/design-refs/demo-console/02-era-four-queued-1024x580.png
+
+== 3. Start ==
+  stored era: classical
+  frame -> docs/design-refs/demo-console/03-the-city-standing-in-era-four-1024x580.png
+
+== 4. the crisis chips in the menu ==
+  frame -> docs/design-refs/demo-console/04-the-menu-with-every-crisis-chip-1024x580.png
+  sx-entry-chip      "☗ The Succession" -> http://localhost:5173/?era=classical&succession
+  pl-entry-chip      "◎ The Plague" -> http://localhost:5173/?era=classical&plague
+  null               "▦ The Intrusion" -> http://localhost:5173/?era=classical&intrusion
+  3 crisis chips in the menu
+the menu's entry chips: 7 controls
+  REACHABLE Diagnostic                     {"x":725,"y":390,"w":266,"h":34}
+  REACHABLE Lessons                        {"x":725,"y":430,"w":266,"h":34}
+  COVERED   Checker Lab                    {"x":725,"y":470,"w":266,"h":34} covered by city-viewport
+  COVERED   ❄ Hard Winter                  {"x":725,"y":510,"w":266,"h":34} covered by city-viewport
+  COVERED   sx-entry-chip                  {"x":725,"y":550,"w":266,"h":34} covered by city-viewport
+  COVERED   pl-entry-chip                  {"x":725,"y":590,"w":266,"h":34} covered by ?
+  COVERED   ▦ The Intrusion                {"x":725,"y":630,"w":266,"h":34} covered by ?
+  5 of 7 COVERED
+
+== 5. the ceremony, with a graded question on screen ==
+  a graded question is on screen: true
+  frame -> docs/design-refs/demo-console/05-the-hatch-over-a-graded-question-1024x580.png
+the ceremony's Play the beats hatch: 8 controls
+  REACHABLE era-dev-skip-fold              {"x":20,"y":29,"w":232,"h":15}
+  REACHABLE era-dev-skip-next              {"x":20,"y":64,"w":152,"h":26}
+  REACHABLE era-dev-skip-step              {"x":176,"y":64,"w":76,"h":26}
+  REACHABLE era-dev-skip-top               {"x":20,"y":110,"w":43,"h":22}
+  REACHABLE era-dev-skip-gathering         {"x":67,"y":110,"w":43,"h":22}
+  REACHABLE era-dev-skip-expansion         {"x":114,"y":110,"w":43,"h":22}
+  REACHABLE era-dev-skip-rebuild           {"x":162,"y":110,"w":43,"h":22}
+  REACHABLE era-dev-skip-retheme           {"x":209,"y":110,"w":43,"h":22}
+  0 of 8 COVERED
+  press 1: beat_index -> 1
+  press 2: beat_index -> 2
+  press 3: beat_index -> 3
+  press 4: beat_index -> 4
+  frame -> docs/design-refs/demo-console/06-the-reveal-after-four-presses-and-no-answers-1024x580.png
+  a graded question is still on screen: false
+  LOCALSTORAGE BYTE-IDENTICAL ACROSS THE WALK: true (1571 bytes)
+
+== 6. the Succession, from the menu chip ==
+  url now: http://localhost:5173/?era=classical&succession
+  the forum says: THE SUCCESSION · CYCLE 1 The city has no successor Talk to Oru —The board holds. No district decides next cycle. 0 banked 0 of 6 decided 0 strength (0 held) 0 strength (0 held) quay ward Undecided. Not drifting this cycle. Grain Dock · unclaimed shore ward Undecided. Not drifting this cycle. Cottage
+  frame -> docs/design-refs/demo-console/07-era-fours-succession-forum-1024x580.png
+
+SUMMARY: console 0 covered, ceremony hatch 0 covered.

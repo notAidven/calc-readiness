@@ -1,0 +1,79 @@
+{
+  "node_id": "GEO.1",
+  "title": "Pythagorean theorem, similar triangles, basic angle relationships",
+  "mini_lesson": [
+    "A corner has to be set out square on open ground before a single course is laid, and a cord knotted into twelve equal lengths is the only instrument to hand. The two sides meeting at a right angle are a triangle's **legs**, the side opposite that angle is its **hypotenuse**, and the **Pythagorean theorem** says $a^{2} + b^{2} = c^{2}$. The relation runs backwards as well, so any triangle whose sides satisfy it must contain a right angle, and that converse is what turns the knotted cord from a guess into an instrument.",
+    "A rectangle staked out on the ground is checked the same way, since its diagonal is the hypotenuse of a right triangle whose legs are the two sides. A **square root** undoes a squaring, handing back the number that was squared, so $c = \\sqrt{a^{2} + b^{2}}$ is the theorem rearranged to produce a missing hypotenuse. A missing leg comes from the same rearrangement with a subtraction in it, and either way the total under the root is only sometimes a perfect square.",
+    "Three relations settle most of the angles a plan has to account for, and none of them calls for a measurement. Two angles side by side on a straight line make $180^{\\circ}$ and are called **supplementary**, so knowing either one gives the other by subtraction. Where two straight lines cross, the angles in each opposite pair are **vertical angles** and are always equal, and the three angles inside any triangle add to $180^{\\circ}$ as well.",
+    "Two figures are **similar** when they have the same shape at different sizes, which is what makes a model worth building before the thing itself. The sides that match across such a pair are its **corresponding sides**, and each pair of them stands in one common ratio, the **scale factor**. Which figure you start from is part of what the factor means, since from a model up to the building it is greater than one and from the building down to the model it is less."
+  ],
+  "slide_subtitles": [
+    "Legs and hypotenuse",
+    "Finding a missing side",
+    "Three angle relations",
+    "Similar figures and scale"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Pull the knotted cord taut into a triangle of $3$, $4$ and $5$ lengths. Is the corner between the two short sides square?",
+      "steps": [
+        "Name the two short sides as the legs, $a = 3$ and $b = 4$, which leaves $c = 5$ as the side opposite the corner in question.",
+        "Square the two legs and add them: $3^{2} + 4^{2} = 9 + 16 = 25$.",
+        "Square the longest side on its own: $5^{2} = 25$.",
+        "The two totals agree, so $a^{2} + b^{2} = c^{2}$ holds for these three lengths.",
+        "By the converse of the theorem the corner between the $3$ and the $4$ is a right angle, so the cord has set out a square corner."
+      ]
+    },
+    {
+      "prompt": "A square terrace measures $5$ meters along every side. How long is its diagonal?",
+      "steps": [
+        "The diagonal splits the terrace into a right triangle whose two legs are sides of the square, so $a = 5$ and $b = 5$.",
+        "Square each leg and add: $5^{2} + 5^{2} = 25 + 25 = 50$.",
+        "The diagonal is the hypotenuse, so undo the squaring with a root: $c = \\sqrt{50}$.",
+        "Since $50 = 25 \\times 2$ and $\\sqrt{25} = 5$, that root simplifies to $\\sqrt{50} = 5\\sqrt{2}$.",
+        "The diagonal is $5\\sqrt{2}$ meters, a length no whole number of meters can name."
+      ]
+    },
+    {
+      "prompt": "Two straight lines cross, and one of the four angles they make measures $124^{\\circ}$. Find the angle beside it and the angle opposite it.",
+      "steps": [
+        "The angle beside it shares a straight line with it, so the two are supplementary and add to $180^{\\circ}$.",
+        "Subtracting produces that neighbour: $180^{\\circ} - 124^{\\circ} = 56^{\\circ}$.",
+        "The angle opposite the $124^{\\circ}$ one lies beside that same $56^{\\circ}$ neighbour, so it is supplementary to it too.",
+        "Subtracting again gives $180^{\\circ} - 56^{\\circ} = 124^{\\circ}$, which is why a vertical pair always comes out equal.",
+        "The neighbour measures $56^{\\circ}$ and the angle opposite measures $124^{\\circ}$."
+      ]
+    },
+    {
+      "prompt": "At one hour a staff $4$ meters tall casts a shadow $5$ meters long, and the bell tower beside it casts a shadow $30$ meters long. How tall is the bell tower?",
+      "steps": [
+        "The sun stands at one height for both, so the staff and the tower head two right triangles with equal angles, which makes the triangles similar.",
+        "The corresponding sides are the two heights and the two shadows, so a single scale factor carries the staff's triangle onto the tower's.",
+        "Compare the shadows to find that factor: $30 \\div 5 = 6$.",
+        "Every length on the tower's triangle is therefore $6$ times the matching length on the staff's: $4 \\times 6 = 24$.",
+        "The bell tower stands $24$ meters tall, measured without leaving the ground."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "geo-cord-table", "gates": true },
+    { "after": 1, "id": "geo-diagonal-stepper", "gates": true },
+    { "after": 2, "id": "geo-angle-explore", "gates": true },
+    { "after": 3, "id": "geo-shadow-slider", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A foundation is set out as a rectangle $30$ meters by $40$ meters. A timber model of it is built at one tenth of full size. How long is the model's diagonal, in meters? Enter one number.",
+    "accepted": ["5", "5.0"],
+    "hint": "Work on the foundation first: its diagonal is the hypotenuse of a right triangle whose legs are the two given sides, so square them and add before you take any root. Then bring in the scale, because every length on the model is that same fraction of the length it corresponds to on the foundation.",
+    "worked_solution": [
+      "The foundation is a rectangle, so its sides meet at a right angle and its diagonal is the hypotenuse of a right triangle with legs $30$ and $40$.",
+      "Square the legs and add: $30^{2} + 40^{2} = 900 + 1600 = 2500$.",
+      "Take the square root: the foundation's diagonal is $\\sqrt{2500} = 50$ meters.",
+      "The model is similar to the foundation, so every corresponding length is multiplied by the scale factor $\\dfrac{1}{10}$.",
+      "Scaling that diagonal gives $50 \\times \\dfrac{1}{10}$, so the model's diagonal is $5$ meters."
+    ],
+    "worked_solution_params": { "a": 30, "b": 40, "n": 10 },
+    "check": { "answer_type": "numeric", "answer_key": "5" },
+    "variants": { "template_id": "cfu.geo1.model-diagonal", "count": 2 }
+  }
+}

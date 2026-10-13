@@ -1,0 +1,126 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`D7 pool content pin (a template edit that changes the pool must be explicit) > pins the frozen D7 practice pool ids + content hashes 1`] = `
+[
+  {
+    "difficulty": 1,
+    "hash": "48d05269",
+    "id": "d7.lf1.table-rate.l1:practice:80000",
+    "node": "LF.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "7c52d92d",
+    "id": "d7.lf1.rise-run.l2:practice:80001",
+    "node": "LF.1",
+  },
+  {
+    "difficulty": 2,
+    "hash": "afa07d13",
+    "id": "d7.lf1.direction.l2:practice:80002",
+    "node": "LF.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "82ffeb53",
+    "id": "d7.lf1.two-point.l3:practice:80003",
+    "node": "LF.1",
+  },
+  {
+    "difficulty": 3,
+    "hash": "e7764e9d",
+    "id": "d7.lf1.rate-context.l3:practice:80004",
+    "node": "LF.1",
+  },
+  {
+    "difficulty": 1,
+    "hash": "305cde90",
+    "id": "d7.lf2.slope-intercept.l1:practice:80005",
+    "node": "LF.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "981f691c",
+    "id": "d7.lf2.parallel-point.l2:practice:80006",
+    "node": "LF.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "f4060fce",
+    "id": "d7.lf2.pair-classify.l2:practice:80007",
+    "node": "LF.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "af8e4988",
+    "id": "d7.lf2.point-slope.l3:practice:80008",
+    "node": "LF.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "3e0c6d58",
+    "id": "d7.lf2.perpendicular-standard.l3:practice:80009",
+    "node": "LF.2",
+  },
+  {
+    "difficulty": 1,
+    "hash": "cb042b47",
+    "id": "d7.lf3.describe-model.l1:practice:80010",
+    "node": "LF.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "465869b5",
+    "id": "d7.lf3.table-model.l2:practice:80011",
+    "node": "LF.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "8c275cb5",
+    "id": "d7.lf3.predict.l2:practice:80012",
+    "node": "LF.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "7a7f5fe8",
+    "id": "d7.lf3.table-predict.l3:practice:80013",
+    "node": "LF.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "a0aebc2d",
+    "id": "d7.lf3.point-rate-model.l3:practice:80014",
+    "node": "LF.3",
+  },
+  {
+    "difficulty": 1,
+    "hash": "c2812e00",
+    "id": "d7.lf4.substitution.l1:practice:80015",
+    "node": "LF.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "69944168",
+    "id": "d7.lf4.elimination.l2:practice:80016",
+    "node": "LF.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "1fda22c0",
+    "id": "d7.lf4.classify.l2:practice:80017",
+    "node": "LF.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "3b42884b",
+    "id": "d7.lf4.elimination.l3:practice:80018",
+    "node": "LF.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "d6874e3d",
+    "id": "d7.lf4.isolate.l3:practice:80019",
+    "node": "LF.4",
+  },
+]
+`;

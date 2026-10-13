@@ -1,0 +1,7 @@
+NUM.3      footprint=1x1 heldCells=1 caption="SAFE" opacity=1.00 at=800,249
+NUM.F      footprint=2x1 heldCells=2 caption="SAFE" opacity=1.00 at=718,265
+NUM.5      footprint=2x2 heldCells=1 caption="SAFE" opacity=1.00 at=873,149
+NUM.S      footprint=2x2 heldCells=0 caption="SAFE" opacity=1.00 at=709,345
+NUM.2      footprint=2x2 heldCells=0 caption="SAFE" opacity=0.00 at=836,131
+NUM.4      footprint=1x2 heldCells=0 caption="SAFE" opacity=1.00 at=732,118
+town-hall  footprint=3x2 heldCells=3 caption="SAFE" opacity=1.00 at=675,147

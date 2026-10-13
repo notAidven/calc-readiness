@@ -1,0 +1,78 @@
+{
+  "node_id": "TRG.8",
+  "title": "Solve basic trigonometric equations over an interval",
+  "mini_lesson": [
+    "Out in the dish yard a steerable dish is walked through one full turn while a meter reads the strength of the signal coming back, and what an engineer records is not the best heading but every heading at which the reading hits a stated value. An equation that asks for them has endlessly many answers on its own, because a heading and that heading plus a full turn point the same way, so a window such as $0^{\\circ} \\le x < 360^{\\circ}$ is what cuts the endless list down to a finite one. A heading inside the window that satisfies the equation is a **solution over an interval**, and since one sweep usually passes a given strength more than once, the answer is a roster of headings rather than a single heading.",
+    "A value's size and a value's sign do different jobs in a solution, and the whole of the work is keeping them apart. The size, with the sign set aside, fixes the acute reference angle, which is the angle between $0^{\\circ}$ and $90^{\\circ}$ measured from the terminal side to the nearer end of the horizontal axis, while the sign chooses which two of the four quadrants, numbered I through IV counterclockwise from the upper right, that acute angle is measured into. Neither reading is worth anything while a coefficient or a constant still sits beside the trigonometric function, because a value read off the circle then is the wrong value.",
+    "Two mistakes account for most of what goes wrong, and neither of them looks like a mistake on the page. The first is stopping once one heading has been found, which leaves a roster that is incomplete rather than incorrect, and the second is placing the reference angle in the wrong pair of quadrants, which produces the right number of headings with the wrong values in them. One habit catches both: name the two quadrants the sign allows before writing anything down, then confirm the finished roster holds a heading from each of them.",
+    "Without a window the answer never ends, because adding a full turn leaves a heading pointing the same way: a sine or cosine equation with one solution also has that solution plus $360^{\\circ}n$ for every whole number $n$, while a tangent repeats twice as often, every $180^{\\circ}$. That endless family is the **general solution**, and the roster being asked for is whichever of its members land inside the stated window."
+  ],
+  "slide_subtitles": [
+    "Every heading that fits",
+    "Size, then sign",
+    "Two ways it fails",
+    "Windows and general solutions"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The dish reads its stated strength wherever $\\sin x = \\dfrac{1}{2}$. List every heading in $0^{\\circ} \\le x < 360^{\\circ}$ at which it does.",
+      "steps": [
+        "On the way up from the start of the sweep the reading first reaches $\\dfrac{1}{2}$ at $x = 30^{\\circ}$.",
+        "The sweep carries on past the top and comes back down through the same strength, at $180^{\\circ} - 30^{\\circ} = 150^{\\circ}$.",
+        "Beyond that the dish is only repeating itself, since $390^{\\circ}$ and $510^{\\circ}$ and every further full turn point where $30^{\\circ}$ and $150^{\\circ}$ already point.",
+        "The window refuses all of those, so the roster is $\\{30^{\\circ},\\; 150^{\\circ}\\}$: two headings from one sweep, and not one."
+      ]
+    },
+    {
+      "prompt": "Solve $4\\cos x = -2$ for $0^{\\circ} \\le x < 360^{\\circ}$.",
+      "steps": [
+        "Divide both sides by $4$ so the cosine stands alone: $\\cos x = -\\dfrac{1}{2}$.",
+        "Set the sign aside and match the size. $\\cos 60^{\\circ} = \\dfrac{1}{2}$, so the acute angle is $60^{\\circ}$.",
+        "Now the sign, which is negative here, and a cosine is negative in Quadrants II and III.",
+        "Measure $60^{\\circ}$ into each of that pair: $180^{\\circ} - 60^{\\circ} = 120^{\\circ}$ and $180^{\\circ} + 60^{\\circ} = 240^{\\circ}$.",
+        "Both headings lie inside the window, so the roster is $\\{120^{\\circ},\\; 240^{\\circ}\\}$."
+      ]
+    },
+    {
+      "prompt": "A roster for $\\sin x = \\dfrac{\\sqrt{3}}{2}$ over $0^{\\circ} \\le x < 360^{\\circ}$ was handed in as $\\{60^{\\circ},\\; 240^{\\circ}\\}$. Find the mistake and correct it.",
+      "steps": [
+        "Check the size first. $\\sin 60^{\\circ} = \\dfrac{\\sqrt{3}}{2}$, so the acute angle of $60^{\\circ}$ is right and two headings is the right count.",
+        "Now the sign. The value is positive, and a sine is positive in Quadrants I and II.",
+        "So the pair should be $60^{\\circ}$ and $180^{\\circ} - 60^{\\circ} = 120^{\\circ}$.",
+        "The $240^{\\circ}$ on the sheet was measured into Quadrant III, where a sine is negative, so it answers an equation nobody asked.",
+        "The corrected roster is $\\{60^{\\circ},\\; 120^{\\circ}\\}$, holding one heading from each of the two quadrants the sign allowed."
+      ]
+    },
+    {
+      "prompt": "Write the general solution of $\\tan x = \\sqrt{3}$, then give the roster over $0^{\\circ} \\le x < 360^{\\circ}$.",
+      "steps": [
+        "The size matches at the acute heading, since $\\tan 60^{\\circ} = \\sqrt{3}$.",
+        "A tangent repeats every half turn rather than every full one, so every heading that works is $60^{\\circ} + 180^{\\circ}n$ for a whole number $n$, and that family is the general solution.",
+        "Take $n = 0$ and $n = 1$, which give $60^{\\circ}$ and $240^{\\circ}$, both inside the window.",
+        "Take $n = 2$ and it gives $420^{\\circ}$, past the upper bound, while $n = -1$ gives $-120^{\\circ}$, below the lower one.",
+        "So the roster is $\\{60^{\\circ},\\; 240^{\\circ}\\}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "trg-sweep-play", "gates": true },
+    { "after": 1, "id": "trg-solve-order", "gates": true },
+    { "after": 2, "id": "trg-roster-spot", "gates": true },
+    { "after": 3, "id": "trg-window-sorter", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Solve $2\\sin x + 1 = 0$ for $0^{\\circ} \\le x < 360^{\\circ}$, then give the LARGER of the two headings. Enter one number, in degrees, with no degree sign.",
+    "accepted": ["330"],
+    "hint": "Isolate the sine before anything else: take the $1$ across and divide both sides by $2$, which leaves $\\sin x = -\\dfrac{1}{2}$. The size $\\dfrac{1}{2}$ then fixes the reference angle and the minus sign decides which two quadrants that angle is measured into, so work out both headings before choosing which one to write down.",
+    "worked_solution": [
+      "Move the constant across first: $2\\sin x = -1$.",
+      "Divide both sides by $2$, which leaves the sine standing alone: $\\sin x = -\\dfrac{1}{2}$.",
+      "Set the sign aside and match the size. $\\sin 30^{\\circ} = \\dfrac{1}{2}$, so the reference angle is $30^{\\circ}$.",
+      "The value is negative and a sine is negative in the third and fourth quadrants, so the reference angle is placed in each of them: $180^{\\circ} + 30^{\\circ} = 210^{\\circ}$ and $360^{\\circ} - 30^{\\circ} = 330^{\\circ}$.",
+      "Both headings lie inside the window, so the roster is $\\{210^{\\circ},\\; 330^{\\circ}\\}$ and the larger of the two is $330$."
+    ],
+    "worked_solution_params": { "isSine": 1, "reference": 30, "negative": 1 },
+    "check": { "answer_type": "numeric", "answer_key": "330" },
+    "variants": { "template_id": "cfu.trg8.larger-root", "count": 2 }
+  }
+}

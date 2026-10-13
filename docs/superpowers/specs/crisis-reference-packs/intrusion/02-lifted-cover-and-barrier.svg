@@ -1,0 +1,25 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900">
+  <!-- Engine reference: fixed 49-degree map camera, FOV 32 feel, flat-shaded low-poly, no textures, no glow. -->
+  <rect width="1400" height="900" fill="#b9bfc2"/>
+  <polygon points="-120,510 210,472 555,450 872,462 1212,505 1520,575 1520,940 -120,940" fill="#7f96a0"/>
+  <polygon points="-120,438 178,410 542,392 903,404 1272,452 1520,510 1520,720 1240,656 922,610 568,594 210,612 -120,660" fill="#adb4b8" opacity="0.40"/>
+  <polygon points="-120,392 164,368 520,352 886,362 1268,408 1520,458 1520,586 1206,530 884,494 520,482 156,502 -120,542" fill="#caced1" opacity="0.46"/>
+  <polygon points="-80,566 184,512 484,486 780,498 1076,560 1480,688 1480,940 -80,940" fill="#7d786f"/>
+  <polygon points="-60,592 214,536 494,514 772,526 1036,584 1456,716 1456,940 -60,940" fill="#948f86"/>
+  <polygon points="-40,616 224,562 498,540 774,554 1030,612 1440,742 1440,940 -40,940" fill="#a9a49a"/>
+  <polygon points="-20,654 244,602 508,584 780,600 1042,662 1424,786 1424,940 -20,940" fill="#b2ada4"/>
+  <polygon points="-40,636 1400,732 1400,738 -40,642" fill="#8e8a81" opacity="0.30"/>
+  <polygon points="-40,680 1400,776 1400,782 -40,686" fill="#8e8a81" opacity="0.30"/>
+  <polygon points="-40,724 1400,820 1400,826 -40,730" fill="#8e8a81" opacity="0.30"/>
+  <polygon points="-40,768 1400,864 1400,870 -40,774" fill="#8e8a81" opacity="0.30"/>
+  <polygon points="-40,812 1400,908 1400,914 -40,818" fill="#8e8a81" opacity="0.30"/>
+  <polygon points="-40,856 1400,952 1400,958 -40,862" fill="#8e8a81" opacity="0.30"/>
+  <polygon points="120,642 212,596 305,642 212,688" fill="#918d84"/>
+  <polygon points="141,642 212,606 284,642 212,678" fill="#bcb8b0" opacity="0.5"/>
+  <polygon points="620,702 712,656 805,702 712,748" fill="#2c3236"/>
+  <polygon points="729,694 822,647 838,568 746,614" fill="#918d84"/>
+  <polygon points="729,694 746,614 746,626 729,706" fill="#706c66"/>
+  <polygon points="582,685 595,679 595,618 582,624" fill="#646b70"/>
+  <polygon points="582,624 595,618 691,668 679,675" fill="#8b959c"/>
+  <polygon points="838,727 851,721 851,660 838,666" fill="#646b70"/>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "name": "@cr/diagnostic",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Gabe. Placement/pretest engine + graphing widget impl. Writes placement_estimate, never mastery.",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --build"
+  },
+  "dependencies": {
+    "@cr/state-schema": "*",
+    "@cr/components": "*",
+    "@cr/skill-graph": "*"
+  }
+}

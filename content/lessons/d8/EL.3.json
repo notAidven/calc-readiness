@@ -1,0 +1,76 @@
+{
+  "node_id": "EL.3",
+  "title": "Logarithms: convert form, evaluate common and natural logs",
+  "mini_lesson": [
+    "The count of transistors on a chip doubles with each generation, so two parts reaching the fabrication lab differ by some whole number of doublings. Going forward is easy, since each generation simply multiplies by $2$ again, but recovering how many generations apart two parts are runs into a wall. Dividing is the tempting move and it answers a different question, so what is missing is a way to ask directly for an exponent.",
+    "The question gets a name: a **logarithm** takes a base and a number and hands back an exponent, so $\\log_{2} 32$ means the exponent that turns $2$ into $32$. The number inside it is the **argument**, the small number written under the $\\log$ is the base, and the value of the whole expression is an exponent rather than a count or a total. So every logarithm statement is an exponential statement in different clothes: $\\log_{b} y = k$ and $b^{k} = y$ hold the same three numbers in the same three roles.",
+    "While the argument is an exact power of the base, nothing has to be looked up: climb the powers of the base, keeping count, until you reach the argument. Converting to exponential form first also answers the versions where the argument or the base is the missing number instead of the value. Whichever of the three numbers is absent, the same conversion is the move, and the arithmetic then produces the one that was left out.",
+    "Two bases come up so often that their logarithms are written with no base at all: a bare $\\log$ is the **common logarithm** on base $10$, and $\\ln$ is the **natural logarithm** on base $e$, which undoes continuous growth. An unwritten base is still a base, and reading one of these as though there were none is the mistake worth guarding against. Arguments below $1$ are the other thing to expect, since a reciprocal is the same power with a negative exponent, so their logarithms come back negative."
+  ],
+  "slide_subtitles": [
+    "What multiplying cannot answer",
+    "Naming the missing exponent",
+    "Climbing to the exponent",
+    "The two unwritten bases"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A part reaching the lab holds $128$ times as many transistors as the last one, with the count doubling each generation. How many generations apart are they?",
+      "steps": [
+        "Dividing does not answer it: $128 \\div 2 = 64$ says how many twos fit inside $128$, not how many multiply together to make it.",
+        "Counting factors of $2$ is what does answer it: $2$, $4$, $8$, $16$, $32$, $64$, $128$.",
+        "Seven factors reach the multiple, so $2^{7} = 128$.",
+        "The two parts are $7$ generations apart, and the number being hunted was an exponent all along."
+      ]
+    },
+    {
+      "prompt": "Write $\\log_{2} 32 = 5$ in exponential form, and write $7^{3} = 343$ in logarithmic form.",
+      "steps": [
+        "In $\\log_{2} 32 = 5$ the base is $2$, the argument is $32$, and the value $5$ is an exponent.",
+        "Exponential form puts that exponent on the base: $2^{5} = 32$.",
+        "In $7^{3} = 343$ the base is $7$, the exponent is $3$, and $343$ is the power it reaches.",
+        "Logarithmic form asks for the exponent instead, so it reads $\\log_{7} 343 = 3$."
+      ]
+    },
+    {
+      "prompt": "Evaluate $\\log_{3} 81$, then solve $\\log_{5} y = 3$ and $\\log_{b} 216 = 3$.",
+      "steps": [
+        "Climb the powers of $3$, keeping count: $3^{1} = 3$, $3^{2} = 9$, $3^{3} = 27$, $3^{4} = 81$, so $\\log_{3} 81 = 4$.",
+        "The statement $\\log_{5} y = 3$ converts to $5^{3} = y$, which puts the missing argument at $y = 125$.",
+        "The statement $\\log_{b} 216 = 3$ converts to $b^{3} = 216$, so the missing base is the number whose cube is $216$.",
+        "Since $6^{3} = 216$, that base is $b = 6$."
+      ]
+    },
+    {
+      "prompt": "Evaluate $\\log 1000$, $\\ln e^{7}$, $\\log 0.01$ and $\\ln \\dfrac{1}{e^{4}}$.",
+      "steps": [
+        "A bare $\\log$ has base $10$, and $10^{3} = 1000$, so $\\log 1000 = 3$.",
+        "The base of $\\ln$ is $e$, and the exponent that turns $e$ into $e^{7}$ is already written, so $\\ln e^{7} = 7$.",
+        "The argument of $\\log 0.01$ is below $1$, and $10^{-2} = 0.01$, so that value is $-2$.",
+        "A reciprocal is the same power with a negative exponent, so $\\dfrac{1}{e^{4}} = e^{-4}$ and $\\ln \\dfrac{1}{e^{4}} = -4$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "log-question-explore", "gates": true },
+    { "after": 1, "id": "log-form-match", "gates": true },
+    { "after": 2, "id": "log-evaluate-stepper", "gates": true },
+    { "after": 3, "id": "log-natural-spot", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A line triples its output each pass, and after some whole number of passes it is $243$ times what it started at. How many passes was that? Enter one number.",
+    "accepted": ["5", "5.0"],
+    "hint": "Tripling once a pass means the final multiple is a power of three, so the question is asking for an exponent. Climb the powers of three, keeping count of the factors, and stop at the multiple you were given.",
+    "worked_solution": [
+      "Tripling once a pass means that after $n$ passes the output is $3^{n}$ times what it started at, so the question is asking for an exponent.",
+      "Climb the powers of three, counting as you go: $3^{1} = 3$, $3^{2} = 9$, $3^{3} = 27$, $3^{4} = 81$.",
+      "One more triple lands on the given multiple: $3^{5} = 243$, so it took $5$ passes."
+    ],
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "5"
+    },
+    "worked_solution_params": { "b": 3, "k": 5, "value": 243 },
+    "variants": { "template_id": "d8.el3.evaluate-base.l2", "count": 2 }
+  }
+}

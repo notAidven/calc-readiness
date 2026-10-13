@@ -1,0 +1,86 @@
+{
+  "node_id": "TRG.4",
+  "title": "The six functions; even and odd; fundamental identities",
+  "mini_lesson": [
+    "High on a mast, two instruments read the same incoming signal and report it as a pair of numbers, and everything else a field engineer needs is built out of that pair. Sine and cosine are those two readings: turning the sine over gives the **cosecant** $\\csc\\theta = \\dfrac{1}{\\sin\\theta}$; turning the cosine over gives the **secant** $\\sec\\theta = \\dfrac{1}{\\cos\\theta}$; and dividing one reading by the other gives a tangent or a **cotangent**. Six names, and only two independent numbers underneath all of them.",
+    "Two functions whose product is $1$ are reciprocals of each other, and each equation saying so is a **reciprocal identity**. There are three of them, because the six functions fall into three pairs: sine with cosecant, cosine with secant, and tangent with cotangent. The co- at the front of a name is not what decides the pairing, which is the trap worth naming once: cosine goes with secant rather than with cosecant.",
+    "Sweep the antenna the other way, from $\\theta$ to $-\\theta$, and every reading either comes back the same or comes back with its sign flipped. A function with $f(-x) = f(x)$ is an **even function**, and one with $f(-x) = -f(x)$ is an **odd function**. Reversing the sweep reflects the position across the horizontal axis, so the horizontal coordinate is untouched and the vertical one changes sign.",
+    "Two relations remain, and both of them are checks a reading has to pass. The **Pythagorean identity** says $\\sin^{2}\\theta + \\cos^{2}\\theta = 1$ at every heading, which is the distance from the center of the pad out to the tip, written in the two coordinates. The **quotient identity** says $\\tan\\theta = \\dfrac{\\sin\\theta}{\\cos\\theta}$, and the two together recover one reading from another: the Pythagorean identity fixes how big a missing reading is and the quadrant fixes which way it points."
+  ],
+  "slide_subtitles": [
+    "Six functions, two readings",
+    "Reciprocal identities",
+    "Even and odd",
+    "Pythagorean and quotient"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "At one heading a meter reads $\\sin\\theta = \\dfrac{7}{25}$ and $\\cos\\theta = \\dfrac{24}{25}$. Give the other four functions there.",
+      "steps": [
+        "The tangent divides the sine by the cosine, and the shared denominator cancels: $\\dfrac{7}{25} \\div \\dfrac{24}{25} = \\dfrac{7}{24}$.",
+        "The cotangent is that same division the other way round, so $\\cot\\theta = \\dfrac{24}{7}$.",
+        "The cosecant turns the sine over, so $\\csc\\theta = \\dfrac{25}{7}$.",
+        "The secant turns the cosine over, so $\\sec\\theta = \\dfrac{25}{24}$, and all four values came out of the two readings alone."
+      ]
+    },
+    {
+      "prompt": "A meter reports $\\csc\\theta = \\dfrac{9}{4}$. Which of the two readings does that pin down, and what is its value?",
+      "steps": [
+        "The cosecant's partner is the sine, since those two are the pair whose product is $1$.",
+        "So the reciprocal identity to reach for is $\\sin\\theta = \\dfrac{1}{\\csc\\theta}$, read in that direction.",
+        "Turning $\\dfrac{9}{4}$ over gives $\\sin\\theta = \\dfrac{4}{9}$.",
+        "Checking the product, $\\dfrac{9}{4} \\times \\dfrac{4}{9} = 1$, so an identity used in either direction is the same single fact."
+      ]
+    },
+    {
+      "prompt": "Test $f(x) = x^{2}$ and $g(x) = x^{3}$ for even and odd.",
+      "steps": [
+        "Substituting $-x$ into $f$ gives $f(-x) = (-x)^{2} = x^{2}$, because a negative multiplied by a negative is positive.",
+        "That is $f(x)$ back again, so $f$ is even.",
+        "Substituting $-x$ into $g$ gives $g(-x) = (-x)^{3} = -x^{3}$, because three negative factors leave a negative.",
+        "That is $-g(x)$, so $g$ is odd, and this substitution is the whole of the test a reversed sweep has to be put through."
+      ]
+    },
+    {
+      "prompt": "A meter reads $\\cos\\theta = -\\dfrac{20}{29}$, with $\\theta$ in the second quadrant. Find $\\sin\\theta$.",
+      "steps": [
+        "The Pythagorean identity holds at every heading, so $\\sin^{2}\\theta = 1 - \\cos^{2}\\theta$.",
+        "Squaring the reading gives $\\left(-\\dfrac{20}{29}\\right)^{2} = \\dfrac{400}{841}$, so $\\sin^{2}\\theta = 1 - \\dfrac{400}{841} = \\dfrac{441}{841}$.",
+        "The square root offers two candidates, $\\dfrac{21}{29}$ and $-\\dfrac{21}{29}$, and the identity has nothing to say about which of them it is.",
+        "In the second quadrant the vertical coordinate is positive, so $\\sin\\theta = \\dfrac{21}{29}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "trg-six-table", "gates": true },
+    { "after": 1, "id": "trg-reciprocal-match", "gates": true },
+    { "after": 2, "id": "trg-evenodd-sorter", "gates": true },
+    { "after": 3, "id": "trg-identity-spot", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A meter reports $\\sin\\theta = -\\dfrac{4}{5}$, and the heading $\\theta$ lies in the third quadrant. What is $\\tan\\theta$? Enter one number, as a fraction in lowest terms.",
+    "accepted": ["4/3"],
+    "hint": "Nothing here gives you the cosine directly, so recover it first: square the reading you were given, take that away from $1$, and the Pythagorean identity leaves you the square of the cosine. A square root offers two candidates, so let the third quadrant choose the sign before you divide anything.",
+    "worked_solution": [
+      "The two readings satisfy $\\sin^{2}\\theta + \\cos^{2}\\theta = 1$ at every heading, so the cosine can be recovered from the sine alone.",
+      "Squaring the reading gives $\\left(-\\dfrac{4}{5}\\right)^{2} = \\dfrac{16}{25}$, so $\\cos^{2}\\theta = 1 - \\dfrac{16}{25} = \\dfrac{9}{25}$.",
+      "Taking the square root leaves two candidates, $\\dfrac{3}{5}$ and $-\\dfrac{3}{5}$.",
+      "In the third quadrant the horizontal coordinate is negative, so $\\cos\\theta = -\\dfrac{3}{5}$.",
+      "The quotient identity finishes it: $\\tan\\theta = \\dfrac{\\sin\\theta}{\\cos\\theta}$, and dividing $-\\dfrac{4}{5}$ by $-\\dfrac{3}{5}$ gives $\\dfrac{4}{3}$."
+    ],
+    "worked_solution_params": {
+      "opposite": 4,
+      "adjacent": 3,
+      "hyp": 5,
+      "quadrant": 3,
+      "givenSine": 1
+    },
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "4/3",
+      "representation": "fraction",
+      "simplification": "reduced_fraction"
+    },
+    "variants": { "template_id": "cfu.trg4.quadrant-tangent", "count": 2 }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "node_id": "TRG.2",
+  "title": "Right-triangle trigonometry; 30/45/60; cofunctions",
+  "mini_lesson": [
+    "A guy wire runs from the top of a mast down to an anchor pad on the deck, and the mast, the run along the deck and the wire close up into a right triangle. Stand at the pad and look up along the wire: the mast rises across from you, so it is the **opposite** side, while the deck run lies alongside you and is the **adjacent** one. The longest side always faces the right angle and is the **hypotenuse**, and it is the one name that does not move when you do, because the right angle fixes it rather than you.",
+    "Divide one side of a right triangle by another and the quotient depends only on the angle, never on how large the triangle is, which is what makes it worth naming. Measured from an acute angle, the **sine** is the opposite side over the hypotenuse, the **cosine** is the adjacent side over the hypotenuse, and the **tangent** is the opposite side over the adjacent one. Order matters inside every one of them, because a ratio written upside down belongs to a different angle, so picking a ratio is really picking which two lengths to work with.",
+    "Three acute angles turn up so often that their ratios are worth carrying exactly rather than reading off a meter, and each of the three is called a **special angle**. Cut an equilateral triangle down the middle and a $30^{\\circ}$ and $60^{\\circ}$ pair falls out; cut a square along its diagonal instead and $45^{\\circ}$ appears twice. A value read off either of those two triangles is exact rather than rounded, and a root is never left underneath a bar, so a ratio that lands with one there is rewritten with the root on top.",
+    "The two acute angles of a right triangle always add to $90^{\\circ}$, since the right corner has already taken the rest, and two angles adding to $90^{\\circ}$ are **complementary**. The leg opposite one of them is the leg beside the other, so a sine read from one corner is the very same number as a cosine read from the other, which is why the two are called a **cofunction** pair. Both halves move together: the ratio changes and so does the angle, and the partner angle is found by subtracting from $90^{\\circ}$ rather than from $180^{\\circ}$."
+  ],
+  "slide_subtitles": [
+    "Naming the three sides",
+    "Sine, cosine, tangent",
+    "The special angles",
+    "Cofunctions and complements"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A right triangle has legs of $7$ and $24$. Which of its three sides is the hypotenuse, and how long is it?",
+      "steps": [
+        "The hypotenuse is the side facing the right angle, and the two legs are the sides that meet there, so neither leg can be it.",
+        "The remaining side is the one across from the right corner, and it holds that name from either acute corner, because the right angle fixes it.",
+        "Its length comes from the two legs: $7^{2} + 24^{2} = 49 + 576 = 625$.",
+        "So the hypotenuse is the side across from the right angle and it measures $\\sqrt{625} = 25$, longer than either leg."
+      ]
+    },
+    {
+      "prompt": "From the marked corner of a right triangle the opposite side is $5$, the adjacent side is $12$ and the hypotenuse is $13$. Give the sine, the cosine and the tangent of that angle.",
+      "steps": [
+        "The sine names the opposite side first and the hypotenuse second, so $\\sin \\theta = \\dfrac{5}{13}$.",
+        "The cosine names the adjacent side over the hypotenuse, so $\\cos \\theta = \\dfrac{12}{13}$.",
+        "The tangent leaves the hypotenuse out altogether and compares the two legs, so $\\tan \\theta = \\dfrac{5}{12}$.",
+        "So the three ratios are $\\dfrac{5}{13}$, $\\dfrac{12}{13}$ and $\\dfrac{5}{12}$: one move made three times on a different pair of sides each time."
+      ]
+    },
+    {
+      "prompt": "An equilateral triangle of side $2$ is cut straight down the middle. Find the three side lengths of one half.",
+      "steps": [
+        "The cut halves the base, so the short leg is $1$, and the side of the equilateral triangle is left untouched, so the hypotenuse is $2$.",
+        "The cut itself is the third side, and it comes from the other two: $\\sqrt{2^{2} - 1^{2}} = \\sqrt{3}$.",
+        "So one half has sides $1$, $\\sqrt{3}$ and $2$, with the $30^{\\circ}$ at the top of the cut and the $60^{\\circ}$ down at the base."
+      ]
+    },
+    {
+      "prompt": "Which cosine is equal to $\\sin 25^{\\circ}$?",
+      "steps": [
+        "The two acute angles of the triangle are complementary, so the partner of $25^{\\circ}$ is $90^{\\circ} - 25^{\\circ} = 65^{\\circ}$.",
+        "Standing at that other corner swaps which leg is opposite and which is adjacent, so a sine read at $25^{\\circ}$ is read as a cosine at $65^{\\circ}$.",
+        "So $\\sin 25^{\\circ} = \\cos 65^{\\circ}$, with both the ratio and the angle changed."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "trg-guywire-label", "gates": true },
+    { "after": 1, "id": "trg-ratio-table", "gates": true },
+    { "after": 2, "id": "trg-special-match", "gates": true },
+    { "after": 3, "id": "trg-cofunction-spot", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A guy wire runs from the top of a mast down to an anchor pad on the deck, meeting the mast at $30^{\\circ}$ where it leaves the masthead. The pad sits $20$ meters along the deck from the foot of the mast, and the mast stands square to the deck. How long is the wire, in meters? Enter one number.",
+    "accepted": ["40"],
+    "hint": "Find the angle at the pad before reaching for any ratio: the corner at the foot of the mast is square, so the pad's corner takes whatever is left of $90^{\\circ}$ once the masthead has taken $30^{\\circ}$. Standing at the pad, the $20$ meters lies alongside you and the wire runs across from the right angle, and one ratio pairs exactly those two lengths.",
+    "worked_solution": [
+      "The mast, the deck run and the wire close into a right triangle, with the right angle at the foot of the mast.",
+      "The two acute corners are complementary, so the angle at the pad is $90^{\\circ} - 30^{\\circ} = 60^{\\circ}$.",
+      "From the pad the $20$ meter deck run is the adjacent side and the wire is the hypotenuse, and the ratio pairing those two is the cosine: $\\cos 60^{\\circ} = \\dfrac{20}{c}$.",
+      "At the special angle $60^{\\circ}$ the cosine is exactly $\\dfrac{1}{2}$, so $\\dfrac{1}{2} = \\dfrac{20}{c}$.",
+      "Solving gives $c = 40$, so the wire is $40$ meters long."
+    ],
+    "worked_solution_params": { "masthead": 30, "given": 20, "asksWire": 1 },
+    "check": { "answer_type": "numeric", "answer_key": "40" },
+    "variants": { "template_id": "cfu.trg2.wire-length", "count": 2 }
+  }
+}

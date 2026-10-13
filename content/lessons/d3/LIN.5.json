@@ -1,0 +1,85 @@
+{
+  "node_id": "LIN.5",
+  "title": "Solve absolute-value equations",
+  "mini_lesson": [
+    "The weighing yard's whole job is to report how far off a standard a given weight has drifted, and nobody buying tin cares which direction the error runs, only how big it is. So the yard reports the plain distance and throws the sign away, which is the absolute value $\\lvert w \\rvert$ doing its usual job. Distance from a standard is that same idea shifted along the scale, so the error of a weight $w$ against a standard of $60$ is $\\lvert w - 60 \\rvert$, positive on either side of $60$.",
+    "Asking which weights are off by exactly $2$ turns that report into a question, and no single number can be the whole answer. A distance is available in both directions, so the quantity inside the bars is free to be either the positive value or its negative, and each of those gives a genuine weight. One equation carrying bars therefore unpacks into two ordinary equations without them, and dropping the second is the commonest way to get one of these wrong.",
+    "The bars can hold more than a simple difference, and when they do neither branch is finished at the moment it is written. The quantity inside keeps its own form in both branches and only the number on the right changes sign, so a negative there belongs to that side of the branch and never to the values that come out of it. Each branch is an ordinary linear equation from that point on and is solved exactly as one.",
+    "Every rule the yard has checked so far has come back with two weights, so it is worth asking what the number on the right of the bars has to be for that to happen. A distance of zero can only be zero, so both branches say the same thing and collapse into one, while a distance can never be negative at all, so a negative on the right leaves nothing to solve. Neither case needs a rule of its own and both are visible before any algebra starts, straight off the number sitting on the right."
+  ],
+  "slide_subtitles": [
+    "How far off standard",
+    "Two weights, one error",
+    "Inside the bars",
+    "Reading the right-hand side"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A weight of $62$ minas and a weight of $58$ minas are both checked against a standard of $60$. Give each one's error.",
+      "steps": [
+        "The error of a weight $w$ is $\\lvert w - 60 \\rvert$, so put each weight into that.",
+        "For $62$ the quantity inside is $62 - 60$, which is $2$, and $\\lvert 2 \\rvert$ is $2$.",
+        "For $58$ the quantity inside is $58 - 60$, which is $-2$, and the bars discard that sign, so $\\lvert -2 \\rvert$ is $2$.",
+        "Both weights are off by $2$, one above the standard and one below it."
+      ]
+    },
+    {
+      "prompt": "Solve $\\lvert w - 60 \\rvert = 2$ for the weights that are off by exactly $2$.",
+      "steps": [
+        "The bars put $w - 60$ at a distance of $2$ from zero, and a quantity can be that far out on either side.",
+        "That gives two ordinary equations: $w - 60 = 2$ and $w - 60 = -2$.",
+        "Adding $60$ to both sides of the first gives $w = 62$.",
+        "Adding $60$ to both sides of the second gives $w = 58$.",
+        "Both weights are genuine solutions, so the solution set is $\\{58, 62\\}$."
+      ]
+    },
+    {
+      "prompt": "Solve $\\lvert 2x - 1 \\rvert = 7$ for the counterweights that satisfy the yard's rule.",
+      "steps": [
+        "The quantity inside keeps its form in both branches, and only the $7$ picks up a sign: $2x - 1 = 7$ and $2x - 1 = -7$.",
+        "The first branch gives $2x = 8$ and then $x = 4$.",
+        "The second branch gives $2x = -6$ and then $x = -3$.",
+        "Neither solution was negated by the branch it came from, so the solution set is $\\{-3, 4\\}$."
+      ]
+    },
+    {
+      "prompt": "Solve $\\lvert 2x + 1 \\rvert = 0$, then solve $\\lvert x + 4 \\rvert = -2$.",
+      "steps": [
+        "Only zero sits zero away from zero, so $\\lvert 2x + 1 \\rvert = 0$ forces $2x + 1 = 0$ on its own.",
+        "Both branches say that same thing, because $-0$ and $0$ are the same number, so there is one equation to solve.",
+        "Solving it gives $2x = -1$ and then $x = -\\tfrac{1}{2}$, so the solution set is $\\left\\{-\\tfrac{1}{2}\\right\\}$.",
+        "A distance is never negative, so nothing can sit $-2$ away from zero and $\\lvert x + 4 \\rvert = -2$ has no solution.",
+        "Its solution set is therefore empty, and that is written $\\{\\}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "off-standard-stepper", "gates": true },
+    { "after": 1, "id": "abs-branch-builder", "gates": true },
+    { "after": 2, "id": "abs-branch-spot", "gates": true },
+    { "after": 3, "id": "abs-count-classify", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "The yard checks a weight against the rule $\\lvert w - 45 \\rvert = 6$. Which weights satisfy it? Give both, separated by a comma.",
+    "accepted": [
+      "39, 51",
+      "51, 39",
+      "{39, 51}",
+      "{51, 39}",
+      "39; 51",
+      "51; 39",
+      "39 and 51",
+      "51 and 39"
+    ],
+    "hint": "The bars say the quantity inside them sits that far from zero, and it can sit that far on either side of zero. Write the two ordinary equations that gives you, then solve each one on its own.",
+    "worked_solution": [
+      "The bars say $w - 45$ sits $6$ away from zero, and a quantity can sit that far on either side, so the rule unpacks into two ordinary equations: $w - 45 = 6$ and $w - 45 = -6$.",
+      "Solve the first by adding $45$ to both sides: $w = 51$.",
+      "Solve the second the same way: $w = 39$.",
+      "Both weights pass the yard's check, so the answer is `39, 51`."
+    ],
+    "worked_solution_params": { "centre": 45, "distance": 6, "varIndex": 1 },
+    "check": { "answer_type": "solution_set", "answer_key": "39, 51" },
+    "variants": { "template_id": "d3.lin5.shift.l1", "count": 2 }
+  }
+}

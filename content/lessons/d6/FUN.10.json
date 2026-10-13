@@ -1,0 +1,88 @@
+{
+  "node_id": "FUN.10",
+  "title": "Graph and interpret absolute-value functions",
+  "mini_lesson": [
+    "A chart recorder in the telemetry loft plots how far a reading sits from its set point, so a reading $7$ above and a reading $7$ below both come out as $7$. Absolute value is that same rule: $\\lvert 7 \\rvert = 7$ and $\\lvert -7 \\rvert = 7$. Graphing $y = \\lvert x \\rvert$ therefore folds the negative half of the line $y = x$ up across the horizontal axis, so the left arm becomes the mirror image of the right one and the two meet in a sharp corner at the origin.",
+    "What sits inside the bars decides where the corner lands. The output of $\\lvert x - h \\rvert$ is the distance from $x$ to $h$, so it bottoms out at zero exactly where the inside of the bars empties, and that turning point is the **vertex**. Solving $x - h = 0$ places it at $x = h$, so a minus sign inside pushes the vee to the right while a plus sign pushes it to the left, and reading that sign backwards is the commonest slip on this graph.",
+    "Two more numbers finish the graph, and both of them act outside the bars. Adding $k$ lifts the whole vee by $k$, so the vertex of $y = \\lvert x - 3 \\rvert + 4$ stands at $(3,\\, 4)$. Multiplying by $a$ reshapes the arms and leaves the corner where it is: an $a$ bigger than $1$ steepens the vee, an $a$ between $0$ and $1$ widens it, and a negative $a$ turns the whole graph over so it opens downward.",
+    "Where a finished vee turns is its vertex, and the height there is the **minimum** when the vee opens upward and the **maximum** when it opens downward. From there the outputs run out to infinity on one side only, so an upward vee cornered at height $k$ has the half-line range $[k,\\, \\infty)$, where the square bracket takes $k$ in and the round bracket refuses infinity because there is no such number to reach. Direction follows the same split: an upward vee falls on the way in to the vertex and rises on the way out, and a downward vee does the reverse."
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The line $y = x$ passes through $(-5,\\, -5)$. Where does $y = \\lvert x \\rvert$ send that same input?",
+      "steps": [
+        "The bars report the distance from zero with the sign discarded, so $\\lvert -5 \\rvert = 5$.",
+        "The input has not moved, only the output: $y = \\lvert x \\rvert$ puts the point at $(-5,\\, 5)$.",
+        "That is the old point reflected straight up across the horizontal axis, and every negative input is treated the same way.",
+        "So the whole negative half of $y = x$ folds up, and what it folds into is the left arm of the vee."
+      ]
+    },
+    {
+      "prompt": "Where does the graph of $y = \\lvert x + 4 \\rvert$ turn?",
+      "steps": [
+        "The bars never hand back anything below zero, so the graph sits lowest where the quantity inside them is zero.",
+        "Set that inside quantity to zero: $x + 4 = 0$ gives $x = -4$.",
+        "Nothing stands outside the bars, so the height there is $0$ and the vee turns at $(-4,\\, 0)$.",
+        "The plus sign inside moved the corner to the left, which is the opposite of the way the sign reads."
+      ]
+    },
+    {
+      "prompt": "Where does the graph of $y = -3\\lvert x - 2 \\rvert + 7$ turn, and which way does it open?",
+      "steps": [
+        "Neither number outside the bars moves the corner sideways, so find it from the inside as before: $x - 2 = 0$ gives $x = 2$.",
+        "At that input the bars hand back $0$, so the $-3$ has nothing to act on and the height is only the lift: $-3 \\times 0 + 7 = 7$. The vertex is $(2,\\, 7)$.",
+        "The number multiplying the bars is $-3$, and its sign turns the graph over, so both arms fall away from the corner and the vee opens downward.",
+        "Its size steepens those arms to three times the slope of $y = \\lvert x \\rvert$, which changes their shape without moving the corner it left at $(2,\\, 7)$."
+      ]
+    },
+    {
+      "prompt": "Which outputs can $y = 2\\lvert x - 1 \\rvert - 5$ reach?",
+      "steps": [
+        "The bars report a distance, so the least they can give is $0$, and that happens at $x = 1$.",
+        "There the rule reads $2 \\times 0 - 5 = -5$, so the vee turns at $(1,\\, -5)$.",
+        "Every other input gives the bars something positive, and $2$ is positive too, so every other output sits above $-5$.",
+        "The arms climb without limit from there, so the outputs are every value from $-5$ upward."
+      ]
+    }
+  ],
+  "slide_subtitles": [
+    "Folding the line up",
+    "Where the corner lands",
+    "Stretch, flip and lift",
+    "Reading the finished vee"
+  ],
+  "visuals": [
+    { "after": 0, "id": "absvalue-vee-build", "gates": true },
+    { "after": 1, "id": "absvalue-vertex-slider", "gates": true },
+    { "after": 2, "id": "absvalue-evaluate-stepper", "gates": true },
+    { "after": 3, "id": "absvalue-walkthrough", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A chart recorder traces $f(x) = -2\\lvert x - 6 \\rvert + 10$ across a shift, where $x$ is the hour. Give the vertex of the trace as a coordinate pair, then say whether the height there is a maximum or a minimum. Type the pair first, then the word, like `(2, 5), minimum`.",
+    "accepted": [
+      "(6, 10), maximum",
+      "(6, 10); maximum",
+      "(6, 10) maximum",
+      "(6, 10) and maximum",
+      "6, 10, maximum",
+      "x = 6, y = 10, maximum",
+      "(6, 10), max",
+      "(6, 10), a maximum",
+      "(6, 10), maximum value",
+      "maximum, (6, 10)",
+      "maximum; (6, 10)",
+      "maximum (6, 10)",
+      "maximum and (6, 10)",
+      "max, (6, 10)"
+    ],
+    "hint": "Start inside the bars and find the input that makes them zero, because the graph turns exactly there. Put that input back through the whole rule to get the height of the turn, and let the sign of the number multiplying the bars settle which way the arms point.",
+    "worked_solution": [
+      "The bars turn the trace, so find the input that empties them: $x - 6 = 0$ gives $x = 6$.",
+      "Put that input back through the rule: $f(6) = -2 \\times 0 + 10 = 10$, so the trace turns at $(6, 10)$.",
+      "The number multiplying the bars is $(-2)$. It is negative, so both arms fall away from the corner.",
+      "A downward vee never rises above its corner, so the answer is `(6, 10), maximum`."
+    ],
+    "worked_solution_params": { "stretch": -2, "h": 6, "k": 10 },
+    "variants": { "template_id": "cfu.fun10.vertex-and-graph", "count": 2 }
+  }
+}

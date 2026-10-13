@@ -1,0 +1,74 @@
+{
+  "node_id": "FUN.7",
+  "title": "Composition of functions",
+  "mini_lesson": [
+    "On the workshop floor two automata are often coupled in a line, and the second one only ever works on what the first hands it. That chain is a **composition**: one function's output becomes the next function's input. Written $f(g(x))$, it is read from the inside out, so $g$ acts on $x$ and $f$ acts on whatever $g$ returns.",
+    "The same chain has a second name. $(f \\circ g)(x)$ means exactly $f(g(x))$, and the circle is not a multiplication sign. The function written **first** is the one that acts **last**, because the other one is standing next to the input.",
+    "Swap the two machines and you have built a different machine. $(f \\circ g)(x)$ and $(g \\circ f)(x)$ almost never agree, because running a number through $g$ and then $f$ is not the same job as running it through $f$ and then $g$. Here **order is part of the answer**, not a detail of the writing.",
+    "You can compose without a number too. Wherever the outer function writes its input, write the **whole** inner function instead, brackets and all, then multiply out and collect. What comes back is a single function in its own right, and being able to build it is what later lets you test whether two functions undo each other."
+  ],
+  "slide_subtitles": [
+    "Machines in a line",
+    "The circle notation",
+    "Swapping the machines",
+    "Composing into one formula"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "For $g(x) = x + 2$ and $f(x) = 5x$, work out $f(g(3))$.",
+      "steps": [
+        "Read it from the inside out, so the $3$ goes into $g$ first.",
+        "The inner machine returns $g(3) = 3 + 2 = 5$.",
+        "The outer machine is handed that $5$ and nothing else: $f(5) = 5 \\times 5 = 25$.",
+        "So $f(g(3)) = 25$."
+      ]
+    },
+    {
+      "prompt": "For $f(x) = 6x - 5$ and $g(x) = x + 8$, work out $(f \\circ g)(2)$.",
+      "steps": [
+        "The circle names the outer function first, so $(f \\circ g)(2)$ is $f(g(2))$ and the $2$ goes into $g$.",
+        "The inner value is $g(2) = 2 + 8 = 10$.",
+        "Hand that single number on: $f(10) = 60 - 5 = 55$.",
+        "So $(f \\circ g)(2) = 55$."
+      ]
+    },
+    {
+      "prompt": "For $f(x) = x + 1$ and $g(x) = 4x$, work out $(f \\circ g)(3)$ and $(g \\circ f)(3)$.",
+      "steps": [
+        "For $(f \\circ g)(3)$ the $3$ goes into $g$ first: $g(3) = 12$, and then $f(12) = 13$.",
+        "For $(g \\circ f)(3)$ the $3$ goes into $f$ instead: $f(3) = 4$, and then $g(4) = 16$.",
+        "Same machines and the same input, and the answers are $13$ one way round and $16$ the other."
+      ]
+    },
+    {
+      "prompt": "For $f(x) = x^{2} + 1$ and $g(x) = x - 2$, build $(f \\circ g)(x)$ as a single rule.",
+      "steps": [
+        "The outer rule squares its input and adds $1$, so the whole of $g$ goes where that input sits: $(x - 2)^{2} + 1$.",
+        "Multiply the bracket out in full: $(x - 2)^{2} = x^{2} - 4x + 4$.",
+        "Collect what is left: $x^{2} - 4x + 4 + 1$.",
+        "So $(f \\circ g)(x) = x^{2} - 4x + 5$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "compose-series-explore", "gates": true },
+    { "after": 1, "id": "compose-evaluate-solver", "gates": true },
+    { "after": 2, "id": "compose-order-spot", "gates": true },
+    { "after": 3, "id": "compose-build", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Let $f(x) = 3x + 8$ and $g(x) = x^{2} - 4$. Evaluate $(f \\circ g)(5)$. Enter one number.",
+    "accepted": ["71"],
+    "hint": "The circle notation names the outer function first, so $(f \\circ g)(5)$ is $f(g(5))$: the $5$ goes into $g$, and $f$ never meets it. Work out $g(5)$ on its own and write it down as a single number before you touch $f$.",
+    "check": { "answer_type": "numeric", "answer_key": "71" },
+    "worked_solution": [
+      "The circle notation names the outer function first, so $(f \\circ g)(5)$ means $f(g(5))$: the $5$ goes into $g$, and $f$ acts only on what $g$ hands over.",
+      "Work out the inner value: $g(5) = 5^{2} - 4 = 21$.",
+      "Hand that value to the outer function: $f(21) = 3 \\times 21 + 8 = 71$.",
+      "The other order would give $g(f(5)) = g(23) = 525$, so the two orders really are different questions.",
+      "$(f \\circ g)(5) = 71$."
+    ],
+    "worked_solution_params": { "a": 3, "b": 8, "k": -4, "n": 5, "value": 71 },
+    "variants": { "template_id": "cfu.fun7.compose-evaluate", "count": 2 }
+  }
+}

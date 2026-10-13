@@ -1,0 +1,67 @@
+{
+  "node_id": "NUM.2",
+  "title": "Order of operations",
+  "mini_lesson": [
+    "Raising a shelter follows a fixed order, posts, then rafters, then thatch, and the same steps in another order raise nothing. Operations carry a **fixed order** of priority too: grouping first, then exponents, then the multiply-divide tier, then the add-subtract tier last. **PEMDAS** is the mnemonic that holds those tiers in place.",
+    "Two operations can share one tier: **multiply and divide** sit on one, and **add and subtract** sit on another. Inside a tier nothing outranks anything else, so the work runs **left to right** rather than by which symbol looks stronger. Choosing by symbol instead groups the wrong pair and lands on a different value.",
+    "Order is not a matter of preference: the same numbers, combined in a different order, reach different values. Grouping is how that choice gets written down, since parentheses name which operation happens first and move the result when they move.",
+    "A longer expression is worked the same way, one tier at a time. Each pass resolves the highest-priority operation still present and rewrites the expression a little shorter, until a single number is left."
+  ],
+  "slide_subtitles": [
+    "The four tiers",
+    "Left to right",
+    "Order changes the answer",
+    "A longer expression"
+  ],
+  "worked_examples": [
+    null,
+    {
+      "prompt": "Evaluate $36 \\div 6 \\times 3$, where both operations sit on one tier.",
+      "steps": [
+        "In $36 \\div 6 \\times 3$, the division and the multiplication share the top tier, so the leftmost of the two goes first: $36 \\div 6 = 6$.",
+        "Rewrite with that quotient in place: $6 \\times 3$.",
+        "Nothing outranks that multiplication now: $6 \\times 3 = 18$.",
+        "So $36 \\div 6 \\times 3 = 18$, while taking the multiplication first would have left $36 \\div 18 = 2$."
+      ]
+    },
+    {
+      "prompt": "Evaluate $9 + 8 \\times 2$, then $(9 + 8) \\times 2$, and compare them.",
+      "steps": [
+        "Read $9 + 8 \\times 2$ as written: the multiply-divide tier outranks the addition, so $8 \\times 2 = 16$.",
+        "Add what is left: $9 + 16 = 25$.",
+        "Now group the addition instead, as $(9 + 8) \\times 2$, and the parentheses go first: $9 + 8 = 17$.",
+        "Multiply that sum: $17 \\times 2 = 34$.",
+        "The same three numbers reach $25$ one way and $34$ the other, so the order decides the value."
+      ]
+    },
+    {
+      "prompt": "Evaluate $30 - (2 + 4)^2 \\div 4$, one tier at a time.",
+      "steps": [
+        "Parentheses outrank everything else in $30 - (2 + 4)^2 \\div 4$, so start there: $2 + 4 = 6$, leaving $30 - 6^2 \\div 4$.",
+        "Exponents come next: $6^2 = 36$, leaving $30 - 36 \\div 4$.",
+        "The multiply-divide tier outranks the subtraction: $36 \\div 4 = 9$, leaving $30 - 9$.",
+        "Subtract last: $30 - 9 = 21$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "pemdas-key-explore", "gates": true },
+    { "after": 0, "id": "pemdas-mnemonic-explore", "gates": true },
+    { "after": 1, "id": "pemdas-solver-ltr", "gates": true },
+    { "after": 2, "id": "order-matters-play", "gates": true },
+    { "after": 3, "id": "pemdas-solver", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Evaluate $15 - 2 \\times 3^2$.",
+    "accepted": ["-3"],
+    "hint": "Let's take it tier by tier. First evaluate the exponent: $3^2 = 9$. Then multiply: $2 \\times 9 = 18$. Finally subtract: $15 - 18$. What's your final value?",
+    "worked_solution": [
+      "Exponents are settled before multiplication and subtraction, so start there: $3^2 = 9$.",
+      "The expression reads $15 - 2 \\times 9$, and multiplication outranks subtraction: $2 \\times 9 = 18$.",
+      "Subtract last: $15 - 18 = -3$."
+    ],
+    "worked_solution_params": { "lead": 15, "factor": 2, "base": 3, "power": 2 },
+    "check": { "answer_type": "numeric", "answer_key": "-3" },
+    "variants": { "template_id": "cfu.num2.precedence-chain", "count": 2 }
+  }
+}

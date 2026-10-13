@@ -1,0 +1,182 @@
+/*
+ * THE DIAGNOSTIC DEV SKIP — its own stylesheet, following `winter/winterDevSkip.css`.
+ *
+ * Same reasoning it records, applied to a different surface: this is the only element on the
+ * diagnostic that is not part of the product, so it gets a file of its own rather than a
+ * section of `diagnostic-demo.css`, and a dev affordance never shares a selector with the
+ * product.
+ *
+ * ## WHERE IT SITS, MEASURED RATHER THAN CHOSEN
+ *
+ * `position: fixed`, BOTTOM-right. Top-right is where the winter's panel goes and it is wrong
+ * here: the diagnostic takes over the whole viewport (`.surface-overlay--diagnostic`) and its
+ * only exit is the "Back to city" button in that corner. Read off a 1024x580 frame, the panel
+ * at `top: 10px; right: 10px` was 754..1014 x 10..135 and the button 897..1000 x 16..56 — a
+ * 103x40 overlap, i.e. the WHOLE button, with `elementFromPoint` at the button's centre
+ * returning `button.dgx-skip__title`. **Folding did not help**, which is the part worth
+ * recording: it shortens the panel to 47px and the fold control itself still lands on the
+ * button's centre. So a reviewer could not leave the diagnostic at all while this was mounted.
+ *
+ * Bottom-right is empty on all three phases at that viewport — the audio pill is bottom-LEFT,
+ * and the results screen's own actions are in the centre column — so the panel spends nothing.
+ * `diagnosticDevSkipClearsTheExit.browser.test.tsx` measures both facts at 1024x580 so neither
+ * can come back.
+ *
+ * Expanded is still the default, on the winter panel's reasoning: a control that has to be
+ * unfolded first has put a press in front of the press. Folding is for photographing the
+ * surface behind it.
+ *
+ * ## IT LOOKS LIKE AN INSTRUMENT, NOT LIKE THE GAME
+ *
+ * Dark, mono, square corners, against a pale rounded surface set in Nunito. Deliberately
+ * mismatched, so a reviewer glancing at a screenshot can tell in one look that the panel is
+ * not part of the product — a second channel on the claim its eyebrow makes in words.
+ *
+ * ## STACKING
+ *
+ * 1200, above `.surface-overlay` (which sits over the 3D city) so the panel is reachable
+ * while the diagnostic has the screen. Nothing in the diagnostic stacks above the overlay,
+ * so there is no card for this to half-cover.
+ */
+
+.dgx-skip {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1200;
+  pointer-events: auto;
+  box-sizing: border-box;
+  /*
+   * 260px, and four rungs across rather than in a grid, for the reason the winter panel
+   * records: two rows of rungs makes the box tall enough to reach into the surface it is
+   * sitting over. Read off a 1024x580 frame it lands at ~125px tall expanded and ~47px
+   * folded, both of which clear the results screen's own actions.
+   */
+  width: 260px;
+  padding: 6px 9px 7px;
+  border: 1px solid #f0b429;
+  border-radius: 4px;
+  background: rgba(16, 22, 30, 0.96);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.42);
+  color: #e8eef4;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.dgx-skip__eyebrow {
+  margin: 0;
+  color: #f0b429;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* The heading IS the fold control, so the panel needs no second piece of chrome for it. */
+.dgx-skip__title {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1px 0 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #e8eef4;
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dgx-skip__title:hover {
+  color: #ffd77a;
+}
+
+.dgx-skip__fold {
+  color: #9fb0c0;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+/* A `<fieldset>` because the row really is a captioned set of controls; its default border,
+   padding and min-width are all wrong here and all reset. */
+.dgx-skip__group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.dgx-skip__legend {
+  padding: 0;
+  color: #9fb0c0;
+  font-size: 9.5px;
+}
+
+.dgx-skip__row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  margin: 3px 0 6px;
+}
+
+.dgx-skip__rung {
+  padding: 4px 3px;
+  border: 1px solid #46586a;
+  border-radius: 3px;
+  background: #1d2833;
+  color: #e8eef4;
+  font: inherit;
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dgx-skip__rung:hover:not(:disabled) {
+  border-color: #f0b429;
+  background: #2a3946;
+}
+
+/* 0.34 rather than a lighter value, on the winter panel's measurement: at 0.42 a disabled
+   rung and a live one were hard to tell apart on a 1024x580 frame. */
+.dgx-skip__rung:disabled {
+  border-color: #2b3742;
+  background: #161f28;
+  opacity: 0.34;
+  cursor: not-allowed;
+}
+
+/* Tinted per rung, and never ONLY tinted: the label is on the button, so the colour is a
+   second channel on something that already reads without it. */
+.dgx-skip__rung[data-rung="ace"] {
+  color: #6fd08c;
+}
+
+.dgx-skip__rung[data-rung="mixed"] {
+  color: #7fc4f0;
+}
+
+.dgx-skip__rung[data-rung="thin"] {
+  color: #f0b429;
+}
+
+.dgx-skip__rung[data-rung="miss"] {
+  color: #e08a8a;
+}
+
+/* Bounded and scrolling, so the panel's height is a fact rather than a function of the last
+   message. */
+.dgx-skip__note {
+  max-height: 44px;
+  overflow-y: auto;
+  margin: 0;
+  color: #9fb0c0;
+  font-size: 9.5px;
+}

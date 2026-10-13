@@ -1,0 +1,29 @@
+# beat three, walked one check at a time — 1024x580, reduced motion
+
+01-beat-three-check-0: beat three opens: the ring stands, no rungs climbed
+  rail fill 0.00, data-banked 0
+02-beat-three-check-1: one check on
+  rail fill 0.33, data-banked 1
+03-beat-three-check-2: two checks on: the ring is climbing, the stack is arriving
+  rail fill 0.67, data-banked 2
+04-beat-three-after-a-miss: a real wrong answer inside beat three (paused=true)
+  rail fill 0.67, data-banked 1
+
+THE PAIR THE REPORT IS ABOUT — island either side of the miss: 0.091% of the frame differs
+
+05-beat-three-done: the last check: beat three closes and beat four opens
+  rail fill 0.00, data-banked 0
+
+the hatch, open: 10,10 252x162 — 6.9% of a 1024x580 window
+  what is behind it: [data-testid=catchup-dev-skip], [data-testid=era-ceremony], .city-canvas, [data-testid=city-viewport], .city-stage-full, .city-surface, .city-shell, .catchup-skip__eyebrow, .city-capsule, [data-testid=catchup-dev-skip-fold], .city-capsule-kicker, .city-capsule-top, .city-capsule-count, .catchup-skip__fold, .catchup-skip__legend, .catchup-skip__group, [data-testid=hud-meter], .catchup-skip__score, [data-testid=catchup-dev-skip-era-prehistoric], .catchup-skip__row, [data-testid=catchup-dev-skip-era-neolithic], [data-testid=catchup-dev-skip-era-bronze_age], [data-testid=catchup-dev-skip-era-classical], [data-testid=catchup-dev-skip-era-medieval], .catchup-skip__tier, [data-testid=city-vitality], [data-testid=catchup-dev-skip-era-renaissance], .hud-kicker, [data-testid=catchup-dev-skip-era-industrial], [data-testid=catchup-dev-skip-era-atomic_age], [data-testid=catchup-dev-skip-era-information_age], [data-testid=catchup-dev-skip-era-cyberpunk], [data-testid=vitality-population], .hud-vitality-rows, [data-testid=vitality-population-help], .hud-vitality-figure, .hud-vitality-unit
+
+every control, hit-tested at its own centre with the hatch open:
+  reachable  era-ceremony-check
+  reachable  era-dev-skip-next
+  reachable  era-dev-skip-step
+  reachable  era-dev-skip-top
+  reachable  era-dev-skip-gathering
+  reachable  era-dev-skip-expansion
+  reachable  era-dev-skip-rebuild
+  reachable  era-dev-skip-retheme
+  reachable  era-dev-skip-fold

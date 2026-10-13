@@ -1,0 +1,78 @@
+{
+  "node_id": "POL.3",
+  "title": "Solve quadratics by factoring and the square-root property",
+  "mini_lesson": [
+    "The city has ordered a square paved court of a fixed area at the head of the mole, and the setting-out crew needs a side length before anything is cut. Writing the side as $x$ turns the order into an equation whose highest power of the variable is two, which is a **quadratic equation**, and any value making it true is a **solution** of it. Undoing a square means taking a square root while keeping both signs, and that is the **square-root property**: a negative multiplied by itself is positive too, so dropping the negative root is the commonest way to lose half an answer.",
+    "Most quadratics are not a bare square, and the fact that unlocks them is about products rather than squares. Two amounts multiply to zero only when at least one of them is zero, since two non-zero numbers always have a non-zero product, and that is the **zero-product property**. It holds for zero and for no other number, so an equation written as a product is in **factored form** and hands over its conditions directly, while a product equal to $12$ says nothing at all about its factors.",
+    "A quadratic rarely arrives with a zero already sitting on one side, and nothing about a product equal to some other number splits into conditions. So everything is moved to one side first, and the order of the four moves is fixed rather than preferred: gather at zero, factor, split into conditions, and solve each. Reading which solutions the job admits comes after all four rather than during them.",
+    "One move destroys a solution, and it looks entirely harmless while it is being made: dividing both sides through by an expression that carries the variable. What that produces is right as far as it goes. But it is not the whole answer, because the division quietly assumed the expression was not zero, so gather at zero instead and every condition survives to be read."
+  ],
+  "slide_subtitles": [
+    "Sizing a square court",
+    "A product of zero",
+    "Gathering at zero first",
+    "The solution that vanishes"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The court is to cover $169$ square paces. Solve $x^{2} = 169$ and say which solution measures a side.",
+      "steps": [
+        "Take the square root of both sides, keeping both signs.",
+        "One root is $13$, because $13 \\times 13 = 169$.",
+        "The other is $-13$, because a negative multiplied by itself is positive.",
+        "So the equation has two solutions, $13$ and $-13$, and only $13$ measures a length of ground."
+      ]
+    },
+    {
+      "prompt": "Solve $(x - 4)(x + 7) = 0$.",
+      "steps": [
+        "The product is zero, so at least one of the two brackets is zero.",
+        "That gives two one-step equations: $x - 4 = 0$ or $x + 7 = 0$.",
+        "Solving each gives $x = 4$ or $x = -7$.",
+        "Substituting either back makes one bracket zero and the product zero, so both are solutions."
+      ]
+    },
+    {
+      "prompt": "A stretch of paving runs $x$ paces along and $x + 3$ paces across, and it covers $54$ square paces. Solve for $x$.",
+      "steps": [
+        "The area gives $x(x + 3) = 54$.",
+        "Nothing about $54$ splits into conditions, so gather everything on one side: $x^{2} + 3x - 54 = 0$.",
+        "The left side factors as $(x + 9)(x - 6) = 0$.",
+        "The two conditions are $x = -9$ and $x = 6$.",
+        "Only $6$ describes a stretch of ground, and that reading comes after the algebra rather than during it."
+      ]
+    },
+    {
+      "prompt": "Solve $x^{2} = 5x$, and find every solution.",
+      "steps": [
+        "Dividing both sides by $x$ leaves $x = 5$, which is one solution.",
+        "That division assumed $x$ was not zero, and $x = 0$ satisfies the original equation as well.",
+        "Gathering at zero instead gives $x^{2} - 5x = 0$.",
+        "Factoring gives $x(x - 5) = 0$, so the conditions are $x = 0$ and $x = 5$, and both of them survive."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "square-side-solver", "gates": true },
+    { "after": 1, "id": "zero-product-play", "gates": true },
+    { "after": 2, "id": "solve-quadratic-order", "gates": true },
+    { "after": 3, "id": "lost-root-spot", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A rectangular court measures $x$ paces along one side and $x + 2$ paces along the other, and it covers $35$ square paces. Solve the equation this gives and list every solution, not only the one that measures ground.",
+    "accepted": ["{-7, 5}", "{5, -7}", "-7, 5", "5, -7"],
+    "hint": "The area is a product of the two sides, and a product equal to anything other than zero splits into no conditions at all. Multiply the sides out, gather everything onto one side so the other reads zero, and only then look for the two brackets.",
+    "worked_solution": [
+      "The area gives $x(x + 2) = 35$, which multiplies out to $x^{2} + 2x = 35$.",
+      "A product equal to $35$ splits into no conditions, so gather everything on the left: $x^{2} + 2x - 35 = 0$.",
+      "That factors as $(x + 7)(x - 5) = 0$, so $x = -7$ or $x = 5$.",
+      "Both values solve the equation, so the solutions are $-7, 5$. Only $5$ measures a stretch of ground, which is a reading made after the algebra rather than during it."
+    ],
+    "worked_solution_params": { "gap": 2, "root": 5, "area": 35, "low": -7, "high": 5 },
+    "check": { "answer_type": "solution_set", "answer_key": "{-7, 5}" },
+    "variants": {
+      "template_id": "d4.pol3.area.l3",
+      "count": 2
+    }
+  }
+}

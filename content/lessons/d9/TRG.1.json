@@ -1,0 +1,79 @@
+{
+  "node_id": "TRG.1",
+  "title": "Angle measure: degrees and radians, coterminal angles",
+  "mini_lesson": [
+    "Up on the deck a steerable dish is aimed by bearing, and the number written on the pad and the number the controller reads back have to mean the same direction or the link never comes up. Agreeing on a direction means agreeing on where the turn starts and which way it goes, so an angle in **standard position** begins along one fixed reference direction (its **initial side**) and turns counterclockwise to where the arm finishes (its **terminal side**). Its measure is how much of a full turn that sweep covers, and a full turn is $360^{\\circ}$.",
+    "Degrees are a human choice, since somebody decided a full turn should be cut into $360$ pieces and nothing in the geometry insists on that number. A **radian** measures the same turn against the circle itself, by asking how many radius lengths the arc cut off by the angle runs to. A full turn's arc is the whole circumference $2\\pi r$, so a full turn is $2\\pi$ radians and a half turn is $\\pi$, which is the single agreement every conversion runs off.",
+    "A sweep does not have to stop before it comes back round, and past the start the arm lands on a direction it has already pointed at, so two different measures can describe one finished heading. Angles are **coterminal** when their sweeps end on the same terminal side, which happens exactly when their measures differ by a whole number of full turns, taken either way round. Half a turn is the near miss worth watching, because $180^{\\circ}$ puts the arm back on the same line while leaving the dish pointing the opposite way.",
+    "A half turn measured in both units is the whole conversion, so the only decision left is which way up to write the fraction. Going from degrees into radians multiplies by $\\dfrac{\\pi}{180^{\\circ}}$, and coming back the other way multiplies by $\\dfrac{180^{\\circ}}{\\pi}$ instead. Both fractions are worth one and neither can move the dish, so the unit that has to disappear is the one written underneath, and an answer that came out in the wrong unit is almost always that fraction upside down."
+  ],
+  "slide_subtitles": [
+    "Standard position",
+    "Radians and the circle",
+    "Coterminal headings",
+    "The conversion factor"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A dish sweeps three quarters of a full turn from its rest heading. What heading does it finish at, in degrees?",
+      "steps": [
+        "The sweep is counted from the rest heading, where the arm lies along the initial side, round to the terminal side where it stops.",
+        "A full turn is $360^{\\circ}$, so three quarters of a turn is $\\dfrac{3}{4} \\times 360^{\\circ}$.",
+        "That comes to $270^{\\circ}$, so the dish finishes at a heading of $270^{\\circ}$."
+      ]
+    },
+    {
+      "prompt": "Write a heading of $225^{\\circ}$ in radians.",
+      "steps": [
+        "A half turn is $180^{\\circ}$ and it is also $\\pi$ radians, so the fraction $\\dfrac{\\pi}{180^{\\circ}}$ is worth exactly one.",
+        "Multiplying by something worth one cannot move the dish, so $225^{\\circ} \\times \\dfrac{\\pi}{180^{\\circ}}$ is that same heading written in the other unit.",
+        "The degrees cancel and leave $\\dfrac{225\\pi}{180}$.",
+        "Both $225$ and $180$ divide by $45$, so the heading is $\\dfrac{5\\pi}{4}$ radians."
+      ]
+    },
+    {
+      "prompt": "A dish is parked at a heading of $100^{\\circ}$. Give one positive and one negative measure coterminal with it.",
+      "steps": [
+        "A whole turn brings the arm back to where it started, so add one: $100^{\\circ} + 360^{\\circ} = 460^{\\circ}$.",
+        "Those two measures differ by exactly $360^{\\circ}$, so a sweep of $460^{\\circ}$ finishes on the same terminal side.",
+        "Taking a whole turn off instead gives $100^{\\circ} - 360^{\\circ} = -260^{\\circ}$, which is one full turn the other way round and still a whole turn.",
+        "So $460^{\\circ}$ and $-260^{\\circ}$ are both coterminal with $100^{\\circ}$."
+      ]
+    },
+    {
+      "prompt": "Write a heading of $\\dfrac{4\\pi}{9}$ radians in degrees.",
+      "steps": [
+        "The unit to be got rid of is radians, so the $\\pi$ belongs underneath: multiply by $\\dfrac{180^{\\circ}}{\\pi}$.",
+        "That gives $\\dfrac{4\\pi}{9} \\times \\dfrac{180^{\\circ}}{\\pi}$, and the $\\pi$ on top cancels the $\\pi$ below.",
+        "What survives is $\\dfrac{4 \\times 180^{\\circ}}{9} = \\dfrac{720^{\\circ}}{9}$.",
+        "So the heading is $80^{\\circ}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "trg-bearing-table", "gates": true },
+    { "after": 1, "id": "trg-radian-match", "gates": true },
+    { "after": 2, "id": "trg-coterminal-sorter", "gates": true },
+    { "after": 3, "id": "trg-convert-spot", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A dish sweeps counterclockwise from its rest heading and stops after $405^{\\circ}$. Give the smallest positive heading coterminal with it, measured in radians, as a fraction times $\\pi$. Type pi for $\\pi$, so $\\dfrac{2\\pi}{3}$ would be typed 2pi/3.",
+    "accepted": ["pi/4", "(1/4)pi", "1/4pi"],
+    "hint": "Two moves, and the order matters. First bring the heading below one full turn by subtracting $360^{\\circ}$, which lands the arm on the terminal side it had already reached. Then change the unit on what is left by multiplying it by $\\dfrac{\\pi}{180^{\\circ}}$, which cancels the degrees and leaves a $\\pi$ on top.",
+    "check": {
+      "answer_type": "expression",
+      "answer_key": "pi/4",
+      "allowed_symbols": ["pi"]
+    },
+    "worked_solution": [
+      "A full turn is $360^{\\circ}$ and the sweep runs to $405^{\\circ}$, so the arm passes its rest heading once and keeps going a little way past it.",
+      "Taking off that one whole turn gives $405^{\\circ} - 360^{\\circ} = 45^{\\circ}$, which is coterminal with the sweep because the two measures differ by exactly one full turn.",
+      "Nothing smaller and still positive is coterminal with it, since the next subtraction would give $45^{\\circ} - 360^{\\circ} = -315^{\\circ}$.",
+      "Now change the unit. A half turn is $180^{\\circ}$ and it is also $\\pi$ radians, so $\\dfrac{\\pi}{180^{\\circ}}$ is worth one and multiplying by it changes nothing but the unit.",
+      "Multiplying gives $45^{\\circ} \\times \\dfrac{\\pi}{180^{\\circ}} = \\dfrac{45\\pi}{180} = \\dfrac{\\pi}{4}$.",
+      "So the smallest positive coterminal heading is $\\dfrac{\\pi}{4}$ radians, typed as pi/4."
+    ],
+    "worked_solution_params": { "base": 45, "turns": 1 },
+    "variants": { "template_id": "cfu.trg1.coterminal-radian", "count": 2 }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "calc-readiness",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Calculus-readiness city-builder. Monorepo: three engine lanes over frozen shared packages. See README.md and docs/.",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "engines/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @cr/web",
+    "build": "npm run typecheck && npm run build -w @cr/web",
+    "check:graph": "python3 packages/skill-graph/test/graph_invariants.py packages/skill-graph/src/skill_graph.json",
+    "check:lessons": "bash scripts/check-lesson-packs.sh",
+    "check:era7-models": "node scripts/export-era7-building-models.mjs --check",
+    "check:era8-10-models": "node scripts/export-era8-10-building-models.mjs --check",
+    "typecheck": "tsc --build",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "setup:browsers": "playwright install chromium",
+    "test:unit": "vitest run",
+    "local:test:unit": "node scripts/run-local-test-shards.mjs unit",
+    "test:era7-exporter": "vitest run --config vitest.era7-exporter.config.ts",
+    "test:era8-10-exporter": "vitest run --config vitest.era8-10-exporter.config.ts",
+    "test:era8-10-manifest": "vitest run --config vitest.config.ts test/generateEra8To10AssetManifest.test.ts --testTimeout=30000 && vitest run --config vitest.browser.config.ts apps/web/src/city/era8To10AssetManifest.browser.test.tsx --testTimeout=30000",
+    "test:browser": "vitest run --config vitest.browser.config.ts",
+    "local:test:browser": "node scripts/run-local-test-shards.mjs browser",
+    "local:test": "npm run local:test:unit && npm run local:test:browser && npm run check:graph && npm run check:lessons",
+    "test": "npm run test:unit && npm run test:browser && npm run check:graph && npm run check:lessons",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run check:era7-models && npm run check:era8-10-models && npm test",
+    "local:check": "npm run format:check && npm run lint && npm run typecheck && npm run check:era7-models && npm run check:era8-10-models && npm run local:test",
+    "release:check": "npm run local:check && npm run build && npm audit --audit-level=high"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-rds-data": "^3.1092.0",
+    "@aws-sdk/client-secrets-manager": "^3.1092.0",
+    "@babel/parser": "^7.29.8",
+    "@biomejs/biome": "^2.5.4",
+    "@electric-sql/pglite": "^0.5.4",
+    "@types/node": "^20.19.43",
+    "@types/pngjs": "^6.0.5",
+    "@vitest/browser-playwright": "^4.1.10",
+    "@wasm-audio-decoders/ogg-vorbis": "^0.1.20",
+    "playwright": "^1.61.1",
+    "pngjs": "^7.0.0",
+    "tsx": "^4.23.9",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}

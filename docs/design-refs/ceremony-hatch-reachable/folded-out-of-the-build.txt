@@ -1,0 +1,44 @@
+# Is the ceremony's dev hatch in the shipped bundle?
+
+`npm run build -w @cr/web` at the branch tip, then grepping every emitted chunk under
+`apps/web/dist/assets/`. A dev control is folded out when its strings are in NO chunk:
+`import.meta.env.DEV` is replaced statically, the branch becomes `false && …`, the element is
+dropped, the module loses its importer and is tree-shaken out.
+
+## The ceremony's hatch, including the control added here
+
+    "era-dev-skip"                         0 chunk(s)
+    "era-dev-skip-step"                    0 chunk(s)
+    "era-dev-skip-next"                    0 chunk(s)
+    "+1 check"                             0 chunk(s)
+    "Play the beats"                       0 chunk(s)
+    "Dev only, not on the learner build"   6 chunk(s)
+    "CeremonyDevSkip"                      0 chunk(s)
+    "ceremonyOneCheckOn"                   0 chunk(s)
+    "ceremonyStepPosition"                 0 chunk(s)
+    "ceremonyBeatRungs"                    0 chunk(s)
+
+The one non-zero row above is the shared eyebrow copy, which the five hatches below ship;
+its chunks are SuccessionRoute, HardWinterSurface, PlagueRoute, index, IntrusionRoute and
+DiagnosticRunner, and none of them is the ceremony.
+
+## The control: the ceremony a learner really is served, same bundle
+
+    "era-ceremony-check"                   1 chunk(s)
+    "Enter the next age"                   1 chunk(s)
+    "Leave the inspection"                 1 chunk(s)
+
+Without this the zeroes above would also be what a build with no ceremony in it looks like.
+
+## Which dev hatches ship their JS, and which are folded out
+
+    "sx-dev-skip"                          1 chunk(s)
+    "hw-dev-skip"                          1 chunk(s)
+    "pl-dev-skip"                          1 chunk(s)
+    "ob-dev-replay"                        1 chunk(s)
+    "dgx-dev-skip"                         1 chunk(s)
+    "catchup-dev-skip"                     0 chunk(s)
+    "era-dev-skip"                         0 chunk(s)
+
+The first five ship and rely on a runtime check. The catch-up's and the ceremony's are folded
+out at build time, and this change keeps the ceremony's in that second group.

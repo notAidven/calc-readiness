@@ -1,0 +1,30 @@
+# beat two's land rising out of the lagoon, prehistoric -> neolithic, 1024x580
+
+authored grass radius: 30 before, 38 after
+
+POSED through the rise: a clipped capture costs about 880ms on this runner and the
+rise is over in about 1.5s, so a timed schedule cannot photograph it. The pose seam
+moves WHEN the front is somewhere and never WHERE. Frames 08 and 09 are the LIVE
+animation either side of one real answer, which is what says the poses are moments of
+something the game actually draws.
+
+land in the frame, and how much of it has just come out of the water,
+as pixel counts over the whole 1024x580 frame:
+  before the answer: 243075 land, 1211 wet
+    0% risen: 141111 land, 677 wet (-101964 land against the opening)
+   20% risen: 141779 land, 2422 wet (-101296 land against the opening)
+   35% risen: 152691 land, 1254 wet (-90384 land against the opening)
+   50% risen: 165327 land, 2546 wet (-77748 land against the opening)
+   70% risen: 183381 land, 1092 wet (-59694 land against the opening)
+  100% risen: 235500 land, 624 wet (-7575 land against the opening)
+  reduced motion, posed: 235614 land, 624 wet
+
+how much of the frame changed between consecutive poses,
+which is what says the rise is a travel and not a cut:
+  4.4%, 6.5%, 8.4%, 11.4%, 17.9%
+
+wettest frame: 50% risen at 2546px, against 624px settled
+that is 1922px of ground that had just broken the surface
+
+the LIVE animation, one real answer: 25.5% of the frame still
+moving at the first capture the instrument can take, then settled

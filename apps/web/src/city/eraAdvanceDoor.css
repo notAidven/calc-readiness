@@ -1,0 +1,274 @@
+/* ==========================================================================
+   THE DOOR ONTO THE NEXT CHAPTER — the ☰ Menu's era-advance affordance
+
+   `EraAdvanceDoor.tsx` carries the design reasoning; this is the drawing of it.
+
+   ## Its own file, for `eraCeremony.css`'s reason
+
+   `styles.css` is 10,006 lines and shared by every surface in the app, three
+   other lanes are editing this tree for the same demo, and a mis-resolved CSS
+   conflict does not fail to compile — it silently draws the wrong thing. So this
+   ships beside the component that imports it.
+
+   ## THE PALETTE IS EXISTING TOKENS, AND TWO HUES ARE RULED OUT
+
+   `#FFB703` is reserved for mastery. `--game-gold` is the reward gold already
+   spent on `.city-build-button`, which is on screen at the same time as this
+   menu. Everything here is `--game-blue` / `--game-blue-deep` (the token sheet's
+   own "build / primary / navigation"), `--game-ink`, `--game-mist` and the panel
+   family — which is also why the action pill is not a new treatment: it is what
+   an open `.city-chip` wears.
+
+   ## NOTHING IS CARRIED BY MOTION
+
+   The card's whole animation is a hover/active lift and a 2px nudge on the seam
+   chevron. Every mark is at its final position in a still frame, so the
+   reduced-motion blocks at the bottom remove the transitions and remove no
+   information — `eraAdvanceDoor.browser.test.tsx` reads the computed
+   `transition-duration` both ways, because a still cannot photograph the absence
+   of a transition.
+   ========================================================================== */
+
+.era-door-slot {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+/* The card. Deliberately the same object as a build-menu card — 16px radius, a
+   `--game-panel-line` hairline, white ground, the same soft shadow and the same
+   blue-on-hover lift — because a learner already knows that shape means "a thing
+   you pick", and the alternative was inventing a fourth panel treatment. */
+.era-door {
+  display: grid;
+  gap: 5px;
+  justify-items: start;
+  width: 100%;
+  padding: 12px 14px 13px;
+  border: 1px solid var(--game-panel-line);
+  border-radius: 16px;
+  background: var(--glass-fill-strong, #fff);
+  box-shadow: 0 4px 12px rgba(31, 51, 71, 0.08);
+  color: var(--game-ink);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 150ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.era-door:hover {
+  border-color: var(--game-blue);
+  box-shadow: 0 10px 22px rgba(46, 96, 145, 0.2);
+  transform: translateY(-2px);
+}
+
+.era-door:active {
+  transform: scale(0.99);
+}
+
+/* The utility register the City Life panel's row labels are set in: 0.6rem, 760,
+   0.09em, uppercase, mist. Reused rather than re-sized so the door's smallest
+   type is the same size as the HUD's smallest type. */
+.era-door__eyebrow {
+  color: var(--game-mist);
+  font-size: 0.6rem;
+  font-weight: 760;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* The age being left: present, named, and quiet. */
+.era-door__from {
+  color: var(--game-mist);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* THE SIGNATURE — the seam. A solid rule for what the city has built, a dashed
+   rule for what it has not, and one chevron at the join pointing the way through.
+   The asymmetry is the whole idea: it encodes something true about where the city
+   is in ten chapters, where a symmetric divider would only be a divider. */
+.era-door__seam {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  width: 100%;
+  margin: 2px 0 1px;
+}
+
+.era-door__seam-built {
+  flex: 1 1 auto;
+  height: 1px;
+  background: color-mix(in srgb, var(--game-ink) 34%, transparent);
+}
+
+.era-door__seam-ahead {
+  flex: 1 1 auto;
+  height: 0;
+  border-top: 1px dashed var(--game-panel-line);
+}
+
+.era-door__seam-mark {
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid var(--game-blue);
+  border-bottom: 1.5px solid var(--game-blue);
+  transform: rotate(-45deg);
+  transition: transform 160ms ease;
+}
+
+.era-door:hover .era-door__seam-mark {
+  transform: rotate(-45deg) translate(1.5px, 1.5px);
+}
+
+/* THE DESTINATION, and the biggest type on the card, because naming the next age
+   is the one thing the button this replaces never did. */
+.era-door__to {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* The era's own price of admission, in the units the ceremony asks for. Tabular
+   so the two figures line up as the era changes under it. */
+.era-door__note {
+  color: var(--game-mist);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The action. `--game-blue` on `--game-blue-deep` with white type: not a new
+   treatment, it is `.city-chip[aria-expanded="true"]`. Full width because it is
+   the only action on the card and a centred pill in a 250px column reads as a
+   fragment. */
+.era-door__action {
+  justify-self: stretch;
+  margin-top: 5px;
+  padding: 9px 14px;
+  border: 1px solid var(--game-blue-deep);
+  border-radius: 99px;
+  background: var(--game-blue);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---- The end of the authored sequence -------------------------------------
+   `aria-disabled` and a no-op in the component, never `disabled`: a disabled
+   button leaves the tab order and takes focus with it. So this state has to be
+   legible while still being reachable, which is what the flattened card and the
+   hollow pill are for. It is not an error and takes no error colour. */
+.era-door[data-locked="true"] {
+  background: var(--game-panel-2);
+  box-shadow: none;
+  cursor: default;
+}
+
+.era-door[data-locked="true"]:hover {
+  border-color: var(--game-panel-line);
+  box-shadow: none;
+  transform: none;
+}
+
+.era-door[data-locked="true"] .era-door__to {
+  color: var(--game-mist);
+  font-size: 0.95rem;
+}
+
+.era-door[data-locked="true"] .era-door__action {
+  border-color: var(--glass-line);
+  background: transparent;
+  color: var(--game-mist);
+}
+
+.era-door[data-locked="true"] .era-door__seam-mark {
+  border-color: var(--game-mist);
+  opacity: 0.5;
+}
+
+/* ---- Variant: the ten-chapter ribbon --------------------------------------
+   The City Life panel's counted-cell instrument (`.hud-vitality-cells`), at ten
+   cells rather than one per person: chapters behind and the one you are in are
+   ink, the one you are entering is outlined in blue, the rest are the same ghost
+   `color-mix` an unreached cell uses, so they stay countable. */
+.era-door__ribbon {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  height: 11px;
+  margin: 3px 0 2px;
+}
+
+.era-door__ribbon span {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--game-ink) 18%, var(--game-panel));
+}
+
+.era-door__ribbon span[data-state="behind"],
+.era-door__ribbon span[data-state="here"] {
+  background: var(--game-ink);
+}
+
+.era-door__ribbon span[data-state="next"] {
+  background: color-mix(in srgb, var(--game-blue) 18%, transparent);
+  box-shadow: inset 0 0 0 1.5px var(--game-blue);
+}
+
+/* ---- Variant: the advisor asks --------------------------------------------
+   A quote rule rather than quotation marks, so the line reads as attributed to
+   the name in the eyebrow above it. Display face, upright: `:root` sets
+   `font-synthesis: none`, so an italic here would silently not be italic. */
+.era-door__quote {
+  padding-left: 9px;
+  border-left: 2px solid var(--game-blue);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+
+.era-door__hand {
+  color: var(--game-mist);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+/* ---- Motion off -----------------------------------------------------------
+   The OS preference, and the surface's own `data-reduced-motion` override so the
+   branch can be exercised without a media query (the rule `.build-card` follows).
+   A reduced-motion user gets the same card, at the same resting state, with no
+   lift and no nudge: nothing above encodes anything in movement. */
+@media (prefers-reduced-motion: reduce) {
+  .era-door,
+  .era-door__seam-mark {
+    transition: none;
+  }
+
+  .era-door:hover,
+  .era-door:active {
+    transform: none;
+  }
+
+  .era-door:hover .era-door__seam-mark {
+    transform: rotate(-45deg);
+  }
+}
+
+.city-surface[data-reduced-motion="true"] .era-door,
+.city-surface[data-reduced-motion="true"] .era-door__seam-mark {
+  transition: none;
+}
+
+.city-surface[data-reduced-motion="true"] .era-door:hover,
+.city-surface[data-reduced-motion="true"] .era-door:active {
+  transform: none;
+}
+
+.city-surface[data-reduced-motion="true"] .era-door:hover .era-door__seam-mark {
+  transform: rotate(-45deg);
+}

@@ -1,0 +1,74 @@
+{
+  "node_id": "NUM.4",
+  "title": "Simplify / combine like terms",
+  "mini_lesson": [
+    "The crew working the cleared ground sorts what it gathers into matching piles before counting anything. **Like terms** share the same variable part: the same variable raised to the same power. Only like terms can be combined, and a term with no partner rides along unchanged.",
+    "A term's **coefficient** is the number in front of it, and a term written with no number in front carries a coefficient of $1$. To combine like terms, add the coefficients and keep the variable part. Constants (plain numbers) combine with each other.",
+    "Sometimes you **distribute first**, then combine like terms. The parentheses have to clear before the matching terms can meet."
+  ],
+  "slide_subtitles": [
+    "The same variable part",
+    "Adding the coefficients",
+    "Distribute, then combine"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Which terms of $9b + 4b^{2} + b$ are like terms?",
+      "steps": [
+        "Read the variable part off each term of $9b + 4b^{2} + b$, one term at a time.",
+        "$9b$ carries the variable part $b$, and so does $b$, whose coefficient of $1$ is written by leaving it off.",
+        "$4b^{2}$ carries the variable part $b^{2}$, the same variable raised to a different power, so it matches neither of the others.",
+        "So $9b$ and $b$ are like terms, and $4b^{2}$ has no partner in this expression."
+      ]
+    },
+    {
+      "prompt": "Simplify $6a + 7 - 4a + 2$.",
+      "steps": [
+        "Group the terms of $6a + 7 - 4a + 2$ by variable part: the $a$-terms are $6a$ and $-4a$, while $7$ and $2$ are constants.",
+        "Add the coefficients of the $a$-terms: $6 + (-4) = 2$, so those two terms collapse into $2a$.",
+        "Add the constants: $7 + 2 = 9$.",
+        "The simplified expression is $2a + 9$."
+      ]
+    },
+    {
+      "prompt": "Simplify $5(w + 2) - 3w$, which still has its parentheses.",
+      "steps": [
+        "Nothing can combine while the group is closed, so distribute the $5$ over both terms inside $5(w + 2)$, giving $5w + 10$.",
+        "Rewrite the whole expression without parentheses: $5w + 10 - 3w$.",
+        "Group by variable part: $5w$ and $-3w$ are the $w$-terms, and $10$ is a constant on its own.",
+        "Add the coefficients of the $w$-terms: $5 + (-3) = 2$, giving $2w$.",
+        "The simplified expression is $2w + 10$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "like-terms-classify", "gates": true },
+    { "after": 1, "id": "like-terms-sorter", "gates": true },
+    { "after": 2, "id": "distribute-combine-play", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Simplify $-2x + x^2 +7x$.",
+    "accepted": [
+      "x^2 + 5x",
+      "5x + x^2",
+      "x^2 + 5*x",
+      "5*x + x^2",
+      "x^{2} + 5x",
+      "5x + x^{2}",
+      "x^{2} + 5*x",
+      "5*x + x^{2}",
+      "x^2 + x*5",
+      "x*5 + x^2",
+      "+x^2 + 5x",
+      "+5x + x^2"
+    ],
+    "hint": "Look for like terms: $-2x$ and $7x$ share the same variable part ($x$), but $x^2$ stands alone. Combine the two $x$-terms by adding their coefficients ($-2 + 7$), and carry the $x^2$ along unchanged. What single expression do you get?",
+    "worked_solution": [
+      "Sort the terms by their variable part: $-2x$ and $7x$ both carry a plain $x$, while $x^2$ carries $x$ squared and has no partner.",
+      "Only the like pair combines, and combining them is adding their coefficients: $-2 + 7 = 5$, so $-2x + 7x$ becomes $5x$.",
+      "The lone $x^2$ is carried along untouched, giving $x^2 + 5x$."
+    ],
+    "worked_solution_params": { "varIndex": 0, "negative": -2, "positive": 7 },
+    "variants": { "template_id": "cfu.num4.unlike-term", "count": 2 }
+  }
+}

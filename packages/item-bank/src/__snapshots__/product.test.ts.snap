@@ -1,0 +1,366 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`product walk assessment pool (2-of-3 depth, isolation) > pins the frozen product content hashes (a template edit that changes the pool must be explicit) 1`] = `
+[
+  {
+    "hash": "424665bd",
+    "id": "prod.lin-1.l2:A:100000",
+  },
+  {
+    "hash": "49d964a1",
+    "id": "prod.lin-1.l2:A:100001",
+  },
+  {
+    "hash": "0eb00ce9",
+    "id": "prod.lin-1.l2:A:100002",
+  },
+  {
+    "hash": "86db9aa6",
+    "id": "prod.pol-1.l2:A:103000",
+  },
+  {
+    "hash": "f999b659",
+    "id": "prod.pol-1.l2:A:103001",
+  },
+  {
+    "hash": "1e71933f",
+    "id": "prod.pol-1.l2:A:103003",
+  },
+  {
+    "hash": "7f8c85fc",
+    "id": "prod.pol-2.l2:A:106000",
+  },
+  {
+    "hash": "0d419efe",
+    "id": "prod.pol-2.l2:A:106001",
+  },
+  {
+    "hash": "8f7b8ad5",
+    "id": "prod.pol-2.l2:A:106002",
+  },
+  {
+    "hash": "c70d2f49",
+    "id": "prod.rat-1.l2:A:109000",
+  },
+  {
+    "hash": "c52ddee0",
+    "id": "prod.rat-1.l2:A:109001",
+  },
+  {
+    "hash": "74882fb5",
+    "id": "prod.rat-1.l2:A:109002",
+  },
+  {
+    "hash": "4fadd82e",
+    "id": "prod.cg-1.l2:A:112000",
+  },
+  {
+    "hash": "50709fe0",
+    "id": "prod.cg-1.l2:A:112001",
+  },
+  {
+    "hash": "cb29d10f",
+    "id": "prod.cg-1.l2:A:112002",
+  },
+  {
+    "hash": "37109016",
+    "id": "prod.fun-1.l2:A:115000",
+  },
+  {
+    "hash": "162c22ec",
+    "id": "prod.fun-1.l2:A:115001",
+  },
+  {
+    "hash": "179f5491",
+    "id": "prod.fun-1.l2:A:115002",
+  },
+  {
+    "hash": "e7db722e",
+    "id": "prod.lf-1.l2:A:118000",
+  },
+  {
+    "hash": "de46af83",
+    "id": "prod.lf-1.l2:A:118001",
+  },
+  {
+    "hash": "4cc813b5",
+    "id": "prod.lf-1.l2:A:118002",
+  },
+  {
+    "hash": "d83d39cd",
+    "id": "prod.rad-1.l2:A:121000",
+  },
+  {
+    "hash": "3bc1f3e7",
+    "id": "prod.rad-1.l2:A:121001",
+  },
+  {
+    "hash": "762e49fe",
+    "id": "prod.rad-1.l2:A:121002",
+  },
+  {
+    "hash": "a46326af",
+    "id": "prod.el-1.l2:A:124000",
+  },
+  {
+    "hash": "35b0f759",
+    "id": "prod.el-1.l2:A:124001",
+  },
+  {
+    "hash": "c4a52bfe",
+    "id": "prod.el-1.l2:A:124002",
+  },
+  {
+    "hash": "2dfd088e",
+    "id": "prod.exp-1.l2:A:127000",
+  },
+  {
+    "hash": "8da7a7bc",
+    "id": "prod.exp-1.l2:A:127001",
+  },
+  {
+    "hash": "b45e0510",
+    "id": "prod.exp-1.l2:A:127002",
+  },
+  {
+    "hash": "e025bba5",
+    "id": "prod.trg-1.l2:A:130000",
+  },
+  {
+    "hash": "9bdd3adf",
+    "id": "prod.trg-1.l2:A:130001",
+  },
+  {
+    "hash": "735e7f2f",
+    "id": "prod.trg-1.l2:A:130002",
+  },
+  {
+    "hash": "9b3ba8f4",
+    "id": "prod.trg-2.l2:A:133000",
+  },
+  {
+    "hash": "d1d38637",
+    "id": "prod.trg-2.l2:A:133001",
+  },
+  {
+    "hash": "e084bf16",
+    "id": "prod.trg-2.l2:A:133002",
+  },
+  {
+    "hash": "8fac807b",
+    "id": "prod.rad-2.l2:A:136000",
+  },
+  {
+    "hash": "55dd0ed8",
+    "id": "prod.rad-2.l2:A:136001",
+  },
+  {
+    "hash": "6c567a52",
+    "id": "prod.rad-2.l2:A:136002",
+  },
+  {
+    "hash": "4c59bbdf",
+    "id": "prod.rad-3.l2:A:139000",
+  },
+  {
+    "hash": "1b4d2212",
+    "id": "prod.rad-3.l2:A:139001",
+  },
+  {
+    "hash": "3ed9acaf",
+    "id": "prod.rad-3.l2:A:139002",
+  },
+  {
+    "hash": "45d1c539",
+    "id": "prod.rad-4.l2:A:142000",
+  },
+  {
+    "hash": "e520f76b",
+    "id": "prod.rad-4.l2:A:142001",
+  },
+  {
+    "hash": "0da5ae4c",
+    "id": "prod.rad-4.l2:A:142002",
+  },
+  {
+    "hash": "87a5fad0",
+    "id": "prod.lin-1.l2:B:200000",
+  },
+  {
+    "hash": "cd74daef",
+    "id": "prod.lin-1.l2:B:200001",
+  },
+  {
+    "hash": "2fcd7ff9",
+    "id": "prod.lin-1.l2:B:200002",
+  },
+  {
+    "hash": "4e1af64e",
+    "id": "prod.pol-1.l2:B:203000",
+  },
+  {
+    "hash": "6992e91c",
+    "id": "prod.pol-1.l2:B:203001",
+  },
+  {
+    "hash": "53cba9c4",
+    "id": "prod.pol-1.l2:B:203006",
+  },
+  {
+    "hash": "db1af668",
+    "id": "prod.pol-2.l2:B:206000",
+  },
+  {
+    "hash": "33df6c91",
+    "id": "prod.pol-2.l2:B:206001",
+  },
+  {
+    "hash": "4976897d",
+    "id": "prod.pol-2.l2:B:206002",
+  },
+  {
+    "hash": "214f6473",
+    "id": "prod.rat-1.l2:B:209000",
+  },
+  {
+    "hash": "91ad205e",
+    "id": "prod.rat-1.l2:B:209002",
+  },
+  {
+    "hash": "07e03c6f",
+    "id": "prod.rat-1.l2:B:209003",
+  },
+  {
+    "hash": "e0587087",
+    "id": "prod.cg-1.l2:B:212000",
+  },
+  {
+    "hash": "9fe5cadc",
+    "id": "prod.cg-1.l2:B:212001",
+  },
+  {
+    "hash": "a9e2299b",
+    "id": "prod.cg-1.l2:B:212002",
+  },
+  {
+    "hash": "554c9023",
+    "id": "prod.fun-1.l2:B:215000",
+  },
+  {
+    "hash": "3cc512eb",
+    "id": "prod.fun-1.l2:B:215001",
+  },
+  {
+    "hash": "439a5f25",
+    "id": "prod.fun-1.l2:B:215002",
+  },
+  {
+    "hash": "26153e58",
+    "id": "prod.lf-1.l2:B:218000",
+  },
+  {
+    "hash": "68b04ae8",
+    "id": "prod.lf-1.l2:B:218001",
+  },
+  {
+    "hash": "2b955cb7",
+    "id": "prod.lf-1.l2:B:218002",
+  },
+  {
+    "hash": "e289b039",
+    "id": "prod.rad-1.l2:B:221000",
+  },
+  {
+    "hash": "8afdb4c4",
+    "id": "prod.rad-1.l2:B:221001",
+  },
+  {
+    "hash": "f97912e4",
+    "id": "prod.rad-1.l2:B:221002",
+  },
+  {
+    "hash": "9b6394c9",
+    "id": "prod.el-1.l2:B:224000",
+  },
+  {
+    "hash": "f79139ae",
+    "id": "prod.el-1.l2:B:224001",
+  },
+  {
+    "hash": "856c9a70",
+    "id": "prod.el-1.l2:B:224002",
+  },
+  {
+    "hash": "fd7022d0",
+    "id": "prod.exp-1.l2:B:227000",
+  },
+  {
+    "hash": "30b3e304",
+    "id": "prod.exp-1.l2:B:227001",
+  },
+  {
+    "hash": "bf1af9a2",
+    "id": "prod.exp-1.l2:B:227002",
+  },
+  {
+    "hash": "6a239506",
+    "id": "prod.trg-1.l2:B:230000",
+  },
+  {
+    "hash": "ee64359d",
+    "id": "prod.trg-1.l2:B:230001",
+  },
+  {
+    "hash": "a191ade2",
+    "id": "prod.trg-1.l2:B:230002",
+  },
+  {
+    "hash": "76a2a7c3",
+    "id": "prod.trg-2.l2:B:233000",
+  },
+  {
+    "hash": "f9a052d1",
+    "id": "prod.trg-2.l2:B:233001",
+  },
+  {
+    "hash": "d36b0ec4",
+    "id": "prod.trg-2.l2:B:233002",
+  },
+  {
+    "hash": "e52973e6",
+    "id": "prod.rad-2.l2:B:236000",
+  },
+  {
+    "hash": "20f47614",
+    "id": "prod.rad-2.l2:B:236001",
+  },
+  {
+    "hash": "cdac02a5",
+    "id": "prod.rad-2.l2:B:236002",
+  },
+  {
+    "hash": "e8f912df",
+    "id": "prod.rad-3.l2:B:239000",
+  },
+  {
+    "hash": "de5bc158",
+    "id": "prod.rad-3.l2:B:239001",
+  },
+  {
+    "hash": "e4f9d90c",
+    "id": "prod.rad-3.l2:B:239006",
+  },
+  {
+    "hash": "b8fe1e23",
+    "id": "prod.rad-4.l2:B:242000",
+  },
+  {
+    "hash": "360a3b82",
+    "id": "prod.rad-4.l2:B:242001",
+  },
+  {
+    "hash": "58553151",
+    "id": "prod.rad-4.l2:B:242002",
+  },
+]
+`;

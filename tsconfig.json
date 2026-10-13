@@ -1,0 +1,21 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/shared-state-schema" },
+    { "path": "./packages/skill-graph" },
+    { "path": "./packages/shared-components" },
+    { "path": "./packages/shared-mastery-service" },
+    { "path": "./packages/db" },
+    { "path": "./packages/image-hygiene" },
+    { "path": "./packages/economy" },
+    { "path": "./packages/item-bank" },
+    { "path": "./engines/diagnostic" },
+    { "path": "./engines/lesson" },
+    { "path": "./engines/game" },
+    { "path": "./services/scorer" },
+    { "path": "./services/diagnostic-runtime" },
+    { "path": "./services/diagnostic-api" },
+    { "path": "./apps/web" },
+    { "path": "./test" }
+  ]
+}

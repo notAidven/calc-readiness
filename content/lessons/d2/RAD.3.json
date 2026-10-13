@@ -1,0 +1,95 @@
+{
+  "node_id": "RAD.3",
+  "title": "Fraction exponents and radical form",
+  "mini_lesson": [
+    "A granary bin is a perfect cube, and the only figure written on it is how much grain it holds, so ordering cord for one edge means undoing a cube. A square root undoes a square, and the thing that undoes a cube is a **cube root**, written $\\sqrt[3]{8}$. There is a second way to write that very same request with no root sign in it at all, $8^{1/3}$, because a fraction in the exponent does not mean divide by three or take a third of the number: it means take a root, and the number on the bottom says which root.",
+    "So far the fraction has had a $1$ on top, and a fraction exponent with anything else up there asks for **two** things at once. The **bottom** number says which root to take and the **top** number says which power to raise to, so each number in the fraction has a job of its own. One name goes with the notation: the small number written into the root sign is the **index**, and a square root's index of $2$ is so common that it is left off and simply written $\\sqrt{x}$.",
+    "A fraction in the exponent looks like a new rule, but it follows from one already in hand, that a power raised to another power multiplies the exponents. Cubing $8^{1/3}$ multiplies $\\dfrac{1}{3}$ by $3$ and lands back on $8$ itself, and the only number that does that is the cube root of $8$. The same run works for any root, giving $x^{1/q} = \\sqrt[q]{x}$ and, with the top number back on, $x^{p/q} = \\sqrt[q]{x^{p}}$, an expression written that way being in **radical form**.",
+    "Building a radical from a fraction exponent is a matter of putting each number where its job is. The bottom names the root, so it becomes the index written into the root sign, while the top stays an ordinary power on the base underneath. The base itself never moves.",
+    "The same two jobs read backwards turn a radical into a single fraction exponent: the power sitting under the root becomes the **top** of the fraction, and the index becomes the **bottom**. Swapping those two does not give a slightly wrong answer, it names a completely different number. So $\\sqrt[3]{x^{2}}$ is $x^{2/3}$ and never $x^{3/2}$.",
+    "Both jobs now have a home, so which of them goes first? Either order lands on the same answer, because $\\left(\\sqrt[q]{x}\\right)^{p}$ and $\\sqrt[q]{x^{p}}$ are the same number, so the choice really is yours. One choice is much kinder than the other, since taking the root first keeps the numbers small while raising the power first can leave you hunting the root of something enormous."
+  ],
+  "slide_subtitles": [
+    "Roots as exponents",
+    "Each number's job",
+    "Why a root?",
+    "From exponent to radical",
+    "From radical to exponent",
+    "Which order is easier?"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The bin holds $8$ cubic meters. Find the length of one edge, and write it both ways.",
+      "steps": [
+        "A cube's volume is its edge multiplied by itself three times, so the edge is the cube root of $8$.",
+        "Hunt for the number that gives $8$ when it is cubed: $2 \\cdot 2 \\cdot 2 = 8$.",
+        "In radical form that reads $\\sqrt[3]{8} = 2$.",
+        "The same request with a fraction exponent reads $8^{1/3} = 2$, so the edge measures $2$ meters."
+      ]
+    },
+    {
+      "prompt": "Name the job of each number in $8^{2/3}$, then evaluate it.",
+      "steps": [
+        "The bottom number is $3$, so it asks for a cube root.",
+        "The top number is $2$, so it asks for a square.",
+        "Take the cube root first: $\\sqrt[3]{8} = 2$.",
+        "Now apply the power to that: $2^{2} = 4$, so $8^{2/3} = 4$."
+      ]
+    },
+    {
+      "prompt": "Cube $8^{1/3}$ to show that it has to be $\\sqrt[3]{8}$.",
+      "steps": [
+        "Raise it to the third power: $\\left(8^{1/3}\\right)^{3}$.",
+        "A power raised to a power multiplies the exponents: $\\dfrac{1}{3} \\cdot 3 = 1$.",
+        "That leaves $8^{1} = 8$, so cubing this number gives $8$ straight back.",
+        "Only one number does that, and it is $\\sqrt[3]{8}$, so $8^{1/3} = \\sqrt[3]{8}$."
+      ]
+    },
+    {
+      "prompt": "Write $x^{4/3}$ in radical form.",
+      "steps": [
+        "The bottom number is $3$, so it becomes the index of the root.",
+        "The top number is $4$, so it stays a power on the $x$ underneath.",
+        "Putting each number where its job is gives $x^{4/3} = \\sqrt[3]{x^{4}}$."
+      ]
+    },
+    {
+      "prompt": "Write $\\sqrt[3]{x^{5}}$ with a single fraction exponent.",
+      "steps": [
+        "The power sitting under the root is $5$, so it becomes the top of the fraction.",
+        "The index is $3$, so it becomes the bottom.",
+        "That gives $\\sqrt[3]{x^{5}} = x^{5/3}$, and never $x^{3/5}$, which would name a different number."
+      ]
+    },
+    {
+      "prompt": "Evaluate $27^{2/3}$ both ways round.",
+      "steps": [
+        "Root first: $\\sqrt[3]{27} = 3$.",
+        "Then the power: $3^{2} = 9$.",
+        "Power first instead: $27^{2} = 729$.",
+        "Then the root of that: $\\sqrt[3]{729} = 9$, the same answer off far larger numbers."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "rational-exponent-play", "gates": true },
+    { "after": 1, "id": "fraction-exponent-label", "gates": true },
+    { "after": 2, "id": "fraction-exponent-undo-table", "gates": true },
+    { "after": 3, "id": "radical-form-builder", "gates": true },
+    { "after": 4, "id": "exponent-form-builder", "gates": true },
+    { "after": 5, "id": "rational-power-solver", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Work out $25^{3/2}$. Read the exponent as a root and a power first, then evaluate it.",
+    "accepted": ["125", "125.0", "125.00"],
+    "hint": "In $x^{p/q}$ the bottom number $q$ names the root to take and the top number $p$ names the power to apply. Either order lands on the same value, so pick whichever keeps the numbers small.",
+    "worked_solution": [
+      "Read the exponent: in $x^{p/q}$ the bottom names the root and the top names the power, so $25^{3/2}$ is the square root of $25$, cubed.",
+      "Either order gives the same value, and rooting first keeps the numbers small: $\\sqrt{25} = 5$.",
+      "Now apply the power: $5^{3} = 125$."
+    ],
+    "worked_solution_params": { "base": 25, "num": 3, "den": 2, "root": 5, "value": 125 },
+    "check": { "answer_type": "numeric", "answer_key": "125" },
+    "variants": { "template_id": "d2.rad3.eval.l1", "count": 2 }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "node_id": "FUN.2",
+  "title": "Domain and range",
+  "mini_lesson": [
+    "A machine on the works floor takes a bar of stock and hands back one finished part, and the shop keeps two separate facts about it: the sizes of stock it will accept, and the sizes of part it can turn out. A function keeps the same two: the **domain** is every input the rule accepts, and the **range** is every output the rule can reach. Reading one off when the question asked for the other is the easiest mistake to make here, so decide which list you are building before you build it.",
+    "A range takes more work than a domain, because it depends on what the rule *does* to an input. Squaring never hands back a negative number, so $x^{2}$ is $0$ or more whatever you feed it, and an absolute value behaves the same way. A rule built on one of those has a floor under its outputs, and subtracting that part from a plain number instead turns the floor into a ceiling.",
+    "Most rules accept every number; only two kinds refuse anything, and when they refuse it is for an arithmetic reason rather than by convention. A quotient has no value when its bottom is zero, so exactly one input is thrown out and the rest of the line stays. An **even** root has no real value when what sits under it is negative, so it refuses a whole stretch of inputs at once.",
+    "A domain and a range are both written the same way, as an interval: name the two ends of the stretch in order and say whether each one is taken in. A square bracket takes its endpoint in and a round bracket leaves it out, and $\\infty$ always gets a round bracket, because it is not a number anything can equal. Where a single input is thrown out the allowed inputs fall into two stretches joined by a union, and in the answer box infinity is typed `inf` with a space on each side of a union's `U`."
+  ],
+  "slide_subtitles": [
+    "Domain and range",
+    "Reachable outputs",
+    "Two rules that refuse",
+    "Writing an interval"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A machine's log records the pairs $\\{(3,\\, 20),\\, (8,\\, 14),\\, (12,\\, 20)\\}$. Give its domain and its range.",
+      "steps": [
+        "The domain is the list of inputs the machine was given, which are the first number in each pair: $3$, $8$ and $12$.",
+        "The range is the list of outputs it handed back, which are the second numbers.",
+        "The output $20$ arrives twice, and a value is listed once however many inputs reach it, so the range is $14$ and $20$."
+      ]
+    },
+    {
+      "prompt": "Give the range of $f(x) = x^{2} - 6$.",
+      "steps": [
+        "A range turns on what the rule does, so start with the part that does it: $x^{2}$ is never negative, and it is $0$ only when the input is $0$.",
+        "Taking $6$ off the smallest $x^{2}$ gives the smallest output: $f(0) = 0 - 6 = -6$.",
+        "Any other input makes $x^{2}$ bigger, which pushes the output up from there, and nothing caps how far it climbs.",
+        "So the range is $-6$ together with every value above it."
+      ]
+    },
+    {
+      "prompt": "Which inputs does $h(x) = \\dfrac{7}{4x + 20}$ refuse?",
+      "steps": [
+        "A quotient is the rule that can be emptied, so ask what makes its bottom zero: $4x + 20 = 0$.",
+        "Taking $20$ off both sides leaves $4x = -20$, so $x = -5$.",
+        "At that one input the rule has no value at all, and every other input leaves the bottom something nonzero to divide by.",
+        "So $h$ refuses exactly one input, $-5$, and accepts the whole of the rest of the line."
+      ]
+    },
+    {
+      "prompt": "Write the domain of $g(x) = \\dfrac{5}{x - 8}$ in interval notation.",
+      "steps": [
+        "The bottom is zero when $x = 8$, so that one input is thrown out and every other input is allowed.",
+        "The allowed inputs therefore fall into two stretches: everything below $8$, and everything above it.",
+        "Neither stretch takes $8$ in, so both brackets beside it are round, and the two ends running off to infinity are round as well.",
+        "Joining the stretches with a union gives $(-\\infty,\\, 8) \\cup (8,\\, \\infty)$, which is typed `(-inf, 8) U (8, inf)`."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "domain-intake-explore", "gates": true },
+    { "after": 1, "id": "domain-range-slider", "gates": true },
+    { "after": 2, "id": "domain-restriction-classify", "gates": true },
+    { "after": 3, "id": "domain-interval-build", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A machine runs on the rule $f(x) = 12 - \\sqrt{x - 3}$. Give its **range** (every output the rule can reach) in interval notation. Type infinity as `inf`.",
+    "accepted": ["(-inf, 12]", "(-infinity, 12]", "(-∞, 12]"],
+    "hint": "Work out what $\\sqrt{x - 3}$ on its own can hand back before you worry about the $12$. A square root never returns a negative number, so its smallest output is $0$, reached when $x = 3$, and from there it climbs with nothing stopping it. Then ask what subtracting a quantity like that from $12$ does to the outputs.",
+    "worked_solution": [
+      "Start with the inputs the rule accepts: an even root needs $x - 3 \\ge 0$, so the rule runs from $x = 3$ upward.",
+      "Over those inputs $\\sqrt{x - 3}$ is $0$ when $x = 3$ and climbs with no ceiling, so the root covers $0$ and every value above it.",
+      "Subtracting that from $12$ turns the floor into a ceiling: the largest output is $12 - 0 = 12$, and the outputs fall away from there as the root grows.",
+      "The root grows without bound, so no output is too low to reach, and $12$ itself is reached because the root really does hit $0$.",
+      "Typed as the prompt asks: `(-inf, 12]`."
+    ],
+    "worked_solution_params": { "upward": 0, "useAbs": 0, "bound": 12, "inner": 3 },
+    "check": { "answer_type": "interval", "answer_key": "(-inf, 12]" },
+    "variants": { "template_id": "cfu.fun2.domain-and-range", "count": 2 }
+  }
+}

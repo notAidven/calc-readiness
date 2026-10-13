@@ -1,0 +1,210 @@
+/*
+ * THE DEV SKIP CONTROL — its own stylesheet, deliberately.
+ *
+ * `hard-winter.css` and `three/winter-in-city.css` are both under active edit by other work, and
+ * nothing in here is wanted by either of them: this is the only element in the feature that is not
+ * part of the game. A file of its own is the smallest footprint available, and it keeps the rule
+ * that a dev affordance never shares a selector with the product.
+ *
+ * ## WHERE IT SITS, AND WHAT IT COSTS THE SCREEN
+ *
+ * `position: fixed`, top-right, at both mounts. The alternative was a panel in the winter's own
+ * rail, and that is ruled out on a measurement rather than a preference: at 1024x580 the in-city
+ * declaring band is capped at `min(50vh, 420px)` = 290px, and `winterInCitySheet.browser.test.tsx`
+ * asserts that "Commit and face 3 questions" is inside that fold. Anything added to the rail spends
+ * that budget, so a dev control in there would push the player's own commit button under the fold.
+ * Out here it spends nothing.
+ *
+ * WHAT IT DOES COVER is a corner, and that is why it FOLDS. Expanded is the default, because being
+ * one press away from the thing the lead asked to be frictionless is the wrong trade; folded it is
+ * a chip, which is what to do before photographing the island behind it.
+ *
+ * ## IT LOOKS LIKE AN INSTRUMENT, NOT LIKE THE GAME
+ *
+ * Dark, mono, square corners, against a surface that is pale, rounded and set in Nunito. That is a
+ * deliberate mismatch: this must never read as a feature, and a reviewer glancing at a screenshot
+ * should be able to tell in one look that the panel is not part of the product. It is a second
+ * channel on the same claim its own eyebrow makes in words.
+ *
+ * ## STACKING
+ *
+ * 65: above the in-city crisis layer (`.winter-in-city`, 60) and its exit chip, and BELOW
+ * `.hw-conclusion` (70) so the concluding card is never half-covered by a dev tool. The component
+ * also returns null at the `ended` phase, so the two cannot be on screen together at all; the
+ * z-index is the belt to that pair of braces.
+ *
+ * `pointer-events: auto` is load-bearing, not tidy. In-city this element renders INSIDE
+ * `.winter-in-city`, which is `pointer-events: none` so the island underneath keeps the drag and
+ * the zoom. Without this line every button here is inert on that mount.
+ */
+
+.hw-skip {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 65;
+  pointer-events: auto;
+  box-sizing: border-box;
+  /*
+   * SIZED AGAINST THE IN-CITY BAND, measured rather than guessed.
+   *
+   * At 1024x580 the declaring band's top edge is at y=276, and this panel is pinned 10px from the
+   * top, so anything over 266px tall clips into the crisis's own controls. The first version was
+   * 284px — a 2x2 rung grid — and `winterDevSkipOverTheIsland.browser.test.tsx` measured it 18px
+   * inside the band. Four across halves the rung rows and lands the whole panel around 215px,
+   * which leaves room for the note to wrap without the box growing back into the band.
+   */
+  width: 240px;
+  padding: 6px 9px 7px;
+  border: 1px solid #f0b429;
+  border-radius: 4px;
+  background: rgba(16, 22, 30, 0.96);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.42);
+  color: #e8eef4;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.hw-skip__eyebrow {
+  margin: 0;
+  color: #f0b429;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* The heading IS the fold control, so the panel needs no second piece of chrome for it. */
+.hw-skip__title {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1px 0 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #e8eef4;
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.hw-skip__title:hover {
+  color: #ffd77a;
+}
+
+.hw-skip__fold {
+  color: #9fb0c0;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+/* A `<fieldset>` because the row really is a captioned set of controls; its default border,
+   padding and min-width are all wrong here and all reset. */
+.hw-skip__group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.hw-skip__legend {
+  padding: 0;
+  color: #9fb0c0;
+  font-size: 9.5px;
+}
+
+/*
+ * FOUR ACROSS: the whole ladder on one row, strongest first, which is the same order the board's
+ * own preview reads in. The score sits over the tier name rather than beside it, because the tier
+ * name is what `hard-winter-tuning.ts` is keyed on and is the vocabulary this control was asked to
+ * speak, so it may not be the thing that gets dropped for width.
+ */
+.hw-skip__row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  margin: 3px 0 6px;
+}
+
+.hw-skip__rung {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 3px;
+  border: 1px solid #46586a;
+  border-radius: 3px;
+  background: #1d2833;
+  color: #e8eef4;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.hw-skip__rung:hover:not(:disabled) {
+  border-color: #f0b429;
+  background: #2a3946;
+}
+
+/* Read off a 1024x580 frame: at 0.42 a disabled rung and a live one were hard to tell apart, and
+   both rows are disabled on the declare screen, so the whole control looked pressable. */
+.hw-skip__rung:disabled {
+  border-color: #2b3742;
+  background: #161f28;
+  opacity: 0.34;
+  cursor: not-allowed;
+}
+
+.hw-skip__score {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/*
+ * The tier name is tinted per rung, and never ONLY tinted: the word itself is on the button, so
+ * the colour is a second channel on a label that already reads without it.
+ */
+.hw-skip__tier {
+  font-size: 8px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hw-skip__rung[data-tier="strong"] .hw-skip__tier {
+  color: #6fd08c;
+}
+
+.hw-skip__rung[data-tier="steady"] .hw-skip__tier {
+  color: #7fc4f0;
+}
+
+.hw-skip__rung[data-tier="weak"] .hw-skip__tier {
+  color: #f0b429;
+}
+
+.hw-skip__rung[data-tier="none"] .hw-skip__tier {
+  color: #e08a8a;
+}
+
+/*
+ * BOUNDED AND SCROLLING, which is what keeps the panel's own height a fact rather than a function
+ * of the last message. A stopped run-out reports the engine's refusal verbatim, and the longest of
+ * those runs to five lines in this column — enough on its own to push the panel back into the
+ * in-city band the width above was chosen to clear. Capped and scrolled rather than clipped, so no
+ * refusal becomes unreadable.
+ */
+.hw-skip__note {
+  max-height: 40px;
+  overflow-y: auto;
+  margin: 0;
+  color: #9fb0c0;
+  font-size: 9.5px;
+}

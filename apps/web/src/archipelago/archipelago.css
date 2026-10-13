@@ -1,0 +1,1230 @@
+.archipelago {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+  background: var(--game-blue-ink);
+  color: var(--game-slate);
+  font-family: var(--font-body);
+}
+
+.archipelago[data-ceremony="true"] {
+  z-index: 20;
+}
+
+.archipelago-stage {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--game-blue-ink);
+  touch-action: pan-y;
+}
+
+.archipelago-hero-renderer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  transform-origin: 50% 55%;
+  transition: transform 240ms cubic-bezier(0.2, 0.72, 0.18, 1);
+}
+
+.archipelago-hero-renderer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.archipelago-fallback-island {
+  position: absolute;
+  inset: 82px 76px 102px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 55%, rgb(63 127 146 / 24%), transparent 52%),
+    linear-gradient(180deg, var(--game-blue-ink), #12354a 64%, var(--game-blue-ink));
+}
+
+.archipelago-fallback-island svg {
+  width: min(820px, 92vw);
+  height: min(390px, 72vh);
+  overflow: visible;
+  filter: drop-shadow(0 17px 12px rgb(5 18 27 / 36%));
+}
+
+.archipelago-fallback-island__lagoon {
+  opacity: 0.72;
+}
+
+.archipelago-fallback-island__wake-line {
+  fill: none;
+  stroke: var(--paper);
+  stroke-dasharray: 9 14;
+  stroke-linecap: round;
+  stroke-width: 2;
+  opacity: 0.28;
+}
+
+.archipelago-fallback-island__ground-marks {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  opacity: 0.48;
+}
+
+.archipelago-fallback-island__ground-marks .archipelago-fallback-island__rail {
+  stroke-width: 5;
+  opacity: 0.66;
+}
+
+.archipelago-fallback-island__terrain-props,
+.archipelago-fallback-island__building,
+.archipelago-fallback-island__hall {
+  filter: drop-shadow(0 5px 3px rgb(25 28 24 / 34%));
+}
+
+.archipelago-edge-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgb(14 37 54 / 78%) 0,
+      rgb(14 37 54 / 30%) 112px,
+      transparent 186px
+    ),
+    linear-gradient(
+      0deg,
+      rgb(14 37 54 / 94%) 0,
+      rgb(14 37 54 / 44%) 112px,
+      transparent 198px
+    );
+}
+
+.archipelago-top-band,
+.archipelago-bottom-band {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.archipelago-island-banner {
+  position: absolute;
+  /* The signed-in account chrome (`.account-chrome`, `styles.css`) is `position: fixed` at
+     this exact top-center lane, and `.archipelago-top-band`'s `inset: 0` keeps this banner's
+     `top` in viewport pixels all the way up through `.archipelago`'s own fixed, inset-0
+     stage — so a raw `12px` collides with the chrome at BOTH ruled viewports (both are
+     centered top, unlike the Stone HUD's left-anchored lane, which only collides on a
+     narrow phone). `max()` is a no-op wherever the chrome is absent (`--account-chrome-clear`
+     unset on `/demo`, presenter, and every unauthenticated mount). */
+  top: max(12px, var(--account-chrome-clear, 0px));
+  left: 50%;
+  width: min(430px, calc(100% - 164px));
+  min-height: 82px;
+  padding: 10px 18px 11px;
+  transform: translateX(-50%);
+  border: 1px solid var(--game-panel-line);
+  background: color-mix(in srgb, var(--game-panel) 97%, transparent);
+  box-shadow: 0 7px 18px rgb(14 37 54 / 28%);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+  pointer-events: auto;
+}
+
+.archipelago-context-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.archipelago-era-line,
+.archipelago-topic,
+.archipelago-state-card p {
+  margin: 0;
+}
+
+.archipelago-era-line,
+.archipelago-state-chip {
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.archipelago-era-line {
+  color: var(--game-blue-deep);
+}
+
+.archipelago-state-chip {
+  color: var(--civic-dark);
+  text-align: right;
+}
+
+.archipelago-state-chip[data-state="settled"] {
+  color: var(--game-blue-deep);
+}
+
+.archipelago-state-chip[data-state="closed"],
+.archipelago-state-chip[data-state="ceremony"] {
+  color: var(--signal-deep);
+}
+
+.archipelago-state-chip[data-state="preview"] {
+  color: var(--game-blue-deep);
+}
+
+.archipelago-island-banner h2 {
+  margin: 4px 0 1px;
+  color: var(--game-slate);
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: -0.012em;
+}
+
+.archipelago-topic {
+  overflow: hidden;
+  color: var(--game-slate-2);
+  font-size: 11px;
+  font-weight: 850;
+  line-height: 13px;
+  letter-spacing: 0.055em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.archipelago-close,
+.archipelago-overflow-trigger {
+  position: absolute;
+  top: 14px;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--game-panel-line);
+  border-radius: 50%;
+  background: var(--game-panel);
+  box-shadow: 0 5px 14px rgb(14 37 54 / 28%);
+  color: var(--game-slate);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.archipelago-close {
+  right: 16px;
+}
+
+.archipelago-presenter-home {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  display: grid;
+  min-width: 148px;
+  min-height: 46px;
+  place-content: center;
+  gap: 1px;
+  padding: 5px 12px;
+  border: 1px solid var(--game-gold-strong);
+  border-radius: 7px;
+  background: linear-gradient(180deg, #f3c85f, var(--game-gold));
+  box-shadow: 0 3px 0 var(--game-gold-strong);
+  color: var(--game-blue-ink);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 13px;
+  pointer-events: auto;
+}
+
+.archipelago-presenter-home small {
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 950;
+  line-height: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.archipelago-presenter-home:disabled {
+  filter: saturate(0.35);
+  opacity: 0.68;
+  cursor: default;
+}
+
+.archipelago-overflow-trigger {
+  right: 70px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.08em;
+}
+
+.archipelago-close svg {
+  width: 22px;
+  height: 22px;
+}
+
+.archipelago-close path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2.4;
+}
+
+.archipelago-close--guided {
+  width: auto;
+  min-width: 120px;
+  padding-inline: 14px;
+  border-radius: 7px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.archipelago-dock {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  left: 12px;
+  display: grid;
+  min-height: 92px;
+  grid-template-columns:
+    64px 108px minmax(210px, 1fr)
+    minmax(150px, 180px) 64px;
+  align-items: stretch;
+  gap: 8px;
+  padding: 10px;
+  border-block: 1px solid rgb(226 216 198 / 36%);
+  background: rgb(14 37 54 / 94%);
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px),
+    0 8px
+  );
+  pointer-events: auto;
+}
+
+.archipelago-arrow,
+.archipelago-route-trigger,
+.archipelago-primary-action {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.archipelago-arrow {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--game-panel-line);
+  background: var(--game-panel);
+  box-shadow: 0 3px 0 var(--game-panel-line);
+  color: var(--game-slate);
+}
+
+.archipelago-arrow svg {
+  width: 25px;
+  height: 38px;
+}
+
+.archipelago-arrow:disabled {
+  border-style: dashed;
+  background: var(--game-panel-2);
+  box-shadow: none;
+  cursor: default;
+  opacity: 0.48;
+}
+
+.archipelago-route-trigger {
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  padding: 6px 8px;
+  border: 1px solid var(--game-panel-line);
+  background: var(--game-panel-2);
+  box-shadow: 0 3px 0 var(--game-panel-line);
+  color: var(--game-slate);
+}
+
+.archipelago-route-trigger__label {
+  font-size: 13px;
+  line-height: 14px;
+}
+
+.archipelago-route-trigger__count {
+  color: var(--game-blue-deep);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 11px;
+  letter-spacing: 0.08em;
+}
+
+.archipelago-state-card {
+  display: grid;
+  min-width: 0;
+  align-content: center;
+  gap: 4px;
+  padding: 4px 8px;
+  color: var(--paper);
+}
+
+.archipelago-state-card:focus {
+  outline: 3px solid var(--signal);
+  outline-offset: 3px;
+}
+
+.archipelago-state-headline {
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.archipelago-state-sentence {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--paper-deep);
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 15px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.archipelago-unlock-progress {
+  width: 100%;
+  height: 5px;
+  border: 0;
+  overflow: hidden;
+  appearance: none;
+}
+
+.archipelago-unlock-progress::-webkit-progress-bar {
+  background: rgb(240 233 219 / 30%);
+}
+
+.archipelago-unlock-progress::-webkit-progress-value {
+  background: var(--game-gold);
+}
+
+.archipelago-unlock-progress::-moz-progress-bar {
+  background: var(--game-gold);
+}
+
+.archipelago-primary-action {
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  padding: 8px 14px;
+  border: 1px solid var(--game-gold-strong);
+  background: var(--game-gold);
+  box-shadow: 0 4px 0 var(--game-gold-strong);
+  color: var(--game-blue-ink);
+  font-size: 15px;
+  line-height: 17px;
+}
+
+.archipelago-primary-action small {
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 950;
+  line-height: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.archipelago[data-previewing="true"] .archipelago-dock {
+  border-color: rgb(166 214 232 / 72%);
+  background: rgb(10 31 45 / 90%);
+}
+
+.archipelago[data-previewing="true"] .archipelago-primary-action {
+  border-color: var(--paper-deep);
+  background: var(--game-panel);
+  box-shadow: 0 3px 0 var(--paper-deep);
+  color: var(--game-blue-ink);
+}
+
+.archipelago[data-previewing="true"] .archipelago-hero-renderer {
+  transform: scale(1.08);
+}
+
+.archipelago[data-reduced-motion="true"] .archipelago-hero-renderer {
+  transition: none;
+}
+
+.archipelago[data-previewing="true"] .archipelago-edge-scrim {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(14 37 54 / 72%) 0,
+      rgb(14 37 54 / 18%) 112px,
+      transparent 172px
+    ),
+    linear-gradient(
+      0deg,
+      rgb(14 37 54 / 90%) 0,
+      rgb(14 37 54 / 30%) 108px,
+      transparent 182px
+    );
+}
+
+.archipelago-route-menu {
+  position: absolute;
+  right: auto;
+  bottom: 112px;
+  left: 84px;
+  z-index: 18;
+  display: grid;
+  width: min(560px, calc(100% - 104px));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  padding: 10px;
+  border: 2px solid var(--game-gold);
+  background: var(--game-blue-ink);
+  box-shadow: 0 10px 25px rgb(5 18 27 / 44%);
+  clip-path: polygon(
+    8px 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%,
+    0 8px
+  );
+  pointer-events: auto;
+}
+
+.archipelago-route-menu[hidden] {
+  display: none;
+}
+
+.archipelago-route-option {
+  position: relative;
+  display: grid;
+  min-width: 44px;
+  min-height: 74px;
+  place-content: center;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid var(--game-panel-line);
+  border-radius: 5px;
+  background: var(--game-panel-2);
+  color: var(--game-slate);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.archipelago-route-option__medallion {
+  display: block;
+  width: 38px;
+  height: 24px;
+  margin: 0 auto 1px;
+}
+
+.archipelago-route-option__lock {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 9px;
+  height: 9px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+
+.archipelago-route-option small {
+  overflow: hidden;
+  color: var(--game-slate-2);
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.archipelago-route-option[data-state="closed"] {
+  border-color: var(--game-gold);
+  background: #132f42;
+  color: var(--game-gold);
+}
+
+.archipelago-route-option[data-state="closed"] small {
+  color: var(--paper-deep);
+}
+
+.archipelago-route-option[data-state="closed"] .archipelago-route-option__medallion {
+  opacity: 0.55;
+}
+
+.archipelago-route-option[aria-selected="true"] {
+  border-color: var(--game-blue);
+  border-width: 2px;
+  background: var(--game-blue-deep);
+  color: var(--paper);
+}
+
+.archipelago-route-option[aria-selected="true"] small {
+  color: var(--paper);
+}
+
+.archipelago-route-option[data-standing="true"]::after {
+  position: absolute;
+  right: 5px;
+  bottom: 4px;
+  left: 5px;
+  height: 3px;
+  background: var(--game-gold);
+  content: "";
+}
+
+.archipelago-state-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.archipelago-closed-landing {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 108px;
+}
+
+.archipelago-classic-lock {
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  color: var(--game-gold);
+  filter: drop-shadow(0 10px 10px rgb(5 18 27 / 56%));
+}
+
+.archipelago-classic-lock svg {
+  width: 104px;
+  height: 126px;
+  overflow: visible;
+}
+
+.archipelago-classic-lock > span {
+  padding: 2px 9px;
+  border-block: 1px solid rgb(242 193 78 / 52%);
+  background: rgb(14 37 54 / 88%);
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.archipelago-classic-lock--landing {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid var(--game-gold);
+  background: rgb(11 27 38 / 82%);
+  clip-path: polygon(
+    8px 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%,
+    0 8px
+  );
+  filter: drop-shadow(0 4px 5px rgb(5 18 27 / 44%));
+}
+
+.archipelago-classic-lock--landing svg {
+  width: 18px;
+  height: 22px;
+}
+
+.archipelago-classic-lock--landing > span {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.archipelago-landmark-caption {
+  position: absolute;
+  top: 64%;
+  left: 50%;
+  z-index: 3;
+  margin: 0;
+  padding: 3px 9px;
+  transform: translateX(-50%);
+  border: 1px solid var(--brass);
+  background: rgb(11 27 38 / 72%);
+  color: var(--paper-deep);
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.archipelago-preview-status {
+  position: absolute;
+  top: 108px;
+  left: 50%;
+  z-index: 7;
+  margin: 0;
+  padding: 5px 12px;
+  transform: translateX(-50%);
+  border: 1px solid var(--game-gold);
+  background: rgb(9 32 45 / 94%);
+  box-shadow: 0 4px 12px rgb(3 18 27 / 42%);
+  color: var(--game-gold);
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.archipelago-hall-standin {
+  margin: 0;
+  overflow: hidden;
+  color: var(--game-gold);
+  font-size: 10.5px;
+  font-weight: 800;
+  line-height: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.archipelago-diagnostic-site {
+  overflow: visible;
+}
+
+.archipelago-diagnostic-site polygon {
+  fill: rgb(242 193 78 / 10%);
+  stroke: var(--signal-soft);
+  stroke-dasharray: 5 5;
+  stroke-width: 2;
+}
+
+.archipelago-diagnostic-site circle {
+  fill: var(--game-panel);
+  stroke: var(--signal-deep);
+  stroke-width: 1.5;
+}
+
+.archipelago-diagnostic-site text {
+  fill: var(--paper);
+  font: 800 11px / 1 var(--font-body);
+  letter-spacing: 0.06em;
+  paint-order: stroke;
+  stroke: var(--game-blue-ink);
+  stroke-width: 4px;
+}
+
+.archipelago-ceremony-reveal__shore-one,
+.archipelago-ceremony-reveal__shore-two {
+  fill: none;
+  stroke: var(--game-gold);
+  stroke-linecap: round;
+  stroke-width: 4;
+  opacity: calc(0.25 + var(--ceremony-reveal) * 0.65);
+  animation: archipelago-shore-pulse 700ms ease-out 1;
+}
+
+.archipelago-ceremony-reveal__shore-two {
+  stroke: var(--paper);
+  stroke-width: 2;
+  animation-delay: 80ms;
+}
+
+.archipelago-ceremony-reveal__wake {
+  fill: none;
+  stroke: var(--paper);
+  stroke-dasharray: 14 18;
+  stroke-linecap: round;
+  stroke-width: 6;
+  animation: archipelago-wake-fade 700ms ease-out 1 forwards;
+}
+
+.archipelago-ceremony-reveal[data-hold="true"]
+  :is(
+    .archipelago-ceremony-reveal__shore-one,
+    .archipelago-ceremony-reveal__shore-two,
+    .archipelago-ceremony-reveal__wake
+  ) {
+  animation: none;
+  opacity: 0.9;
+}
+
+.archipelago-transition-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: var(--game-blue-ink);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.archipelago[data-transition="cover"] .archipelago-transition-veil {
+  opacity: 1;
+  transition: opacity 110ms ease-in;
+}
+
+.archipelago[data-transition="reveal"] .archipelago-transition-veil {
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.archipelago-overflow-menu {
+  position: absolute;
+  z-index: 18;
+  top: 68px;
+  right: 68px;
+  width: 268px;
+  padding: 10px;
+  border: 1px solid var(--game-panel-line);
+  background: var(--game-panel);
+  box-shadow: 0 10px 25px rgb(14 37 54 / 38%);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+}
+
+.archipelago-overflow-destructive {
+  display: grid;
+  gap: 7px;
+  padding-top: 9px;
+  border-top: 2px solid var(--brick);
+}
+
+.archipelago-overflow-destructive p {
+  margin: 0;
+  color: var(--signal-deep);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.archipelago-overflow-destructive button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--brick);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--signal-deep);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-align: left;
+}
+
+.archipelago-reset-confirm-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  display: grid;
+  place-items: center;
+}
+
+.archipelago-reset-confirm-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: rgb(14 37 54 / 58%);
+  cursor: default;
+}
+
+.archipelago-reset-confirm {
+  position: relative;
+  display: grid;
+  width: min(470px, calc(100% - 32px));
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid var(--game-panel-line);
+  border-top: 4px solid var(--brick);
+  background: var(--game-panel);
+  box-shadow: 0 16px 38px rgb(14 37 54 / 48%);
+  color: var(--game-slate);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+.archipelago-reset-confirm-eyebrow {
+  margin: 0;
+  color: var(--signal-deep);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.archipelago-reset-confirm h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.archipelago-reset-confirm > p:not(.archipelago-reset-confirm-eyebrow) {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.archipelago-reset-confirm-error {
+  color: var(--signal-deep);
+}
+
+.archipelago-reset-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.archipelago-reset-confirm-actions button {
+  min-width: 150px;
+  min-height: 44px;
+  padding: 9px 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.archipelago-reset-confirm-cancel {
+  border: 1px solid var(--game-panel-line);
+  background: var(--game-panel-2);
+  color: var(--game-slate);
+}
+
+.archipelago-reset-confirm-danger {
+  border: 1px solid var(--signal-deep);
+  background: var(--brick);
+  color: var(--paper);
+}
+
+.archipelago-reset-confirm-actions button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.archipelago :is(button, [href], [tabindex]):focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 3px;
+}
+
+@keyframes archipelago-shore-pulse {
+  from {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 0.28;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes archipelago-wake-fade {
+  from {
+    opacity: 0.9;
+    stroke-dashoffset: 36;
+  }
+  to {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archipelago-transition-veil,
+  .archipelago-state-overlay *,
+  .archipelago-fallback-island * {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .archipelago-hero-renderer {
+    top: 72px;
+    bottom: 132px;
+  }
+
+  .archipelago-fallback-island {
+    inset: 0;
+  }
+
+  .archipelago-fallback-island svg {
+    width: 116%;
+    height: 100%;
+  }
+
+  .archipelago-edge-scrim {
+    background:
+      linear-gradient(180deg, rgb(14 37 54 / 76%) 0, transparent 116px),
+      linear-gradient(0deg, rgb(14 37 54 / 94%) 0, transparent 164px);
+  }
+
+  .archipelago-island-banner {
+    /* Same account-chrome reservation as the base rule above (see its comment): this
+       narrow-width layout drops the centered `transform` but keeps `top` in the same
+       viewport-pixel lane the fixed chrome occupies, so it needs the same `max()`. */
+    top: max(8px, var(--account-chrome-clear, 0px));
+    right: 60px;
+    left: 8px;
+    width: auto;
+    min-height: 62px;
+    padding: 7px 11px 8px;
+    transform: none;
+  }
+
+  .archipelago-era-line,
+  .archipelago-state-chip {
+    font-size: 8px;
+    line-height: 9px;
+    letter-spacing: 0.08em;
+  }
+
+  .archipelago-island-banner h2 {
+    margin-top: 3px;
+    font-size: 20px;
+    line-height: 21px;
+  }
+
+  .archipelago-topic {
+    font-size: 9px;
+    line-height: 10px;
+  }
+
+  .archipelago-close,
+  .archipelago-overflow-trigger {
+    top: 8px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .archipelago-close {
+    right: 8px;
+  }
+
+  .archipelago-presenter-home {
+    top: 78px;
+    left: 8px;
+    min-width: 136px;
+    min-height: 44px;
+    padding: 4px 8px;
+    font-size: 10px;
+    line-height: 11px;
+  }
+
+  .archipelago[data-guided-return="true"] .archipelago-island-banner {
+    right: 136px;
+  }
+
+  .archipelago-close--guided {
+    width: auto;
+    min-width: 120px;
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+
+  .archipelago-overflow-trigger {
+    top: 56px;
+    right: 8px;
+  }
+
+  .archipelago-closed-landing {
+    padding-top: 176px;
+  }
+
+  .archipelago-classic-lock--landing {
+    max-width: calc(100% - 24px);
+    padding: 6px 10px;
+  }
+
+  .archipelago-classic-lock--landing > span {
+    overflow: hidden;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-overflow: ellipsis;
+  }
+
+  .archipelago-dock {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 132px;
+    grid-template-areas:
+      "status status status status"
+      "previous route action next";
+    grid-template-rows: 54px 60px;
+    grid-template-columns: 48px 68px minmax(0, 1fr) 48px;
+    gap: 6px;
+    padding: 7px 9px 8px;
+    border-block: 1px solid rgb(226 216 198 / 36%);
+    clip-path: none;
+  }
+
+  .archipelago-state-card {
+    grid-area: status;
+    gap: 1px;
+    padding: 0 3px;
+  }
+
+  .archipelago-state-headline {
+    font-size: 13px;
+    line-height: 15px;
+  }
+
+  .archipelago-state-sentence {
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  .archipelago-unlock-progress {
+    height: 4px;
+  }
+
+  .archipelago-arrow--previous {
+    grid-area: previous;
+  }
+
+  .archipelago-arrow--next {
+    grid-area: next;
+  }
+
+  .archipelago-arrow svg {
+    width: 20px;
+    height: 30px;
+  }
+
+  .archipelago-route-trigger {
+    grid-area: route;
+    gap: 1px;
+    padding: 3px;
+  }
+
+  .archipelago-route-trigger__label {
+    font-size: 11px;
+  }
+
+  .archipelago-route-trigger__count {
+    font-size: 8px;
+  }
+
+  .archipelago-primary-action {
+    grid-area: action;
+    min-width: 0;
+    padding: 5px 7px;
+    font-size: 13px;
+    line-height: 14px;
+  }
+
+  .archipelago-route-menu {
+    right: 8px;
+    bottom: 140px;
+    left: 8px;
+    width: auto;
+    gap: 5px;
+    padding: 7px;
+  }
+
+  .archipelago-route-option {
+    min-height: 66px;
+    padding: 2px;
+    font-size: 11px;
+  }
+
+  .archipelago-route-option__medallion {
+    width: 32px;
+    height: 20px;
+  }
+
+  .archipelago-route-option small {
+    font-size: 6.5px;
+  }
+
+  .archipelago-landmark-caption {
+    top: 62%;
+    max-width: calc(100% - 24px);
+    overflow: hidden;
+    font-size: 8px;
+    text-overflow: ellipsis;
+  }
+
+  .archipelago-preview-status {
+    top: 80px;
+    padding: 4px 8px;
+    font-size: 8px;
+    line-height: 10px;
+    letter-spacing: 0.09em;
+  }
+
+  .archipelago-hall-standin {
+    font-size: 8.5px;
+    line-height: 10px;
+  }
+
+  .archipelago-overflow-menu {
+    top: 104px;
+    right: 8px;
+    width: min(268px, calc(100% - 16px));
+  }
+
+  .archipelago-reset-confirm {
+    width: calc(100% - 24px);
+    padding: 16px;
+  }
+
+  .archipelago-reset-confirm-actions {
+    flex-direction: column;
+  }
+
+  .archipelago-reset-confirm-actions button {
+    width: 100%;
+  }
+
+}

@@ -1,0 +1,159 @@
+{
+  "node_id": "RAT.3",
+  "title": "Add and subtract rational expressions",
+  "mini_lesson": [
+    "Two wool merchants paying into one guild fund keep their books in different measures, so nothing can be totalled until both are written in the same one. You already know that $\\dfrac{1}{4} + \\dfrac{1}{6}$ cannot be combined until both fractions share a common denominator, and nothing about that changes when a denominator contains a variable. The moves run line for line: find the common denominator, rewrite both parts over it, then combine.",
+    "The least common denominator must include every factor of both denominators, with no extras. When two denominators share a factor, count it once: that keeps the LCD as small as possible. Multiplying the two denominators together always gives a common denominator, but a shared factor counted twice leaves work to undo at the end.",
+    "Once both fractions are over the same denominator, add the numerators and leave the denominator alone. The excluded values come from the **original** denominators, so list them before you combine anything. Adding the denominators as well is the one move to avoid: the denominator names the size of the pieces, and combining pieces of the same size does not change that size.",
+    "Subtraction takes the whole second numerator, not just its first term. Put that numerator in parentheses, then distribute the minus sign to every term inside. Miss a term and only its sign is wrong, which is the hardest kind of error to see afterwards, because the answer still looks like the right shape."
+  ],
+  "slide_subtitles": [
+    "Denominators with variables",
+    "Building the LCD",
+    "Adding the numerators",
+    "Subtracting the whole numerator"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Add $\\dfrac{3}{10} + \\dfrac{1}{4}$.",
+      "steps": [
+        "The denominators $10$ and $4$ differ, so nothing can be combined yet.",
+        "The smallest number both of them divide into is $20$, so that is the common denominator.",
+        "Rewrite both parts over it: $\\dfrac{3}{10} = \\dfrac{6}{20}$ and $\\dfrac{1}{4} = \\dfrac{5}{20}$.",
+        "The pieces are the same size now, so add the numerators and keep the denominator: $\\dfrac{11}{20}$."
+      ]
+    },
+    {
+      "prompt": "Build the least common denominator for $\\dfrac{4}{x(x - 5)} + \\dfrac{3}{x(x + 2)}$.",
+      "steps": [
+        "The first denominator is built from $x$ and $(x - 5)$, and the second from $x$ and $(x + 2)$.",
+        "The LCD needs every factor appearing in either one, so it needs $x$, $(x - 5)$ and $(x + 2)$.",
+        "$x$ appears in both, but counting it twice would give $x^{2}(x - 5)(x + 2)$, a common denominator larger than it has to be.",
+        "Counting the shared factor once gives the LCD $x(x - 5)(x + 2)$."
+      ]
+    },
+    {
+      "prompt": "Combine $\\dfrac{2}{x} + \\dfrac{3}{x - 4}$ into a single fraction.",
+      "steps": [
+        "The two denominators share no factor, so the common denominator is their product, $x(x - 4)$.",
+        "Rewrite each part over it: $\\dfrac{2(x - 4)}{x(x - 4)} + \\dfrac{3x}{x(x - 4)}$.",
+        "Add the numerators only: $2(x - 4) + 3x = 2x - 8 + 3x$, which collects to $5x - 8$.",
+        "The denominator is untouched, so the sum is $\\dfrac{5x - 8}{x(x - 4)}$."
+      ]
+    },
+    {
+      "prompt": "Subtract $\\dfrac{5x + 1}{x + 3} - \\dfrac{2x - 4}{x + 3}$.",
+      "steps": [
+        "The denominators already match, so the whole job is in the numerator.",
+        "Put the second numerator in parentheses before subtracting it: $\\dfrac{(5x + 1) - (2x - 4)}{x + 3}$.",
+        "Distribute the minus sign to both terms inside: $5x + 1 - 2x + 4$.",
+        "The $-4$ became $+4$, and that is the term a rushed subtraction leaves alone.",
+        "Collecting the numerator gives $\\dfrac{3x + 5}{x + 3}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "rational-numeric-twin-match", "gates": true },
+    { "after": 1, "id": "rational-add-lcd-builder", "gates": true },
+    { "after": 2, "id": "rational-add-walkthrough", "gates": true },
+    { "after": 3, "id": "rational-subtract-sign-play", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Write $\\dfrac{3}{x - 1} - \\dfrac{2}{x + 4}$ as a single fraction with a factored denominator, and list both excluded values in increasing order. Type it the way this example is typed: `(2x-9)/((x-3)(x+5)); x = -5, 3`.",
+    "accepted": [
+      "(x+14)/((x-1)(x+4)); x = -4, 1",
+      "(x+14)/((x+4)(x-1)); x = -4, 1",
+      "(x+14)/((x-1)(x+4)); x = 1, -4",
+      "(x+14)/((x+4)(x-1)); x = 1, -4",
+      "(x+14)/((x-1)(x+4)); x != -4, 1",
+      "(x+14)/((x+4)(x-1)); x != -4, 1",
+      "(x+14)/((x-1)(x+4)); x != 1, -4",
+      "(x+14)/((x-1)(x+4)); x ≠ -4, 1",
+      "(x+14)/((x+4)(x-1)); x ≠ -4, 1",
+      "(x+14)/((x-1)(x+4)); x ≠ 1, -4",
+      "(x+14)/((x-1)(x+4)), x = -4, 1",
+      "(x+14)/((x-1)*(x+4)); x = -4, 1",
+      "(x+14)/((x-1)(x+4)); x = -4; x = 1",
+      "(x+14)/((x-1)(x+4)); x ≠ -4, x ≠ 1",
+      "(x+14)/((x-1)(x+4)); x != -4, x != 1",
+      "(x+14)/((x-1)(x+4)); -4, 1",
+      "(x+14)/((x-1)(x+4)); 1, -4",
+      "(14+x)/((x-1)(x+4)); x = -4, 1",
+      "(x+14)/(x^2+3x-4); x = -4, 1",
+      "(x+14)/(x^2+3x-4); x = 1, -4",
+      "\\dfrac{x+14}{(x-1)(x+4)}; x = -4, 1",
+      "(x+14)/((x-1)(x+4)); x = -4; 1",
+      "(x+14)/((x-1)(x+4)) and x = -4 and 1",
+      "(x+14)/((x+4)(x-1)), x = -4, 1",
+      "(x+14)/((x+4)(x-1)); x = -4; 1",
+      "(x+14)/((x+4)(x-1)) and x = -4 and 1",
+      "(x+14)/((x-1)(x+4)), x = 1, -4",
+      "(x+14)/((x-1)(x+4)); x = 1; -4",
+      "(x+14)/((x-1)(x+4)) and x = 1 and -4",
+      "(x+14)/((x+4)(x-1)), x = 1, -4",
+      "(x+14)/((x+4)(x-1)); x = 1; -4",
+      "(x+14)/((x+4)(x-1)) and x = 1 and -4",
+      "(x+14)/((x-1)(x+4)), x != -4, 1",
+      "(x+14)/((x-1)(x+4)); x != -4; 1",
+      "(x+14)/((x-1)(x+4)) and x != -4 and 1",
+      "(x+14)/((x-1)(x+4)), x ≠ -4, 1",
+      "(x+14)/((x-1)(x+4)); x ≠ -4; 1",
+      "(x+14)/((x-1)(x+4)) and x ≠ -4 and 1",
+      "(x+14)/((x+4)(x-1)), x != -4, 1",
+      "(x+14)/((x+4)(x-1)); x != -4; 1",
+      "(x+14)/((x+4)(x-1)) and x != -4 and 1",
+      "(x+14)/((x+4)(x-1)), x ≠ -4, 1",
+      "(x+14)/((x+4)(x-1)); x ≠ -4; 1",
+      "(x+14)/((x+4)(x-1)) and x ≠ -4 and 1",
+      "(x+14)/((x-1)(x+4)), x != 1, -4",
+      "(x+14)/((x-1)(x+4)); x != 1; -4",
+      "(x+14)/((x-1)(x+4)) and x != 1 and -4",
+      "(x+14)/((x-1)(x+4)), x ≠ 1, -4",
+      "(x+14)/((x-1)(x+4)); x ≠ 1; -4",
+      "(x+14)/((x-1)(x+4)) and x ≠ 1 and -4",
+      "(x+14)/((x-1)*(x+4)), x = -4, 1",
+      "(x+14)/((x-1)*(x+4)); x = -4; 1",
+      "(x+14)/((x-1)*(x+4)) and x = -4 and 1",
+      "(x+14)/((x-1)(x+4)), x = -4, x = 1",
+      "(x+14)/((x-1)(x+4)) and x = -4 and x = 1",
+      "(x+14)/((x-1)(x+4)), x ≠ -4, x ≠ 1",
+      "(x+14)/((x-1)(x+4)); x ≠ -4; x ≠ 1",
+      "(x+14)/((x-1)(x+4)) and x ≠ -4 and x ≠ 1",
+      "(x+14)/((x-1)(x+4)), x != -4, x != 1",
+      "(x+14)/((x-1)(x+4)); x != -4; x != 1",
+      "(x+14)/((x-1)(x+4)) and x != -4 and x != 1",
+      "(x+14)/((x-1)(x+4)), -4, 1",
+      "(x+14)/((x-1)(x+4)); -4; 1",
+      "(x+14)/((x-1)(x+4)) and -4 and 1",
+      "(x+14)/((x-1)(x+4)), 1, -4",
+      "(x+14)/((x-1)(x+4)); 1; -4",
+      "(x+14)/((x-1)(x+4)) and 1 and -4",
+      "(14+x)/((x-1)(x+4)), x = -4, 1",
+      "(14+x)/((x-1)(x+4)); x = -4; 1",
+      "(14+x)/((x-1)(x+4)) and x = -4 and 1",
+      "(x+14)/(x^2+3x-4), x = -4, 1",
+      "(x+14)/(x^2+3x-4); x = -4; 1",
+      "(x+14)/(x^2+3x-4) and x = -4 and 1",
+      "(x+14)/(x^2+3x-4), x = 1, -4",
+      "(x+14)/(x^2+3x-4); x = 1; -4",
+      "(x+14)/(x^2+3x-4) and x = 1 and -4",
+      "\\dfrac{x+14}{(x-1)(x+4)}, x = -4, 1",
+      "\\dfrac{x+14}{(x-1)(x+4)}; x = -4; 1",
+      "\\dfrac{x+14}{(x-1)(x+4)} and x = -4 and 1",
+      "\\frac{x+14}{(x-1)(x+4)}, x = -4, 1",
+      "\\frac{x+14}{(x-1)(x+4)}; x = -4; 1",
+      "\\frac{x+14}{(x-1)(x+4)} and x = -4 and 1",
+      "\\frac{x+14}{(x-1)(x+4)}; x = -4, 1"
+    ],
+    "hint": "The two denominators share no factor, so the LCD is $(x - 1)(x + 4)$. Rewrite each fraction over it, and note that the subtracted term becomes $2(x - 1)$ in the numerator, so the minus sign has to reach both of its terms.",
+    "worked_solution": [
+      "The two bottoms share no factor, so the common denominator is simply their product, $(x - 1)(x + 4)$.",
+      "Rewrite each fraction over it: $\\dfrac{3(x + 4)}{(x - 1)(x + 4)} - \\dfrac{2(x - 1)}{(x - 1)(x + 4)}$.",
+      "Expand the top, letting the minus reach both of its terms: $3x + 12 - 2x + 2$, which collects to $x + 14$.",
+      "The excluded values are whatever would empty an original bottom: $x = 1$ and $x = -4$.",
+      "Typed as the prompt asks, smallest excluded value first: `(x+14)/((x-1)(x+4)); x = -4, 1`."
+    ],
+    "worked_solution_params": { "p": 3, "q": 2, "r": 1, "s": 4, "constant": 14 },
+    "variants": { "template_id": "cfu.rat3.subtract-lcd", "count": 2 }
+  }
+}

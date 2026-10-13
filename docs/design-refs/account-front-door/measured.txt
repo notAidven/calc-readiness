@@ -1,0 +1,44 @@
+Measured beside the frames in docs/design-refs/account-front-door, under an emulated
+prefers-reduced-motion: reduce, by accountFrontDoor.browser.test.tsx in the same run.
+Every box is in CSS pixels, in the window named at the start of its line. Both
+surfaces mount through the real AccountBoundary with the Cognito service injected as a
+prop, so the door and the account chrome are the shipped article, and no module is
+mocked (see test/browserModeModuleMocker.test.ts).
+
+1024x580 front door / Create account: focus ring rgb(31, 95, 109) solid 3px offset 3px; worst neighbour above rgb(246, 239, 225) = 6.29:1 (above 6.29, below 6.29, left 6.29, right 6.29)
+1024x580 front door / Sign in: focus ring rgb(31, 95, 109) solid 3px offset 3px; worst neighbour above rgb(246, 239, 225) = 6.29:1 (above 6.29, below 6.29, left 6.29, right 6.29)
+1024x580 sign-in / Email field: focus ring rgb(31, 95, 109) solid 3px offset 3px; worst neighbour above rgb(246, 239, 225) = 6.29:1 (above 6.29, below 6.29, left 6.29, right 6.29)
+1024x580 sign-in / Sign in: focus ring rgb(31, 95, 109) solid 3px offset 3px; worst neighbour above rgb(246, 239, 225) = 6.29:1 (above 6.29, below 6.29, left 6.29, right 6.29)
+1024x580 sign-in / Create an account: focus ring rgb(31, 95, 109) solid 3px offset 3px; worst neighbour above rgb(246, 239, 225) = 6.29:1 (above 6.29, below 6.29, left 6.29, right 6.29)
+1024x580 account chrome / Sign out: focus ring rgb(31, 95, 109) solid 3px offset 3px; worst neighbour above rgb(246, 239, 225) = 6.29:1 (above 6.29, below 6.29, left 6.29, right 6.29)
+1024x580 ring token: account rgb(31, 95, 109) vs launch rgb(31, 95, 109)
+1024x580 /sign-in "Create an account": 120x44px at (361, 417), bottom y=461, 44px probe misses 0/9
+1024x580 /sign-in "Forgot password?": 118x44px at (491, 417), bottom y=461, 44px probe misses 0/9
+1024x580 /sign-in "Back": 44x44px at (619, 417), bottom y=461, 44px probe misses 0/9
+1024x580 /create-account "Already have an account? Sign in": 209x44px at (380, 470), bottom y=514, 44px probe misses 0/9
+1024x580 /create-account "Back": 44x44px at (600, 470), bottom y=514, 44px probe misses 0/9
+1024x580 /verify-email "Resend confirmation code": 169x44px at (372, 417), bottom y=461, 44px probe misses 0/9
+1024x580 /verify-email "Back to sign in": 100x44px at (552, 417), bottom y=461, 44px probe misses 0/9
+1024x580 /forgot-password "Back to sign in": 100x44px at (462, 380), bottom y=424, 44px probe misses 0/9
+320x568 front door: sheet 300x239 top y=165; Create account bottom y=388; Sign in bottom y=336; shell scroll 568/568; cue absent
+390x580 front door: sheet 370x239 top y=171; Create account bottom y=394; Sign in bottom y=342; shell scroll 580/580; cue absent
+768x1024 front door: sheet 420x330 top y=347; Create account bottom y=645; Sign in bottom y=593; shell scroll 1024/1024; cue absent
+844x390 front door: sheet 420x251 top y=69; Create account bottom y=306; Sign in bottom y=254; shell scroll 390/390; cue absent
+1024x580 front door: sheet 420x251 top y=164; Create account bottom y=401; Sign in bottom y=349; shell scroll 580/580; cue absent
+1440x900 front door: sheet 420x371 top y=265; Create account bottom y=592; Sign in bottom y=540; shell scroll 900/900; cue absent
+512x290-zoom200 front door: sheet 420x239 top y=26; Create account bottom y=249; Sign in bottom y=197; shell scroll 290/290; cue absent
+1024x580-text200 front door: sheet 420x384 top y=98; Create account bottom y=467; Sign in bottom y=410; shell scroll 580/580; cue absent
+1024x580 language: shell background-image none; sheet rgb(246, 239, 225) / 1px rgb(211, 197, 170) / r18px
+1024x580 /: "Create account" bottom y=401 of 580; shell scroll 580/580; cue absent
+1024x580 /sign-in: "Sign in" bottom y=405 of 580; shell scroll 580/580; cue absent
+1024x580 /create-account: "Create account" bottom y=458 of 580; shell scroll 580/580; cue absent
+1024x580 /verify-email: "Confirm and continue" bottom y=405 of 580; shell scroll 580/580; cue absent
+1024x580 /forgot-password: "Send reset code" bottom y=368 of 580; shell scroll 580/580; cue absent
+1024x580 /reset-password: "Save new password" bottom y=452 of 580; shell scroll 580/580; cue absent
+844x390 /: "Create account" bottom y=306 of 390; shell scroll 390/390; cue absent
+844x390 /sign-in: "Sign in" bottom y=312 of 390; shell scroll 394/350; cue shown
+844x390 /create-account: "Create account" bottom y=417 of 390; shell scroll 499/350; cue shown
+844x390 /verify-email: "Confirm and continue" bottom y=312 of 390; shell scroll 394/350; cue shown
+844x390 /forgot-password: "Send reset code" bottom y=273 of 390; shell scroll 390/390; cue absent
+844x390 /reset-password: "Save new password" bottom y=407 of 390; shell scroll 489/350; cue shown
+1024x580 checking-session: spinner animation none; status sheet rgb(246, 239, 225) / r16px

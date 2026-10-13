@@ -1,0 +1,1633 @@
+@import "./presenter-palette.css";
+
+.presenter-instrument {
+  position: fixed;
+  z-index: 190;
+  top: 8px;
+  right: 108px;
+  color: var(--presentation-ink);
+  font-family: var(--font-body);
+}
+
+body:has(.build-shop) .presenter-instrument {
+  display: none;
+}
+
+/* A completion toast can still be alive while the presenter enters the Bay. The chart has no
+   spare phone corner for it: keep the already-announced status in the live app, but do not let
+   its transient panel cover an island or era label. */
+body:has([data-testid="archipelago-overview"]) .presenter-reward,
+body:has(.presenter-work-shell) .presenter-reward {
+  display: none;
+}
+
+.presenter-instrument__toggle {
+  min-width: 96px;
+  min-height: 48px;
+  padding: 0 15px;
+  border: 1px solid var(--presentation-detail);
+  border-radius: 6px;
+  background: var(--presentation-surface);
+  box-shadow: 0 4px 14px var(--presentation-shadow);
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.presenter-instrument__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.presenter-instrument__slides {
+  min-width: 52px;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 1px solid var(--presentation-data-blue);
+  border-radius: 6px;
+  background: var(--presentation-accent-blue);
+  color: var(--presentation-support);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.presenter-control-tray {
+  position: fixed;
+  z-index: 210;
+  bottom: 6px;
+  left: 50%;
+  display: grid;
+  box-sizing: border-box;
+  width: min(760px, calc(100vw - 16px));
+  min-height: 54px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  transform: translateX(-50%);
+  border: 1px solid var(--presentation-detail);
+  border-radius: 7px;
+  background: var(--presentation-surface);
+  box-shadow: 0 5px 18px var(--presentation-shadow-strong);
+}
+
+body.presenter-menu-open .presenter-bottom-bar {
+  display: none;
+}
+
+.presenter-bottom-bar {
+  width: min(680px, calc(100vw - 16px));
+}
+
+body:has(.build-shop) .presenter-bottom-bar {
+  display: none;
+}
+
+.presenter-control-tray button {
+  display: inline-grid;
+  min-width: 0;
+  min-height: 44px;
+  place-items: center;
+  padding: 0 5px;
+  border: 1px solid var(--presentation-data-blue);
+  border-radius: 4px;
+  background: var(--presentation-surface);
+  color: var(--presentation-ink);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  cursor: pointer;
+}
+
+.presenter-instrument button:hover:not(:disabled),
+.presenter-control-tray button:hover:not(:disabled) {
+  background: var(--presentation-accent-blue);
+}
+
+.presenter-instrument button:focus-visible,
+.presenter-control-tray button:focus-visible,
+.presenter-control-tray select:focus-visible {
+  outline: 3px solid var(--presentation-emphasis);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--presentation-surface);
+}
+
+.presenter-control-tray button:disabled {
+  opacity: 0.46;
+  cursor: not-allowed;
+}
+
+.presenter-menu-era__note {
+  margin: 0;
+  color: var(--civic-muted);
+  font-size: 0.7rem;
+  line-height: 1.35;
+}
+
+.presenter-menu-entry__launch,
+.presenter-menu-era__reset {
+  width: 100%;
+  min-height: 44px;
+}
+
+.presenter-menu-era__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.presenter-menu-era__actions .city-action {
+  min-width: 0;
+  min-height: 44px;
+}
+
+.presenter-menu-era__target {
+  display: grid;
+  gap: 4px;
+  color: var(--civic-muted);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.presenter-menu-era__target select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 9px;
+  border: 1px solid var(--civic-line);
+  border-radius: 6px;
+  background: var(--civic-surface-strong);
+  color: var(--civic-ink);
+  font: 700 0.78rem var(--font-body);
+}
+
+.presenter-menu-era__build {
+  width: 100%;
+  min-height: 44px;
+}
+
+.presenter-surface-action {
+  order: 2;
+  width: auto;
+  min-width: 148px;
+  min-height: 48px;
+  margin-left: auto;
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
+  font-weight: 850;
+  pointer-events: auto;
+}
+
+.city-shell .city-action-primary.presenter-surface-action:hover:not(:disabled) {
+  background: var(--presentation-emphasis);
+}
+
+.city-shell .world-scene-actions .presenter-surface-action {
+  flex: none;
+  width: auto;
+  min-height: 48px;
+  margin-left: auto;
+}
+
+.era-advance-stage > .presenter-surface-action {
+  position: fixed;
+  right: 16px;
+  bottom: 10px;
+  z-index: 3;
+  width: auto;
+  max-width: calc(100vw - 16px);
+  margin: 0;
+}
+
+.presenter-app-layer[inert] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* The six Presenter actions own the compact viewport-edge band. Keep learning controls
+   above it while retaining the full-viewport scene geometry. */
+body:has(.presenter-control-tray):has(.world-scene--large) .world-scene--large .coc-card {
+  padding-bottom: 62px;
+}
+
+body:has(.presenter-bottom-bar) .city-stage-full {
+  bottom: 62px;
+}
+
+/* The receipt is modal and sits above the Presenter bar, but the action still needs its own
+   clear lane on a phone. Asymmetric padding shifts the centered card above the two-row tray. */
+body:has(.presenter-bottom-bar) .completion-reward-layer {
+  padding-bottom: 80px;
+}
+
+body:has(.presenter-bottom-bar) .archipelago .archipelago-dock {
+  bottom: 64px;
+}
+
+body:has(.presenter-bottom-bar) .world-scene-actions .city-action {
+  min-height: 44px;
+}
+
+@media (max-height: 700px) {
+  /* Review has an advisor, a real problem, feedback, and two canonical city exits in the same
+     short well. Tighten only this Presenter mount so the response is not hidden by either
+     footer; the ordinary Town Hall review keeps its existing rhythm. */
+  body:has(.presenter-bottom-bar) .advisor-lesson--review {
+    gap: 10px;
+  }
+
+  body:has(.presenter-bottom-bar) .review-mistakes-card {
+    gap: 6px;
+    padding: 12px;
+  }
+
+  /* A projected worked example must fit above the lesson controls as one readable calculation.
+     Keep the room-scale type, but remove the reveal-flow spacing used by long practice solutions. */
+  [data-presenter-learning="true"] .advisor-lesson:has(> .worked-solution) {
+    gap: 8px;
+  }
+
+  [data-presenter-learning="true"] .advisor-lesson > .worked-solution {
+    gap: 4px;
+    padding: 4px 16px;
+    line-height: 1.3;
+  }
+
+  [data-presenter-learning="true"] .worked-solution__intro {
+    padding-bottom: 0;
+  }
+
+  [data-presenter-learning="true"] .worked-solution__steps {
+    gap: 4px;
+  }
+
+  [data-presenter-learning="true"] .worked-solution__step {
+    gap: 8px;
+    padding: 2px 10px;
+  }
+
+  [data-presenter-learning="true"] .worked-solution__step:not(:last-child)::after {
+    bottom: -5px;
+    height: 4px;
+  }
+}
+
+/*
+ * Presenter learning type is sized for a room, not for one reader at a laptop. The same
+ * variables dress the real Presenter city takeover and Review mistakes prompt; ordinary
+ * learner/account scenes match neither selector and retain their existing scale.
+ */
+[data-presenter-learning="true"],
+.presenter-app-layer .world-scene:has(#review-mistake-prompt) {
+  --presenter-heading: clamp(1.75rem, 2.25vw, 2.6rem);
+  --presenter-dialogue: clamp(1.25rem, 1.55vw, 1.8rem);
+  --presenter-body: clamp(1.15rem, 1.5vw, 1.6rem);
+  --presenter-math: clamp(1.125rem, 1.5vw, 1.55rem);
+  --presenter-prompt: clamp(1.2rem, 1.65vw, 1.75rem);
+  --presenter-answer: clamp(1.075rem, 1.35vw, 1.4rem);
+  --presenter-progress: clamp(0.75rem, 0.91vw, 0.95rem);
+  --presenter-control: clamp(0.875rem, 1.1vw, 1.15rem);
+}
+
+[data-presenter-learning="true"] .world-scene--large .coc-card {
+  --lesson-column: min(1380px, calc(100vw - 96px));
+}
+
+:is(
+    [data-presenter-learning="true"],
+    .presenter-app-layer .world-scene:has(#review-mistake-prompt)
+  )
+  .world-scene-head
+  h2 {
+  font-size: var(--presenter-heading);
+}
+
+:is(
+    [data-presenter-learning="true"],
+    .presenter-app-layer .world-scene:has(#review-mistake-prompt)
+  )
+  .advisor-npc__said
+  p {
+  font-size: var(--presenter-dialogue);
+  line-height: 1.45;
+}
+
+:is(
+    [data-presenter-learning="true"],
+    .presenter-app-layer .world-scene:has(#review-mistake-prompt)
+  )
+  :is(
+    .lesson-interactive__status,
+    .lesson-player__feedback,
+    .lesson-practice__verdict,
+    .worked-solution
+  ) {
+  font-size: var(--presenter-body);
+  line-height: 1.45;
+}
+
+:is(
+    [data-presenter-learning="true"],
+    .presenter-app-layer .world-scene:has(#review-mistake-prompt)
+  )
+  .lesson-practice__prompt {
+  font-size: var(--presenter-prompt);
+  line-height: 1.45;
+}
+
+[data-presenter-learning="true"] .lesson-interactive .katex {
+  font-size: var(--presenter-math) !important;
+}
+
+:is(
+    [data-presenter-learning="true"],
+    .presenter-app-layer .world-scene:has(#review-mistake-prompt)
+  )
+  .lesson-practice__prompt
+  .katex {
+  font-size: 1.08em;
+}
+
+:is(
+    [data-presenter-learning="true"],
+    .presenter-app-layer .world-scene:has(#review-mistake-prompt)
+  )
+  .lesson-player__row
+  input {
+  min-height: 52px;
+  font-size: var(--presenter-answer);
+}
+
+:is(
+    [data-presenter-learning="true"],
+    .presenter-app-layer .world-scene:has(#review-mistake-prompt)
+  )
+  :is(.lesson-player__row button, .advisor-npc__action, .lesson-interactive button) {
+  min-height: 48px;
+  font-size: var(--presenter-control);
+}
+
+:is(
+    [data-presenter-learning="true"],
+    .presenter-app-layer .world-scene:has(#review-mistake-prompt)
+  )
+  :is(.lesson-practice__head .micro-label, .difficulty-tag) {
+  font-size: var(--presenter-progress);
+}
+
+body:has([data-presenter-learning="true"]) .presenter-bottom-bar button,
+body:has(#review-mistake-prompt) .presenter-bottom-bar button {
+  font-size: clamp(0.875rem, 1.05vw, 1.1rem);
+}
+
+/* The notation aid is useful at arm's length but must not compete with the projected task. */
+[data-presenter-learning="true"] .cr-math-notation {
+  font-size: 0.78rem;
+}
+
+/*
+ * LF.1'S PROJECTED SLOPE BOARD. The widget's ordinary 380px cap is what keeps the same
+ * board inside a learner's 350px unobscured lesson band. Presenter has a room audience and
+ * a 928px reading column at 1024x580, so spend that width on the actual SVG instead: 610px
+ * makes the 288-unit plot render just over 399px wide (1.6x its former 248.7px), while the
+ * controls retain a 306px column. This selector names the behavior's exact board and the
+ * Presenter mount; ordinary learner and phone figures keep the fit-driven cap.
+ */
+@media (min-width: 761px) {
+  [data-presenter-learning="true"] .lesson-interactive--slope-triangle .lesson-beside {
+    grid-template-columns: minmax(0, 610px) minmax(250px, 1fr);
+  }
+
+  [data-presenter-learning="true"]
+    .lesson-interactive--slope-triangle
+    .lesson-beside__figure
+    svg {
+    max-width: 610px;
+    max-height: none;
+  }
+
+  [data-presenter-learning="true"] .lesson-interactive--slope-triangle svg text {
+    font-size: 12px;
+  }
+
+  [data-presenter-learning="true"]
+    .lesson-interactive--slope-triangle
+    .lesson-beside__panel {
+    gap: 16px;
+  }
+
+  [data-presenter-learning="true"]
+    .lesson-interactive--slope-triangle
+    .lesson-beside__panel
+    .katex {
+    font-size: max(1.375rem, var(--presenter-math)) !important;
+  }
+
+  /*
+   * `:is()` takes the specificity of its strongest arm. The shared Presenter control rule
+   * also serves Review mistakes and therefore carries that arm's `#review-mistake-prompt`
+   * specificity even while its data-attribute arm is the one matching here. These exact
+   * board values are important so that unrelated review ID cannot reduce them to 14px/48px.
+   */
+  [data-presenter-learning="true"]
+    .lesson-interactive--slope-triangle
+    .lesson-interactive__direction-key {
+    width: 58px;
+    height: 58px;
+    border-width: 2px;
+    font-size: 1.375rem !important;
+  }
+
+  [data-presenter-learning="true"]
+    .lesson-interactive--slope-triangle
+    .lesson-interactive__status {
+    font-size: max(1.375rem, var(--presenter-body)) !important;
+    line-height: 1.4;
+  }
+
+  [data-presenter-learning="true"]
+    .lesson-interactive--slope-triangle
+    .lesson-interactive__reveal-button,
+  [data-presenter-learning="true"]
+    .lesson-interactive--slope-triangle
+    .lesson-interactive__reset {
+    min-height: 56px !important;
+    padding-inline: 18px;
+    font-size: 1.125rem !important;
+  }
+
+  /*
+   * The real Town Hall review is a single task, not a dense practice dashboard. Its reading
+   * column uses the short screen's available width while the question itself stops at 58ch,
+   * and each learner-visible tier gets a room-scale floor of its own.
+   */
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) {
+    --presenter-heading: 2.125rem;
+    --presenter-dialogue: 1.5rem;
+    --presenter-body: 1.25rem;
+    --presenter-math: 1.375rem;
+    --presenter-prompt: 1.5rem;
+    --presenter-answer: 1.375rem;
+    --presenter-progress: 0.875rem;
+    --presenter-control: 1.125rem;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .coc-card {
+    --lesson-column: min(1160px, calc(100vw - 64px));
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .advisor-lesson--review {
+    gap: 14px;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .advisor-npc__bubble {
+    padding: 16px 22px;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .advisor-npc__said p {
+    max-width: 56ch;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .review-mistakes-card {
+    gap: 10px;
+    padding: 18px 20px;
+  }
+
+  .presenter-app-layer
+    .world-scene:has(#review-mistake-prompt)
+    .review-mistakes-card
+    > .micro-label {
+    font-size: var(--presenter-progress);
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) #review-mistake-prompt {
+    max-width: 58ch;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .lesson-player__row {
+    gap: 12px;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .lesson-player__row input {
+    min-height: 60px;
+    padding-inline: 16px;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .lesson-player__row button {
+    min-width: 92px;
+    min-height: 60px;
+    padding-inline: 22px;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .advisor-lesson__back {
+    min-height: 56px !important;
+    padding-inline: 12px;
+  }
+}
+
+@media (min-width: 1200px) and (min-height: 700px) {
+  [data-presenter-learning="true"] .world-scene--large .lesson-interactive svg {
+    max-width: min(720px, 100%);
+  }
+}
+
+.presenter-reward {
+  position: fixed;
+  z-index: 192;
+  right: 18px;
+  bottom: 80px;
+  max-width: min(320px, calc(100vw - 36px));
+  padding: 10px 14px;
+  border: 1px solid var(--presentation-emphasis);
+  border-radius: 7px;
+  background: var(--presentation-surface);
+  color: var(--presentation-ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 6px 18px var(--presentation-shadow-strong);
+}
+
+/* biome-ignore lint/style/noDescendingSpecificity: the fixture deliberately follows and narrows the generic Presenter scene rules. */
+.presenter-work-shell .world-scene--large .coc-card {
+  --lesson-column: min(1600px, calc(100vw - 96px));
+}
+
+.presenter-work-shell .world-scene--large .coc-card__body {
+  justify-content: center;
+  padding: 18px max(24px, calc((100% - var(--lesson-column)) / 2));
+}
+
+.presenter-work-shell .world-scene-actions {
+  display: none;
+}
+
+.presenter-work-shell .world-scene-body > .presenter-work-photo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: clamp(24px, 4vw, 72px);
+  align-items: center;
+  max-width: 1360px;
+  padding: clamp(20px, 3vw, 44px);
+  border: 2px solid var(--presentation-work-frame);
+  border-radius: 18px;
+  background: var(--presentation-work-paper);
+  color: var(--presentation-work-ink-soft);
+  box-shadow: 0 18px 50px rgba(9, 20, 34, 0.16);
+}
+
+.presenter-work-photo__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.presenter-work-photo__eyebrow,
+.presenter-work-result__eyebrow,
+.presenter-work-result__repair-label {
+  margin: 0;
+  color: var(--presentation-work-repair-strong);
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.presenter-work-photo h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 3.1rem);
+  line-height: 1.02;
+}
+
+.presenter-work-photo__copy > p:not(.presenter-work-photo__eyebrow) {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--presentation-work-copy);
+  font-size: clamp(1rem, 1.35vw, 1.3rem);
+  line-height: 1.4;
+}
+
+.presenter-work-photo__question {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+  container-type: inline-size;
+  padding: 14px 16px;
+  border: 2px solid var(--presentation-work-ink-soft);
+  border-radius: 12px;
+  background: var(--presentation-work-blue-wash);
+  font-size: clamp(1.35rem, 2vw, 2rem);
+}
+
+.presenter-work-photo__question-equation {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15em clamp(0.55rem, 2.5cqi, 1.25rem);
+  line-height: 1.15;
+}
+
+.presenter-work-photo__question-term {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.presenter-work-photo__question > span:first-child,
+.presenter-work-photo__paper > span:first-child,
+.presenter-work-result__question > span:first-child {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.presenter-work-photo__paper {
+  display: flex;
+  min-height: 330px;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(8px, 1.2vh, 16px);
+  padding: clamp(24px, 3.5vw, 52px);
+  transform: rotate(-1deg);
+  border: 1px solid var(--presentation-work-sand-line);
+  border-radius: 7px;
+  background: var(--presentation-work-cream);
+  color: var(--presentation-work-ink);
+  box-shadow: 0 12px 28px rgba(9, 20, 34, 0.18);
+}
+
+.presenter-work-photo__paper > span:first-child {
+  color: var(--presentation-work-earth);
+}
+
+.presenter-work-photo__line {
+  font-size: clamp(1.65rem, 2.5vw, 2.8rem);
+}
+
+.presenter-work-shell .world-scene-body > .presenter-work-photo__reveal {
+  width: min(520px, 100%);
+  min-height: 58px;
+  margin: 0 auto;
+  border: 2px solid var(--presentation-work-ink-deep);
+  border-radius: 12px;
+  background: var(--presentation-work-blue);
+  color: var(--presentation-work-white);
+  font: 900 clamp(1.05rem, 1.5vw, 1.35rem) var(--font-display);
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--presentation-work-blue-dark);
+}
+
+.presenter-work-shell .world-scene-body > .presenter-work-upload,
+.presenter-work-shell .world-scene-body > .presenter-work-analyzing {
+  width: 100%;
+  max-width: 1180px;
+  border: 3px solid var(--presentation-work-ink);
+  border-radius: 18px;
+  background: var(--presentation-work-paper);
+  color: var(--presentation-work-ink);
+  box-shadow: 0 18px 50px rgba(3, 12, 22, 0.2);
+}
+
+/* biome-ignore lint/style/noDescendingSpecificity: shared fixture dimensions are declared above; this block supplies the upload layout. */
+.presenter-work-upload {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: stretch;
+  padding: clamp(20px, 3vw, 38px);
+}
+
+.presenter-work-upload__head {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.presenter-work-upload__head h3,
+.presenter-work-analyzing__copy h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.8vw, 2.8rem);
+  line-height: 1.02;
+}
+
+.presenter-work-upload__head > p:not(.presenter-work-photo__eyebrow),
+.presenter-work-analyzing__copy > p:not(.presenter-work-result__eyebrow) {
+  margin: 0;
+  color: var(--presentation-work-copy);
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  line-height: 1.4;
+}
+
+.presenter-work-upload__dropzone {
+  display: flex;
+  min-height: 300px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 28px;
+  border: 4px dashed var(--presentation-work-blue);
+  border-radius: 14px;
+  background: var(--presentation-work-blue-wash);
+  color: var(--presentation-work-ink);
+  font-family: var(--font-body);
+  text-align: center;
+  cursor: pointer;
+}
+
+.presenter-work-upload__dropzone:hover,
+.presenter-work-upload__dropzone[data-dragging="true"] {
+  border-color: var(--presentation-work-ink);
+  background: var(--presentation-work-blue-selected);
+}
+
+.presenter-work-upload__camera {
+  display: grid;
+  width: 66px;
+  height: 54px;
+  place-items: center;
+  border: 4px solid var(--presentation-work-blue);
+  border-radius: 10px;
+  color: var(--presentation-work-blue);
+  font-size: 2rem;
+}
+
+.presenter-work-upload__dropzone strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+}
+
+.presenter-work-upload__dropzone > span:last-child {
+  color: var(--presentation-work-copy);
+  font-size: 0.86rem;
+}
+
+.presenter-work-upload__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.presenter-work-upload__error {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 2px solid var(--presentation-work-error-border);
+  border-radius: 10px;
+  background: var(--presentation-work-error-surface);
+  color: var(--presentation-work-error-ink);
+}
+
+.presenter-work-upload__error p {
+  margin: 0;
+  font-weight: 800;
+}
+
+.presenter-work-upload__error button,
+.presenter-work-analyzing__copy button {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 2px solid var(--presentation-work-ink);
+  border-radius: 9px;
+  background: var(--presentation-work-white);
+  color: var(--presentation-work-ink);
+  font: 850 0.92rem var(--font-body);
+  cursor: pointer;
+}
+
+/* biome-ignore lint/style/noDescendingSpecificity: shared fixture dimensions are declared above; this block supplies the analysis layout. */
+.presenter-work-analyzing {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(0, 0.9fr);
+  gap: clamp(20px, 3vw, 42px);
+  align-items: center;
+  padding: clamp(18px, 2.5vw, 34px);
+}
+
+.presenter-work-analyzing__preview {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.presenter-work-analyzing__preview img {
+  width: 100%;
+  height: clamp(210px, 38vh, 380px);
+  object-fit: contain;
+  border: 2px solid var(--presentation-work-neutral-line);
+  border-radius: 10px;
+  background: var(--presentation-work-cream);
+}
+
+.presenter-work-analyzing__preview span {
+  overflow: hidden;
+  color: var(--presentation-work-copy);
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.presenter-work-analyzing__copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.presenter-work-analyzing__copy .presenter-work-result__eyebrow {
+  color: var(--presentation-work-repair);
+}
+
+.presenter-work-analyzing__progress {
+  height: 14px;
+  overflow: hidden;
+  border: 2px solid var(--presentation-work-ink);
+  border-radius: 999px;
+  background: var(--presentation-work-progress);
+}
+
+.presenter-work-analyzing__progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+  border-radius: inherit;
+  background: var(--presentation-work-blue);
+  animation: presenter-analysis-fill 2s linear both;
+}
+
+@keyframes presenter-analysis-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presenter-work-analyzing__progress span {
+    transform: scaleX(0.65);
+    animation: none;
+  }
+}
+
+.presenter-work-upload__dropzone:focus-visible,
+.presenter-work-upload__error button:focus-visible,
+.presenter-work-analyzing__copy button:focus-visible {
+  outline: 4px solid var(--presentation-work-focus-strong);
+  outline-offset: 3px;
+}
+
+.presenter-work-shell .world-scene-body > .presenter-work-result {
+  display: flex;
+  max-width: 1600px;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(16px, 1.8vw, 28px);
+  border: 3px solid var(--presentation-work-ink-deep);
+  border-radius: 16px;
+  background: var(--presentation-work-ink);
+  color: var(--presentation-work-inverse);
+  box-shadow: 0 18px 50px rgba(3, 12, 22, 0.25);
+}
+
+.presenter-work-result__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.presenter-work-result__eyebrow {
+  color: var(--presentation-work-focus);
+}
+
+.presenter-work-result__title {
+  margin: 2px 0 0;
+  color: var(--presentation-work-white);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 2.6vw, 3rem);
+  line-height: 1;
+}
+
+.presenter-work-result__question {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1px;
+  align-items: flex-end;
+  color: var(--presentation-work-white);
+  font-size: clamp(1.2rem, 1.6vw, 1.75rem);
+}
+
+.presenter-work-result__question > span:first-child {
+  color: var(--presentation-work-inverse-muted);
+}
+
+.presenter-work-result__question-equation {
+  font-size: inherit;
+}
+
+.presenter-work-result__story {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 14px;
+}
+
+.presenter-work-result__transcript,
+.presenter-work-result__repair {
+  min-width: 0;
+  border-radius: 12px;
+}
+
+.presenter-work-result__transcript {
+  padding: clamp(14px, 1.5vw, 22px);
+  border: 2px solid var(--presentation-work-line);
+  background: var(--presentation-work-ink);
+  color: var(--presentation-work-inverse);
+}
+
+.presenter-work-result h4 {
+  margin: 0;
+  font-family: var(--font-display);
+}
+
+.presenter-work-result__transcript > h4 {
+  margin-bottom: 7px;
+  font-size: clamp(1.2rem, 1.6vw, 1.65rem);
+}
+
+.presenter-work-result__transcript ol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.presenter-work-result__line {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 4px 9px;
+  border-left: 5px solid transparent;
+}
+
+.presenter-work-result__line[data-state="last-correct"] {
+  border-color: var(--presentation-work-success);
+  background: var(--presentation-work-success-deep);
+}
+
+.presenter-work-result__line[data-state="first-error"] {
+  border-color: var(--presentation-work-error);
+  background: var(--presentation-work-error-deep);
+  box-shadow: inset 0 0 0 2px var(--presentation-work-error);
+}
+
+.presenter-work-result__line strong {
+  font-size: clamp(0.82rem, 1vw, 1.05rem);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.presenter-work-result__line[data-state="last-correct"] strong {
+  color: var(--presentation-work-success-light);
+}
+
+.presenter-work-result__line[data-state="first-error"] strong {
+  color: var(--presentation-work-error-light);
+}
+
+.presenter-work-result__equation {
+  min-width: 0;
+  color: inherit;
+  font-size: clamp(1.75rem, 2.2vw, 2.6rem);
+  line-height: 1.1;
+}
+
+.presenter-work-result__repair {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  padding: clamp(16px, 1.8vw, 28px);
+  border: 3px solid var(--presentation-work-white);
+  background: var(--presentation-work-inverse);
+  color: var(--presentation-work-ink);
+}
+
+.presenter-work-result__repair-label {
+  color: var(--presentation-work-repair);
+}
+
+.presenter-work-result__repair h4 {
+  font-size: clamp(1.3rem, 1.8vw, 1.9rem);
+}
+
+.presenter-work-result__equation--repair {
+  padding: 8px 0 2px;
+  color: var(--presentation-work-blue-deep);
+  font-size: clamp(1.75rem, 2.25vw, 2.65rem);
+}
+
+.presenter-work-result__equation--substitution {
+  padding: 2px 0 8px;
+  border-top: 1px solid var(--presentation-work-line);
+}
+
+.presenter-work-result__equation--mobile {
+  display: none;
+}
+
+.presenter-work-result__explanation,
+.presenter-work-result__next {
+  margin: 0;
+  color: var(--presentation-work-ink);
+  font-size: clamp(1rem, 1.3vw, 1.25rem);
+  line-height: 1.3;
+}
+
+.presenter-work-result__explanation {
+  font-weight: 850;
+}
+
+.presenter-work-result__explanation strong,
+.presenter-work-result__next strong {
+  color: var(--presentation-work-repair);
+}
+
+.presenter-work-result__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: var(--presentation-work-footer);
+  color: var(--presentation-work-inverse);
+}
+
+.presenter-work-result__footer p {
+  margin: 0;
+  color: var(--presentation-work-footer-copy);
+  font-size: 0.85rem;
+  line-height: 1.25;
+}
+
+.presenter-work-result__footer button {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 7px 14px;
+  border: 2px solid var(--presentation-work-white);
+  border-radius: 9px;
+  background: var(--presentation-work-white);
+  color: var(--presentation-work-ink);
+  font: 850 0.92rem var(--font-body);
+  cursor: pointer;
+}
+
+.presenter-work-photo__reveal:focus-visible,
+.presenter-work-result__footer button:focus-visible {
+  outline: 4px solid var(--presentation-work-focus);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  /* biome-ignore lint/style/noDescendingSpecificity: this is the phone override for the fixture selector above. */
+  .presenter-work-shell .world-scene--large .coc-card {
+    --lesson-column: calc(100vw - 16px);
+  }
+
+  .presenter-work-shell .world-scene--large .coc-card__body {
+    padding: 8px;
+  }
+
+  .presenter-work-shell[data-result="true"] .coc-card__banner {
+    display: none;
+  }
+
+  .presenter-work-shell[data-result="true"] .world-scene--large .coc-card__body {
+    justify-content: flex-start;
+    padding-top: 8px;
+  }
+
+  .presenter-work-shell .world-scene-body > .presenter-work-photo {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .presenter-work-photo__copy > p:not(.presenter-work-photo__eyebrow) {
+    display: none;
+  }
+
+  .presenter-work-photo__question {
+    padding: 8px 10px;
+    font-size: 1.1rem;
+  }
+
+  .presenter-work-photo__paper {
+    min-height: 0;
+    gap: 3px;
+    padding: 12px 18px;
+  }
+
+  .presenter-work-photo__line {
+    font-size: 1.25rem;
+  }
+
+  .presenter-work-shell .world-scene-body > .presenter-work-upload,
+  .presenter-work-shell .world-scene-body > .presenter-work-analyzing {
+    border-width: 2px;
+  }
+
+  /* biome-ignore lint/style/noDescendingSpecificity: phone layout narrows the shared fixture dimensions declared above. */
+  .presenter-work-upload {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .presenter-work-upload__head {
+    gap: 5px;
+  }
+
+  .presenter-work-upload__head h3,
+  .presenter-work-analyzing__copy h3 {
+    font-size: 1.35rem;
+  }
+
+  .presenter-work-upload__head > p:not(.presenter-work-photo__eyebrow) {
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
+  .presenter-work-photo__question {
+    gap: 2px;
+    padding: 6px 8px;
+    border-width: 1px;
+    font-size: 1rem;
+  }
+
+  .presenter-work-upload__dropzone {
+    min-height: 170px;
+    gap: 4px;
+    padding: 12px;
+    border-width: 3px;
+  }
+
+  .presenter-work-upload__camera {
+    width: 48px;
+    height: 40px;
+    border-width: 3px;
+    font-size: 1.3rem;
+  }
+
+  .presenter-work-upload__dropzone strong {
+    font-size: 1rem;
+  }
+
+  .presenter-work-upload__dropzone > span:last-child {
+    font-size: 0.72rem;
+  }
+
+  .presenter-work-upload__error {
+    padding: 6px 8px;
+    font-size: 0.75rem;
+  }
+
+  /* biome-ignore lint/style/noDescendingSpecificity: phone layout narrows the shared fixture dimensions declared above. */
+  .presenter-work-analyzing {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .presenter-work-analyzing__preview {
+    gap: 3px;
+  }
+
+  .presenter-work-analyzing__preview img {
+    height: 160px;
+  }
+
+  .presenter-work-analyzing__copy {
+    gap: 6px;
+  }
+
+  .presenter-work-analyzing__copy > p:not(.presenter-work-result__eyebrow) {
+    font-size: 0.78rem;
+  }
+
+  .presenter-work-analyzing__progress {
+    height: 10px;
+  }
+
+  .presenter-work-analyzing__copy button {
+    min-height: 44px;
+    padding-block: 5px;
+    font-size: 0.78rem;
+  }
+
+  .presenter-work-shell .world-scene-body > .presenter-work-result {
+    gap: 3px;
+    padding: 5px;
+    border-width: 2px;
+  }
+
+  .presenter-work-result__head {
+    display: block;
+  }
+
+  .presenter-work-result__eyebrow {
+    font-size: 0.66rem;
+  }
+
+  .presenter-work-result__title {
+    font-size: 1.5rem;
+  }
+
+  .presenter-work-result__question {
+    display: none;
+  }
+
+  .presenter-work-result__story {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .presenter-work-result__transcript,
+  .presenter-work-result__repair {
+    padding: 8px 10px;
+  }
+
+  .presenter-work-result__transcript > h4 {
+    margin-bottom: 3px;
+    font-size: 1rem;
+  }
+
+  .presenter-work-result__line {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 5px;
+    padding: 1px 5px;
+    border-left-width: 4px;
+  }
+
+  .presenter-work-result__equation,
+  .presenter-work-result__equation--repair {
+    font-size: 1.25rem;
+  }
+
+  .presenter-work-result__line strong {
+    max-width: 92px;
+    font-size: 0.68rem;
+    line-height: 1.05;
+    text-align: right;
+    white-space: normal;
+  }
+
+  .presenter-work-result__repair {
+    gap: 3px;
+    border-width: 2px;
+  }
+
+  .presenter-work-result__repair-label {
+    font-size: 0.66rem;
+  }
+
+  .presenter-work-result__repair h4 {
+    font-size: 1rem;
+  }
+
+  .presenter-work-result__equation--repair {
+    padding: 3px 0;
+  }
+
+  .presenter-work-result__equation--desktop {
+    display: none;
+  }
+
+  .presenter-work-result__equation--mobile {
+    display: block;
+    font-size: 1.15rem;
+  }
+
+  .presenter-work-result__explanation,
+  .presenter-work-result__next {
+    font-size: 0.82rem;
+    line-height: 1.2;
+  }
+
+  .presenter-work-result__footer {
+    gap: 6px;
+    padding: 0 4px;
+  }
+
+  .presenter-work-result__footer p {
+    font-size: 0.68rem;
+  }
+
+  .presenter-work-result__footer button {
+    min-height: 44px;
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 700px) {
+  .presenter-work-upload__head > p:not(.presenter-work-photo__eyebrow) {
+    display: none;
+  }
+}
+
+@media (max-height: 700px) and (min-width: 761px) {
+  .presenter-work-shell .world-scene--large .coc-card__body {
+    padding-block: 8px;
+  }
+
+  .presenter-work-shell .world-scene-body > .presenter-work-result {
+    gap: 1px;
+    padding-block: 0;
+  }
+
+  .presenter-work-result__head .presenter-work-result__eyebrow {
+    display: none;
+  }
+
+  .presenter-work-result__transcript,
+  .presenter-work-result__repair {
+    padding-block: 7px;
+  }
+
+  .presenter-work-result__line {
+    padding-block: 1px;
+  }
+
+  .presenter-work-result__equation {
+    font-size: 1.75rem;
+  }
+
+  .presenter-work-result__equation--repair {
+    padding-block: 4px;
+  }
+
+  .presenter-work-result__footer {
+    padding-block: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  body:has(.presenter-bottom-bar) .completion-reward-layer {
+    padding-bottom: 136px;
+  }
+
+  [data-presenter-learning="true"],
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) {
+    --presenter-heading: 1.25rem;
+    --presenter-dialogue: 1rem;
+    --presenter-body: 1rem;
+    --presenter-math: 1rem;
+    --presenter-prompt: 1rem;
+    --presenter-answer: 1rem;
+    --presenter-progress: 0.625rem;
+    --presenter-control: 0.75rem;
+  }
+
+  [data-presenter-learning="true"] .world-scene--large .coc-card {
+    --lesson-column: calc(100vw - 24px);
+  }
+
+  [data-presenter-learning="true"]:has(.lesson-practice) .advisor-npc {
+    display: none;
+  }
+
+  :is(
+      [data-presenter-learning="true"],
+      .presenter-app-layer .world-scene:has(#review-mistake-prompt)
+    )
+    :is(.lesson-player__row input, .lesson-player__row button, .lesson-interactive button) {
+    min-height: 44px;
+  }
+
+  [data-presenter-learning="true"]
+    .lesson-interactive--slope-triangle
+    .lesson-interactive__direction-key {
+    width: 48px;
+    height: 48px;
+    font-size: 1.125rem !important;
+  }
+
+  .presenter-app-layer
+    .world-scene:has(#review-mistake-prompt)
+    .review-mistakes-card
+    > .micro-label {
+    font-size: 0.75rem;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .lesson-player__row {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .lesson-player__row input {
+    min-width: 0;
+    min-height: 48px;
+  }
+
+  .presenter-app-layer .world-scene:has(#review-mistake-prompt) .lesson-player__row button {
+    min-width: 72px;
+    min-height: 48px;
+  }
+
+  body:has([data-presenter-learning="true"]) .presenter-bottom-bar button,
+  body:has(#review-mistake-prompt) .presenter-bottom-bar button {
+    font-size: 0.5625rem;
+  }
+
+  .presenter-instrument {
+    top: auto;
+    bottom: 67px;
+  }
+
+  body:has(.island-unlock-exam) .presenter-instrument {
+    top: 8px;
+    bottom: auto;
+  }
+
+  .presenter-control-tray {
+    right: auto;
+    bottom: 68px;
+    left: 7px;
+    width: calc(100vw - 14px);
+    min-height: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    transform: none;
+  }
+
+  .presenter-control-tray.presenter-bottom-bar {
+    bottom: 6px;
+  }
+
+  body:has(.city-surface) .presenter-bottom-bar {
+    right: auto;
+    bottom: 6px;
+    left: 7px;
+    width: calc(100vw - 14px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  body:has(.presenter-bottom-bar) .hud-dock {
+    bottom: 112px;
+  }
+
+  body:has(.presenter-bottom-bar) .hud-camera-cluster {
+    bottom: 178px;
+  }
+
+  body:has(.presenter-bottom-bar) .archipelago .archipelago-dock {
+    bottom: 112px;
+  }
+
+  body:has(.presenter-bottom-bar) .city-stage-full {
+    bottom: 112px;
+  }
+
+  body:has(.presenter-control-tray):has(.world-scene--large) .world-scene--large .coc-card {
+    padding-bottom: 112px;
+  }
+
+  body:has(.city-surface) .presenter-instrument {
+    right: 8px;
+  }
+
+  body:has(.city-surface) .presenter-instrument__bar {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  body:has(.city-surface) .presenter-instrument__slides {
+    width: 96px;
+  }
+
+  body:has(.city-surface) .hud-camera {
+    gap: 0;
+  }
+
+  .presenter-control-tray button {
+    min-height: 46px;
+    padding-inline: 1px;
+    font-size: 9px;
+    line-height: 1.05;
+    white-space: normal;
+  }
+
+  body:has(.world-scene) .presenter-instrument {
+    bottom: 8px;
+  }
+
+  body:has(.world-scene) .presenter-control-tray {
+    right: auto;
+    bottom: 58px;
+    left: 7px;
+    width: calc(100vw - 14px);
+    transform: none;
+  }
+
+  body:has(.world-scene) .presenter-control-tray.presenter-bottom-bar {
+    bottom: 6px;
+  }
+
+  /* On a phone the five-action bar sits above the 58px lesson footer, not at the viewport
+     edge. Reserve that whole band so Back to city remains fully above the bar. */
+  body:has(.presenter-bottom-bar):has(.world-scene--large) .world-scene--large .coc-card {
+    padding-bottom: 116px;
+  }
+
+  body:has(.city-surface):has(.world-scene) .presenter-instrument {
+    top: 8px;
+    right: 91px;
+    bottom: auto;
+  }
+
+  body:has(.city-surface):has(.world-scene) .presenter-instrument__bar {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  body:has(.city-surface):has(.world-scene) .presenter-instrument__slides {
+    width: 44px;
+    min-width: 44px;
+    padding-inline: 0;
+  }
+
+  /* Reserve the lesson banner's first row for the retained presenter bar and the existing
+     close button. The title and eyebrow begin below both controls instead of running under
+     the fixed bar on a 390px screen. */
+  body:has(.city-surface):has(.world-scene--large) .world-scene--large .coc-card__banner {
+    padding-top: 64px;
+  }
+
+  /* The two-row tray occupies the 112px band above the 58px learning footer. Keep that
+     band inside the full-viewport card but outside its flex content, so the active prompt
+     scrolls above the presenter controls instead of underneath them. */
+  body:has(.presenter-instrument[data-open="true"]):has(
+      .world-scene--large
+    ) .world-scene--large
+    .coc-card {
+    padding-bottom: 170px;
+  }
+
+  body:has(.world-scene) .world-scene:not(.world-scene--large) .coc-card {
+    max-height: calc(100dvh - 140px);
+  }
+
+  body:has(.presenter-instrument[data-open="true"]) .world-scene {
+    place-items: stretch;
+    padding: 0;
+  }
+
+  .presenter-reward {
+    top: 115px;
+    right: 8px;
+    bottom: auto;
+    font-size: 0.875rem;
+  }
+
+  .era-advance-stage > .presenter-surface-action {
+    right: auto;
+    left: 8px;
+    min-width: 110px;
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "node_id": "CG.1",
+  "title": "Coordinate plane",
+  "mini_lesson": [
+    "A surveyor chalks a grid over the piazza and drives one stake as the **bench mark**, so every position on the ground is two measurements taken from that one stake. A **coordinate plane** works the same way: two number lines cross at right angles at the **origin**, and an **ordered pair** $(x,\\, y)$ names a point by how far it lies across, positive to the right, and then how far up, positive above. Order is part of the name, so $(3,\\, 5)$ and $(5,\\, 3)$ are two different places.",
+    "The two axes cut the plane into four **quadrants**, numbered $\\text{I}$ to $\\text{IV}$ counterclockwise from the upper right. Which one a point falls in is settled by its two signs alone: both positive is quadrant $\\text{I}$, and each sign that turns negative carries the point further round. A coordinate of $0$ is the exception, because a point with one puts it on an axis rather than inside any quadrant at all.",
+    "Where a line meets an axis it has an **intercept**, and the useful thing about an intercept is that one of its two coordinates is already known. Every point on the horizontal axis has $y = 0$, so an $x$-intercept has the shape $(a,\\, 0)$, and every point on the vertical axis has $x = 0$, so a $y$-intercept has the shape $(0,\\, b)$. An intercept is a **point**, so it is reported with both coordinates and not as the single number the solving produced.",
+    "Two points fix a segment, and two questions about that segment come up constantly: where its center is and how long it is. The **midpoint** averages the two ends one coordinate at a time, so the across coordinates average to the center's across coordinate and the up coordinates average to its up coordinate. Length needs a right triangle: a horizontal leg from one end and a vertical leg from the other meet square, which makes the segment the hypotenuse, so squaring the two legs, adding, and taking the square root of that total gives the **distance** between the ends."
+  ],
+  "slide_subtitles": [
+    "Naming a point",
+    "The four quadrants",
+    "Crossing an axis",
+    "Center and length"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A stake stands $3$ paces to the left of the bench mark and $2$ paces above it. Write its position as an ordered pair.",
+      "steps": [
+        "The first number counts across from the bench mark, and a step to the left is the negative direction, so the across measurement is $-3$.",
+        "The second number counts up, and above the bench mark is the positive direction, so the up measurement is $2$.",
+        "Written in that order the position is $(-3,\\, 2)$, which is a different place from $(2,\\, -3)$."
+      ]
+    },
+    {
+      "prompt": "A survey pin sits at $(-7,\\, -1)$. Which quadrant is it in?",
+      "steps": [
+        "The two signs settle it on their own, so read them off: the across coordinate $-7$ is negative and the up coordinate $-1$ is negative as well.",
+        "A negative across coordinate puts the pin to the left of the vertical axis, and a negative up coordinate puts it below the horizontal one.",
+        "That is the lower left region, and counting counterclockwise from the upper right makes it quadrant $\\text{III}$."
+      ]
+    },
+    {
+      "prompt": "Find both intercepts of the chalked line $3x + 7y = 21$.",
+      "steps": [
+        "The horizontal axis is where $y = 0$, so put that in: $3x + 7(0) = 21$ leaves $3x = 21$.",
+        "Dividing by $3$ gives $x = 7$, and the crossing is the whole point $(7,\\, 0)$.",
+        "The vertical axis is where $x = 0$, so $3(0) + 7y = 21$ leaves $7y = 21$.",
+        "Dividing by $7$ gives $y = 3$, so that crossing is the point $(0,\\, 3)$."
+      ]
+    },
+    {
+      "prompt": "A segment runs from $(1,\\, -2)$ to $(5,\\, 1)$. Find its center and its length.",
+      "steps": [
+        "Average the two ends one coordinate at a time: $\\dfrac{1 + 5}{2} = 3$ across, and $\\dfrac{-2 + 1}{2} = -\\dfrac{1}{2}$ up.",
+        "So the center is $\\left(3,\\, -\\dfrac{1}{2}\\right)$, and a center is allowed to land between the grid lines.",
+        "For the length, the horizontal leg runs $4$ across, from $1$ to $5$, and the vertical leg runs $3$ up, from $-2$ to $1$.",
+        "Those two legs meet square, so square them and add: $4^{2} + 3^{2} = 16 + 9 = 25$.",
+        "The square root of $25$ is $5$, so the segment is $5$ long."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "coordinate-plot-stepper", "gates": true },
+    { "after": 1, "id": "coordinate-quadrant-classify", "gates": true },
+    { "after": 2, "id": "coordinate-intercept-builder", "gates": true },
+    { "after": 3, "id": "coordinate-distance-walkthrough", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A chalked line is ruled across the surveyed piazza, with the bench mark at the origin and one unit to the pace. The line crosses the horizontal axis $6$ paces to the left of the bench mark and it crosses the vertical axis $8$ paces above it. Give the midpoint of the segment joining those two crossings, then give how many paces long that segment is. Type the point first and the length after it, like `(1, 2), 7`.",
+    "accepted": [
+      "(-3, 4), 10",
+      "(-3, 4); 10",
+      "(-3, 4) and 10",
+      "-3, 4, 10",
+      "-3, 4; 10",
+      "(x, y) = (-3, 4), 10",
+      "(x, y) = (-3, 4); 10",
+      "x = -3, y = 4, 10",
+      "y = 4, x = -3, 10",
+      "(-3, 4), 10.0",
+      "(-3, 4); 10.0",
+      "(-3.0, 4.0), 10",
+      "10, (-3, 4)",
+      "10; (-3, 4)",
+      "10 and (-3, 4)",
+      "10, (x, y) = (-3, 4)"
+    ],
+    "hint": "Write each crossing as a point first. A crossing of the horizontal axis has an up coordinate of $0$ and a crossing of the vertical axis has an across coordinate of $0$, and counting left from the bench mark makes that coordinate negative. Once both points are down, average them one coordinate at a time for the center, and take the two legs of the right triangle they span for the length.",
+    "worked_solution": [
+      "A point on the horizontal axis has an up coordinate of $0$, and $6$ paces to the left of the bench mark is $-6$ across, so that crossing is $(-6,\\, 0)$.",
+      "A point on the vertical axis has an across coordinate of $0$, and $8$ paces above the bench mark is $8$ up, so that crossing is $(0,\\, 8)$.",
+      "The midpoint averages the two ends one coordinate at a time: $\\dfrac{-6 + 0}{2} = -3$ across, and $\\dfrac{0 + 8}{2} = 4$ up.",
+      "So the midpoint of the segment is $(-3,\\, 4)$.",
+      "The two crossings and the bench mark make a right triangle whose legs are $6$ and $8$ paces long.",
+      "Square the legs and add them: $6^{2} + 8^{2} = 36 + 64 = 100$, and $\\sqrt{100} = 10$.",
+      "Typed as the prompt asks: `(-3, 4), 10`."
+    ],
+    "worked_solution_params": { "a": -6, "b": 8 },
+    "variants": { "template_id": "cfu.cg1.plot-and-measure", "count": 2 }
+  }
+}

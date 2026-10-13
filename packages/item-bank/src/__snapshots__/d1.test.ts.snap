@@ -1,0 +1,186 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`D1 pool content pin (a template edit that changes the pool must be explicit) > pins the frozen D1 practice pool ids + content hashes 1`] = `
+[
+  {
+    "difficulty": 1,
+    "hash": "94101e75",
+    "id": "d1.num-s.l1:practice:5000",
+    "node": "NUM.S",
+  },
+  {
+    "difficulty": 2,
+    "hash": "a80597be",
+    "id": "d1.num-s.l2:practice:5001",
+    "node": "NUM.S",
+  },
+  {
+    "difficulty": 2,
+    "hash": "4af92aa4",
+    "id": "d1.num-s.l2b:practice:5002",
+    "node": "NUM.S",
+  },
+  {
+    "difficulty": 3,
+    "hash": "834c5e05",
+    "id": "d1.num-s.l3:practice:5003",
+    "node": "NUM.S",
+  },
+  {
+    "difficulty": 3,
+    "hash": "25ead95a",
+    "id": "d1.num-s.l3b:practice:5004",
+    "node": "NUM.S",
+  },
+  {
+    "difficulty": 1,
+    "hash": "71d2087c",
+    "id": "d1.num-f.l1:practice:5005",
+    "node": "NUM.F",
+  },
+  {
+    "difficulty": 2,
+    "hash": "0eae39ad",
+    "id": "d1.num-f.l2:practice:5006",
+    "node": "NUM.F",
+  },
+  {
+    "difficulty": 2,
+    "hash": "27c54bdf",
+    "id": "d1.num-f.l2b:practice:5007",
+    "node": "NUM.F",
+  },
+  {
+    "difficulty": 3,
+    "hash": "df415e7f",
+    "id": "d1.num-f.l3:practice:5008",
+    "node": "NUM.F",
+  },
+  {
+    "difficulty": 3,
+    "hash": "022aa6b4",
+    "id": "d1.num-f.l3b:practice:5009",
+    "node": "NUM.F",
+  },
+  {
+    "difficulty": 1,
+    "hash": "0bc0ca8d",
+    "id": "d1.num-2.l1:practice:5010",
+    "node": "NUM.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "76661c15",
+    "id": "d1.num-2.l2:practice:5011",
+    "node": "NUM.2",
+  },
+  {
+    "difficulty": 2,
+    "hash": "4edaa877",
+    "id": "d1.num-2.l2b:practice:5012",
+    "node": "NUM.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "d498c3bb",
+    "id": "d1.num-2.l3:practice:5013",
+    "node": "NUM.2",
+  },
+  {
+    "difficulty": 3,
+    "hash": "7f06088f",
+    "id": "d1.num-2.l3b:practice:5014",
+    "node": "NUM.2",
+  },
+  {
+    "difficulty": 1,
+    "hash": "cbdc0567",
+    "id": "d1.num-3.l1:practice:5015",
+    "node": "NUM.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "e8b67cc5",
+    "id": "d1.num-3.l2:practice:5016",
+    "node": "NUM.3",
+  },
+  {
+    "difficulty": 2,
+    "hash": "465c4cd2",
+    "id": "d1.num-3.l2b:practice:5017",
+    "node": "NUM.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "21dab322",
+    "id": "d1.num-3.l3:practice:5018",
+    "node": "NUM.3",
+  },
+  {
+    "difficulty": 3,
+    "hash": "0ecf947c",
+    "id": "d1.num-3.l3b:practice:5019",
+    "node": "NUM.3",
+  },
+  {
+    "difficulty": 1,
+    "hash": "4c6f404d",
+    "id": "d1.num-4.l1:practice:5020",
+    "node": "NUM.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "3b6a7cfb",
+    "id": "d1.num-4.l2:practice:5021",
+    "node": "NUM.4",
+  },
+  {
+    "difficulty": 2,
+    "hash": "dbf9e98f",
+    "id": "d1.num-4.l2b:practice:5022",
+    "node": "NUM.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "39120980",
+    "id": "d1.num-4.l3:practice:5023",
+    "node": "NUM.4",
+  },
+  {
+    "difficulty": 3,
+    "hash": "8fb253f8",
+    "id": "d1.num-4.l3b:practice:5024",
+    "node": "NUM.4",
+  },
+  {
+    "difficulty": 1,
+    "hash": "6d821f02",
+    "id": "d1.num-5.l1:practice:5025",
+    "node": "NUM.5",
+  },
+  {
+    "difficulty": 2,
+    "hash": "17414a99",
+    "id": "d1.num-5.l2:practice:5026",
+    "node": "NUM.5",
+  },
+  {
+    "difficulty": 2,
+    "hash": "c6989ef2",
+    "id": "d1.num-5.l2b:practice:5027",
+    "node": "NUM.5",
+  },
+  {
+    "difficulty": 3,
+    "hash": "10f4cd45",
+    "id": "d1.num-5.l3:practice:5028",
+    "node": "NUM.5",
+  },
+  {
+    "difficulty": 3,
+    "hash": "73da5e30",
+    "id": "d1.num-5.l3b:practice:5029",
+    "node": "NUM.5",
+  },
+]
+`;

@@ -1,0 +1,819 @@
+/* -------------------------------------------------------------------------- */
+/* THE MID-ERA CRISIS ENTRY SEQUENCE — the standing notice and the advisor.      */
+/*                                                                              */
+/* Scoped to its own stylesheet, imported by `CrisisCallAdvisor.tsx`, following */
+/* `eraCeremony.css` and `hard-winter.css`: the crisis surfaces are additive to  */
+/* the city and should come out in one commit if they ever leave.               */
+/*                                                                              */
+/* NO NEW HUE MEANINGS. The notice borrows `--signal-deep`, the standing mark    */
+/* that sits outside the correctness palette, and never `--civic` (correct) or   */
+/* `--brick` (wrong). Colour is decoration here in any case: the snowflake, the  */
+/* word "waiting" and the border all carry the state, so a monochrome render     */
+/* loses nothing.                                                               */
+/* -------------------------------------------------------------------------- */
+
+/* Bottom-centre, above the dock lane, so it does not sit on the Town capsule
+   (top-left), the menu (top-right) or the camera cluster. It is a standing
+   notice rather than an interruption, so it stays out of the middle of the
+   island the learner is looking at. */
+.hud-crisis-call {
+  right: 0;
+  bottom: 96px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--space-lg);
+}
+
+.crisis-call-notice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  align-items: center;
+  max-width: min(560px, 92vw);
+  padding: var(--space-sm) var(--space-md);
+  border: 2px solid var(--signal-deep);
+  border-radius: 14px;
+  background: var(--glass-fill);
+  box-shadow: 0 6px 18px rgba(31, 51, 71, 0.16);
+  color: var(--glass-text);
+}
+
+.crisis-call-notice__mark {
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--signal-deep);
+}
+
+.crisis-call-notice__line {
+  flex: 1 1 12rem;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* -------------------------------------------------------------------------- */
+/* THE ADVISOR, SPEAKING OVER THE ISLAND. NOT A CARD.                          */
+/*                                                                             */
+/* This surface wore `.coc-popup` / `.coc-card` until 2026-07-31: a dimming    */
+/* full-screen scrim, a bordered panel, a title ribbon, a corner close and a   */
+/* pinned action tray. The lead's verdict was that it *"doesn't truly look     */
+/* like an advisor pop up … it shouldn't be contained within a box; it should  */
+/* appear over the actual island screen. right now its modeled too much like a */
+/* lesson."*                                                                   */
+/*                                                                             */
+/* So the stage draws NOTHING. No background, no border, no shadow, no scrim.  */
+/* The two things on screen are the character and his bubble, and everything   */
+/* else the player can see is the live island underneath. The layer is still   */
+/* click-blocking, because `aria-modal` says the city behind it is inert while */
+/* the advisor speaks — what changed is what shows through, not what is        */
+/* reachable.                                                                  */
+/*                                                                             */
+/* BOTTOM-LEFT AND BOTTOM-ANCHORED, because a person stands on the ground. It  */
+/* also keeps the assembly off the HUD's own corners: the camera cluster is on */
+/* the right rail and the era capsule is top-left, so a left-aligned band      */
+/* under both leaves the whole upper island in view.                           */
+/* -------------------------------------------------------------------------- */
+.crisis-call-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: var(--space-md) var(--space-lg) clamp(var(--space-md), 3vh, var(--space-xl));
+  pointer-events: auto;
+  animation: crisis-call-rise 200ms cubic-bezier(0.34, 1.34, 0.64, 1) both;
+}
+
+@keyframes crisis-call-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crisis-call-stage {
+    animation: none;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* THE FIGURE AND THE BUBBLE — the whole of what is drawn.                     */
+/*                                                                             */
+/* `--crisis-figure` is the character's box and it is declared HERE rather     */
+/* than on the figure, because the bubble's tail is positioned from it: the    */
+/* tail has to land on Oru's head, and his head sits at a fixed fraction of    */
+/* his own square (`OruAdvisorCharacter` is percentage-boxed, head centred     */
+/* near 30% from its top). Bottoms are aligned, so measuring the tail up from  */
+/* the bubble's bottom edge by 0.68 of the figure keeps the two together at    */
+/* every size the clamp can produce.                                          */
+/* -------------------------------------------------------------------------- */
+/* NEVER SHRINKS AND NEVER SCROLLS AWAY. The advisor and his line are the beat the
+   ☰ Menu's entry exists to play, so when the dialogue is under height pressure the room
+   comes out of the walkthrough below (which paginates and can scroll) rather than out
+   of the character. */
+.crisis-call-speech {
+  --crisis-figure: clamp(148px, 44vh, 280px);
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+  /* Stops short of the right rail on a laptop, so the camera cluster and the
+     island beside it stay in view rather than being spoken over. */
+  width: min(900px, 100%);
+}
+
+/* Sized in `vh` on purpose, and the opposite of the old rule's reasoning. When
+   this was a card the figure was capped in px so a short screen kept its words;
+   there is no card now, so the character is free to be a character, and a
+   viewport that is short simply gets a shorter one. */
+.crisis-call-speech__figure {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: var(--crisis-figure);
+  /* Oru's silhouette ends around 80% across his own square, so the empty
+     right-hand strip is pulled back to leave a real gap rather than a big one. */
+  margin-right: calc(var(--crisis-figure) * -0.12);
+  filter: drop-shadow(0 10px 16px rgba(16, 28, 42, 0.38));
+}
+
+/* THE GIANT SPEECH BUBBLE. Its fill is the only opaque surface this whole
+   surface draws, and that is deliberate: the lead allowed *"some scrim … kept
+   minimal and local to the bubble rather than a full-screen overlay"*, and dark
+   text over a bright snow scene needs exactly that much.
+
+   `68vh` is a FLOOR UNDER THE ISLAND rather than a fit for this content, which
+   comes out well short of it at every viewport in the suite. It is what makes
+   "you can still see your city" true by construction on a window nobody has
+   measured yet: whatever the advisor is given to say, roughly a third of the
+   screen above him stays the island. */
+.crisis-call-speech__bubble {
+  --crisis-bubble-fill: oklch(0.985 0.012 88 / 0.97);
+  --crisis-bubble-line: oklch(0.62 0.045 60 / 0.9);
+  --crisis-tail: 26px;
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 2px solid var(--crisis-bubble-line);
+  border-radius: 30px;
+  background: var(--crisis-bubble-fill);
+  box-shadow:
+    0 20px 44px -16px rgba(12, 24, 38, 0.55),
+    0 3px 10px rgba(12, 24, 38, 0.16);
+  color: var(--ink);
+}
+
+/* The words. Held apart from the bubble because a box with `overflow` clips its
+   own pseudo-elements: with the two merged the tail was cut off at the bubble's
+   edge and never drew at all.
+
+   A FLEX COLUMN, so height pressure has somewhere to go that is not the shout.
+   Everything in here holds its size except the walkthrough, which is the only
+   part that can page and the only part allowed to shrink; `__said`'s own
+   `overflow-y` is the last resort under that, for a window so short that even a
+   fully squeezed walkthrough does not fit. */
+.crisis-call-speech__said {
+  display: flex;
+  flex-direction: column;
+  max-height: min(68vh, calc(100vh - 2 * var(--space-xl)));
+  padding: 10px var(--space-xl);
+  overflow: hidden auto;
+  border-radius: 24px;
+  overscroll-behavior: contain;
+}
+
+/* Everything in the bubble holds its size. The one exception takes it back on
+   its own rule below, which is later in the file and wins on order rather than
+   on a second class. */
+.crisis-call-speech__said > * {
+  flex: none;
+}
+
+/* THE TAIL, pointing back at the character so the words have a mouth.
+   Two triangles: `::before` is the outline and `::after` is the fill, inset by
+   the border and overlapping the bubble's own left edge so the base of the tail
+   has no seam across it. */
+.crisis-call-speech__bubble::before,
+.crisis-call-speech__bubble::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--crisis-figure) * 0.68);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  transform: translateY(50%);
+}
+
+.crisis-call-speech__bubble::before {
+  left: calc(-1 * var(--crisis-tail) - 4px);
+  border-width: var(--crisis-tail) calc(var(--crisis-tail) + 4px) var(--crisis-tail) 0;
+  border-right-color: var(--crisis-bubble-line);
+}
+
+.crisis-call-speech__bubble::after {
+  left: calc(-1 * var(--crisis-tail) + 2px);
+  border-width: calc(var(--crisis-tail) - 2px) var(--crisis-tail)
+    calc(var(--crisis-tail) - 2px) 0;
+  border-right-color: var(--crisis-bubble-fill);
+}
+
+/* A narrow phone cannot hold a character beside a bubble, so the figure shrinks
+   and stands at the bubble's foot with the tail moved to the bottom edge. It
+   still points at him; it just points down instead of across. */
+@media (max-width: 560px) {
+  .crisis-call-stage {
+    justify-content: center;
+    padding-inline: var(--space-sm);
+  }
+
+  .crisis-call-speech {
+    --crisis-figure: clamp(110px, 20vh, 164px);
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .crisis-call-speech__figure {
+    margin-right: 0;
+    margin-left: var(--space-md);
+  }
+
+  .crisis-call-speech__bubble {
+    width: 100%;
+  }
+
+  .crisis-call-speech__said {
+    max-height: calc(100vh - var(--crisis-figure) - 4 * var(--space-lg));
+    padding-inline: var(--space-lg);
+  }
+
+  .crisis-call-speech__bubble::before,
+  .crisis-call-speech__bubble::after {
+    bottom: auto;
+    left: calc(var(--crisis-figure) * 0.42);
+    transform: none;
+  }
+
+  .crisis-call-speech__bubble::before {
+    top: 100%;
+    border-width: calc(var(--crisis-tail) + 4px) var(--crisis-tail) 0 var(--crisis-tail);
+    border-right-color: transparent;
+    border-top-color: var(--crisis-bubble-line);
+  }
+
+  .crisis-call-speech__bubble::after {
+    top: calc(100% - 2px);
+    border-width: var(--crisis-tail) calc(var(--crisis-tail) - 2px) 0
+      calc(var(--crisis-tail) - 2px);
+    border-right-color: transparent;
+    border-top-color: var(--crisis-bubble-fill);
+  }
+}
+
+/*
+  THE TOP-LEFT HUD BEATS AT A SHORT PHONE ARE A DIFFERENT COMPOSITION.
+
+  A spotlight raises the entire City Life card above the modal stage because its rows share
+  one HUD stacking context. At 390x580 that card occupies the upper-left 180x177px while the
+  normal phone composition spends another 110px below the bubble on Oru. The two then overlap:
+  population lost 14,137px² of its lead under the card, livability 9,424px², and happiness
+  14,137px² in the browser reproduction.
+
+  For these frames the highlighted HUD IS the figure Oru is pointing at. Remove his repeated
+  portrait, its now-pointless tail, the repeated Menu closing line and decorative dots, and
+  let the speech occupy the lower pane beneath the card. The teaching lead, body, controls and
+  escape all remain. This is a re-composition of the frame rather than a smaller copy of the
+  same collision, and the all-beat browser guard requires zero painted overlap.
+*/
+@media (max-width: 560px) and (max-height: 700px) {
+  .crisis-call-stage:is([data-beat="cityLife"]) {
+    /* Use the base stage's whole bottom allowance for the lower pane. CI's wider font metrics
+       otherwise pull one row of lead pixels under the highlighted card; the browser guard
+       still checks every edge and every exit against the actual viewport. */
+    padding-bottom: 0;
+  }
+
+  .crisis-call-stage:is([data-beat="cityLife"])
+    .crisis-call-speech__figure,
+  .crisis-call-stage:is([data-beat="cityLife"])
+    .crisis-call-closing,
+  .crisis-call-stage:is([data-beat="cityLife"])
+    .crisis-call-dots,
+  .crisis-call-stage:is([data-beat="cityLife"])
+    .crisis-call-speech__bubble::before,
+  .crisis-call-stage:is([data-beat="cityLife"])
+    .crisis-call-speech__bubble::after {
+    display: none;
+  }
+
+  .crisis-call-stage:is([data-beat="cityLife"])
+    .crisis-call-speech__said {
+    max-height: calc(100vh - 2 * var(--space-sm));
+    padding: 6px var(--space-lg);
+  }
+
+  .crisis-call-stage:is([data-beat="cityLife"])
+    .crisis-call-walkthrough {
+    /* The lower pane is height-bound from its bottom edge. Trimming this post-lead gap moves
+       the teaching line down, away from the lifted HUD, while returning room to its controls. */
+    margin-top: 2px;
+    padding-top: 2px;
+  }
+
+  .crisis-call-stage:is([data-beat="cityLife"])
+    .crisis-call-tray {
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+}
+
+/* Who is talking, in words, because the drawing beside it is `aria-hidden`. */
+.crisis-call-byline {
+  margin: 0 0 2px;
+  color: var(--ink-soft);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* THE SHOUT. It is set at speaking size rather than reading size — the lead
+   asked for a bubble that *"basically shouts"* — and it has to out-weigh
+   everything under it, so the walkthrough's own lines sit a full step smaller.
+   Clamped against `vh` as well as `rem` so a short window scales the voice down
+   with the bubble instead of overflowing it. */
+.crisis-call-lede {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.14rem, 0.52rem + 2.3vh, 1.62rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+
+/* The disclosure, inside the bubble so the advisor is the one offering it. */
+.crisis-call-disclose {
+  margin-top: 6px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--civic);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.crisis-call-disclose::after {
+  content: " \203A";
+}
+
+.crisis-call-disclose[aria-expanded="true"]::after {
+  content: "";
+}
+
+/* -------------------------------------------------------------------------- */
+/* THE WALKTHROUGH — one section on screen, and a step control under it.       */
+/*                                                                             */
+/* A HAIRLINE, NOT A PANEL. It used to be a bordered, filled box; inside the    */
+/* bubble that would be a card nested in a bubble, which is the shape the whole */
+/* rewrite exists to remove. The rule separates the advisor's shout from the    */
+/* detail he goes on to give, and nothing else draws.                          */
+/*                                                                             */
+/* THE PAGER OUTLIVES THE PAGE (#335, kept through the card's removal). A slide */
+/* can be taller than the room there is for it, and when that happened the      */
+/* whole column scrolled as one: Back / Next went off the bottom and the        */
+/* walkthrough stopped looking steppable at all. Measured in the city at        */
+/* 1024x580 by that pull request, the stepper was 0 of 32px visible on first    */
+/* paint while the slide showed 35 of its 117px.                                */
+/*                                                                             */
+/* Dropping the card bought back enough room that nothing scrolls at any        */
+/* realistic height any more, which makes this look redundant and is exactly    */
+/* why it stays: the defect it fixes is about what happens when the room runs   */
+/* out, and a shorter window or a longer slide runs it out again. So the        */
+/* pressure is still routed one level deeper — the walkthrough may shrink, its  */
+/* slide row takes whatever is left and scrolls inside itself, and the step     */
+/* control is an `auto` row underneath that cannot be pushed off.               */
+/* -------------------------------------------------------------------------- */
+.crisis-call-walkthrough {
+  display: grid;
+  /* THE ONE PART OF THE BUBBLE ALLOWED TO SHRINK, against the `flex: none` the
+     rule above puts on all of them. */
+  flex: 0 1 auto;
+  /* The slide takes the remaining room and scrolls; Back / Next keeps its own. */
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 6px;
+  /* Without this the grid's min-content height is the tallest slide, so the
+     height pressure would stop here and land back on the bubble. */
+  min-height: 0;
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--line);
+}
+
+/* The `aria-live` wrapper is the grid ROW, so it has to pass the shrink through to
+   the keyed section inside it. It is a layout pass-through and nothing else. */
+.crisis-call-walkthrough > [aria-live] {
+  display: grid;
+  min-height: 0;
+}
+
+.crisis-call-section {
+  display: grid;
+  gap: 3px;
+}
+
+/* The one page of the walkthrough that is mounted. It gives room rather than
+   pushing the pager away, which is the whole of the fix above, and it gives that
+   room from its LINES: the step count and the heading are `auto` rows that stay
+   put, so a squeezed page still says which of the four it is. Measured at
+   1280x360 before that split: the heading came back 21px visible of 22px.
+
+   `overflow-y` stays on the section as the last resort under the list, for a
+   window so short that even the two `auto` rows do not fit. */
+.crisis-call-slide {
+  min-height: 0;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  overflow-y: auto;
+}
+
+/* The slide is one section of four, so it is sized to be read rather than
+   skimmed: a plain sentence-case heading at body weight above the lines,
+   instead of the uppercase micro-label a stack of three groups needed to be
+   told apart. */
+.crisis-call-section h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+/* "Step 2 of 4" — the position, in words, because the dots beside the Back /
+   Next pair are decoration and no state may rest on them. */
+.crisis-call-slide__step {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* The lines, and the innermost thing that gives when the window is short. */
+.crisis-call-terms {
+  display: grid;
+  gap: 3px;
+  min-height: 0;
+  margin: 0;
+  padding-left: 1.1rem;
+  overflow-y: auto;
+}
+
+/* A full step down from the shout, which is what keeps the shout the shout. */
+.crisis-call-terms li {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+/* A single-line slide reads as a paragraph rather than as a list of one. */
+.crisis-call-slide .crisis-call-terms:has(li:only-child) {
+  padding-left: 0;
+  list-style: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* PROSE SLIDES — onboarding's shape after the 2026-08-04 review.              */
+/*                                                                             */
+/* *"Avoid bullets where you can."* A moment is now one sentence, so it is a   */
+/* `<p>` and not a `<ul>` of one, and there is no drawn heading above it. Read */
+/* the sizing beside `.crisis-call-terms li`: the same step down from the      */
+/* shout, because it is the same voice saying the same kind of thing.          */
+/* -------------------------------------------------------------------------- */
+.crisis-call-line {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+/* The three-row template above is the CRISIS's shape (step, heading, list), where the list
+   is what gives when the window is short. A prose slide has no list to give, and its third
+   row on the gated moment is a board with 62px tiles in it, so a `1fr` row would squash the
+   one thing on this surface the learner has to hit. Rows are content-sized instead and the
+   slide's own `overflow-y` is what absorbs a window too short for all of it. */
+.crisis-call-slide--prose {
+  grid-template-rows: none;
+  grid-auto-rows: min-content;
+  align-content: start;
+  gap: 6px;
+}
+
+.crisis-call-stepper {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2px;
+  border-top: 1px solid var(--game-panel-line);
+}
+
+.crisis-call-step-button {
+  padding: 4px 2px;
+  border: none;
+  background: none;
+  color: var(--civic);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+/* ⚑ THE TOUR'S STEPPER IS A 44px TARGET, and the shared one above is 26px.
+   Measured in Chromium at 1024x580 and 390x580 by `firstRunJourneyShots.browser.test.tsx`,
+   which asserts the floor on every route out of a first-run screen: Back and Next came back
+   26px tall, which is under WCAG 2.5.5 and well under what a thumb finds on a phone.
+
+   Scoped to the tour rather than applied to `.crisis-call-step-button` itself, deliberately.
+   The class is shared with `CrisisCallAdvisor` and `SuccessionAdvisor`, whose bubbles are
+   photographed by layout guards of their own; growing every stepper by 18px is a change those
+   surfaces should get with their own frames rather than as a side effect of the first-run
+   work. Their steppers are the same 26px today, and that is recorded rather than fixed here.
+
+   Only the BOX grows: the type, the colour and the disabled/gated treatments are all
+   inherited untouched, so nothing about how the row reads changes. */
+.crisis-call-step-button--tour {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 10px;
+}
+
+/* The same floor on the tour's own tray, for the same reason and with the same scope: the
+   shared `.city-action-ghost` came back 38px, and Skip tour is the one control a learner who
+   wants out has to hit first time. Same measurement, same file, same limitation about the
+   crisis and succession trays. */
+.crisis-call-actions .city-action--tour {
+  min-height: 44px;
+}
+
+/* Held back at the ends rather than removed, so the row does not shift under
+   the pointer between slides (the `.advisor-npc__action` precedent). */
+.crisis-call-step-button:disabled {
+  color: var(--ink-soft);
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* GATED IS NOT DISABLED, and it must not look identical to it either. Onboarding's
+   placement moment holds Next back with `aria-disabled` rather than `disabled`, so the
+   button keeps its place in the tab order and answers a press with the reason it will not
+   move yet. It is dimmed like a disabled control because that is what it is telling the
+   learner, and it keeps the pointer cursor because it is still worth pressing. */
+.crisis-call-step-button[aria-disabled="true"] {
+  color: var(--ink-soft);
+  opacity: 0.45;
+}
+
+.crisis-call-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Fill AND size, never hue alone: read steps are small and solid, the current
+   one is larger and ringed, and the ones ahead are hollow. `--ink-soft` is a
+   text colour rather than a signal, so this borrows no meaning from the
+   correctness palette. */
+.crisis-call-dot {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--ink-soft);
+  border-radius: 50%;
+}
+
+.crisis-call-dot[data-state="read"] {
+  background: var(--ink-soft);
+}
+
+.crisis-call-dot[data-state="current"] {
+  width: 11px;
+  height: 11px;
+  border-width: 2px;
+  border-color: var(--ink);
+  background: var(--ink);
+  box-shadow: 0 0 0 2px var(--paper);
+}
+
+.crisis-call-dot[data-state="ahead"] {
+  background: none;
+}
+
+/* His last line and the player's reply, on one row while they fit. No border,
+   no fill, no padding: an action TRAY is the last piece of card chrome, and the
+   buttons carry their own shape already. */
+.crisis-call-tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-sm);
+}
+
+.crisis-call-closing {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* WHY "Face the winter" IS DIMMED, in the closing line's own slot.
+
+   It REPLACES `.crisis-call-closing` rather than joining it, so the tray keeps one
+   row: a third item would cost a line, and `crisisCall.browser.test.tsx` measures
+   this card at 1280x360 where there is none to give. It also cannot coexist with
+   what the closing line says, which is "Face it when you are ready" over a button
+   the card is refusing.
+
+   Same box as the line it stands in for, a step softer and smaller: it is an
+   instruction about a control rather than the advisor speaking. */
+.crisis-call-gate {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.crisis-call-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+/* `.city-action-primary` is `width: 100%`, which is what put "Face the winter"
+   on a row of its own inside the old card's tray. There is no tray now and the
+   two replies read as a pair, so the width comes off. Two classes, because the
+   shared rule sets it on itself and a single-class override would tie. */
+.crisis-call-actions .city-action-primary {
+  width: auto;
+}
+
+.crisis-call-actions .city-action {
+  padding-block: 9px;
+}
+
+/* A narrow phone still gets both actions, side by side while they fit and
+   stacked when they do not. The row is `flex-wrap: wrap` already. */
+@media (max-width: 520px) {
+  .crisis-call-actions {
+    flex: 1 1 auto;
+  }
+
+  .crisis-call-actions .city-action {
+    flex: 1 1 auto;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* WHERE #335's `@media (max-height: 700px)` BLOCK WENT.                       */
+/*                                                                            */
+/* It made the CARD fit a 580px window: a smaller `.coc-popup` gutter, a       */
+/* taller cap on `.crisis-call-card`, less padding on `.crisis-call-head` and  */
+/* `.crisis-call-body`, and a 104px portrait. Every selector in it but two     */
+/* names something that no longer exists, and both survivors would now do      */
+/* harm: `.crisis-call-speech__figure { width: 104px }` shrinks the character  */
+/* the lead asked to see back to an avatar chip at exactly the height he       */
+/* reviews at, and the padding rules put a box back inside the bubble.         */
+/*                                                                            */
+/* So it is deleted rather than adapted. What it was for is not: the 580px     */
+/* window is a viewport in `crisisCall.browser.test.tsx`, with its own first-  */
+/* paint test and its own island floor, and the room the block was buying back */
+/* by the pixel is what dropping the card returned by the hundred.             */
+/*                                                                            */
+/* Two of its rules DID outlive it, promoted out of the query because they     */
+/* were never really about short screens: the two replies sit on one row at    */
+/* every width above 520px (`.crisis-call-actions .city-action-primary`), and  */
+/* the walkthrough absorbs height pressure so the pager cannot be pushed off.  */
+/* -------------------------------------------------------------------------- */
+
+/* The dev seed control, in the ☰ Menu's "Developer stand-in" panel. It is styled
+   here rather than in `styles.css` because it belongs to this feature and should
+   leave with it; `CitySurface.tsx` imports `CrisisCallAdvisor.tsx`, which imports
+   this sheet, so the rule is loaded wherever the button can appear. */
+.city-devtools-crisis {
+  display: grid;
+  gap: var(--space-xs);
+  justify-items: start;
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--game-panel-line);
+}
+
+/* -------------------------------------------------------------------------- */
+/* THE ONBOARDING TOUR, SCALED DOWN FROM A CRISIS TO A TIP.                     */
+/*                                                                              */
+/* `AdvisorStage` shares this whole sheet with the mid-era crisis notice, whose */
+/* figure and bubble are sized to dominate the screen for a moment the game     */
+/* wants remembered. A first-run tour step is the opposite kind of beat — a     */
+/* short aside the learner clicks through several of in a row — so it keeps     */
+/* every rule above (the tail math, the scroll behaviour, the phone layout) and */
+/* only turns down the two numbers that made it crisis-sized: the figure's      */
+/* height and the bubble's headline. Scoped on the stage's own `data-testid`    */
+/* rather than a new class, since `AdvisorStage` already stamps one from its    */
+/* `testId` prop and `OnboardingAdvisor` is the only caller that passes         */
+/* "onboarding-advisor".                                                        */
+/* -------------------------------------------------------------------------- */
+/* Fixed px, never vh: the crisis dialog leans on viewport-relative sizing on
+   purpose (a short window should still show the whole dramatic figure), but that
+   same relativity read as "random" shrinking across tour steps, since each step
+   can land on a slightly different effective viewport (the account chrome
+   dropdown, a takeover closing, etc. all nudge `100vh` math). A tour tip does not
+   need to fill the screen, so it is sized in absolute px instead — the one
+   number that cannot drift step to step. */
+[data-testid="onboarding-advisor"].crisis-call-stage {
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-inline: var(--space-lg);
+}
+
+[data-testid="onboarding-advisor"] .crisis-call-speech {
+  --crisis-figure: 140px;
+  width: min(760px, 100%);
+}
+
+[data-testid="onboarding-advisor"] .crisis-call-speech__bubble {
+  width: 100%;
+}
+
+/* Left-aligned, flush with the same edge the top-left civic stack (Stone / Mastered /
+   City Life) uses. A fixed height (215px, every step, tried and then explicitly
+   reverted) made every step pay for the longest step's room -- oversized empty space
+   on a one-sentence step, and clipping on a step whose real content (the "Open Build"
+   task widget) genuinely needs more than 215px. Natural height instead: the card is
+   only ever as tall as its own step's content, up to a real cap. `max-height` is
+   capped against the civic stack's real measured bottom edge (`--hud-top-left-clear`,
+   set in OnboardingAdvisor.tsx the same way `--account-chrome-clear` is), so the one
+   genuinely long step still can't grow into it on a short window; every shorter step
+   is well under that ceiling and simply renders at its own size. `overflow-y: auto`
+   is the last resort under that, for a window so short that even the capped height
+   does not fit -- a scrollbar only appears when content genuinely exceeds the cap,
+   never as a substitute for sizing the card to its content. */
+[data-testid="onboarding-advisor"] .crisis-call-speech__said {
+  height: auto;
+  min-height: 0;
+  max-height: min(
+    calc(100vh - var(--hud-top-left-clear, 0px) - 2 * var(--space-xl)),
+    68vh
+  );
+  overflow: hidden auto;
+  padding: 8px var(--space-xl);
+}
+
+/* The standing-down/gated step (`firstBuildingTask.css`, `[data-standing-down="true"]`)
+   keeps its own narrower 410px width rather than matching every other step: that width
+   is load-bearing there, not decorative -- it is what leaves the real Build pill and
+   island clickable underneath (`pointer-events: none` on the stage) and what the ring
+   highlight, the Build-pill overlap, and the placement confirm bar's clearance are all
+   measured against (`onboardingAdvisorShots.browser.test.tsx`). An earlier session
+   forced every step including this one to the same fixed 760x215 box "even at the cost
+   of the bubble covering more of the live city"; reverted along with the fixed height
+   above, since the two together were what broke those three measured interactions.
+   Every OTHER step still reads uniformly at `min(760px, 100%)` from the unscoped rule
+   two rules up -- only the gated step, which was never meant to match them, differs. */
+
+[data-testid="onboarding-advisor"] .crisis-call-slide {
+  grid-template-rows: none;
+}
+
+/* The shared 3px section gap reads fine on the crisis dialog's few rows, but a
+   tour step can stack seven or eight (title, step label, two instructions, a CTA
+   button, a note, Back/Next, two footer buttons) and 3px between all of them
+   reads as cramped rather than short. Tightened from an earlier 10px once the
+   card stopped clipping/scrolling and every extra row started adding to the
+   card's own height instead -- the smaller the gap, the closer a long step's
+   height stays to a short step's. */
+[data-testid="onboarding-advisor"] .crisis-call-section {
+  gap: 4px;
+}
+
+[data-testid="onboarding-advisor"] .crisis-call-lede {
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+[data-testid="onboarding-advisor"] .crisis-call-line {
+  font-size: 0.82rem;
+}

@@ -1,0 +1,74 @@
+{
+  "node_id": "NUM.5",
+  "title": "Ratios, rates, proportions, percents, units",
+  "mini_lesson": [
+    "Every trip up from the shore brings back a different number of baskets, so the camp wants one number that says how a trip is going. A **rate** compares two quantities measured in different units, and a **unit rate** rewrites that comparison so the bottom quantity is $1$. Scaled that way, two rates can be set beside each other and read at a glance, since both are then counted against a single unit.",
+    "A **proportion** says two ratios are equal, which is what lets a comparison you already know fill in an amount you do not. When $\\dfrac{a}{b} = \\dfrac{c}{d}$, the **cross products** are equal too: $ad = bc$. That one move lifts the unknown out of the fraction and leaves an ordinary multiplication behind.",
+    "A **percent** is a count of parts per hundred, so a percent is already a fraction with $100$ as its denominator. Rewriting it as a decimal turns the word *of* into a multiplication that works on any amount, round or not. Because every percent is measured against the same $100$, two shares of different sized wholes can still be compared.",
+    "Two amounts counted in different units cannot be compared or combined until one of them is rewritten in the other's unit. **Converting by cancelling** does that with a factor equal to $1$, built with the unit you want on top and the unit you are shedding underneath. The unwanted unit then divides out the way a common factor does, and the amount itself is unchanged because multiplying by $1$ changes nothing but the label."
+  ],
+  "slide_subtitles": [
+    "Rates and unit rates",
+    "Proportions and cross products",
+    "Percents as decimals",
+    "Cancelling units"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Six trips brought back $84$ baskets. What is that as a unit rate?",
+      "steps": [
+        "Six trips brought back $84$ baskets, so the rate is $\\dfrac{84\\ \\text{baskets}}{6\\ \\text{trips}}$.",
+        "A unit rate needs $1$ on the bottom, so divide both quantities by $6$.",
+        "$84 \\div 6 = 14$ on top, and $6 \\div 6 = 1$ underneath.",
+        "The unit rate is $\\dfrac{14\\ \\text{baskets}}{1\\ \\text{trip}}$, which is $14$ baskets per trip."
+      ]
+    },
+    {
+      "prompt": "Solve the proportion $\\dfrac{2}{5} = \\dfrac{x}{35}$ for $x$.",
+      "steps": [
+        "Two ratios are set equal: $\\dfrac{2}{5} = \\dfrac{x}{35}$.",
+        "Multiply along one diagonal: $2 \\times 35 = 70$.",
+        "Multiply along the other diagonal: $5 \\times x = 5x$.",
+        "The cross products are equal, so $5x = 70$.",
+        "Divide both sides by $5$: $x = 14$."
+      ]
+    },
+    {
+      "prompt": "Find $15\\%$ of $240$.",
+      "steps": [
+        "Take $15\\%$ of $240$.",
+        "A percent counts hundredths, so $15\\% = \\dfrac{15}{100} = 0.15$.",
+        "The word *of* means multiply, so the amount is $0.15 \\times 240$.",
+        "$0.15 \\times 240 = 36$, so $15\\%$ of $240$ is $36$."
+      ]
+    },
+    {
+      "prompt": "A stretch measures $72$ paces and one cord is $8$ paces. How many cords long is it?",
+      "steps": [
+        "A stretch measures $72$ paces, and one marked cord is $8$ paces long.",
+        "To count that stretch in cords, multiply by a factor with cords on top and paces underneath: $\\dfrac{1\\ \\text{cord}}{8\\ \\text{paces}}$.",
+        "$72\\ \\text{paces} \\times \\dfrac{1\\ \\text{cord}}{8\\ \\text{paces}}$ cancels the paces and leaves $\\dfrac{72}{8}\\ \\text{cords}$.",
+        "$72 \\div 8 = 9$, so the stretch is $9$ cords long."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "unit-rate-play", "gates": true },
+    { "after": 1, "id": "proportion-cross-play", "gates": true },
+    { "after": 2, "id": "percent-slider", "gates": true },
+    { "after": 3, "id": "unit-conversion-spot", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "One trip up from the shore brought back $30$ baskets. How many baskets is $20\\%$ of that?",
+    "accepted": ["6"],
+    "hint": "First rewrite $20\\%$ as a decimal: $20\\% = 0.2$. Then multiply by $30$: $0.2 \\times 30$. What do you get?",
+    "worked_solution": [
+      "A percent counts hundredths, so $20\\%$ is $\\dfrac{20}{100}$, which is $0.2$.",
+      "Taking that share of the load means multiplying: $0.2 \\times 30$.",
+      "$0.2 \\times 30 = 6$, so the trip brought back $6$ baskets."
+    ],
+    "worked_solution_params": { "p": 20, "base": 30 },
+    "check": { "answer_type": "numeric", "answer_key": "6" },
+    "variants": { "template_id": "d1.num-5.l2", "count": 2 }
+  }
+}

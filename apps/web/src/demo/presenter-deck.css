@@ -1,0 +1,147 @@
+@import "./presenter-palette.css";
+
+.presenter-live-app {
+  display: contents;
+}
+
+.presenter-deck {
+  position: fixed;
+  z-index: 500;
+  inset: 0;
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-template-rows: minmax(0, 1fr) auto;
+  overflow: hidden;
+  padding: 0;
+  background: var(--presentation-surface);
+  color: var(--presentation-ink);
+  font-family: var(--font-body, system-ui, sans-serif);
+  outline: none;
+}
+
+.presenter-deck__stage {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  place-items: center;
+  overflow: hidden;
+  background: var(--presentation-deck-surface);
+}
+
+.presenter-deck__slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--presentation-deck-surface);
+}
+
+.presenter-deck__controls {
+  z-index: 2;
+  display: grid;
+  min-height: 58px;
+  grid-template-columns: minmax(88px, auto) auto minmax(68px, auto) minmax(108px, auto);
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px max(8px, env(safe-area-inset-right)) max(7px, env(safe-area-inset-bottom))
+    max(8px, env(safe-area-inset-left));
+  border-top: 1px solid var(--presentation-data-blue);
+  background: var(--presentation-surface);
+  box-shadow: 0 -4px 14px var(--presentation-shadow);
+}
+
+.presenter-deck__controls button,
+.presenter-deck__enter {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--presentation-detail);
+  border-radius: 7px;
+  background: var(--presentation-accent-blue);
+  color: var(--presentation-ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.presenter-deck__controls button:hover:not(:disabled) {
+  background: var(--presentation-data-blue);
+}
+
+.presenter-deck__controls button:focus-visible,
+.presenter-deck__enter:focus-visible {
+  outline: 3px solid var(--presentation-emphasis);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--presentation-surface);
+}
+
+.presenter-deck__controls button:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.presenter-deck__controls > span {
+  min-width: 42px;
+  color: var(--presentation-support);
+  font-size: 12px;
+  font-weight: 760;
+  text-align: center;
+}
+
+.presenter-deck__enter {
+  position: absolute;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: 14px;
+  z-index: 3;
+  min-width: 156px;
+  border-color: var(--presentation-ink);
+  background: var(--presentation-ink);
+  color: var(--presentation-surface);
+  box-shadow: 0 5px 18px var(--presentation-shadow-strong);
+}
+
+.presenter-deck__enter:hover:not(:disabled) {
+  border-color: var(--presentation-emphasis);
+  background: var(--presentation-emphasis);
+}
+
+.presenter-deck:fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+@media (max-width: 520px) {
+  .presenter-deck__controls {
+    grid-template-columns: minmax(72px, 1fr) auto minmax(60px, 1fr) minmax(92px, 1fr);
+    gap: 5px;
+    padding-inline: 6px;
+  }
+
+  .presenter-deck__controls button {
+    padding-inline: 7px;
+    font-size: 12px;
+  }
+
+  .presenter-deck__enter {
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presenter-deck,
+  .presenter-deck *,
+  .presenter-deck *::before,
+  .presenter-deck *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

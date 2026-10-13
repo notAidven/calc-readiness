@@ -1,0 +1,859 @@
+{
+  "_meta": {
+    "purpose": "SINGLE SOURCE OF TRUTH for node identity, lifecycle status, and hard prerequisite edges. The invariant test and (eventually) the product both read THIS file, so closure is authoritative, not snapshot-only.",
+    "derivation": "Nodes and base prereqs derived from Node_Spine_v4.md (the stable-ID content authority). The edge doc (Prereq_Edges_And_Hubs.md) contained newer review-validated edge corrections; those are applied here as documented overrides (see _edge_overrides).",
+    "count_reconciliation": "The 'full graph = 40 nodes' label used in prose was never traceable to a file and is RETIRED. Node_Spine_v4's node tables enumerated 56 CORE + 1 secondary (TRG.6). The 2026-07-24 coverage expansion (Gabe, branch gabe/coverage-expansion) is ADDITIVE-APPEND: it (a) promoted 9 previously-extended CORE nodes to product target (RAD.3, LIN.5, LIN.6, RAT.6, TRG.7, EL.4, POL.7, LF.4, FUN.10) and gave each a lesson_shell, (b) flipped TRG.6 from secondary to active_post_mvp, and (c) APPENDED 4 new nodes: POL.8 (D4), TRG.9 (D9), and a new GEOMETRY domain D10 (GEO.1, GEO.2). The 2026-07-25 D2 QA pass then APPENDED 1 more node under the same protocol: RAD.4 (D2), closing the variable-radicand / sqrt(x^2)=|x| / even-root-domain gap, bringing CORE and product target to 62. No existing node was reordered, renumbered, or deleted. Counts here are computed from the data below by graph_invariants.py, never asserted in prose.",
+    "lifecycle_statuses": {
+      "active_mvp": "included in the depth-first D1 MVP scope (6 nodes); full remediation available by the Day-9 content milestone",
+      "active_post_mvp": "CORE readiness node built in the ranked Days 13-24 expansion",
+      "secondary": "institution-enabled, not part of the CORE readiness claim (no node currently uses this status; TRG.6 was promoted to active_post_mvp in the 2026-07-24 coverage expansion)",
+      "backlog": "candidate, not committed",
+      "retired": "ID permanently retired, never reused",
+      "cut": "removed from the graph; kept as an internal misconception tag only"
+    },
+    "product_scope_note": "MVP is DEPTH-FIRST on D1 (Real Numbers & Arithmetic): the 6 D1 nodes (product_scope=mvp) are fully built + measured in the MVP. product_scope=target = in the full product but built post-MVP (Days 13-24). AFTER the 2026-07-24 coverage expansion: mvp(6)+target(55)=61 product nodes (was 48 = mvp 6 + target 42; +9 promoted from extended, +4 appended new POL.8/TRG.9/GEO.1/GEO.2). AFTER the 2026-07-25 D2 QA append (RAD.4): mvp(6)+target(56)=62 product nodes. extended is now 0 (all former extended nodes promoted). retired/cut=dead IDs. Counts computed by graph_invariants.py, never asserted."
+  },
+  "_edge_overrides": [
+    {
+      "change": "remove",
+      "edge": [
+        "TRG.1",
+        "TRG.2"
+      ],
+      "reason": "review: right-triangle trig is learnable in degrees; does not require radians first"
+    },
+    {
+      "change": "add",
+      "edge": [
+        "NUM.5",
+        "TRG.2"
+      ],
+      "reason": "review: special-triangle values use proportional reasoning"
+    },
+    {
+      "change": "soften",
+      "edge": [
+        "LF.1",
+        "FUN.5"
+      ],
+      "reason": "review: slope-as-rate motivates but is not a hard gate for average rate of change; excluded from HARD edges"
+    },
+    {
+      "change": "add",
+      "edge": [
+        "NUM.5",
+        "LF.1"
+      ],
+      "reason": "review: contextual rate interpretation uses proportional reasoning"
+    },
+    {
+      "change": "add",
+      "edge": [
+        "NUM.F",
+        "RAT.3"
+      ],
+      "reason": "review: adding rational expressions needs fraction fluency"
+    },
+    {
+      "change": "soften",
+      "edge": [
+        "TRG.1",
+        "TRG.3"
+      ],
+      "reason": "review: conceptual precursor, not hard gate"
+    },
+    {
+      "change": "soften",
+      "edge": [
+        "TRG.2",
+        "TRG.3"
+      ],
+      "reason": "review: conceptual precursor, not hard gate"
+    },
+    {
+      "change": "note",
+      "edge": [
+        "POL.3",
+        "TRG.8"
+      ],
+      "reason": "review: only quadratic-in-form trig items need POL.3; encoded as item-family, not a universal hard edge"
+    },
+    {
+      "change": "note",
+      "edge": [
+        "POL.3",
+        "EL.6"
+      ],
+      "reason": "review: only the EL.6 items that reduce to a quadratic need POL.3 - the quadratic-in-an-exponential shape and the condense-then-factor logarithmic equation, both of which factor before they finish; encoded as item-family, not a universal hard edge"
+    },
+    {
+      "change": "note",
+      "edge": [
+        "EL.3",
+        "EL.6"
+      ],
+      "reason": "review: only the quadratic-in-an-exponential EL.6 items answer in natural logarithms and so need EL.3; the same-base and common-logarithm shapes do not; encoded as item-family, not a universal hard edge"
+    }
+  ],
+  "item_family_nodes": {
+    "POL.3": {
+      "mvp_family": null,
+      "in_authoring_scope": true,
+      "families": {
+        "factoring": [
+          "POL.2"
+        ],
+        "square_root": [
+          "RAD.1"
+        ],
+        "formula_complete_square": [
+          "POL.1",
+          "LIN.1",
+          "RAD.1"
+        ]
+      }
+    },
+    "FUN.6": {
+      "mvp_family": "polynomial",
+      "in_authoring_scope": true,
+      "families": {
+        "polynomial": [
+          "FUN.1",
+          "POL.1"
+        ],
+        "rational": [
+          "FUN.1",
+          "POL.1",
+          "RAT.1",
+          "RAT.2",
+          "RAT.3"
+        ]
+      }
+    },
+    "EL.6": {
+      "mvp_family": null,
+      "in_authoring_scope": true,
+      "_note": "the four families are the node's real prerequisite record, because item_family nodes carry prereqs: [] and mvp_family is null, so EL.6 contributes no hard edge. quadratic_in_exponential was added on the 2026-07-31 D8 QA round: d8.el6.exp-quadratic.l3 substitutes u = e^x, FACTORS the quadratic that appears, and answers in ln, and it mapped onto none of the other three families. POL.3 also joins log_equation, because d8.el6.extraneous.l3 expands and factors a quadratic of its own before it can test its roots",
+      "families": {
+        "same_base": [
+          "EXP.1",
+          "LIN.1"
+        ],
+        "log_requiring": [
+          "EL.3",
+          "EL.5",
+          "LIN.1"
+        ],
+        "log_equation": [
+          "EL.5",
+          "LIN.1",
+          "POL.3"
+        ],
+        "quadratic_in_exponential": [
+          "EL.3",
+          "POL.3"
+        ]
+      }
+    },
+    "TRG.8": {
+      "mvp_family": null,
+      "in_authoring_scope": false,
+      "_note": "structurally item-family but post-MVP; the 3 in_authoring_scope nodes are the ones with authored breakdowns",
+      "families": {
+        "unit_circle": [
+          "TRG.4"
+        ],
+        "linear_form": [
+          "TRG.4",
+          "LIN.1"
+        ],
+        "quadratic_in_form": [
+          "TRG.4",
+          "POL.3"
+        ]
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "NUM.S",
+      "domain": "D1",
+      "status": "active_mvp",
+      "prereqs": [],
+      "product_scope": "mvp",
+      "lesson_shell": "L1"
+    },
+    {
+      "id": "NUM.F",
+      "domain": "D1",
+      "status": "active_mvp",
+      "prereqs": [],
+      "product_scope": "mvp",
+      "lesson_shell": "L1"
+    },
+    {
+      "id": "NUM.2",
+      "domain": "D1",
+      "status": "active_mvp",
+      "prereqs": [
+        "NUM.S",
+        "NUM.F"
+      ],
+      "product_scope": "mvp",
+      "lesson_shell": "L2"
+    },
+    {
+      "id": "NUM.3",
+      "domain": "D1",
+      "status": "active_mvp",
+      "prereqs": [],
+      "product_scope": "mvp",
+      "lesson_shell": "L2"
+    },
+    {
+      "id": "NUM.4",
+      "domain": "D1",
+      "status": "active_mvp",
+      "prereqs": [
+        "NUM.S",
+        "NUM.F",
+        "NUM.2",
+        "NUM.3"
+      ],
+      "product_scope": "mvp",
+      "lesson_shell": "L2"
+    },
+    {
+      "id": "NUM.5",
+      "domain": "D1",
+      "status": "active_mvp",
+      "prereqs": [
+        "NUM.F"
+      ],
+      "product_scope": "mvp",
+      "lesson_shell": "L3"
+    },
+    {
+      "id": "EXP.1",
+      "domain": "D2",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "NUM.4"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L4"
+    },
+    {
+      "id": "RAD.1",
+      "domain": "D2",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "NUM.4"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L5"
+    },
+    {
+      "id": "RAD.2",
+      "domain": "D2",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "RAD.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L5"
+    },
+    {
+      "id": "RAD.3",
+      "domain": "D2",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "EXP.1",
+        "RAD.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L32"
+    },
+    {
+      "id": "LIN.1",
+      "domain": "D3",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "NUM.4"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L6"
+    },
+    {
+      "id": "LIN.3",
+      "domain": "D3",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "LIN.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L6"
+    },
+    {
+      "id": "LIN.4",
+      "domain": "D3",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "LIN.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L6"
+    },
+    {
+      "id": "LIN.5",
+      "domain": "D3",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "LIN.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L33"
+    },
+    {
+      "id": "LIN.6",
+      "domain": "D3",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "LIN.4",
+        "LIN.5"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L34"
+    },
+    {
+      "id": "POL.1",
+      "domain": "D4",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "NUM.4"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L7"
+    },
+    {
+      "id": "POL.2",
+      "domain": "D4",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "POL.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L7"
+    },
+    {
+      "id": "POL.3",
+      "domain": "D4",
+      "status": "active_post_mvp",
+      "prereqs": [],
+      "item_family": true,
+      "product_scope": "target",
+      "lesson_shell": "L8"
+    },
+    {
+      "id": "POL.4",
+      "domain": "D4",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "POL.1",
+        "RAD.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L8"
+    },
+    {
+      "id": "POL.5",
+      "domain": "D4",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.1",
+        "CG.1",
+        "POL.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L8"
+    },
+    {
+      "id": "POL.6",
+      "domain": "D4",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "POL.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L27"
+    },
+    {
+      "id": "POL.7",
+      "domain": "D4",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "POL.2",
+        "POL.6"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L35"
+    },
+    {
+      "id": "RAT.1",
+      "domain": "D5",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "POL.2"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L9"
+    },
+    {
+      "id": "RAT.2",
+      "domain": "D5",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "RAT.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L9"
+    },
+    {
+      "id": "RAT.3",
+      "domain": "D5",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "RAT.1",
+        "NUM.F"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L9"
+    },
+    {
+      "id": "RAT.4",
+      "domain": "D5",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "RAT.2",
+        "RAT.3"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L9"
+    },
+    {
+      "id": "RAT.5",
+      "domain": "D5",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "RAT.1",
+        "POL.2"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L26"
+    },
+    {
+      "id": "RAT.6",
+      "domain": "D5",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "LIN.1",
+        "RAT.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L36"
+    },
+    {
+      "id": "CG.1",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "NUM.4"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L10"
+    },
+    {
+      "id": "FUN.1",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "NUM.4"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L11"
+    },
+    {
+      "id": "FUN.2",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L11"
+    },
+    {
+      "id": "FUN.3",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.1",
+        "FUN.2"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L29"
+    },
+    {
+      "id": "FUN.4",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.1",
+        "CG.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L12"
+    },
+    {
+      "id": "FUN.5",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L13"
+    },
+    {
+      "id": "FUN.6",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [],
+      "item_family": true,
+      "product_scope": "target",
+      "lesson_shell": "L13"
+    },
+    {
+      "id": "FUN.7",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L25"
+    },
+    {
+      "id": "FUN.8",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.1",
+        "FUN.7"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L20"
+    },
+    {
+      "id": "FUN.9",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.1",
+        "CG.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L21"
+    },
+    {
+      "id": "FUN.10",
+      "domain": "D6",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.9",
+        "LIN.5"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L37"
+    },
+    {
+      "id": "LF.1",
+      "domain": "D7",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "FUN.1",
+        "CG.1",
+        "NUM.5"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L14"
+    },
+    {
+      "id": "LF.2",
+      "domain": "D7",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "LF.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L22"
+    },
+    {
+      "id": "LF.3",
+      "domain": "D7",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "LF.2"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L22"
+    },
+    {
+      "id": "LF.4",
+      "domain": "D7",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "LIN.1",
+        "LF.2"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L38"
+    },
+    {
+      "id": "EL.1",
+      "domain": "D8",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "EXP.1",
+        "FUN.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L15"
+    },
+    {
+      "id": "EL.2",
+      "domain": "D8",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "EL.1",
+        "FUN.9"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L28"
+    },
+    {
+      "id": "EL.3",
+      "domain": "D8",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "EL.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L16"
+    },
+    {
+      "id": "EL.4",
+      "domain": "D8",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "EL.3",
+        "FUN.9"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L39"
+    },
+    {
+      "id": "EL.5",
+      "domain": "D8",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "EL.3"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L23"
+    },
+    {
+      "id": "EL.6",
+      "domain": "D8",
+      "status": "active_post_mvp",
+      "prereqs": [],
+      "item_family": true,
+      "product_scope": "target",
+      "lesson_shell": "L23"
+    },
+    {
+      "id": "TRG.1",
+      "domain": "D9",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "NUM.4"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L17"
+    },
+    {
+      "id": "TRG.2",
+      "domain": "D9",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "RAD.1",
+        "NUM.5"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L18"
+    },
+    {
+      "id": "TRG.3",
+      "domain": "D9",
+      "status": "active_post_mvp",
+      "prereqs": [],
+      "product_scope": "target",
+      "lesson_shell": "L18"
+    },
+    {
+      "id": "TRG.4",
+      "domain": "D9",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "TRG.3"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L19"
+    },
+    {
+      "id": "TRG.5",
+      "domain": "D9",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "TRG.3",
+        "FUN.9"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L24"
+    },
+    {
+      "id": "TRG.6",
+      "domain": "D9",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "TRG.4",
+        "TRG.5"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L30"
+    },
+    {
+      "id": "TRG.7",
+      "domain": "D9",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "TRG.4",
+        "FUN.8"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L40"
+    },
+    {
+      "id": "TRG.8",
+      "domain": "D9",
+      "status": "active_post_mvp",
+      "prereqs": [],
+      "item_family": true,
+      "product_scope": "target",
+      "lesson_shell": "L31"
+    },
+    {
+      "id": "NUM.0",
+      "domain": "D1",
+      "status": "retired",
+      "prereqs": [],
+      "note": "split into NUM.S + NUM.F",
+      "product_scope": "excluded",
+      "lesson_shell": null
+    },
+    {
+      "id": "NUM.1",
+      "domain": "D1",
+      "status": "cut",
+      "prereqs": [],
+      "note": "number classification; kept as tag only",
+      "product_scope": "excluded",
+      "lesson_shell": null
+    },
+    {
+      "id": "EXP.2",
+      "domain": "D2",
+      "status": "retired",
+      "prereqs": [],
+      "note": "merged into EXP.1",
+      "product_scope": "excluded",
+      "lesson_shell": null
+    },
+    {
+      "id": "LIN.2",
+      "domain": "D3",
+      "status": "retired",
+      "prereqs": [],
+      "note": "rational equations moved to RAT.6",
+      "product_scope": "excluded",
+      "lesson_shell": null
+    },
+    {
+      "id": "POL.8",
+      "domain": "D4",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "POL.2"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L41",
+      "note": "coverage expansion (2026-07-24): polynomial long & synthetic division; edge to existing prereq POL.2 (which itself requires POL.1)"
+    },
+    {
+      "id": "TRG.9",
+      "domain": "D9",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "TRG.4"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L42",
+      "note": "coverage expansion (2026-07-24): core trig identities (sum/difference & double-angle); edge to existing prereq TRG.4"
+    },
+    {
+      "id": "GEO.1",
+      "domain": "D10",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "NUM.4"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L43",
+      "note": "coverage expansion (2026-07-24): new GEOMETRY domain D10; Pythagorean theorem, similar triangles & basic angle relationships; foundational, additive edge to existing foundational node NUM.4"
+    },
+    {
+      "id": "GEO.2",
+      "domain": "D10",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "GEO.1"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L44",
+      "note": "coverage expansion (2026-07-24): new GEOMETRY domain D10; area, perimeter, volume & surface area of standard figures; prereq GEO.1"
+    },
+    {
+      "id": "RAD.4",
+      "domain": "D2",
+      "status": "active_post_mvp",
+      "prereqs": [
+        "RAD.1",
+        "EXP.1",
+        "NUM.S"
+      ],
+      "product_scope": "target",
+      "lesson_shell": "L45",
+      "note": "D2 coverage gap (2026-07-25): radicals with VARIABLE radicands (sqrt(x^5) -> x^2*sqrt(x)), the sqrt(x^2) = |x| result and why the absolute value is required, and the even-root domain restriction (even roots of negatives are undefined over the reals). Every radicand elsewhere in D2 is a positive integer, so no node taught a variable radicand or |x| as a simplification result. Edges: RAD.1 (extract perfect-power factors from a root), EXP.1 (rewrite x^5 as x^4*x and read x^4 as a perfect square), NUM.S (the graph's only definition of |x|, as distance from zero). ITEM-GATED: variable-radicand and abs() answers are not gradable by the v2 checker yet (see Content_Authoring_Split.md 4.4)"
+    }
+  ]
+}

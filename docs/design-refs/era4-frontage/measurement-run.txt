@@ -1,0 +1,65 @@
+ERA FOUR FRONTAGE MEASUREMENT — world units as placed
+
+plate half-width 0.525 · required reach = BAY + 0.525 · wall band ±0.2 · candidates BAY ∈ {0.55, 0.8, 1.15}
+
+A · THE PRINCIPAL ENTRANCE, AND THE WALL BESIDE IT
+
+building                   plot  fit     entrance   open   reach   halfW   bay0.55 bay0.8  bay1.15 census
+---------------------------------------------------------------------------------------------------------
+The Cottages               1×2   0.1707  door       0.39   1.48    1.28    HOLDS   HOLDS   FAILS   ok 672
+The Baths                  3×2   0.2077  door       0.75   1.86    1.86    HOLDS   HOLDS   HOLDS   ok 838
+The Fountain               1×1   0.1688  arch(arcade) 0.61   0.12    0.12    FAILS   FAILS   FAILS   ok 170
+The Grain Dock             2×2   0.1557  door       0.50   3.96    2.33    HOLDS   HOLDS   HOLDS   ok 152
+POL.1 Stonecutter’s Shop   2×2   0.2984  door       0.57   2.28    1.75    HOLDS   HOLDS   HOLDS   ok 126
+POL.2 Barracks             2×1   0.1378  door       0.26   0.88    0.75    FAILS   FAILS   FAILS   ok 331
+POL.3 Customs House        2×2   0.1730  arch(archHole) 0.73   0.94    0.94    FAILS   FAILS   FAILS   ok 539
+POL.4 Wine Cellars         2×1   0.1699  arch(arcade) 0.58   2.26    2.26    HOLDS   HOLDS   HOLDS   ok 250
+POL.8 Surveyor’s Shop      2×2   0.4258  door       0.81   3.22    2.54    HOLDS   HOLDS   HOLDS   ok 125
+Senate House (hub)         3×2   0.1841  door       1.03   3.22    3.22    HOLDS   HOLDS   HOLDS   ok 809
+
+B · THE WORST DOOR ON EACH BUILDING — the rule must hold for whichever one it picks
+
+building                   doors  worstReach  bay0.55 bay0.8  bay1.15 fallback 0.55
+-----------------------------------------------------------------------------------
+The Cottages               10     1.06        FAILS   FAILS   FAILS   FAILS
+The Baths                  1      1.86        HOLDS   HOLDS   HOLDS   HOLDS
+The Fountain               0      0.12        FAILS   FAILS   FAILS   FAILS
+The Grain Dock             4      2.88        HOLDS   HOLDS   HOLDS   HOLDS
+POL.1 Stonecutter’s Shop   1      2.28        HOLDS   HOLDS   HOLDS   HOLDS
+POL.2 Barracks             7      0.88        FAILS   FAILS   FAILS   FAILS
+POL.3 Customs House        0      0.94        FAILS   FAILS   FAILS   FAILS
+POL.4 Wine Cellars         0      2.26        HOLDS   HOLDS   HOLDS   HOLDS
+POL.8 Surveyor’s Shop      1      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+Senate House (hub)         3      3.22        HOLDS   HOLDS   HOLDS   HOLDS
+
+C · WIDEST UNBROKEN WALL ON THE ENTRANCE'S OWN PLANE — can a 1.05-wide plate be fixed at all
+
+building                   widestWall  plate fits  vertRoom  plate tall enough
+------------------------------------------------------------------------------
+The Cottages               2.56        yes         2.34      yes
+The Baths                  3.72        yes         1.64      yes
+The Fountain               1.64        yes         0.94      yes
+The Grain Dock             4.66        yes         1.36      yes
+POL.1 Stonecutter’s Shop   3.50        yes         3.12      yes
+POL.2 Barracks             2.04        yes         0.34      NO
+POL.3 Customs House        1.88        yes         2.46      yes
+POL.4 Wine Cellars         4.52        yes         0.76      NO
+POL.8 Surveyor’s Shop      5.08        yes         2.80      yes
+Senate House (hub)         6.44        yes         1.30      yes
+
+D · THE PLATE IS AN ABSOLUTE SIZE AND THE BUILDINGS ARE A FITTED ONE
+
+building                   fit     frontage  entrance  plate÷frontage  plate÷entrance
+-------------------------------------------------------------------------------------
+The Cottages               0.1707  4.45      0.39      0.24×           2.67×
+The Baths                  0.2077  7.60      0.75      0.14×           1.40×
+The Fountain               0.1688  3.80      0.61      0.28×           1.73×
+The Grain Dock             0.1557  7.60      0.50      0.14×           2.11×
+POL.1 Stonecutter’s Shop   0.2984  7.60      0.57      0.14×           1.85×
+POL.2 Barracks             0.1378  4.99      0.26      0.21×           4.01×
+POL.3 Customs House        0.1730  7.60      0.73      0.14×           1.44×
+POL.4 Wine Cellars         0.1699  6.37      0.58      0.16×           1.82×
+POL.8 Surveyor’s Shop      0.4258  7.60      0.81      0.14×           1.30×
+Senate House (hub)         0.1841  7.60      1.03      0.14×           1.02×
+
+wrote /workspace/docs/design-refs/era4-frontage/frontage-measurements.json

@@ -1,0 +1,90 @@
+{
+  "node_id": "POL.1",
+  "title": "Add, subtract and multiply polynomials",
+  "mini_lesson": [
+    "Two masons have measured the harbour front for repaving, so the contract comes down from the yard in two parts, each listing its courts and its strips separately because nobody has fixed the side length yet. Each separate piece of a written amount is a **term**, carrying its coefficient in front of it, and a sum of terms built from one variable raised to whole-number powers is a **polynomial**. Two terms are **like terms** when their variable part is identical, and that is what decides later whether they can ever be counted together.",
+    "Totalling a contract is a matter of putting like with like. Nothing turns a square court into a strip, so an amount counted in $x^{2}$ and an amount counted in $x$ stay written side by side however long the sum runs. Adding polynomials is that one move repeated across every kind of term present, which is why a sum usually carries as many terms as the longer of the two amounts rather than fewer.",
+    "A revised contract is usually the old one with an amount taken back off it, and what is withdrawn is the whole amount rather than merely its first piece. So every term inside it comes off, and every sign inside it turns over. Where a term was itself a deduction the move runs the other way and the count comes out higher than it started, which is why the middle term is where a count most often goes wrong.",
+    "Multiplying two amounts asks a different question, and a rectangle of ground answers it. Carry both divisions right across a court whose sides are each written as a sum, and the court falls into four rectangles whose areas have to add back to the whole. Every part of one side meets every part of the other exactly once, which is why four products appear rather than two.",
+    "Four separate pieces are not yet a single amount, because two of them are like terms and collect into one. A polynomial written with its highest power first and each power appearing once is in **standard form**, which is how an order is read out at the yard, and its first term is the **leading term** whose coefficient is the **leading coefficient**. The same four-product rule holds when a side carries a coefficient, and it holds again when the two sides are measured in different units, where a single term can carry two variables at once."
+  ],
+  "slide_subtitles": [
+    "Two masons, one contract",
+    "Adding like with like",
+    "Taking an amount back",
+    "Cutting the court up",
+    "Standard form"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The first mason's part of the contract reads $x^{2} + 5x$ square paces. Name its terms and their coefficients, and say whether the two are like terms.",
+      "steps": [
+        "The amount is a sum of two pieces, so it has two terms: $x^{2}$ and $5x$.",
+        "The number in front of $5x$ is $5$, so that is its coefficient.",
+        "Where no number is written the coefficient is $1$, so the coefficient of $x^{2}$ is $1$.",
+        "The two variable parts are $x^{2}$ and $x$, which are not identical, so these are not like terms."
+      ]
+    },
+    {
+      "prompt": "The second mason's part reads $x^{2} + 2x$ square paces. Total the contract, $(x^{2} + 5x) + (x^{2} + 2x)$.",
+      "steps": [
+        "Both courts are counted in $x^{2}$, so those two terms add to $2x^{2}$.",
+        "Both strips are counted in $x$, so $5x + 2x = 7x$.",
+        "A court and a strip are not like terms, so no arithmetic folds one into the other.",
+        "The total is $2x^{2} + 7x$, two separate amounts written side by side."
+      ]
+    },
+    {
+      "prompt": "Take $x^{2} - 3x + 5$ away from $3x^{2} + 4x - 6$.",
+      "steps": [
+        "Written out, that is $(3x^{2} + 4x - 6) - (x^{2} - 3x + 5)$.",
+        "The minus reaches every term inside the bracket, so all three signs turn over: $3x^{2} + 4x - 6 - x^{2} + 3x - 5$.",
+        "The $x^{2}$ terms give $3x^{2} - x^{2} = 2x^{2}$.",
+        "The $x$ terms give $4x + 3x = 7x$, more than there was before, because a deduction was removed.",
+        "The constants give $-6 - 5 = -11$, so the difference is $2x^{2} + 7x - 11$."
+      ]
+    },
+    {
+      "prompt": "A court measures $x + 3$ paces along one side and $x + 5$ along the other. Write the four pieces its area divides into.",
+      "steps": [
+        "The area is the product $(x + 3)(x + 5)$, and both cuts carried across leave four rectangles.",
+        "The corner piece is $x$ by $x$, so its area is $x^{2}$.",
+        "One strip is $x$ by $5$, giving $5x$, and the other is $3$ by $x$, giving $3x$.",
+        "The last piece is $3$ by $5$, so its area is $15$.",
+        "The four pieces are $x^{2}$, $5x$, $3x$ and $15$, and together they are the whole court."
+      ]
+    },
+    {
+      "prompt": "Multiply $(2x + 3)(x + 4)$ and write the answer in standard form.",
+      "steps": [
+        "Every part of one side meets every part of the other, so the four products are $2x^{2}$, $8x$, $3x$ and $12$.",
+        "The two middle products are like terms, so $8x + 3x = 11x$.",
+        "Nothing collects with $2x^{2}$ or with $12$.",
+        "Highest power first with each power appearing once, the answer is $2x^{2} + 11x + 12$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "polynomial-parts-label", "gates": true },
+    { "after": 1, "id": "stone-pieces-sorter", "gates": true },
+    { "after": 2, "id": "subtract-sign-spot", "gates": true },
+    { "after": 3, "id": "area-model-table", "gates": true },
+    { "after": 4, "id": "standard-form-builder", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A paved court measures $x + 6$ paces along one side and $2x + 1$ along the other. Write its area as a polynomial in standard form.",
+    "accepted": ["2x^2 + 13x + 6", "2x^{2} + 13x + 6", "2*x^2 + 13*x + 6", "2x^2+13x+6"],
+    "hint": "Every part of one side meets every part of the other exactly once, so there are four products to write down before anything is collected. Two of those four are like terms.",
+    "worked_solution": [
+      "Each part of one side meets each part of the other, so there are four products: $x \\times 2x$, $x \\times 1$, $6 \\times 2x$ and $6 \\times 1$.",
+      "Those come to $2x^{2}$, $x$, $12x$ and $6$.",
+      "The two middle products are like terms, so $x + 12x = 13x$.",
+      "In standard form the area is $2x^{2} + 13x + 6$."
+    ],
+    "worked_solution_params": { "a": 1, "b": 6, "c": 2, "d": 1 },
+    "variants": {
+      "template_id": "d4.pol1.leading.l3",
+      "count": 2
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist", "rootDir": "src" },
+  "include": ["src/**/*"],
+  "//": "Two source-reading sweeps use node:fs. The repo ships no @types/node (node built-ins live in .mjs scripts, not tsc-built TS), so they are excluded from tsc typechecking and run under vitest's node runtime (esbuild), like the Python graph-invariants check runs outside tsc. Adding @types/node here instead would be actively wrong: it would make `import { readFileSync } from 'node:fs'` typecheck inside a package whose whole contract is ZERO I/O.",
+  "exclude": ["src/one-way-invariant.test.ts", "src/clockless.test.ts"],
+  "//references": "The era sequence a node's material resolves through, and the mastery mapping the lesson grant's bar is derived from. INV-COS-1's permitted direction: economy reads progression, never the reverse.",
+  "references": [{ "path": "../skill-graph" }, { "path": "../shared-mastery-service" }]
+}

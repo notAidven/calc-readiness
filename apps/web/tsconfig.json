@@ -1,0 +1,30 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
+  },
+  "include": [
+    "src/**/*",
+    "public/presenter-deck/slides.json",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ],
+  "references": [
+    { "path": "../../packages/shared-state-schema" },
+    { "path": "../../packages/shared-components" },
+    { "path": "../../packages/economy" },
+    { "path": "../../packages/image-hygiene" },
+    { "path": "../../packages/skill-graph" },
+    { "path": "../../packages/shared-mastery-service" },
+    { "path": "../../packages/item-bank" },
+    { "path": "../../engines/diagnostic" },
+    { "path": "../../engines/lesson" },
+    { "path": "../../engines/game" },
+    { "path": "../../services/scorer" },
+    { "path": "../../services/diagnostic-runtime" },
+    { "path": "../../services/diagnostic-api" }
+  ]
+}

@@ -1,0 +1,287 @@
+/*
+ * THE GAME-COMPLETION CEREMONY'S DRESS.
+ *
+ * It borrows the house overlay wholesale — `.coc-popup` for the scrim and
+ * `.coc-card` for the sheet — so this file only says the two things that are its
+ * own: how much room the sheet takes, and how the reading reads.
+ *
+ * ## The sheet is bounded on purpose, and the reason is the surface behind it
+ *
+ * This is the last thing a learner sees after ten ages, and the subject of the
+ * ending is the city, not the sheet. So the sheet is capped in BOTH directions and
+ * the scrim it sits on is the house translucent one, which means the island shows
+ * around it rather than behind a curtain.
+ *
+ * The height cap is written as `min(74vh, 560px)` rather than a bare `vh` because
+ * the two limits are answers to different screens: on a tall monitor the sheet stops
+ * growing at 560px and the city keeps the rest, and on a short laptop viewport the
+ * `74vh` leg is what keeps roughly a seventh of the window as city at the top and
+ * again at the bottom. Measured at 1024x580 — 74vh is 429px, so ~150px of the window
+ * is city — and that viewport is the one the frames in `output/completion/` were
+ * taken at, because a frame taken at a comfortable developer viewport says nothing
+ * about anybody's screen.
+ *
+ * The reading can be long (a named roll, an aggregate line, a miss list and the
+ * caveat), so the sheet scrolls internally rather than growing. A ceremony that
+ * pushes the city off the screen has stopped being about the city.
+ */
+
+.completion .completion__card {
+  --coc-card-width: 560px;
+  max-height: min(74vh, 560px);
+}
+
+/*
+ * The scrolling well. It is a child of the card and not the card itself: `.coc-card`
+ * keeps `overflow: visible` on purpose so the round close button can hang off the
+ * top-right corner, and scrolling the card clips it to a half disc.
+ */
+.completion__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-lg);
+}
+
+/*
+ * The eyebrow and the dialog's heading, stacked.
+ *
+ * A COLUMN, and the row it replaces is worth recording because no measurement caught
+ * it. When the heading moved up here (so the dialog always has an accessible name),
+ * this rule was still the centring row it had been when the eyebrow was its only
+ * child, so the two became side-by-side flex items: "THE LAST AGE · THE CYBERPUNK ERA"
+ * ran straight into "The city is finished." and the pair overflowed the card. Every
+ * layout number stayed correct through it -- the sheet still measured 560x244 with
+ * 232px of city on each side -- and the accessible name was right. It was found by
+ * looking at a frame.
+ */
+.completion__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.completion__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.completion__beat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.completion h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.completion h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.completion__lede {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.completion__note {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  opacity: 0.72;
+  text-wrap: pretty;
+}
+
+.completion__error {
+  margin: 0;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 10px;
+  background: rgba(190, 60, 60, 0.14);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/*
+ * The live counter: the question number AND the skill being asked about.
+ *
+ * It carries the skill because the answer field keeps focus from one question to the
+ * next, so a learner who cannot see the card would otherwise be answering about a
+ * skill nobody named. That is also why the card below it no longer prints the skill
+ * a second time. Styled as a quiet caption: it is orientation, not the question.
+ */
+.completion__counter {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+/*
+ * The question card. Tighter than the reading's blocks on purpose: at 1024x580 the
+ * sheet caps at 429px, and the answer row plus its notation aids are tall, so a
+ * comfortable `--space-md` here pushed "Step away for now" below the fold and cut it
+ * in half. A learner who cannot see the way out of a 57-item instrument is being told
+ * something false about it, so the exit stays in the first screenful.
+ */
+.completion__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  align-items: center;
+  padding: var(--space-sm);
+  border: 1px solid var(--game-panel-line);
+  border-radius: 14px;
+}
+
+/* The check's heading is smaller, because that beat's sheet is the tallest and its
+   content is the one thing that may not be squeezed. Keyed off the shell's
+   `data-beat` rather than the beat section, because the heading now lives in the
+   shell's header and a `.completion__beat--work h2` selector matches nothing. */
+.completion[data-beat="retake"] h2 {
+  font-size: 1.25rem;
+}
+
+/*
+ * THE ROLL — the named skills, and the building each one stands for.
+ *
+ * Two lines per entry rather than one, because the skill name is the claim and the
+ * building is the thing it points at in the world; run together on one line they
+ * read as one long compound noun. The building line is never a location: nothing
+ * about where it stands is persisted on the path that has the baseline (O-END4).
+ */
+.completion__roll {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.completion__roll-item {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xs) var(--space-sm);
+  border-left: 3px solid var(--game-panel-line);
+  border-radius: 0 8px 8px 0;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.completion__roll-skill {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.completion__roll-building {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* The aggregate: shown, small, and never the headline (D-END7). */
+.completion__aggregate {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.completion__unconfirmed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--game-panel-line);
+  text-align: left;
+}
+
+.completion__unconfirmed p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  opacity: 0.78;
+  text-wrap: pretty;
+}
+
+.completion__caveat {
+  margin: 0;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--game-panel-line);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  opacity: 0.62;
+  text-wrap: pretty;
+}
+
+.completion__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  padding-top: var(--space-xs);
+}
+
+.completion__btn {
+  padding: 0.55rem 1.1rem;
+  border: 2px solid var(--game-panel-line);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.completion__btn--primary {
+  border-color: transparent;
+  background: var(--game-accent, #2f6fed);
+  color: #fff;
+}
+
+.completion__btn:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+/*
+ * THE WAY OUT STAYS ON SCREEN. D-END9 rules the instrument is not shortened and the
+ * sitting is split instead, so "you may stop" is not a courtesy here, it is the thing
+ * that makes a 57-item ending sittable. Measured at 1024x580 the sheet caps at 429px
+ * and the question card plus its answer row fill it, so a statically-placed exit sat
+ * below the fold and rendered as a half-cut line of text. Sticky rather than shorter
+ * content: the question is the one thing that may not be squeezed.
+ */
+.completion__step-away {
+  /* `bottom: 0` and not a negative offset: sticky resolves against the SCROLLPORT, so
+     a negative bottom pins the button just below the visible edge, which is the same
+     half-cut line it was there to fix. The negative side margins are separate, and
+     only widen the plate to the card's edges. */
+  position: sticky;
+  bottom: 0;
+  align-self: stretch;
+  margin: 0 calc(var(--space-lg) * -1);
+  padding: var(--space-sm) var(--space-lg);
+  border-color: transparent;
+  border-radius: 0 0 20px 20px;
+  background: var(--glass-fill-strong, rgba(255, 255, 255, 0.92));
+  font-size: 0.82rem;
+  font-weight: 600;
+  opacity: 0.85;
+}

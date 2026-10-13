@@ -1,0 +1,10 @@
+viewport: 1024x580, reducedMotion, one mount, camera untouched
+shuttered: The Family Lodge (civic:prehistoric_longhouse:0), captioned SUSPENDED on the island
+standing beside it: The Campfire (civic:prehistoric_campfire:1), captionless
+livability sustained while shut: 72
+livability sustained after the lift: 92 (+20)
+the lift cost 20 stone, from a stockpile of 440
+
+1-a-shuttered-civic-building.png: the whole window — the caption over the Lodge,
+  the crisis-damage panel naming it and pricing the lift, and City life short by 20
+2-the-same-city-reopened.png: the same city at the same camera after the press

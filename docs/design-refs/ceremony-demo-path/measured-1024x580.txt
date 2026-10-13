@@ -1,0 +1,17 @@
+# 1024x580, reduced motion
+
+00-before: the ceremony open, before any beat
+  at rest after 5.7s, biggest single-sample change 0.02% of the frame
+01-gathering: beat one: the city gathers
+  at rest after 12.9s, biggest single-sample change 5.99% of the frame
+02-expansion: beat two: the island makes room
+  at rest after 9.5s, biggest single-sample change 0.34% of the frame
+03-rebuild: beat three: the hall is rebuilt
+  at rest after 7.4s, biggest single-sample change 0.41% of the frame
+04-retheme: beat four: the age turns
+  at rest after 7.7s, biggest single-sample change 1.04% of the frame
+
+four beats on the forward rung, each waited out to rest: 26.8s
+four beats pressed straight through, no pause:            0.3s
+
+the 200ms sampling interval of the settle loop is inside the first figure and not the second.

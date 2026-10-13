@@ -1,0 +1,855 @@
+/*
+ * THE HARD WINTER, WORN AS A PANEL OVER THE CITY.
+ *
+ * The lead's ruling is that the crisis happens in the in-game screen rather than on a page
+ * about it, so the layout is inverted from `?winter`'s: the ISLAND is the whole screen, and
+ * the winter's own controls are a rail down one side of it.
+ *
+ * There is no board in here. The board is the city's own canvas, already on screen and still
+ * rendering — see `three/WinterInCity.tsx`. That is why almost every rule below is either
+ * "let the pointer through to the island" or "shrink a page into a rail"; the panels
+ * themselves are the winter's existing stylesheet (`winter/hard-winter.css`), untouched.
+ *
+ * `?winter` never loads this file.
+ */
+
+/* ------------------------------------------------------------------ the mount */
+
+/*
+ * Pointer-TRANSPARENT by default, and this is the load-bearing rule of the file: the island
+ * underneath has to keep the drag, the zoom and the click that places a fire. Only the rail
+ * and the exit control take pointer events back.
+ */
+.winter-in-city {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  /*
+   * HOW WIDE THE SIDE PANEL IS, DECLARED ONCE — AND SIZED TO ITS CONTENT.
+   *
+   * Two boxes are sized off it — the panel and the exit control beside it — and a second copy
+   * of the expression is how the exit chip ends up on top of the panel at one viewport nobody
+   * checked. `winterFraming.ts` reads it a third time in TypeScript, which is a copy that
+   * cannot be a variable; `test/winterCrisisBandMirror.test.ts` is the tripwire over that one.
+   *
+   * ## WHERE 470 COMES FROM, AND WHY IT IS NOT A PIXEL COUNT SOMEBODY LIKED
+   *
+   * It was `min(620px, 50vw)` — half the screen — and the lead's objection, repeatedly, was
+   * that the island is not visible enough behind it. The cap below is this panel's CONTENT
+   * measured, not a smaller number chosen; `crisisPanelFitsItsContent.browser.test.tsx`
+   * re-measures the content in real Chromium on every run and fails if the two come apart.
+   *
+   * Almost everything in here is PROSE, and prose has no width of its own: it trades width for
+   * height. So the width is set by the widest thing in the panel that cannot reflow, and
+   * measured across all four phases at 1024x580 and 1440x900 that is ONE SENTENCE — the middle
+   * action card's description in the declare step, *"Shields one building, and the frost has to
+   * break it first."*
+   *
+   * IN **DejaVu Sans**, which is the number that matters: `styles.css` ships no `@font-face`, so
+   * the panel's body type is whatever the machine resolves for `system-ui`, and DejaVu is both
+   * the widest family the stack lands on and the one CI serves. It paints there at **327.5px**,
+   * and its card spends **24px** on border and padding, so the content column has to be
+   * **351.5px** for it to hold one line. The panel's own chrome is **90px** (2px border and 26px
+   * padding here, 16px padding and 1px border on the inner panel, twice over), which puts the
+   * floor at **441.5px**. 470 clears that by 6.5%, and bisected in the browser the requirement
+   * measures **442px at 1440x900** and **430px at 1024x580**, where the shorter padding branch
+   * leaves 12px more content for the same width.
+   *
+   * THE `50vw` CLAMP IS THE TIGHTER OF THE TWO, and it is worth knowing which: at 920x800 the
+   * panel is 460px whatever the cap says, so the margin there is 18.5px rather than 28.5px. No
+   * cap can widen that, which is why a sentence that did not fit in 460 had to get shorter
+   * rather than the panel wider.
+   *
+   * THE FAMILY IS HALF THE MEASUREMENT, and this is the second time this repository has learned
+   * it (`answerPlaceholderFit.browser.test.tsx` is the first). The same sentence paints at 285.0
+   * in Cantarell and 327.5 in DejaVu, a **14.9%** spread end to end over the six families
+   * installed on this machine, so a width derived from a local measurement is a width derived
+   * from a coin toss. Sizing at the top of that spread is what makes 470 safe rather than lucky,
+   * and `crisisPanelFitsItsContent.browser.test.tsx` re-derives it in the widest INSTALLED
+   * family every run rather than trusting this comment.
+   *
+   * Every other candidate was measured and every one is narrower: the widest card LABEL needs
+   * 192px, the tallest read-out's widest rung 308px, and the answer field — the only element in
+   * here with an intrinsic width, checked over all 234 items the crisis can draw — 308px. The
+   * question prompts never bind: the widest KaTeX run in that pool is 144px.
+   *
+   * AND THE SENTENCE IS SHORTER THAN IT WAS, which is what let the width stay at 470 rather than
+   * going up to 480. It was *"...has to get through it first."* at 364.2px in DejaVu, needing a
+   * 478px panel; the card is the one string in here that must not wrap, so it was the string
+   * that moved. `HardWinterSurface.tsx` carries that argument beside the sentence itself.
+   *
+   * WHAT LOOKED LIKE IT BOUND, AND DOES NOT: the commit row. Below about 504px of panel its
+   * read-out stops fitting beside the button and the button takes its own row, which costs 33px.
+   * That is a real price and it is not a requirement, because the row ALREADY breaks that way at
+   * the lead's window in the state that matters: with a cell aimed at, the read-out names the
+   * cell, and it was two rows there at `min(620px, 50vw)` too. A property the panel did not have
+   * at half the screen cannot be what half the screen was buying. `.hw-commit` further down has
+   * the measurement and the frame that settled it.
+   *
+   * THE 50vw SHARE IS UNCHANGED, and it is not a second opinion about the width: it is the
+   * clamp that keeps the panel off a narrow window, where half the screen is less than the cap.
+   * It binds below 940px; the cap binds above it.
+   */
+  --hw-side: min(470px, 50vw);
+  --hw-gutter: 14px;
+}
+
+/*
+ * Clear of the panel, and given its own solid fill: the city's ghost chip is drawn for a HUD
+ * strip, and out here it sits on whatever the island happens to put under it — grass, lagoon,
+ * frost — where it was illegible.
+ */
+.winter-in-city__exit {
+  position: absolute;
+  /* IN THE OCEAN BESIDE THE PANEL, which is where a side layout puts the free space. It was
+     top-left, over the town capsule, which the panel now occupies for the whole height of the
+     screen. Derived from `--hw-side` rather than restated, so the two cannot drift into each
+     other; the phone rule below puts it back to the left margin, because at that width the
+     panel is a bottom sheet and the top-left corner is free again.
+
+     The town capsule it used to be measured against no longer binds: `[data-winter="true"]
+     .hud` is dimmed to 0.22 for the whole encounter and its controls are refused by
+     `CitySurface` (see the rule below for why the `pointer-events` half of that never held on
+     its own), so the capsule is a ghost the exit may sit over. */
+  top: 16px;
+  left: calc(var(--hw-side) + var(--hw-gutter) * 2);
+  /* ABOVE THE PANEL, because it is the way out of the crisis and a half-covered exit is worse
+     than an untidy one. */
+  z-index: 2;
+  pointer-events: auto;
+  padding: 9px 16px;
+  border: 2px solid #4a9fd4;
+  border-radius: 999px;
+  background: #0d1b2a;
+  color: #eef4f8;
+  font-family: "Nunito Variable", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.winter-in-city__exit:hover {
+  background: #17384f;
+}
+
+/*
+ * While a winter is falling, the CITY's own chrome stands DOWN.
+ *
+ * Not cosmetic: "Build" puts the placement grid and a ghost on the island, and `CityScene`
+ * drops the winter's aim plane while `placing` is true — so a stray press on a chip would
+ * quietly stop fires from being placeable, with nothing on screen saying why.
+ *
+ * ## THE `pointer-events` LINE HAS NEVER DONE WHAT THIS COMMENT USED TO CLAIM
+ *
+ * It read *"the CITY's own controls are inert"*, and they were not. `styles.css` carries
+ * `.hud { pointer-events: none }` with `.hud > * { pointer-events: auto }` right under it —
+ * the container passes drags through to the map and its panels take their own events — so
+ * this rule lands on the same container that was already transparent and every control inside
+ * it is put straight back to `auto` one level down. Measured in real Chromium at 1024x580
+ * with `[data-winter="true"]` on the page (`crisisShutsTheLessonDoors.browser.test.tsx`
+ * carries the chain): `.hud.hud-dock` is `none` and `.hud-buildings`, the panel, the list and
+ * the roster button are all `auto`.
+ *
+ * That is why a click on a roster row opened a lesson popup over a running crisis. The line
+ * stays, because a transparent container is still the right thing for a HUD over a live map,
+ * and because it is what `.winter-in-city__exit` below is positioned against. What has moved
+ * is where the ruling is ENFORCED: `CitySurface`'s `crisisHasTheIsland` refuses every opener
+ * and disables every control that used to reach one, which closes the keyboard as well as the
+ * mouse and says so out loud. A stylesheet could never have done either.
+ *
+ * The DIMMING is this file's own and does work: the HUD measures `opacity: 0.22` for the
+ * whole encounter, so a control that will not answer is visibly stood down rather than
+ * mysteriously dead.
+ */
+.city-surface[data-winter="true"] .hud {
+  pointer-events: none;
+  opacity: 0.22;
+}
+
+/* The economy HUD is `App`'s, outside `.city-surface`, and it owns the Shop. */
+.city-shell:has(.city-surface[data-winter="true"]) .economy-hud {
+  pointer-events: none;
+  opacity: 0.22;
+}
+
+/* ------------------------------------------------------------------ the sheet */
+
+/*
+ * THE WINTER'S SURFACE IS A PANEL DOWN THE LEFT-HAND SIDE, IN EVERY PHASE.
+ *
+ * ## Three objections, and the axis that answers all of them
+ *
+ * This was a 430px rail down the RIGHT edge, and the lead's first objection was that it made
+ * the questions the least significant thing on screen, *"not very significant and hard to read
+ * for a viewer"* — someone watching from across a room. So it became a centred sheet at two
+ * thirds of the viewport, and hours later the same reviewer said the opposite thing about the
+ * same panel: *"i dont get to see the actual changes in the island because its completely
+ * blocked by the panel."* So it became a bottom band, the camera lifted the frame over it
+ * (`winterFraming.ts`), and the verdict on that was *"now we're too zoomed out to see the
+ * actual island"*. Then the ruling: *"maybe make it a sidebar instead of at the bottom - i
+ * think that makes more sense."*
+ *
+ * He is right, and the reason is worth writing down because it is what makes this the last
+ * shape rather than the fourth of five. THE ISLAND IS A WIDE DISC AND THE VIEWPORT IS A WIDE
+ * BOX, so the two axes are not interchangeable:
+ *
+ *  - a BOTTOM band spends the scarce axis. At 1024x580 there are 580 pixels of height and the
+ *    settlement needs most of them, so every pixel of band has to be bought back by dollying
+ *    out — which is exactly the trade that produced the "too zoomed out" verdict;
+ *  - a SIDE panel spends the axis that is already empty. The disc is 46 units across in a
+ *    frustum 70 units wide, so a third of the screen's width is open ocean before anything is
+ *    moved, and a horizontal nudge of the frame is a cheap correction where a vertical lift was
+ *    an expensive one.
+ *
+ * ## LEFT, and not right, and the choice is about what else is at each edge
+ *
+ * The right edge is the city's own: `hud-top-right` carries Day and ☰ Menu, and
+ * `hud-camera-cluster` puts two round buttons down the right-hand side. They are dimmed to
+ * 0.22 while a winter runs, but they are still DRAWN, and they belong to
+ * `CitySurface.tsx`. The left edge carries only this surface's own "Leave the winter" chip,
+ * which this file positions and can therefore move. Left is also where a left-to-right reader
+ * looks first, which is the half of *"not very significant"* that is about position rather than
+ * about size.
+ *
+ * ## AS WIDE AS ITS CONTENT, which is neither half the screen nor the rail he threw out
+ *
+ * `min(470px, 50vw)`, and the top of this file records how that number was measured rather than
+ * chosen. It was half the screen, and the objection that ended that is the one this shape was
+ * supposed to have answered: *"the island is not visible enough behind it."*
+ *
+ * The rail he threw out was `min(430px, 42vw)` and only as tall as its own content, which is
+ * 386px at 920 and 430px at both 1024 and 1440. This is 460, 470 and 470 — wider than the rail
+ * at every one of them, and the full height of the screen besides. What separates the two is
+ * not a preference about pixels: at 430 the declare step's middle card takes a second line and
+ * its third card slides under the pinned commit control, and at 470 neither does, which is what
+ * `crisisPanelFitsItsContent.browser.test.tsx` measures instead of pinning a floor.
+ *
+ * The question and the answer field keep the type step further down this file, so *"hard to
+ * read for a viewer"* is answered by the type as well as by the box.
+ *
+ * ## ONE SHAPE FOR EVERY PHASE, which the band version could not manage
+ *
+ * The band had to become a centred sheet while answering, because a band tall enough to hold a
+ * prompt, a keypad and a worked solution would have covered the island anyway. A side panel has
+ * the whole height of the screen, so it holds the answering phase without growing — and that
+ * means no re-layout on any phase change, and no second geometry for a later phase to be
+ * forgotten by. `[data-phase]` is still on the element and still the engine's own phase; what
+ * is keyed on it now is type size and nothing structural.
+ *
+ * ## OPAQUE, and the island is not dimmed
+ *
+ * Two judgement calls, and they are the same call twice. The panel is opaque because prose
+ * over a moving 3D scene is the least legible thing this screen could do, and legibility at a
+ * distance is half the request. The island is NOT dimmed, because dimming it to push the
+ * panel forward would spend the thing the lead asked to keep; the separation comes from a
+ * deep shadow instead, which darkens the immediate surround and leaves the rest of the city
+ * at full strength.
+ */
+.winter-in-city .hw-shell {
+  position: absolute;
+  /* TOP-ANCHORED AND GROWING DOWN, rather than stretched or centred. `height: fit-content`
+     against a `max-height` means a short phase is a short card instead of a half-empty column,
+     and anchoring the top keeps the masthead in the same place from phase to phase. */
+  inset: var(--hw-gutter) auto auto var(--hw-gutter);
+  margin: 0;
+  width: var(--hw-side);
+  height: fit-content;
+  /* BOUNDED AND SCROLLING, never `overflow: visible`. A card capped by height that does not
+     clip draws its content outside itself on a short laptop, which was measured at 89px past
+     the edge at 720px tall on the ceremony's card. `max-height` with `overflow-y: auto` is
+     the pair that cannot do that. */
+  min-height: 0;
+  max-height: calc(100vh - var(--hw-gutter) * 2);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px 26px 26px;
+  border: 2px solid #4a9fd4;
+  border-radius: 16px;
+  /* Flat, never a gradient: the island reads by tone step and a wash behind it would put a
+     second, competing one on the same screen. */
+  background: #eef4f8;
+  box-shadow: 0 24px 80px rgba(13, 27, 42, 0.45);
+  pointer-events: auto;
+  /*
+   * A FLEX COLUMN, so the substance can be ordered ahead of the pre-amble.
+   *
+   * A panel at two thirds of the screen that still opens on a legend and a disclaimer has
+   * missed the point: measured at 920x800 with the pre-amble first, the question's last line
+   * and the field under it were both below the fold. The island's key and the sandbox promise
+   * are REORDERED and not hidden, so both are still on screen one scroll down, in the same DOM
+   * position, with nothing reworded. `position: sticky` on the header survives: a flex item can
+   * be sticky.
+   */
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * PHONE WIDTH GETS ITS OWN ANSWER, AND IT IS NOT A SIDE PANEL. Half of 460px is 230px, which
+ * is narrower than the rail the lead threw out; there is no ocean margin to spend at that
+ * width because the island already fills it. So below 560px the surface keeps the full-width
+ * bottom sheet it has always had, in every phase, and `winterFraming` refuses to re-frame the
+ * camera there for the same reason (see that file's refusal branch).
+ */
+@media (max-width: 560px) {
+  .winter-in-city .hw-shell {
+    inset: auto 0 0 0;
+    margin: 0;
+    width: 100%;
+    max-height: 76vh;
+    padding: 14px 16px 20px;
+    border-width: 2px 0 0;
+    border-radius: 16px 16px 0 0;
+  }
+
+  /* The panel is back along the bottom, so the top-left corner is free for the way out. */
+  .winter-in-city__exit {
+    left: 16px;
+  }
+
+  /* And the conclusion keeps the bottom card `hard-winter.css` gives it, for the same reason. */
+  .winter-in-city .hw-conclusion {
+    inset: auto 0 0 0;
+    width: 100%;
+    max-height: 76vh;
+    margin: 0;
+  }
+}
+
+/*
+ * A SHORT VIEWPORT TAKES BACK PADDING AND NOTHING ELSE, WHICH IS THE POINT OF THE SIDE SHAPE.
+ *
+ * The band version had to give up 8vh of its own height here: at 640px tall the strip a 58vh
+ * band left was 255px, the settlement could not be fitted into it even at the furthest dolly
+ * the game allows, and the framing refused outright. That whole trade is gone. A side panel's
+ * ceiling is the viewport's height either way, and what the camera has to fit the settlement
+ * into is the WIDTH beside it, which a short viewport does not touch.
+ *
+ * The padding still goes, because 580px of height is 580px of height.
+ */
+@media (max-height: 760px) {
+  .winter-in-city .hw-shell {
+    padding: 12px 20px 18px;
+  }
+}
+
+/*
+ * THE END OF THE WINTER HAS NO PANEL AT ALL, and the rule that used to give it a taller band is
+ * gone rather than retuned.
+ *
+ * D-CRISIS-30's first clause is that a concluding screen has to be an EVENT and not the last
+ * state of the HUD the crisis was played on, and era one's own failure was exactly that: the
+ * outcome was a fourth `.hw-panel` in the same box as the declare panel and the question panel,
+ * so the screen meaning *this is over* was the same object in the same place as the screen
+ * meaning *choose your next action*. `WinterConclusion` is its own fixed card, sized and placed
+ * by `winter/hard-winter.css`, so at this phase the shell has nothing left to show.
+ *
+ * This is the ONE phase rule left in this file that changes a box, and it changes it to nothing.
+ * The side panel holds the other three phases in one shape (see the base rule above), so the
+ * `answering` sheet, its short-viewport ceiling, its phone re-anchor and the `ended` band's own
+ * taller ceiling are all deleted rather than carried: there is no second geometry for a later
+ * phase to be forgotten by.
+ *
+ * HIDDEN AND NOT UNMOUNTED, and that distinction is load-bearing. `renderBoard` is called inside
+ * this shell, and it is where `WinterBoardBridge` lives: unmounting it runs its cleanup, which
+ * publishes `null` to the city and takes the whole crisis layer off the island, the thawed ground
+ * and the ruins and the scars with it. `display: none` keeps the effect mounted, so the island
+ * the conclusion is a commentary on is still there behind it.
+ */
+.winter-in-city .hw-shell[data-phase="ended"] {
+  display: none;
+}
+
+/*
+ * AND THE CARD THAT REPLACES IT TAKES THE PANEL'S OWN BOX, which is the one thing the side layout
+ * has to ask of `WinterConclusion`.
+ *
+ * `winter/hard-winter.css` places it as a bottom-anchored centred card — `min(1000px, 88vw)` at
+ * `min(58vh, 480px)` — and that was right while the crisis was a bottom band, because the camera
+ * had lifted the settlement into the strip ABOVE the band and the card landed under it. The camera
+ * now frames the settlement into the strip BESIDE the panel, once for the whole encounter, and a
+ * bottom card 88vw wide is straight across the middle of it: measured at 1024x580, it would cover
+ * the settlement from y=230 down, which is its lower half.
+ *
+ * So the card takes the same column the panel had. That leaves the island in exactly the same
+ * strip in all four phases, which is what lets the framing stay derived once, and it means the
+ * conclusion is a commentary sitting beside the thing it is commenting on rather than over it.
+ * `?winter` is untouched: it has no island behind it and keeps the centred card.
+ */
+.winter-in-city .hw-conclusion {
+  inset: var(--hw-gutter) auto auto var(--hw-gutter);
+  width: var(--hw-side);
+  max-height: calc(100vh - var(--hw-gutter) * 2);
+  margin: 0;
+}
+
+.winter-in-city .hw-body {
+  grid-template-columns: 1fr;
+  gap: 14px;
+  order: 1;
+}
+
+/*
+ * THE SUBSTANCE COMES FIRST, WHICH IS THE OTHER HALF OF THE LEAD'S OBJECTION.
+ *
+ * A sheet at two thirds of the screen that still opens on a legend and a disclaimer has missed
+ * the point: measured at 920x800 with the pre-amble first, only 34 pixels of the question were
+ * above the fold. So the shell is a flex column in-city and the panels are ordered ahead of
+ * the two things that are not the question.
+ *
+ * Reordered rather than hidden, and that distinction is the whole reason this is safe: the
+ * island's key and the sandbox promise are both still on screen, in the same DOM position, one
+ * scroll below. Nothing is reworded and nothing is dropped. The header keeps `order: 0` so it
+ * stays the masthead it already is, and its `position: sticky` is unaffected — a flex item can
+ * be sticky.
+ */
+/*
+ * No longer sticky, and no longer anything to look at: the board is the city's own canvas, and
+ * the island's key has moved up into the settlement strip. What is left in here is
+ * `WinterBoardBridge`, which renders nothing on purpose.
+ *
+ * SO IT IS COLLAPSED WHEN IT IS EMPTY, and that is 14px of `.hw-body`'s gap given back to the
+ * declaring band's action cards rather than spent on a div with no pixels in it. `:empty` and not
+ * `display: none` outright, because the `?winter` route mounts a real 2D grid in here and this
+ * file is loaded only in-city, where a grid can still appear if the canvas fails closed
+ * (`WinterInCityProps.canvasLive`).
+ */
+.winter-in-city .hw-board {
+  position: static;
+  order: 2;
+}
+
+.winter-in-city .hw-board:empty {
+  display: none;
+}
+
+.winter-in-city .hw-side {
+  order: 1;
+}
+
+/*
+ * THE SETTLEMENT STRIP STAYS WITH THE MASTHEAD, which is the other half of *"we dont tkae up more
+ * unnecessary vertical space"*. One line was the first half; at 1024x580 the declaring band is
+ * 290px and a one-line strip at the FOOT of it is still below the fold, which is exactly where the
+ * lead found it. So it is ordered with the header, and it inherits the header's own argument: the
+ * round counter is up there because a clock that scrolls out of sight during the turn it is
+ * counting is not one, and *which of my buildings is about to fall* is the same kind of fact.
+ */
+.winter-in-city .hw-strip {
+  order: 0;
+  margin: 0 0 4px;
+  padding: 5px 0 6px;
+  border-top: 0;
+  border-bottom: 1px solid rgba(13, 27, 42, 0.12);
+}
+
+/*
+ * What comes OUT in-city, and why each one. The governing test is the lead's own: *"keep what a
+ * player needs in order to decide, cut what merely reports that the simulation is working."*
+ *
+ *  - the 2D grid's key describes swatches that are not on this board (`IslandLegend` replaces
+ *    it with the island's own tones);
+ *  - the prototype's grading note and the `?winter` return link both describe a route the
+ *    player did not take;
+ *  - the dev panel picks an authored city, and in-city the board is fixed to THIS one — the
+ *    picker would offer a board the canvas cannot show. Restarting is Leave, then re-enter;
+ *  - THE ROUND LOG is *"the tracker on what actions have been taken so far"*, which the lead
+ *    asked to be removed by name. It is a list of state transitions: a debugging affordance, the
+ *    same class of instrument as the dev panel it now sits beside in this list, and nothing a
+ *    player consults while choosing. `?winter` keeps it, because there a replayable event list is
+ *    most of what the route is for;
+ *  - THE SANDBOX NOTICE is the block that was bleeding off the foot of the lead's window, and it
+ *    is dev chrome in the same sense: several lines explaining a persistence model to somebody
+ *    mid-encounter, and the lowest-value text on the screen. Its one load-bearing fact — that
+ *    nothing reaches the real island unless asked — now sits where the asking happens, on the
+ *    conclusion's own carry-back control. `?winter` keeps the notice, because there it is a
+ *    tuning instrument's promise to whoever is about to burn down a copy of their own city;
+ *  - THE STEP BADGES number the encounter's phases, which a player experiences as one flow.
+ *    *"Round 1 of 5"* and *"Question 1 of 3"* already say where they are, in their own terms.
+ *
+ * `hw-note--draw` is the one exception among the notes, and it is the one that matters most
+ * in-city: it says the questions are coming from lessons the learner has not done, which
+ * contradicts what the advisor told them on the way in. Hiding that here would leave the
+ * correction visible only on the route the player did not take.
+ */
+.winter-in-city .hw-legend,
+.winter-in-city .hw-note:not(.hw-note--draw),
+.winter-in-city .hw-layout,
+.winter-in-city .hw-chip--leave,
+.winter-in-city .hw-log,
+.winter-in-city .hw-panel .section-index,
+.winter-in-city .hw-panel--dev {
+  display: none;
+}
+
+/*
+ * The round counter and the frost tally stay put while the rail scrolls. On a page they
+ * were a masthead; over a live board they are the clock, and a clock that scrolls out of
+ * sight during the turn it is counting is not one.
+ */
+.winter-in-city .hw-header {
+  position: sticky;
+  top: -14px;
+  z-index: 1;
+  gap: 6px;
+  padding: 14px 0 8px;
+  margin-top: -14px;
+  align-items: baseline;
+  background: rgba(238, 244, 248, 0.98);
+  order: 0;
+}
+
+.winter-in-city .hw-header h1 {
+  font-size: 24px;
+}
+
+/* --------------------------------------------------------------- island key */
+
+/*
+ * ACROSS, NEVER DOWN, and it now sits on the settlement's own row.
+ *
+ * The lead, with a screenshot of the bottom of this panel bleeding off the foot of his window:
+ * *"move it to be on the same line as the settlement description (you can keep the key with the
+ * indicators on what colros matches up to what), just make the on the same line so we dont tkae
+ * up more unnecessary vertical space"*. It was a `grid` with a 5px gap, so four ground states
+ * cost four rows of a vertical budget that is about 580px in total.
+ *
+ * THE KEY ITSELF IS NOT NEGOTIABLE and none of the four entries is dropped: the player acts on
+ * all four, and the frost line is the one they read to predict which building the next round
+ * bites. What changed is the axis.
+ *
+ * It is rendered INSIDE `WinterStatusStrip` now, through that component's `renderKey` slot,
+ * because two elements cannot share a line from two different containers. The slot exists so
+ * whoever draws the board still owns what its key says: the 2D grid's swatches are CSS and
+ * these are the island's three.js ground tones, and they are not the same colours.
+ */
+.winter-in-city__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.winter-in-city__legend li {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+/* The frost line's entry carries the longest label on the strip, and its clause after the colon
+   is an explanation rather than a name. Kept in the DOM and folded away at the width where the
+   strip would otherwise take a second row for it. */
+@media (max-width: 1100px) {
+  .winter-in-city__legend .winter-in-city__legend-why {
+    display: none;
+  }
+}
+
+.winter-in-city__swatch {
+  width: 13px;
+  height: 13px;
+}
+
+.winter-in-city__swatch {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(13, 27, 42, 0.35);
+  border-radius: 3px;
+}
+
+/* ------------------------------------------------------- nothing to fall on */
+
+/*
+ * The refusal. An island with no buildings on it is not played on an authored layout here —
+ * the canvas behind would be showing this city while the engine played a different one.
+ */
+.winter-in-city--refused {
+  display: grid;
+  place-items: center;
+  background: rgba(13, 27, 42, 0.55);
+  pointer-events: auto;
+}
+
+.winter-in-city__rail {
+  max-width: 420px;
+  padding: 22px 24px;
+  border-radius: 12px;
+  background: #eef4f8;
+  color: #0d1b2a;
+  font-family: "Nunito Variable", system-ui, sans-serif;
+}
+
+.winter-in-city__rail h2 {
+  margin: 0 0 8px;
+  font-family: "Fredoka Variable", system-ui, sans-serif;
+}
+
+.winter-in-city__rail p {
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------ read from across the room
+ *
+ * THE SUBSTANCE IS SET LARGER IN-CITY, because the request was legibility "for a viewer" and a
+ * bigger box with the same type in it is a bigger box. The question, the answer field and the
+ * verdict are the three things a person watching a demo is trying to read, so those three get
+ * the step and nothing else does: scaling every string would take back the space the sheet
+ * just spent.
+ *
+ * Gated at 700px, because at phone width the sheet is already full-bleed and a type step there
+ * costs lines rather than buying legibility.
+ */
+@media (min-width: 700px) {
+  /* The paragraph and not only the wrapper: `LessonProse` renders markdown, so the prompt is a
+     `<p>` inside this div, and `.hw-panel p` sets that `<p>` to 14px at a specificity the
+     wrapper's own rule does not beat. Setting the div alone changed nothing on screen. */
+  .winter-in-city .hw-question,
+  .winter-in-city .hw-question p {
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .winter-in-city .hw-panel h2 {
+    font-size: 23px;
+  }
+
+  .winter-in-city .hw-shell .lesson-player__row input[type="text"] {
+    padding: 10px 14px;
+    font-size: 19px;
+  }
+
+  .winter-in-city .hw-shell .lesson-player__row button[type="submit"] {
+    padding: 11px 20px;
+    font-size: 17px;
+  }
+
+  .winter-in-city .hw-verdict p,
+  .winter-in-city .hw-solution__answer p {
+    font-size: 18px;
+  }
+
+  /* `.hw-tally` was stepped up beside this one and is gone from the component: it was the
+     running answer count, which the lead asked to be removed as a tracker. */
+  .winter-in-city .hw-declared {
+    font-size: 16px;
+  }
+}
+
+/* ------------------------------------------------ a side panel is a tall column
+ *
+ * A SIDE PANEL IS A NARROW, TALL BOX, AND WHAT IS INSIDE IT HAS TO BE ONE TOO.
+ *
+ * The band's version of these rules spent WIDTH to buy height: the cards went three abreast, the ladder
+ * wrapped sideways, and the shell widened to 94vw to make three abreast readable. A side panel
+ * has the opposite budget — a column sized to its own content and the whole height of the
+ * screen — so the cards go back down a column, where each one gets the full width for its
+ * label and its one line.
+ *
+ * What survives from the band is everything that was about SPENDING LESS, because a column half
+ * a screen wide is still a column: the compact masthead, the tighter panel padding, and the
+ * 18px heading. Those were measured against a band's height and they are kept for the reader's
+ * eye rather than for the box.
+ *
+ * Applied in every phase now, with no `:not([data-phase="answering"])` in front of them. The
+ * band needed that exclusion because the answering sheet was a different box; there is one box
+ * now, so the exclusion would have meant "these two phases are laid out differently for no
+ * reason". What is still keyed on the phase is TYPE, immediately below.
+ */
+.winter-in-city .hw-shell .hw-header {
+  gap: 6px 18px;
+  padding: 6px 0 5px;
+  margin-top: -10px;
+}
+
+.winter-in-city .hw-shell .hw-header h1 {
+  font-size: 18px;
+}
+
+.winter-in-city .hw-shell .hw-panel {
+  margin-bottom: 12px;
+  padding: 12px 16px;
+}
+
+.winter-in-city .hw-shell .hw-panel p {
+  margin: 4px 0;
+}
+
+/*
+ * THE HEADING IS 18px EVERYWHERE EXCEPT ON THE QUESTION, which is the one place the type step
+ * above was asked for. *"Hard to read for a viewer"* was said about the QUESTIONS; a 23px
+ * "Choose your action, the better your accuracy, the more effective it'll be" buys nothing a
+ * person across the room needs and costs the column two lines.
+ */
+.winter-in-city .hw-shell:not([data-phase="answering"]) .hw-panel h2 {
+  margin: 2px 0 4px;
+  font-size: 18px;
+}
+
+.winter-in-city .hw-shell .hw-action {
+  padding: 8px 10px;
+}
+
+.winter-in-city .hw-shell .hw-action small {
+  margin-top: 1px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+/* The eyebrow says "Mid-era crisis · prototype", which names the route and its build status
+   rather than the game, so it comes out in EVERY phase. The masthead's round counter and frost
+   forecast stay. */
+.winter-in-city .hw-header .micro-label {
+  display: none;
+}
+
+/*
+ * THE CONTROL THAT LEAVES THE PHASE IS PINNED TO THE PANEL'S BOTTOM EDGE.
+ *
+ * `flex-wrap` first, so the read-out and the button share a row while there is room for both
+ * and the read-out takes its own when there is not. At a panel sized to its content there is
+ * not, in the declare phase — see the rules below for the measurement and why the alternative
+ * was rejected. But the real work here is `position: sticky`, and it is a fix for a measured
+ * defect rather than a flourish: aiming a fire at a cell replaces the generic ladder with
+ * `FirePreviewLadder`, which is the tallest read-out the declaring panel ever carries, and it
+ * pushed "Commit and face 3 questions" below the fold at all four viewports the band was
+ * measured at — 920x800, 920x720, 460x800 and 1440x720.
+ *
+ * It is kept in the side layout for exactly the same reason, and the reason has not weakened:
+ * the panel is `height: fit-content` under a `max-height`, so a phase whose content outgrows
+ * the screen scrolls, and a way forward that scrolls out of a scroller is a way forward the
+ * player has to hunt for. Pinning it is the fix that cannot come undone by the panel growing.
+ *
+ * Opaque, because content scrolls underneath it, and in the panel's own white rather than the
+ * shell's tint so the pin reads as part of the card it belongs to.
+ */
+.winter-in-city .hw-shell .hw-commit {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  align-items: center;
+  margin-top: 8px;
+  padding: 8px 0;
+  border-top-style: solid;
+  border-top-color: rgba(13, 27, 42, 0.12);
+  background: #fff;
+}
+
+/*
+ * AND ITS BUTTON IS SIZED TO ITS LABEL, so the row is never two rows for the button's own sake.
+ *
+ * `styles.css` sets `.primary-action { width: 100% }` for the city's own cards, and the winter's
+ * override never reset it, so the read-out and the button were laid out side by side by a flex
+ * rule and then the button took the whole line anyway. Measured at 1024x580: `.hw-commit` came to
+ * 93px, which is two rows, against 48px for one, and the 45px it gives back are 45px of the
+ * panel's own action cards.
+ *
+ * THE ROW IS STILL SOMETIMES TWO ROWS, and this rule is not what decides that — the read-out's
+ * own length is. This comment used to claim the pair made one row outright, which was true only
+ * while the panel was half the screen and was never true in the aiming state at the lead's
+ * window. The rule below it records the measurement and the frame.
+ *
+ * Unscoped from `:not([data-phase="answering"])` with everything else in this section: the side
+ * panel is one box in every phase, so a rule that made the commit row one row in three of them
+ * and two in the fourth would be a difference with no reason behind it.
+ */
+.winter-in-city .hw-shell .hw-commit .primary-action {
+  flex: 0 0 auto;
+  width: auto;
+  margin-top: 0;
+}
+
+/*
+ * AND ITS READ-OUT IS LEFT TO TAKE ITS OWN ROW WHEN IT NO LONGER FITS BESIDE THE BUTTON, WHICH
+ * IS A DECISION AND NOT AN OVERSIGHT.
+ *
+ * Flexbox decides WRAPPING from an item's hypothetical size, before any shrinking, so a `<p>` at
+ * `flex-basis: auto` is hypothetically its max-content: at a panel narrower than about 504px,
+ * *"Pull everyone in off the outermost ring"* on one line plus the button exceeds the flex line
+ * and the button drops below it. `flex: 1 1 0` on this paragraph removes that — the read-out is
+ * then sized to whatever the button leaves and wraps inside its own item — and it was tried,
+ * measured and PHOTOGRAPHED before being rejected.
+ *
+ * It is worth 33px of the panel's scarcest axis: swept at 2px steps at 1024x580, the declare
+ * step is 559px tall at 512px of panel — the width this replaced, at that viewport — and 592px
+ * from 500px down without it, against a flat 559 to 560 with it. The whole of the narrowing's
+ * height cost at his window is this one row, and nothing else moved: the settlement strip's key
+ * already wrapped at the old width.
+ *
+ * What it costs is the state where the read-out is longest. Sized to what the button leaves, the
+ * read-out gets 99px of a 380px content column, so the aiming state renders *"Light a fire at /
+ * column -1, row / 0"* — three lines with an orphaned digit — where leaving it alone renders one
+ * clean line above the button. The frames are in the pull request; the second one is better, and
+ * a spatial question gets settled by looking.
+ *
+ * So the row is two rows in the resting declare state, where it was one at half the screen. That
+ * is the price of the narrowing, it is 33px of scroll depth in a panel that already scrolls, and
+ * at 1024x580 nothing a player needs goes below the fold for it.
+ */
+
+/*
+ * THE LADDER STILL WRAPS. Four rungs down a column is four lines for four short phrases, and
+ * two of them fit side by side in the content column the panel now has. It is no longer
+ * load-bearing for the commit control — the sticky rule above owns that — so this is now what
+ * it looks like: tidying that costs nothing.
+ */
+.winter-in-city .hw-shell .hw-ladder {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 20px;
+  margin: 6px 0;
+  padding: 8px 12px;
+  line-height: 1.5;
+  list-style: none;
+}
+
+/*
+ * AND THE CARDS GO BACK DOWN A COLUMN, which is what the width change pays for.
+ *
+ * Three abreast was the band's answer to a height budget: at 94vw each card had ~420px and the
+ * row cost ~90px of height. Three abreast in a side panel gives each card under 200px, which is
+ * where "Reinforce a building" wraps to two lines before its description starts — measured at
+ * the answering sheet's own 72vw on 920px, that shape wrapped the cost line to nine lines and
+ * cost 210px, more than the column it was supposed to save.
+ *
+ * Down a column each card gets the whole content column for one label and one line, and three
+ * of them come to about 160px. The panel has the height to spend, which is the whole reason the
+ * side shape exists — and it is these three cards that now set the panel's WIDTH, because the
+ * middle one's description is the widest thing in the panel that cannot reflow. The top of this
+ * file has the measurement.
+ */
+.winter-in-city .hw-shell .hw-actions {
+  grid-template-columns: 1fr;
+  margin: 8px 0;
+}
+
+/* ------------------------------------------------------ aiming at the board
+ *
+ * THERE IS NO SEPARATE AIMING LAYOUT ANY MORE, AND THAT IS THE SIDE SHAPE'S DIVIDEND.
+ *
+ * The band had two ceilings. Unarmed, the decision was WHICH and the band was sized by its own
+ * controls; armed, the decision was WHERE, any cell under the band was a cell the player could
+ * not click, so the ceiling dropped to 46vh to keep the band's top edge below the middle of the
+ * screen — and even that only worked because the camera had lifted the island out of the way.
+ * Four things were also hidden for the duration (the masthead, the panel's opening paragraph,
+ * its heading and the cost line under each card) to get "Now choose a cell on the island" above
+ * the fold of a 304px band.
+ *
+ * A side panel is not over the island in either state. `winterFraming.ts` nudges the frame into
+ * the strip beside the panel, so every cell the player might click is in the clear whether an
+ * action is armed or not, and the instruction sits in a column with room for it. So both rules
+ * are gone rather than retuned.
+ *
+ * `data-aiming` itself stays on the element. It is the engine-derived state the prompt line is
+ * keyed on and the state the browser suite drives through; what has gone is only this file's
+ * opinion about it.
+ */

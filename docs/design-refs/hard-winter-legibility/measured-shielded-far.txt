@@ -1,0 +1,13 @@
+# the SHIELDED captions at the far dolly (2.6x of the default), 1024x580
+0 of 3 on screen
+NUM.4:shown@749,295
+NUM.2:hidden@789,239
+town-hall:hidden@729,219
+0 of 7 captions visible, 0 overlapping
+caption NUM.S:safe:shown@708,248 48x22 opacity 0
+caption NUM.F:safe:hidden@732,226 48x22 opacity 0
+caption NUM.3:safe:hidden@733,280 48x22 opacity 0
+caption NUM.5:safe:shown@776,230 48x22 opacity 0
+caption NUM.4:shielded:shown@749,295 81x22 opacity 0
+caption NUM.2:shielded:hidden@789,239 81x22 opacity 0
+caption town-hall:shielded:hidden@729,219 81x22 opacity 0

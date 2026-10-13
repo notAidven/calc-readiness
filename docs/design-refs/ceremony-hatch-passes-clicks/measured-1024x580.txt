@@ -1,0 +1,17 @@
+viewport 1024x580
+
+the hatch lays out at x 10..262, y 10..172 (252x162),
+which is 6.9% of the frame.
+
+WHAT THE FIX COSTS ON SCREEN, canvas off, in the panel's own corner
+(the top-left 300x200, which is where it stands and where nothing moves):
+  nothing changed at all:      0 of 60000 pixels differ
+  pointer-events none vs auto: 0 of 60000 pixels differ
+  the hatch hidden altogether: 52247 of 60000 pixels differ
+
+The third line is the floor under the instrument: the same comparison reads a change that
+really does paint, so the zero above it is a measurement rather than a blind diff.
+
+The whole frame cannot be used for this. The advisor bobs and blinks on his own CSS and
+`reducedMotion` does not stop him, so over the full frame two captures with nothing
+changed at all differ by 3614 of 593920 pixels.

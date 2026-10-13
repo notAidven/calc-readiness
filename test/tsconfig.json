@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": { "noEmit": true, "rootDir": ".", "types": ["node"] },
+  "//": "The whole-repository hygiene sweeps belong to no workspace, so until this file existed they belonged to no tsc PROJECT either: `tsc --build --listFiles` put ZERO files under test/ into the program, and a blatant type error appended to any of the sixteen sweeps exited 0. These are the files that police everything else. See `.cursor/rules/qa-verification.mdc` #215 for the shape of that failure.",
+  "//types": "`types: [\"node\"]` is the one departure from every other project here, and it is the opposite of the departure packages/economy, engines/game and engines/diagnostic refuse. They exclude their source-reading sweeps from tsc precisely so that `import { readFileSync } from 'node:fs'` CANNOT typecheck inside a package whose contract is zero I/O. This project's contract is the reverse: every file in it opens the repository and reads it, so node:fs is its subject rather than a leak. Scoping is per-project and was measured, not assumed: @types/node sits in the root node_modules and is NOT auto-included anywhere, so a `node:fs` import in packages/economy/src still fails with TS2591.",
+  "//noEmit": "This project publishes nothing -- no other project references it -- so it emits nothing, and that is load-bearing rather than tidy. `support/repoRoot.test.ts` derives its population by walking `test/` on the FILESYSTEM for *.ts, deliberately rather than through `git ls-files`, so that a sweep is covered from the moment it is saved. Emitting to `test/dist` therefore put seventeen generated .d.ts files into that population and turned its both-ways exemption census red. Gitignoring the output does not help: the walk never asks git.",
+  "include": ["**/*"],
+  "references": [
+    { "path": "../packages/shared-state-schema" },
+    { "path": "../packages/skill-graph" },
+    { "path": "../packages/economy" },
+    { "path": "../packages/item-bank" },
+    { "path": "../engines/game" }
+  ]
+}

@@ -1,0 +1,9 @@
+notice: 3 buildings have frozen: Store, Workshop, Commons. They are lost for the rest of the winter.
+frozen buildings: 4
+NUM.S: shielded — "SHIELDED"
+NUM.F: lost — "FROZEN"
+NUM.2: lost — "FROZEN"
+NUM.3: lost — "FROZEN"
+NUM.4: lost — "FROZEN"
+NUM.5: threatened — "IN DANGER"
+town-hall: threatened — "IN DANGER"

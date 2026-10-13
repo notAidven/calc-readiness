@@ -1,0 +1,9 @@
+Measured on the frames in docs/design-refs/finish-lesson by
+cfuFinishLessonNotCovered.browser.test.tsx, on the real learner mount
+(WorldScene size="large" + AdvisorLesson, inside .city-shell), under an emulated
+prefers-reduced-motion: reduce.
+
+1024x580: 1 "Finish lesson" control(s) in the DOM
+1024x580: Finish lesson at (52, 435) 120x44px
+390x580: 1 "Finish lesson" control(s) in the DOM
+390x580: Finish lesson at (12, 441) 120x44px

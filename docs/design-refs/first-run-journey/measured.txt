@@ -1,0 +1,97 @@
+Measured on the frames in docs/design-refs/first-run-journey, under an emulated
+prefers-reduced-motion: reduce, by firstRunJourneyShots.browser.test.tsx in the same run.
+Every box is in CSS pixels, in the viewport named at the start of its line.
+
+1024x580 front door / Create account: 320x45px at (352, 312), bottom y=357
+1024x580 front door / Sign in: 96x44px at (464, 365), bottom y=409
+1024x580 front door / Create account: text rgb(231, 250, 246) on painted rgb(0, 94, 82) = 7.13:1
+1024x580 front door / Sign in: text rgb(0, 59, 52) on painted rgb(251, 246, 235) = 11.63:1
+390x580 front door / Create account: 317x45px at (37, 286), bottom y=331
+390x580 front door / Sign in: 96x44px at (147, 339), bottom y=383
+390x580 front door / Create account: text rgb(231, 250, 246) on painted rgb(0, 94, 82) = 7.13:1
+390x580 front door / Sign in: text rgb(0, 59, 52) on painted rgb(251, 246, 235) = 11.63:1
+1024x580 start choice / Take the diagnostic: 320x53px at (352, 246), bottom y=299
+1024x580 start choice / Start at Era 1: 320x53px at (352, 375), bottom y=428
+1024x580 start choice / panel: 560x470px, top y=55, bottom y=525
+1024x580 start choice / Recommended tag: text rgb(92, 64, 15) on painted rgb(241, 226, 185) = 7.43:1
+1024x580 start choice / Start at Era 1: text rgb(43, 54, 66) on painted rgb(240, 233, 219) = 10.17:1
+390x580 start choice / Take the diagnostic: 320x53px at (35, 212), bottom y=265
+390x580 start choice / Start at Era 1: 320x53px at (35, 358), bottom y=411
+390x580 start choice / panel: 367x505px, top y=38, bottom y=542
+390x580 start choice / Recommended tag: text rgb(92, 64, 15) on painted rgb(241, 227, 185) = 7.48:1
+390x580 start choice / Start at Era 1: text rgb(43, 54, 66) on painted rgb(240, 233, 219) = 10.17:1
+1024x580 advisor beat / Next: 54x44px at (836, 428), bottom y=472
+1024x580 advisor beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 advisor beat / bubble covers 32.7% of the viewport
+390x580 advisor beat / Next: 54x44px at (310, 293), bottom y=337
+390x580 advisor beat / Skip tour: 338x44px at (26, 391), bottom y=435
+390x580 advisor beat / bubble covers 58.7% of the viewport
+1024x580 buildings beat / Next: 54x44px at (836, 428), bottom y=472
+1024x580 buildings beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 buildings beat / bubble covers 32.7% of the viewport
+390x580 buildings beat / Next: 54x44px at (310, 293), bottom y=337
+390x580 buildings beat / Skip tour: 338x44px at (26, 391), bottom y=435
+390x580 buildings beat / bubble covers 58.7% of the viewport
+1024x580 place beat / Next: 54x44px at (354, 462), bottom y=506
+1024x580 place beat / Skip tour: 93x44px at (267, 514), bottom y=558
+1024x580 place beat / bubble covers 16.7% of the viewport
+390x580 place beat / Next: 54x44px at (310, 369), bottom y=413
+390x580 place beat / Skip tour: 140x44px at (224, 421), bottom y=465
+390x580 place beat / bubble covers 46.7% of the viewport
+1024x580 lessons beat / Next: 54x44px at (836, 428), bottom y=472
+1024x580 lessons beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 lessons beat / bubble covers 29.5% of the viewport
+390x580 lessons beat / Next: 54x44px at (310, 293), bottom y=337
+390x580 lessons beat / Skip tour: 338x44px at (26, 391), bottom y=435
+390x580 lessons beat / bubble covers 54.1% of the viewport
+1024x580 resources beat / Next: 54x44px at (836, 428), bottom y=472
+1024x580 resources beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 resources beat / bubble covers 32.7% of the viewport
+390x580 resources beat / Next: 54x44px at (310, 293), bottom y=337
+390x580 resources beat / Skip tour: 338x44px at (26, 391), bottom y=435
+390x580 resources beat / bubble covers 58.7% of the viewport
+1024x580 population beat / Next: 54x44px at (836, 428), bottom y=472
+1024x580 population beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 population beat / bubble covers 32.7% of the viewport
+390x580 population beat / Next: 54x44px at (310, 476), bottom y=520
+390x580 population beat / Skip tour: 338x44px at (26, 524), bottom y=568
+390x580 population beat / bubble covers 47.8% of the viewport
+1024x580 livability beat / Next: 54x44px at (836, 428), bottom y=472
+1024x580 livability beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 livability beat / bubble covers 29.5% of the viewport
+390x580 livability beat / Next: 54x44px at (310, 476), bottom y=520
+390x580 livability beat / Skip tour: 338x44px at (26, 524), bottom y=568
+390x580 livability beat / bubble covers 43.2% of the viewport
+1024x580 happiness beat / Next: 54x44px at (836, 428), bottom y=472
+1024x580 happiness beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 happiness beat / bubble covers 35.0% of the viewport
+390x580 happiness beat / Next: 54x44px at (310, 476), bottom y=520
+390x580 happiness beat / Skip tour: 338x44px at (26, 524), bottom y=568
+390x580 happiness beat / bubble covers 47.8% of the viewport
+1024x580 civic beat / Next: 54x44px at (836, 428), bottom y=472
+1024x580 civic beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 civic beat / bubble covers 29.5% of the viewport
+390x580 civic beat / Next: 54x44px at (310, 476), bottom y=520
+390x580 civic beat / Skip tour: 338x44px at (26, 524), bottom y=568
+390x580 civic beat / bubble covers 43.2% of the viewport
+1024x580 era beat / Next: 54x44px at (836, 428), bottom y=472
+1024x580 era beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 era beat / bubble covers 35.0% of the viewport
+390x580 era beat / Next: 54x44px at (310, 476), bottom y=520
+390x580 era beat / Skip tour: 338x44px at (26, 524), bottom y=568
+390x580 era beat / bubble covers 46.6% of the viewport
+1024x580 crisis beat / Next: 120x44px at (770, 428), bottom y=472
+1024x580 crisis beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 crisis beat / bubble covers 32.7% of the viewport
+390x580 crisis beat / Next: 120x44px at (244, 293), bottom y=337
+390x580 crisis beat / Skip tour: 338x44px at (26, 391), bottom y=435
+390x580 crisis beat / bubble covers 58.7% of the viewport
+1024x580 bay beat / Next: 120x44px at (770, 428), bottom y=472
+1024x580 bay beat / Skip tour: 93x44px at (267, 507), bottom y=551
+1024x580 bay beat / bubble covers 29.5% of the viewport
+390x580 bay beat / Next: 113x44px at (251, 293), bottom y=337
+390x580 bay beat / Skip tour: 338x44px at (26, 391), bottom y=435
+390x580 bay beat / bubble covers 54.1% of the viewport
+1024x580 bay beat / ring at (915, 10) 99x56, Menu at (921, 16) 87x44
+390x580 bay beat / ring at (281, 10) 99x56, Menu at (287, 16) 87x44
+frames taken with the city standing in prehistoric

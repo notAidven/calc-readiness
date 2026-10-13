@@ -1,0 +1,28 @@
+{
+  "viewport": {
+    "width": 1024,
+    "height": 580
+  },
+  "heaviestCity": {
+    "drawCalls": 11967,
+    "triangles": 321995,
+    "sceneObjects": 6930,
+    "frameAverageMs": 272.32,
+    "frameP95Ms": 287,
+    "sampleFrames": 60,
+    "dpr": 1
+  },
+  "heaviestCarousel": {
+    "drawCalls": 11967,
+    "triangles": 321995,
+    "sceneObjects": 6930,
+    "frameAverageMs": 271.3,
+    "frameP95Ms": 281,
+    "sampleFrames": 61,
+    "dpr": 1
+  },
+  "canvasesAcrossTenSelections": 1,
+  "retainedHeroRoots": 1,
+  "coldUnselectedIslandModelRequests": 0,
+  "manifestGlbAvailable": false
+}

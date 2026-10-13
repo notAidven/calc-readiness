@@ -1,0 +1,32 @@
+Era six's duration ladder, measured on the frame at 1024x580.
+
+The camera is the shipped city camera at the CLOSEST dolly a player has
+(VILLAGE_CAMERA.minDistanceRatio 0.5), over era six's own island: grass 46, the
+camera 105.8 out at CITY_FOV 32, so one world unit is 19.1 screen pixels here and
+9.6 at rest. A barrier stone stands 0.598, which is 11.4 pixels at this dolly and
+5.7 at rest; one module of its ladder is 2.0 pixels of side here and about 1.0 of
+foreshortened top face.
+
+The four stones stand six units apart on four parallel bands over the same clear
+ground at the same heading, which is a COMPARISON PLATE and not a board in play.
+Mean weighted luminance over a 7x7 box centred on each stone:
+
+  spent, no course   0.5065
+  one course         0.3947
+  two courses        0.3205
+  a full collar      0.2801
+
+THEY RANK IN ORDER, monotonically, with at least 0.02 between every neighbouring
+pair -- which is the doubling doing the job the sheet says it does.
+
+AND THAT IS A PROPERTY OF THE COMPARISON RATHER THAN OF A BOARD. The same four
+rungs measured on the board in play -- four bands at four headings over four
+slightly different patches of ground -- came back with the middle pair INVERTED by
+0.009 and the ends separated by nothing at all. A module is two pixels of side
+face and about one of foreshortened top face, which is inside what a background
+does to a 7x7 box.
+
+So the honest statement is: SHUT reads anywhere, SET-AGAINST-SPENT reads anywhere,
+and FOR HOW LONG reads when a player has two stones to compare and not otherwise.
+The count itself is not available at any dolly. The read-out panel is where a
+number belongs.

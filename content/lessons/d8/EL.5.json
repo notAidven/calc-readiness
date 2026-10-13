@@ -1,0 +1,83 @@
+{
+  "node_id": "EL.5",
+  "title": "Logarithm properties: product, quotient, power, expand and condense",
+  "mini_lesson": [
+    "An audit of one signal chain has a single logarithm to account for, and two separate stages produced it, so the record has to list the stages on their own. Whether one logarithm can be taken apart that way is settled by what a logarithm is: an exponent on base $10$. Multiplying powers of one base adds their exponents, so multiplying the numbers underneath two logarithms ought to show up as an addition.",
+    "Multiplication turning into addition is the product rule, $\\log(xy) = \\log x + \\log y$, and division turns the same argument around: dividing powers of one base subtracts their exponents, so $\\log \\dfrac{x}{y} = \\log x - \\log y$. A power is repeated multiplication, so its logarithm is a repeated sum, and adding $n$ copies of $\\log x$ gives $\\log(x^{n}) = n \\log x$. Rewriting one logarithm as a sum or a difference of simpler logarithms is what it means to **expand** it, and order matters as soon as a quotient holds a power inside: the division is outermost, so the quotient comes apart first and the exponent comes down only on the piece that carries it.",
+    "Each of those rules is an equation, and read from right to left they gather a sum of logarithms back into one, which is what it means to **condense** an expression. A coefficient standing out in front has to go back inside as an exponent before any gathering happens, since $5 \\log x$ is $\\log(x^{5})$ and collapsing the sum first would attach the $5$ to the wrong place. The trap is the tempting one: $\\log x + \\log y$ is the logarithm of a product, so it is never $\\log(x + y)$, and a sum sitting inside a logarithm does not come apart at all.",
+    "A calculator carries only two logarithm keys, one for base $10$ and one for base $e$, so a base of $5$ has nowhere to go. Swapping the request onto a base you can actually evaluate settles it, and that is the **change of base** rule: $\\log_{b} N = \\dfrac{\\log N}{\\log b}$, which holds just as well with $\\ln$ used on both parts of the fraction. The result is a division of two readings rather than a whole number, so a question in this shape will say how many decimal places to round to."
+  ],
+  "slide_subtitles": [
+    "Splitting one measurement",
+    "Taking a log apart",
+    "Back into one log",
+    "Bases a calculator lacks"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "One stage of the chain multiplies by $8$ and the next by $125$, and the audit holds the pair as a single reading of $\\log 1000$. Split that reading into one logarithm per stage.",
+      "steps": [
+        "The two stages multiply to the whole: $8 \\times 125 = 1000$.",
+        "A logarithm is an exponent on base $10$, so each stage's reading satisfies $10^{\\log 8} = 8$ and $10^{\\log 125} = 125$.",
+        "Multiplying those two powers adds their exponents: $10^{\\log 8 + \\log 125} = 1000$.",
+        "The exponent that turns $10$ into $1000$ is $\\log 1000$, so $\\log 8 + \\log 125 = \\log 1000$ and each stage has a line of its own."
+      ]
+    },
+    {
+      "prompt": "Expand $\\log \\dfrac{x^{4}}{y}$ into logarithms of $x$ and $y$ alone.",
+      "steps": [
+        "The outermost operation is the division, so the quotient comes apart first: $\\log \\dfrac{x^{4}}{y} = \\log x^{4} - \\log y$.",
+        "Bringing the exponent down before that would have handed the $4$ to the whole quotient, which is a different expression.",
+        "Only the first piece carries an exponent, so the power rule applies there alone: $\\log x^{4} = 4 \\log x$.",
+        "Expanded, the measurement reads $4 \\log x - \\log y$."
+      ]
+    },
+    {
+      "prompt": "Condense $2 \\log x - \\log 5$ into a single logarithm.",
+      "steps": [
+        "The $2$ out in front is a multiplier and has to move inside first: $2 \\log x = \\log(x^{2})$.",
+        "That leaves a difference of two bare logarithms, $\\log(x^{2}) - \\log 5$.",
+        "A difference of logarithms is the logarithm of a quotient, so it gathers into $\\log \\dfrac{x^{2}}{5}$.",
+        "The condensed form is $\\log \\dfrac{x^{2}}{5}$, and not $\\log(x^{2} - 5)$, since a difference sitting inside a logarithm is a different number entirely."
+      ]
+    },
+    {
+      "prompt": "Evaluate $\\log_{5} 90$ to three decimal places.",
+      "steps": [
+        "Base $5$ has no key, so change to a base that does: $\\log_{5} 90 = \\dfrac{\\log 90}{\\log 5}$.",
+        "The two readings are $\\log 90 \\approx 1.954243$ and $\\log 5 \\approx 0.698970$.",
+        "Dividing them gives $\\dfrac{1.954243}{0.698970} \\approx 2.795889$, so to three places $\\log_{5} 90 \\approx 2.796$.",
+        "The size checks out, since $5^{2} = 25$ and $5^{3} = 125$, so the exponent had to land between $2$ and $3$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "log-product-table", "gates": true },
+    { "after": 1, "id": "log-expand-order", "gates": true },
+    { "after": 2, "id": "log-condense-builder", "gates": true },
+    { "after": 3, "id": "log-base-change-walkthrough", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Condense $3 \\log 2 + \\log y$ into a single logarithm. Write one logarithm with one argument inside it, and evaluate any power of a plain number.",
+    "accepted": [
+      "log(8y)",
+      "log(8*y)",
+      "log(y*8)",
+      "log8y",
+      "ln(8y)",
+      "ln(8*y)",
+      "ln(y*8)",
+      "log_b(8y)",
+      "log_b(8*y)",
+      "log_b(y*8)"
+    ],
+    "hint": "The $3$ out in front cannot be gathered while it is still a multiplier, so it has to move first: a number multiplying a logarithm is the same as that number sitting as an exponent on the argument, and a power of a plain number is worth working out. Once both terms are bare logarithms with nothing in front of them, the sum becomes one logarithm of the product of the two arguments.",
+    "worked_solution": [
+      "Nothing can be gathered while the $3$ is still a multiplier out front, so move it inside as an exponent: $3 \\log 2 = \\log 2^{3}$.",
+      "A power of a plain number is worth evaluating: $2^{3} = 8$, so that term is $\\log 8$.",
+      "Both terms are bare logarithms now, and a sum of logarithms condenses to the logarithm of the product: $\\log 8 + \\log y = \\log(8y)$."
+    ],
+    "worked_solution_params": { "base": 2, "power": 3, "value": 8, "symIndex": 1 },
+    "variants": { "template_id": "cfu.el5.condense-coefficient", "count": 2 }
+  }
+}

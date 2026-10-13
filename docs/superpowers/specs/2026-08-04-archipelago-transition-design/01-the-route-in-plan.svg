@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="580" viewBox="0 0 1024 580" font-family="ui-sans-serif, system-ui, sans-serif">
+<rect width="1024" height="580" fill="#f4f7f8"/>
+<text x="40" y="44" font-size="19" fill="#2f3b46" text-anchor="start">The route, in plan. One leg of the bay, at the bay's own spacing.</text>
+<text x="40" y="68" font-size="13" fill="#6d7f8c" text-anchor="start">Every leg is the same: 28 units of open water, shore to shore — SEA_RADIUS − ISLAND_GRASS_RADIUS, era one's own lagoon margin.</text>
+<circle cx="150" cy="300" r="124.80000000000001" fill="#d6c9a8"/>
+<circle cx="150" cy="300" r="112" fill="#7fa96b"/>
+<circle cx="489.20000000000005" cy="300" r="124.80000000000001" fill="#d6c9a8" opacity="0.6"/>
+<circle cx="489.20000000000005" cy="300" r="112" fill="#93ab86" opacity="0.75"/>
+<rect x="274.8" y="280.8" width="89.60000000000001" height="38.400000000000006" fill="#c9b78d"/>
+<line x1="274.8" y1="392" x2="364.4" y2="392" stroke="#2f3b46" stroke-width="1.5"/>
+<text x="319.6" y="412" font-size="13" fill="#2f3b46" text-anchor="middle">28u</text>
+<rect x="79.6" y="223.2" width="89.6" height="153.60000000000002" fill="none" stroke="#d98324" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="75.6" y="202.8" font-size="12" fill="#d98324" text-anchor="start">beat one fits this</text>
+<rect x="230.00000000000003" y="268" width="134.39999999999995" height="64" fill="none" stroke="#1f7a5a" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="230.00000000000003" y="258" font-size="12" fill="#1f7a5a" text-anchor="start">beat two fits this</text>
+<text x="150" y="305" font-size="13" fill="#22331f" text-anchor="middle">the island being left</text>
+<text x="489.20000000000005" y="305" font-size="13" fill="#37432f" text-anchor="middle">the next island</text>
+<text x="40" y="520" font-size="13" fill="#2f3b46" text-anchor="start">Beat two's box is SMALLER than beat one's, so the frame does not widen — it translates. Both are held at zoom 0.442</text>
+<text x="40" y="542" font-size="13" fill="#2f3b46" text-anchor="start">by ceremonyFraming's own ceiling, which refuses to close past a 23px person. Measured at grass 35, the largest island the bay needs.</text>
+</svg>

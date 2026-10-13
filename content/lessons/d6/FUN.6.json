@@ -1,0 +1,83 @@
+{
+  "node_id": "FUN.6",
+  "title": "Form and simplify the difference quotient",
+  "mini_lesson": [
+    "The telemetry loft measures everything per hour, and one reading on its own says nothing about change: two readings do, once you also know how far apart they were taken. The **difference quotient** of a function $f$ writes that comparison down as $\\dfrac{f(x + h) - f(x)}{h}$: the change in output over the size of the step. The step $h$ is never $0$, so the division is always allowed.",
+    "$f(x + h)$ does not mean $f(x) + h$. It is an instruction: wherever the rule has an $x$, the whole input $x + h$ goes in its place, brackets and all. A squared term is where that goes wrong most often, because a squared bracket has to be multiplied out rather than squared piece by piece.",
+    "Once $f(x)$ has been subtracted, every term with no $h$ in it disappears, because it was in both outputs. What is left is a sum in which every term carries a factor of $h$, and only then can the $h$ underneath divide out. Cancel it earlier and part of the numerator has been divided while the rest has not, which is not division at all.",
+    "Each line of this computation rests on the one above it, so the order is forced rather than a matter of taste. A line written before the one it depends on still looks like algebra, which is what makes that mistake hard to catch. The same chain of dependencies holds for every polynomial rule, whatever its coefficients happen to be."
+  ],
+  "slide_subtitles": [
+    "Change over a step",
+    "Substituting the whole input",
+    "Cancelling the step",
+    "Does the order matter?"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "For $f(x) = x^{2} + 1$, work out the difference quotient from $x = 4$ with a step of $h = 3$.",
+      "steps": [
+        "The step is added to the input before the rule is applied, so the later output is $f(4 + 3) = f(7) = 49 + 1 = 50$.",
+        "The output it is being compared against is the one at the starting input: $f(4) = 16 + 1 = 17$.",
+        "The change in output is $50 - 17 = 33$, and that change is taken over the step of $3$.",
+        "So the quotient is $\\dfrac{33}{3} = 11$."
+      ]
+    },
+    {
+      "prompt": "For $f(x) = 3x^{2} - 2$, write $f(x + h)$.",
+      "steps": [
+        "The rule has one $x$ in it, and the whole input $x + h$ goes in its place, brackets and all: $f(x + h) = 3(x + h)^{2} - 2$.",
+        "Those brackets are not decoration. The squaring acts on the whole input, so $(x + h)^{2}$ means $(x + h)(x + h)$.",
+        "Multiplying that out gives $x^{2} + 2xh + h^{2}$, three terms rather than two, and the $3$ then multiplies all three.",
+        "So $f(x + h) = 3x^{2} + 6xh + 3h^{2} - 2$, which is neither $3x^{2} + 3h^{2} - 2$ nor $f(x) + h$."
+      ]
+    },
+    {
+      "prompt": "A difference quotient's numerator has come out as $3h^{2} + 7h$, over a step of $h$. Simplify it.",
+      "steps": [
+        "Look at the numerator before dividing anything: every term left in it carries at least one $h$, which is what subtracting $f(x)$ arranged by removing the terms the two outputs shared.",
+        "Take that shared $h$ out as a factor rather than striking it off term by term: $3h^{2} + 7h = h(3h + 7)$.",
+        "Now the $h$ underneath divides the whole numerator in one move, and $h$ is never $0$, so the division is allowed: $\\dfrac{h(3h + 7)}{h} = 3h + 7$.",
+        "Striking an $h$ off $3h^{2} + 7h$ without factoring first would divide one term and leave the other alone, which is why the factoring line has to come before the cancelling line."
+      ]
+    },
+    {
+      "prompt": "Simplify the difference quotient of $f(x) = x^{2} + 6x$, one line at a time.",
+      "steps": [
+        "Substituting comes first, because the top of the quotient is a difference of two outputs and neither of them exists yet: $f(x + h) = (x + h)^{2} + 6(x + h)$.",
+        "The bracket has to be opened before anything can gather, since the terms are still locked inside the square: $f(x + h) = x^{2} + 2xh + h^{2} + 6x + 6h$.",
+        "Only now can $f(x) = x^{2} + 6x$ be taken away, and every term carrying no $h$ leaves with it: the numerator is $2xh + h^{2} + 6h$.",
+        "Factoring comes before dividing, because the $h$ underneath has to be a factor of the whole numerator rather than of one term: $2xh + h^{2} + 6h = h(2x + h + 6)$.",
+        "That factor divides out in one move, so the quotient is $2x + h + 6$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "quotient-build", "gates": true },
+    { "after": 1, "id": "quotient-expand-walkthrough", "gates": true },
+    { "after": 2, "id": "quotient-cancel-play", "gates": true },
+    { "after": 3, "id": "quotient-order", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "For $f(x) = 2x^{2} - 3x + 5$, simplify the difference quotient at $x = 4$, $\\dfrac{f(4 + h) - f(4)}{h}$. Simplify it completely.",
+    "accepted": ["2h + 13", "13 + 2h", "2*h + 13", "13 + 2*h"],
+    "hint": "Start with $f(4 + h)$, and put $4 + h$ in place of every $x$ in the rule. The squared term becomes $2(4 + h)^{2}$, and that bracket has to be multiplied out in full rather than squared piece by piece.",
+    "check": {
+      "answer_type": "expression",
+      "answer_key": "2h + 13",
+      "allowed_symbols": ["h"]
+    },
+    "worked_solution": [
+      "Put the whole input into the rule: $f(4 + h) = 2(4 + h)^{2} - 3(4 + h) + 5$.",
+      "Multiply the square out in full: $(4 + h)^{2} = 16 + 8h + h^{2}$.",
+      "Collect the pieces: $f(4 + h) = 2h^{2} + 13h + 25$.",
+      "The starting output is $f(4) = 32 - 12 + 5 = 25$.",
+      "Subtract it. The $25$ is in both outputs, so it goes: $f(4 + h) - f(4) = 2h^{2} + 13h$.",
+      "Every term left carries an $h$, so factor it out: $2h^{2} + 13h = h(2h + 13)$.",
+      "Now the $h$ underneath cancels, which $h$ being nonzero allows: $\\dfrac{h(2h + 13)}{h} = 2h + 13$.",
+      "The difference quotient at $x = 4$ is $2h + 13$."
+    ],
+    "worked_solution_params": { "a": 2, "b": -3, "c": 5, "p": 4 },
+    "variants": { "template_id": "cfu.fun6.difference-quotient", "count": 2 }
+  }
+}

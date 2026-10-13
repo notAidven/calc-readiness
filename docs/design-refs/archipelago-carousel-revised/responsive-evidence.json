@@ -1,0 +1,166 @@
+{
+  "responsive": [
+    {
+      "name": "390x580",
+      "viewport": {
+        "width": 390,
+        "height": 580
+      },
+      "screen": {
+        "width": 390,
+        "height": 580
+      },
+      "deviceScaleFactor": 1,
+      "facts": {
+        "innerWidth": 390,
+        "innerHeight": 580,
+        "devicePixelRatio": 1,
+        "scrollHeight": 720,
+        "canvasCount": 1,
+        "canvasClientWidth": 390,
+        "canvasWidth": 390,
+        "targets": [
+          {
+            "selector": ".archipelago-close",
+            "width": 46,
+            "height": 46
+          },
+          {
+            "selector": ".archipelago-arrow--previous",
+            "width": 52,
+            "height": 108
+          },
+          {
+            "selector": ".archipelago-arrow--next",
+            "width": 52,
+            "height": 108
+          },
+          {
+            "selector": ".archipelago-primary-action",
+            "width": 370,
+            "height": 62
+          }
+        ]
+      },
+      "topRaster": {
+        "width": 390,
+        "height": 580
+      },
+      "bottomRaster": {
+        "width": 390,
+        "height": 580
+      }
+    },
+    {
+      "name": "1024x580-09-200-percent",
+      "viewport": {
+        "width": 512,
+        "height": 290
+      },
+      "screen": {
+        "width": 1024,
+        "height": 580
+      },
+      "deviceScaleFactor": 2,
+      "facts": {
+        "innerWidth": 512,
+        "innerHeight": 290,
+        "devicePixelRatio": 2,
+        "scrollHeight": 720,
+        "canvasCount": 1,
+        "canvasClientWidth": 512,
+        "canvasWidth": 1024,
+        "targets": [
+          {
+            "selector": ".archipelago-close",
+            "width": 46,
+            "height": 46
+          },
+          {
+            "selector": ".archipelago-arrow--previous",
+            "width": 52,
+            "height": 108
+          },
+          {
+            "selector": ".archipelago-arrow--next",
+            "width": 52,
+            "height": 108
+          },
+          {
+            "selector": ".archipelago-primary-action",
+            "width": 492,
+            "height": 62
+          }
+        ]
+      },
+      "topRaster": {
+        "width": 1024,
+        "height": 580
+      },
+      "bottomRaster": {
+        "width": 1024,
+        "height": 580
+      }
+    }
+  ],
+  "reset": [
+    {
+      "name": "1024x580",
+      "viewport": {
+        "width": 1024,
+        "height": 580
+      },
+      "screen": {
+        "width": 1024,
+        "height": 580
+      },
+      "deviceScaleFactor": 1,
+      "facts": {
+        "canvasCount": 1,
+        "confirmTarget": {
+          "width": 212,
+          "height": 44
+        },
+        "selectedEra": "prehistoric",
+        "standingEra": "neolithic"
+      },
+      "overflowRaster": {
+        "width": 1024,
+        "height": 580
+      },
+      "confirmationRaster": {
+        "width": 1024,
+        "height": 580
+      }
+    },
+    {
+      "name": "390x580",
+      "viewport": {
+        "width": 390,
+        "height": 580
+      },
+      "screen": {
+        "width": 390,
+        "height": 580
+      },
+      "deviceScaleFactor": 1,
+      "facts": {
+        "canvasCount": 1,
+        "confirmTarget": {
+          "width": 316,
+          "height": 44
+        },
+        "selectedEra": "prehistoric",
+        "standingEra": "neolithic"
+      },
+      "overflowRaster": {
+        "width": 390,
+        "height": 580
+      },
+      "confirmationRaster": {
+        "width": 390,
+        "height": 580
+      }
+    }
+  ]
+}

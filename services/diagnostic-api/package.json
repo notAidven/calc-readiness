@@ -1,0 +1,50 @@
+{
+  "name": "@cr/diagnostic-api",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Gabe. Deployable browser_auth HTTP surface for the diagnostic engine: a portable Hono app over @cr/diagnostic-runtime's Aurora (RDS Data API) + Cognito server, with AWS Lambda + Node entry points and an esbuild bundle. Server only — the browser never reaches the DB.",
+  "type": "module",
+  "main": "src/app.ts",
+  "exports": {
+    ".": "./src/app.ts",
+    "./economy": "./src/economy.ts",
+    "./mastery": "./src/mastery.ts",
+    "./reads": "./src/reads.ts",
+    "./writes": "./src/writes.ts",
+    "./plagueState": "./src/plagueState.ts",
+    "./test/fakeCluster": "./src/test/fakeCluster.ts",
+    "./workUpload": "./src/workUpload.ts",
+    "./workUploadObjects": "./src/workUploadObjects.ts",
+    "./workUploadParse": "./src/workUploadParse.ts",
+    "./workUploadParseSeam": "./src/workUploadParseSeam.ts",
+    "./visionModel": "./src/visionModel.ts",
+    "./test/fakeWorkUpload": "./src/test/fakeWorkUpload.ts",
+    "./test/fakeVisionModel": "./src/test/fakeVisionModel.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --build",
+    "build": "node esbuild.config.mjs",
+    "start": "node bundle/node.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.1103.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.1103.0",
+    "@aws-sdk/client-s3": "^3.1103.0",
+    "@aws-sdk/s3-request-presigner": "^3.1103.0",
+    "@cr/components": "^0.0.0",
+    "@cr/db": "*",
+    "@cr/diagnostic-runtime": "*",
+    "@cr/economy": "*",
+    "@cr/game": "*",
+    "@cr/image-hygiene": "*",
+    "@cr/item-bank": "*",
+    "@cr/mastery-service": "*",
+    "@cr/skill-graph": "*",
+    "@cr/state-schema": "*",
+    "hono": "^4.12.31"
+  },
+  "devDependencies": {
+    "@hono/node-server": "^2.0.11",
+    "esbuild": "^0.28.1"
+  }
+}

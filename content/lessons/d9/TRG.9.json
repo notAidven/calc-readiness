@@ -1,0 +1,86 @@
+{
+  "node_id": "TRG.9",
+  "title": "Core identities: sum, difference and double-angle",
+  "mini_lesson": [
+    "Down on the lit deck a control routine runs on a processor a generation behind the one it feeds, so an expression costing four values and two multiplications is worth trading for one that costs a single evaluation. Trigonometry pays for that trade with identities, and the first thing to settle is what an identity is NOT: turning an antenna and then turning it further adds the ANGLES, but it does not add the readings. Combining two rotations is a real operation with a real answer, and it takes a formula of its own.",
+    "A pair of identities replaces the guess, and the **sum formula** for sine reads $\\sin(A + B) = \\sin A\\cos B + \\cos A\\sin B$ while the one for cosine reads $\\cos(A + B) = \\cos A\\cos B - \\sin A\\sin B$, each becoming its **difference formula** when the sign between the angles flips. Read the sine version closely: every product pairs one angle's sine with the OTHER angle's cosine, and the sign sitting between the two products is the same sign that sits between the angles. Cosine differs on both counts, since its products pair like function with like and its sign is the reverse of the one between the angles, which is why $\\cos(A - B) = \\cos A\\cos B + \\sin A\\sin B$.",
+    "Setting the two angles equal turns a sum formula into a **double-angle formula**, so sine gives $\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$ and cosine gives $\\cos 2\\theta = \\cos^{2}\\theta - \\sin^{2}\\theta$. The Pythagorean identity then rewrites the cosine version twice over, into $2\\cos^{2}\\theta - 1$ and into $1 - 2\\sin^{2}\\theta$, and three forms of one identity is choice rather than clutter, because a problem handing you only a sine finishes in one substitution with the last of them. One warning about the notation: $\\sin 2\\theta$ is the sine of a doubled ANGLE and is never twice a sine, so $2\\sin\\theta$ is a different number entirely.",
+    "Read the identities right to left and they shorten an expression instead of expanding one, trading four values and two multiplications for a single evaluation. Two habits make that collapse reliable, and the first is to count the angles: one angle throughout points to a doubling identity, and two different angles point to a combining one. The second is to match the operator to the pattern rather than to instinct, because a plus between $\\cos A\\cos B$ and $\\sin A\\sin B$ means the angles are SUBTRACTED."
+  ],
+  "slide_subtitles": [
+    "Two rotations, one reading",
+    "Sum and difference formulas",
+    "Doubling one angle",
+    "Collapsing to one function"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "An antenna sitting at $20^{\\circ}$ is turned a further $40^{\\circ}$. Test whether $\\cos 20^{\\circ} + \\cos 40^{\\circ}$ gives the cosine of where it ends up.",
+      "steps": [
+        "The angles add, so the antenna ends up at $20^{\\circ} + 40^{\\circ} = 60^{\\circ}$, where the reading is $\\cos 60^{\\circ} = \\dfrac{1}{2}$.",
+        "Now add the two readings instead: $\\cos 20^{\\circ} \\approx 0.940$ and $\\cos 40^{\\circ} \\approx 0.766$, which come to about $1.706$.",
+        "Those are not near each other, and $1.706$ is not the cosine of anything at all, because no cosine is ever bigger than $1$.",
+        "So the sum of the readings answers nothing, and the combined rotation needs a formula rather than an addition."
+      ]
+    },
+    {
+      "prompt": "Expand $\\cos(x - 60^{\\circ})$ with the difference formula.",
+      "steps": [
+        "Cosine pairs like function with like, so the two products are $\\cos x\\cos 60^{\\circ}$ and $\\sin x\\sin 60^{\\circ}$.",
+        "Its sign is the reverse of the one between the angles, and the angles are subtracted here, so the two products are added: $\\cos x\\cos 60^{\\circ} + \\sin x\\sin 60^{\\circ}$.",
+        "Both readings of $60^{\\circ}$ are known exactly, since $\\cos 60^{\\circ} = \\dfrac{1}{2}$ and $\\sin 60^{\\circ} = \\dfrac{\\sqrt{3}}{2}$.",
+        "Putting those in, $\\cos(x - 60^{\\circ}) = \\dfrac{1}{2}\\cos x + \\dfrac{\\sqrt{3}}{2}\\sin x$."
+      ]
+    },
+    {
+      "prompt": "A reading of $\\cos\\theta = \\dfrac{5}{13}$ comes in with $\\theta$ acute. Find the exact value of $\\sin 2\\theta$.",
+      "steps": [
+        "The sine doubling form needs both readings: $\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$.",
+        "Only the cosine was handed over, so the Pythagorean identity supplies the other: $\\sin^{2}\\theta = 1 - \\left(\\dfrac{5}{13}\\right)^{2} = 1 - \\dfrac{25}{169} = \\dfrac{144}{169}$.",
+        "The heading is acute, so the sine is positive and $\\sin\\theta = \\dfrac{12}{13}$.",
+        "So $\\sin 2\\theta = 2 \\cdot \\dfrac{12}{13} \\cdot \\dfrac{5}{13} = \\dfrac{120}{169}$, which is nowhere near $2\\sin\\theta$: that would have been $\\dfrac{24}{13}$, a number bigger than $1$ and so the sine of nothing."
+      ]
+    },
+    {
+      "prompt": "Write $\\cos 5x\\cos 2x - \\sin 5x\\sin 2x$ as a single trigonometric function.",
+      "steps": [
+        "Count the angles first. There are two of them, $5x$ and $2x$, so this is a combining identity rather than a doubling one.",
+        "The products pair like function with like, cosine against cosine and sine against sine, which is the cosine pattern rather than the sine one.",
+        "The operator between the products is a minus, and for cosine that is the reverse of the sign between the angles, so the angles are ADDED.",
+        "So the whole expression is $\\cos(5x + 2x) = \\cos 7x$, and four values and two multiplications have become one evaluation, which is the whole point of reading an identity backwards."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "trg-combine-estimate", "gates": true },
+    { "after": 1, "id": "trg-sum-table", "gates": true },
+    { "after": 2, "id": "trg-double-match", "gates": true },
+    { "after": 3, "id": "trg-shorten-order", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Given $\\sin\\theta = \\dfrac{3}{5}$ with $\\theta$ in the first quadrant, find the exact value of $\\cos 2\\theta$. Enter one number, as a fraction in lowest terms.",
+    "accepted": ["7/25"],
+    "hint": "Cosine has three doubling forms, and only one of them is written in the sine alone: $\\cos 2\\theta = 1 - 2\\sin^{2}\\theta$. Square the value you were handed to get the piece that form asks for, then take twice it away from $1$ by writing $1$ over the same denominator.",
+    "worked_solution": [
+      "Three forms give $\\cos 2\\theta$, and the one to reach for is the form written in the function you were handed: $\\cos 2\\theta = 1 - 2\\sin^{2}\\theta$.",
+      "Square the given value: $\\left(\\dfrac{3}{5}\\right)^{2} = \\dfrac{9}{25}$.",
+      "Substitute it, writing $1$ over the same denominator: $1 - 2 \\cdot \\dfrac{9}{25} = \\dfrac{25}{25} - \\dfrac{18}{25}$.",
+      "The quadrant never enters the arithmetic, because the sine went in squared and a squared value carries no sign.",
+      "So $\\cos 2\\theta = \\dfrac{7}{25}$, entered as 7/25."
+    ],
+    "worked_solution_params": {
+      "opposite": 3,
+      "adjacent": 4,
+      "hyp": 5,
+      "quadrant": 1,
+      "givenSine": 1
+    },
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "7/25",
+      "representation": "fraction",
+      "simplification": "reduced_fraction"
+    },
+    "variants": { "template_id": "cfu.trg9.double-from-sine", "count": 2 }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "node_id": "GEO.2",
+  "title": "Area, perimeter, volume and surface area of standard figures",
+  "mini_lesson": [
+    "The piazza is to be paved and curbed, and both orders are counted off the same rectangle. The **area** of a figure is how much surface lies inside it, and for a rectangle it is the length times the width; **perimeter** is the distance all the way round the edge, which the four sides add up to. Area is counted in square units and perimeter in plain units, which is the surest way to tell which of the two a question wants.",
+    "Not every plan is a plain rectangle. A **composite figure** is one built out of simpler pieces, so its area is reached by cutting it into rectangles and triangles whose areas are already known, and a triangular piece contributes half of its base times its height. An L-shaped terrace can be split so that two rectangles add, or read as one full rectangle with a corner taken out so that two areas subtract, and whichever cut makes the arithmetic easiest is the right one.",
+    "Area covers a flat surface, and a solid also has room inside it: the **volume** of a solid is the space it holds, counted in cubic units. Slice a solid straight across and the flat face the cut exposes is its **cross section**: a **prism** keeps the same cross section all the way along, so its volume is the area of that cross section multiplied by its height. A cylinder follows the identical rule with a circular cross section, where the base area is $\\pi r^{2}$ and the volume is therefore $\\pi r^{2} h$.",
+    "Filling a solid and covering one are different orders: the **surface area** of a solid is the total area of the faces that enclose it, counted in square units even though the object is solid. Unfolding a solid flat gives its **net**, which shows every face at once, so a closed box opens into six rectangles that pair off, two of each size. How many faces a job counts is decided by the job rather than by the formula: lead for a dome is bought by surface area while the water a cistern holds is a volume, and a container open at the top has no lid to cover."
+  ],
+  "slide_subtitles": [
+    "Slabs and curb",
+    "Composite figures",
+    "Prisms and cylinders",
+    "Covering, not filling"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A court measures $12$ meters by $9$ meters. Find the slabs needed to pave it and the curb needed to edge it, then do both again for a court one meter wider.",
+      "steps": [
+        "Paving covers the surface inside the rim, so it is an area: $12 \\times 9 = 108$ square meters of slabs.",
+        "The curb follows the rim itself, so it is a perimeter: $12 + 9 + 12 + 9 = 42$ meters.",
+        "Widen the court to $13$ meters by $9$ meters and its area becomes $13 \\times 9 = 117$ square meters, a rise of $9$.",
+        "Its perimeter becomes $13 + 9 + 13 + 9 = 44$ meters, a rise of only $2$.",
+        "One extra meter of width adds a whole strip of surface but only two extra stretches of edge, which is why the two measurements never move together."
+      ]
+    },
+    {
+      "prompt": "An L-shaped terrace is a rectangle $9$ meters by $7$ meters with a corner $3$ meters by $2$ meters missing from it. Find its area by adding pieces, then by subtracting one.",
+      "steps": [
+        "Cut straight across the terrace just below the missing corner: the lower piece runs the full $9$ meters wide and $7 - 2 = 5$ meters deep, so its area is $9 \\times 5 = 45$ square meters.",
+        "Above that cut only the strip beside the gap is left, $9 - 3 = 6$ meters wide and $2$ meters deep: $6 \\times 2 = 12$ square meters.",
+        "Adding the two pieces gives $45 + 12 = 57$ square meters.",
+        "Take the other route instead, reading the terrace as a whole rectangle: $9 \\times 7 = 63$ square meters.",
+        "The missing corner accounts for $3 \\times 2 = 6$ square meters, so subtracting it leaves $63 - 6 = 57$ square meters.",
+        "Both cuts reach $57$ square meters, so the only thing to choose between them is which arithmetic is easier."
+      ]
+    },
+    {
+      "prompt": "A rectangular tank is $10$ meters by $4$ meters and $2$ meters deep, and a cylindrical well has radius $2$ meters and depth $6$ meters. Find how much each one holds.",
+      "steps": [
+        "The tank is a prism, so start from its cross section, the floor: $10 \\times 4 = 40$ square meters.",
+        "Stack that cross section through the depth: $40 \\times 2 = 80$, so the tank holds $80$ cubic meters.",
+        "The well is a cylinder, so the same rule runs over a circular cross section, whose area is $\\pi \\times 2^{2} = 4\\pi$ square meters.",
+        "Stack that base through its own depth: $4\\pi \\times 6 = 24\\pi$, so the well holds $24\\pi$ cubic meters.",
+        "Left in terms of $\\pi$ the second answer is exact, and reaching it took no new rule, only a different cross section."
+      ]
+    },
+    {
+      "prompt": "A rectangular plinth measures $5$ meters long, $3$ meters wide and $2$ meters high, and it is to be clad in marble on every face. How much marble does that take?",
+      "steps": [
+        "Unfolding the plinth into its net lays out six rectangles that pair off, two of each size.",
+        "The top and the bottom each measure $5$ by $3$: $2 \\times 5 \\times 3 = 30$ square meters.",
+        "The two long sides each measure $5$ by $2$: $2 \\times 5 \\times 2 = 20$ square meters.",
+        "The two ends each measure $3$ by $2$: $2 \\times 3 \\times 2 = 12$ square meters.",
+        "Adding the three pairs gives $30 + 20 + 12 = 62$ square meters of marble, which is $2lw + 2lh + 2wh$ worked out."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "geo-paving-classify", "gates": true },
+    { "after": 1, "id": "geo-compose-builder", "gates": true },
+    { "after": 2, "id": "geo-cistern-play", "gates": true },
+    { "after": 3, "id": "geo-net-drag", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A rectangular cistern is $8$ meters long, $5$ meters wide and $2$ meters deep, and it stands open at the top. Its floor and its four walls are to be lined with lead, and the open top is left bare. How many square meters of lead does the lining take? Enter one number.",
+    "accepted": ["92", "92.0"],
+    "hint": "Lining covers faces rather than filling the tank, so the number wanted is a surface area and not the capacity. Work out the floor first as length times width, then take the walls in two matching pairs, and leave the open top out of the count.",
+    "worked_solution": [
+      "Lining covers the faces of the tank, so the quantity asked for is a surface area in square meters rather than a volume in cubic meters.",
+      "The floor is one rectangle: $8 \\times 5 = 40$ square meters.",
+      "The two long walls each measure $8$ meters by $2$ meters: $2 \\times 8 \\times 2 = 32$ square meters.",
+      "The two short walls each measure $5$ meters by $2$ meters: $2 \\times 5 \\times 2 = 20$ square meters.",
+      "The open top is not lined, so only those five faces count: $40 + 32 + 20 = 92$, so the lining takes $92$ square meters of lead."
+    ],
+    "worked_solution_params": { "l": 8, "w": 5, "d": 2 },
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "92"
+    },
+    "variants": { "template_id": "cfu.geo2.open-cistern-lining", "count": 2 }
+  }
+}

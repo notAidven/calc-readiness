@@ -1,0 +1,15 @@
+Measured beside the frames in docs/design-refs/launch-landscape, under an emulated
+prefers-reduced-motion: reduce, by launchLandscape.browser.test.tsx in the same run.
+Every box is in CSS pixels, in the window named at the start of its line. The screen is
+mounted through the real AccountBoundary with the Cognito service injected as a prop, so
+the account chrome floating over the masthead is the shipped article.
+
+320x568 launch: 1 column(s); Take the diagnostic bottom y=328; Start at Era 1 bottom y=498; footnote bottom y=537; sheet scroll 476/476; cue absent
+390x580 launch: 1 column(s); Take the diagnostic bottom y=334; Start at Era 1 bottom y=504; footnote bottom y=543; sheet scroll 476/476; cue absent
+768x1024 launch: 2 column(s); Take the diagnostic bottom y=664; Start at Era 1 bottom y=664; footnote bottom y=697; sheet scroll 360/360; cue absent
+844x390 launch: 2 column(s); Take the diagnostic bottom y=330; Start at Era 1 bottom y=330; footnote bottom y=354; sheet scroll 287/287; cue absent
+1024x580 launch: 2 column(s); Take the diagnostic bottom y=425; Start at Era 1 bottom y=425; footnote bottom y=449; sheet scroll 287/287; cue absent
+1440x900 launch: 2 column(s); Take the diagnostic bottom y=599; Start at Era 1 bottom y=599; footnote bottom y=630; sheet scroll 379/379; cue absent
+512x290-zoom200 launch: 1 column(s); Take the diagnostic bottom y=280; Start at Era 1 bottom y=432; footnote bottom y=456; sheet scroll 407/182; cue "More below"
+1024x580-text200 launch: 2 column(s); Take the diagnostic bottom y=566; Start at Era 1 bottom y=566; footnote bottom y=637; sheet scroll 585/472; cue "More below"
+560x320 launch: 1 column(s) (landscape, too narrow to split)

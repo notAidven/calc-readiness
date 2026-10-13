@@ -1,0 +1,111 @@
+{
+  "node_id": "RAD.1",
+  "title": "Square roots: evaluate and simplify",
+  "mini_lesson": [
+    "A square patch of ground is pegged out with cord and stake, and the plan gives its area and nothing else, but fence is ordered by the meter, so the builder needs the length of one side. A square's area is its side multiplied by itself, so she is hunting the number that gives the area back when it is multiplied by itself, and that is exactly what a **square root** asks for. Two numbers pass that test whenever one does, one on each side of zero, so the symbol has to name only the one that is not negative (the **principal root**), which is the only one a fence could be.",
+    "Two names go with the notation: the hook-and-bar symbol itself is the **radical**, and the number sitting inside it is the **radicand**. When the radicand is a **perfect square** (meaning some whole number times itself lands exactly on it), the root comes out whole. Most numbers are not perfect squares, so most roots stay inside the radical until they are simplified.",
+    "The next plot on the plan is not a perfect square, so its root does not come out whole, and that does not leave the builder stuck. A root turns a perfect square into a whole number and leaves everything else alone, so the useful question is not whether the radicand is a perfect square but whether any *part* of it is. Running down the perfect squares you know and taking the first one that divides in is enough, since nothing says the factor has to be the biggest.",
+    "Finding a perfect square factor matters because a root splits across a product: $\\sqrt{a \\cdot b} = \\sqrt{a} \\cdot \\sqrt{b}$. The perfect square piece collapses to a whole number and steps out in front of the radical, where it becomes that radical's coefficient, the same number-in-front role a coefficient plays in a term like $5x$. Read that same split backwards and it hands over a second rule for free, since $\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$ gathers two roots into one.",
+    "Pulling one perfect square out does not always finish the job, because what is left inside can hold another one. A root is **simplified** only once no perfect square is left inside it, so the method is to take out whatever you can see, multiply it into whatever already stands in front, then look again. Missing the biggest factor on the first pass costs nothing but another pass.",
+    "One plot is recorded as a fraction of a square meter rather than a whole number, and the builder still needs a side length. A root over a fraction splits the way a root over a product does, with the top and the bottom each keeping their own root: $\\sqrt{\\dfrac{a}{b}} = \\dfrac{\\sqrt{a}}{\\sqrt{b}}$. When the bottom is not a perfect square a root stays down there and the value is still correct, since getting a root off the bottom is a separate tidying move on top of this one."
+  ],
+  "slide_subtitles": [
+    "Square roots",
+    "Radicals and perfect squares",
+    "Finding a square factor",
+    "Splitting a root",
+    "A simplified root",
+    "Roots of fractions"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The plan records the patch as $36$ square meters. Find the length of one side.",
+      "steps": [
+        "A square's area is its side multiplied by itself, so the side is $\\sqrt{36}$.",
+        "Hunt for the number that gives $36$ when multiplied by itself: $6 \\cdot 6 = 36$.",
+        "The number $-6$ passes that test too, since $(-6) \\cdot (-6) = 36$, but the radical names the principal root, the one that is not negative.",
+        "So $\\sqrt{36} = 6$, and the patch measures $6$ meters along each side."
+      ]
+    },
+    {
+      "prompt": "Decide which of $\\sqrt{49}$ and $\\sqrt{20}$ comes out whole.",
+      "steps": [
+        "In $\\sqrt{49}$ the radicand is $49$, and $7 \\cdot 7 = 49$, so $49$ is a perfect square.",
+        "That root comes out whole: $\\sqrt{49} = 7$.",
+        "In $\\sqrt{20}$ the radicand is $20$, and the whole numbers either side give $4 \\cdot 4 = 16$ and $5 \\cdot 5 = 25$, with nothing between them to try.",
+        "So $20$ is not a perfect square, and $\\sqrt{20}$ stays inside the radical."
+      ]
+    },
+    {
+      "prompt": "The next plot is $72$ square meters. Find a perfect square factor of $72$.",
+      "steps": [
+        "Run down the perfect squares in order: $4, 9, 16, 25, 36$.",
+        "Test the first one against $72$: $72 \\div 4 = 18$, with nothing left over.",
+        "So $4$ divides $72$, and $72 = 4 \\cdot 18$ with a perfect square standing on its own."
+      ]
+    },
+    {
+      "prompt": "Split $\\sqrt{72}$ across the factors $4$ and $18$.",
+      "steps": [
+        "Since $72 = 4 \\cdot 18$, the root splits over the product: $\\sqrt{72} = \\sqrt{4} \\cdot \\sqrt{18}$.",
+        "The first piece is a perfect square, so it collapses to the whole number $2$.",
+        "That $2$ steps out in front as the coefficient, leaving $2\\sqrt{18}$."
+      ]
+    },
+    {
+      "prompt": "Finish simplifying $2\\sqrt{18}$.",
+      "steps": [
+        "Look inside the radical: $18 = 9 \\cdot 2$, so a perfect square is still in there.",
+        "Split it off: $\\sqrt{18} = \\sqrt{9} \\cdot \\sqrt{2} = 3\\sqrt{2}$.",
+        "The new $3$ multiplies into the $2$ already in front, so $2\\sqrt{18}$ becomes $6\\sqrt{2}$.",
+        "Look inside once more: $2$ holds no perfect square, so $6\\sqrt{2}$ is the finished answer."
+      ]
+    },
+    {
+      "prompt": "One plot is recorded as $\\dfrac{9}{4}$ square meters. Find the length of one side.",
+      "steps": [
+        "The side is $\\sqrt{\\dfrac{9}{4}}$, and a root over a fraction splits: $\\dfrac{\\sqrt{9}}{\\sqrt{4}}$.",
+        "The top is a perfect square: $\\sqrt{9} = 3$.",
+        "So is the bottom: $\\sqrt{4} = 2$.",
+        "The side measures $\\dfrac{3}{2}$ meters, one and a half meters along each edge."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "radical-parts-label", "gates": true },
+    { "after": 1, "id": "perfect-root-classify", "gates": true },
+    { "after": 2, "id": "perfect-square-factor-match", "gates": true },
+    { "after": 3, "id": "radical-factor-builder", "gates": true },
+    { "after": 4, "id": "simplify-radical-solver", "gates": true },
+    { "after": 5, "id": "radical-quotient-sorter", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A roof beam is $\\sqrt{\\dfrac{72}{25}}$ meters long. Write that length as a simplified radical.",
+    "accepted": [
+      "6*sqrt(2)/5",
+      "6sqrt(2)/5",
+      "(6*sqrt(2))/5",
+      "(6sqrt(2))/5",
+      "6*sqrt2/5",
+      "6sqrt2/5",
+      "6\\sqrt{2}/5",
+      "6*\\sqrt{2}/5",
+      "6\\sqrt2/5",
+      "6*\\sqrt2/5",
+      "\\frac{6\\sqrt{2}}{5}",
+      "\\dfrac{6\\sqrt{2}}{5}",
+      "6√2/5",
+      "6*√2/5",
+      "(6√2)/5"
+    ],
+    "hint": "A root over a fraction splits into a root on the top and a root on the bottom, so simplify each piece on its own. A piece is finished once no perfect square is left inside it.",
+    "worked_solution": [
+      "A root over a fraction splits into two roots: $\\sqrt{\\dfrac{72}{25}} = \\dfrac{\\sqrt{72}}{\\sqrt{25}}$.",
+      "Take a perfect square out of the top. Since $72 = 36 \\times 2$, that gives $\\sqrt{72} = 6\\sqrt{2}$.",
+      "The bottom is a perfect square outright: $\\sqrt{25} = 5$.",
+      "Nothing square is left inside either piece, so the beam measures $\\dfrac{6\\sqrt{2}}{5}$ meters, typed `6*sqrt(2)/5`."
+    ],
+    "worked_solution_params": { "outside": 6, "inside": 2, "root": 5 },
+    "variants": { "template_id": "cfu.rad1.quotient-radical", "count": 2 }
+  }
+}

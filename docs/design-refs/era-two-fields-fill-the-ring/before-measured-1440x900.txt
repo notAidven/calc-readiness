@@ -1,0 +1,14 @@
+# 1440x900
+
+island visible above the advisor: 66.2% of the frame
+advisor's own height: 280px of 900px
+
+what changed on the island, per beat, over the WHOLE frame,
+measured with the advisor hidden so the bubble's own height cannot count:
+  01-gathering: 81.71%
+  02-expansion: 82.45%
+  03-rebuild: 0.56%
+  04-retheme: 0.67%
+
+the bubble's top edge per state, which is why it has to be hidden to measure:
+  00-before 662, 01-gathering 662, 02-expansion 688, 03-rebuild 635, 04-retheme 728

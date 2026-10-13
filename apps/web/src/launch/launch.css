@@ -1,0 +1,418 @@
+/* -------------------------------------------------------------------------- */
+/* THE ORDINARY ROUTE'S LAUNCH SCREEN (launch/LaunchScreen.tsx).               */
+/*                                                                             */
+/* Held in its own stylesheet, imported by the component, for the same reason  */
+/* the component is its own file: the exact `/demo` showcase opens on          */
+/* `TitleScreen`, and nothing here may reach it. Every selector below is       */
+/* `.launch*`, which appears nowhere else in the tree.                         */
+/*                                                                             */
+/* A founding charter rather than a dashboard. One opaque parchment sheet on a */
+/* stone edge; two routes divided by a single hairline; brass on the           */
+/* recommendation and the lead action and nowhere else. No translucent panels, */
+/* no gradient fills, no drift of pills.                                       */
+/* -------------------------------------------------------------------------- */
+
+/*
+  ⚑ THE ACCOUNT CHROME FLOATS OVER THIS SCREEN, AND ITS BAND IS RESERVED RATHER THAN
+  PAINTED UNDER. `.account-chrome` is the app-wide "Signed in / Sign out" control that
+  `AccountBoundary` fixes to the top centre of every authenticated surface — 10px from the
+  top and 46px tall, so it occupies the first 56px of the window, which is exactly where a
+  centred masthead lands. Photographed at 390x580 before this: the pill sat across "Your
+  island is waiting". Reserving the band keeps sign-out where it is on every other screen
+  instead of moving a global control to suit one of them.
+*/
+.launch {
+  --launch-chrome-band: 62px;
+
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+  padding-block: var(--launch-chrome-band)
+    calc(clamp(10px, 2.4vw, 28px) + var(--launch-cue-band, 0px));
+  padding-inline: clamp(10px, 2.4vw, 28px);
+  background: var(--world-sky);
+  color: var(--sheet-ink);
+  font-family: var(--font-body);
+}
+
+/* The living island: decorative, non-interactive, and never in the tab order. */
+.launch__world,
+.launch__ground {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.launch__world canvas {
+  display: block;
+}
+
+/* Flat stand-in painted before the scene resolves and wherever WebGL is absent. */
+.launch__ground {
+  background: var(--world-ground);
+}
+
+/* Legibility only, and as little of it as will do. A flat wash over the whole scene reads
+   as grey weather and takes the island's colour with it; a vignette settles the corners so
+   the sheet's stone edge has something to sit against and leaves the middle alone. */
+.launch__veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    118% 96% at 50% 42%,
+    rgba(10, 24, 36, 0.06) 0%,
+    rgba(10, 24, 36, 0.1) 52%,
+    rgba(10, 24, 36, 0.34) 100%
+  );
+}
+
+.launch__sheet {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(860px, 100%);
+  max-height: 100%;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: clamp(18px, 2.6vw, 30px) clamp(18px, 3vw, 34px);
+  border: 1px solid var(--sheet-edge);
+  border-radius: 20px;
+  background: var(--sheet-face);
+  box-shadow: var(--sheet-lift);
+  gap: clamp(10px, 1.6vh, 18px);
+  animation: launch-settle 240ms ease-out both;
+}
+
+.launch__masthead {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.launch__eyebrow {
+  color: var(--sheet-eyebrow);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ⚑ `max-width` IS AN OVERRIDE, not a default. `styles.css` declares `h1 { max-width: 14ch }`
+   for the marketing-page headings, and inherited here it clamped this title to 218px inside an
+   803px masthead — "Your island is waiting" broken over two lines with 585px of empty room
+   either side. Measured by `ordinaryLaunchShots.browser.test.tsx`, which now counts the lines. */
+.launch__title {
+  margin: 0;
+  max-width: none;
+  color: var(--sheet-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4.4vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.launch__lede {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--sheet-ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+/* TWO ROUTES, EQUAL IN WEIGHT AND UNEQUAL IN RECOMMENDATION. Stacked by default,
+   because a phone is the case where a second route gets lost; side by side once
+   there is room for both to be read without scrolling. */
+.launch__routes {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  gap: clamp(10px, 1.6vh, 16px);
+  list-style: none;
+}
+
+.launch__route {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* One hairline between them — the same separation the city's panels use between a
+   section and the one after it, rather than two boxes floating in a grid. */
+.launch__route + .launch__route {
+  padding-top: clamp(10px, 1.6vh, 16px);
+  border-top: 1px solid var(--sheet-rule);
+}
+
+.launch__route-head {
+  display: flex;
+  min-height: 24px;
+  align-items: center;
+  gap: 8px;
+}
+
+.launch__glyph {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  fill: none;
+  stroke: #8a6a24;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.launch__tag {
+  padding: 2px 9px;
+  border: 1px solid var(--sheet-lead-edge);
+  border-radius: 4px;
+  background: #f0dfae;
+  color: #5a3f0e;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.launch__route-title {
+  margin: 0;
+  color: var(--sheet-ink);
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.launch__route-copy {
+  margin: 0;
+  color: var(--sheet-ink-soft);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.launch__route-meta {
+  margin: 0 0 4px;
+  color: #4a5b6b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* The action sits at the bottom of its route, so the two align across the divide
+   whichever sentence wraps to more lines. */
+.launch__action {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  padding: 11px 18px;
+  border: 1px solid var(--sheet-action-edge);
+  border-radius: 10px;
+  background: var(--sheet-action-face);
+  color: var(--sheet-ink);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 120ms ease;
+}
+
+.launch__action--lead {
+  border-color: var(--sheet-lead-edge);
+  background: var(--sheet-lead-face);
+  color: var(--sheet-lead-ink);
+}
+
+.launch__action:hover {
+  filter: brightness(1.04);
+}
+
+.launch__action:focus-visible {
+  outline: 3px solid var(--focus-ring-parchment);
+  outline-offset: 3px;
+}
+
+.launch__footnote {
+  margin: 0;
+  color: var(--sheet-ink-soft);
+  font-size: 0.76rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/*
+  THE SCROLL CUE, shown only while there is sheet below and retired at the end of it.
+
+  `.launch` is `overflow: hidden` and the sheet is `overflow-y: auto`, so a window too short for
+  the sheet hid the rest of it behind an overlay scrollbar Chromium does not paint until something
+  moves — 191px at 512x290, 79px at 200% text. The trims above are what buy the fit wherever a fit
+  is possible; where it is not, the surface says so in WORDS rather than by a shade, and
+  `pointer-events: none` keeps it from ever taking a press meant for the action under it.
+*/
+/*
+  A BAND AT THE FOOT OF THE SCREEN for the cue, rather than a band inside the sheet. The sheet is
+  the scroll container, so padding at its end is where the CONTENT stops and not where the screen
+  does; photographed at 512x290 before this, the cue sat across the middle of *Take the
+  diagnostic*. `.launch__sheet` is capped at `max-height: 100%` OF THE CONTENT BOX, so giving the
+  padding 34px takes the same 34px off the sheet and the cue lands under it.
+*/
+.launch[data-more="true"] {
+  --launch-cue-band: 34px;
+}
+
+.launch__more {
+  position: absolute;
+  z-index: 2;
+  bottom: 8px;
+  left: 50%;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 12px;
+  border: 1px solid var(--sheet-edge);
+  border-radius: 999px;
+  background: var(--sheet-face);
+  color: var(--sheet-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.launch__more svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+/*
+  ⚑ ROOM FOR BOTH ROUTES TO BE READ AT ONCE, AND A LANDSCAPE PHONE IS THAT CASE.
+
+  This was `(min-width: 700px) and (min-height: 460px)`, on the reasoning that two columns in a
+  400px-tall window would push the sheet's own footnote off the screen. The reasoning was sound
+  and the threshold was wrong, because the STACKED layout is worse there and by more: measured at
+  844x390 on the ordinary learner mount, *Take the diagnostic* sat at y=246..290 and *Start at
+  Era 1* at y=398..442 — 52px below the fold, with the footnote at y=466 and nothing on the
+  screen saying the sheet scrolled. A choice screen whose alternative is under the fold offers
+  one route and looks like it offers one.
+
+  Two columns at 844x390 fit with room to spare (the short-height block below trims the type and
+  the gaps), which is what makes this the right threshold rather than a smaller version of the
+  old mistake. The height term survives at 320: a 700x300 window has no business being split, and
+  the cue below is what makes that honest instead of silent.
+*/
+@media (min-width: 700px) and (min-height: 320px) {
+  .launch__routes {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2.4vw, 28px);
+  }
+
+  .launch__route + .launch__route {
+    padding-top: 0;
+    padding-left: clamp(16px, 2.4vw, 28px);
+    border-top: none;
+    border-left: 1px solid var(--sheet-rule);
+  }
+}
+
+/* ⚑ A SHORT WINDOW IS THE CONSTRAINING CASE. `.launch` is `overflow: hidden`, so a
+   sheet that outgrows the window does not merely scroll off — its last sentence is
+   unreachable. Everything here gives back SPACE rather than meaning: the type steps
+   down and the gaps close. Nothing is hidden.
+
+   `padding-block` / `padding-inline` rather than the `padding` shorthand, so a rule
+   keyed on height cannot quietly re-decide an inline measurement. */
+@media (max-height: 620px) {
+  .launch {
+    padding-block: var(--launch-chrome-band) calc(8px + var(--launch-cue-band, 0px));
+    padding-inline: 10px;
+  }
+
+  .launch__sheet {
+    padding-block: 12px;
+    gap: 8px;
+  }
+
+  .launch__title {
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+  }
+
+  .launch__lede {
+    max-width: 56ch;
+    font-size: 0.8rem;
+  }
+
+  .launch__routes {
+    gap: 8px;
+  }
+
+  .launch__route {
+    gap: 3px;
+  }
+
+  .launch__route-head {
+    min-height: 20px;
+  }
+
+  .launch__route + .launch__route {
+    padding-top: 8px;
+  }
+
+  .launch__route-title {
+    font-size: 1rem;
+  }
+
+  .launch__route-copy {
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  .launch__route-meta {
+    font-size: 0.74rem;
+  }
+
+  .launch__action {
+    min-height: 44px;
+    padding-block: 10px;
+  }
+
+  .launch__footnote {
+    font-size: 0.7rem;
+  }
+}
+
+@keyframes launch-settle {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .launch__sheet {
+    animation: none;
+  }
+
+  .launch__action {
+    transition: none;
+  }
+}
+
+.launch[data-reduced-motion="true"] .launch__sheet {
+  animation: none;
+}

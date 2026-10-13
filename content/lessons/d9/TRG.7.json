@@ -1,0 +1,76 @@
+{
+  "node_id": "TRG.7",
+  "title": "Inverse trigonometric functions: evaluate and compose",
+  "mini_lesson": [
+    "Up on the mast a meter reads a ratio and not a heading: it reports $\\sin\\theta$ when what the engineer needs is $\\theta$ itself. An **inverse function** runs that backwards, naming what went into the function, and sine's inverse is written $\\arcsin$, the cosine's $\\arccos$ and the tangent's $\\arctan$. Sine gives the very same reading at endlessly many headings, which is what makes running one of these backwards more than a change of notation.",
+    "Each inverse therefore comes with a **restricted range**, which is the stretch of headings it is allowed to answer inside, and the one heading it hands back from that stretch is its **principal value**. The stretch is chosen so the function runs one way across it and repeats no reading, which is why sine and tangent can straddle zero while cosine, largest at zero and falling away on both sides, is cut forward through a half turn instead. An end belongs to a stretch only when the function actually has a value there, which is the whole of the difference between the sine's stretch and the tangent's.",
+    "Put a function and its inverse together and it is tempting to say they cancel, and they do cancel on the stretch the inverse answers inside and nowhere else. Hand $\\sin$ a heading from outside that stretch and the reading it produces is one the inverse matches with a heading inside, so what comes back is a different heading carrying the same reading. Read the other way round the composition is safer, since $\\sin(\\arcsin r)$ returns $r$ for every reading the function is able to produce: the inverse chooses a legal heading first and the function merely reads it.",
+    "Most readings a meter gives are not the tidy ones, so the heading an inverse names usually arrives as a decimal to be rounded rather than as a whole number of degrees. A ratio and the heading behind it do not move in step, so doubling the ratio does not double the heading, and a ratio of about a half is nowhere near half of a quarter turn. The one anchor that costs no work is equal legs at $45^{\\circ}$: a heading whose opposite leg is the longer sits above that, and one whose opposite leg is the shorter sits below it."
+  ],
+  "slide_subtitles": [
+    "Reading a heading back",
+    "Where each inverse answers",
+    "Composing the two ways",
+    "From ratio to bearing"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A meter on the mast reads $\\cos\\theta = \\dfrac{\\sqrt{3}}{2}$ for an acute heading. Name the heading.",
+      "steps": [
+        "The meter has handed over a reading and what is wanted is the heading behind it, so the tool is the cosine's inverse: $\\theta = \\arccos\\left(\\dfrac{\\sqrt{3}}{2}\\right)$.",
+        "Read that as a question. Which heading has a cosine of $\\dfrac{\\sqrt{3}}{2}$?",
+        "Among the acute headings the answer is one of the values the right triangles already gave, since $\\cos 30^{\\circ} = \\dfrac{\\sqrt{3}}{2}$.",
+        "So the heading is $\\theta = 30^{\\circ}$."
+      ]
+    },
+    {
+      "prompt": "Show that the stretch of headings from $-90^{\\circ}$ to $90^{\\circ}$ cannot serve as the cosine's restricted range.",
+      "steps": [
+        "Take two headings that stretch holds, $-45^{\\circ}$ and $45^{\\circ}$.",
+        "Cosine reads the same at both of them: $\\cos(-45^{\\circ}) = \\dfrac{\\sqrt{2}}{2}$ and $\\cos 45^{\\circ} = \\dfrac{\\sqrt{2}}{2}$.",
+        "A reading of $\\dfrac{\\sqrt{2}}{2}$ would then have two headings with an equal claim on it, and a rule handing back two answers at once is not a function.",
+        "So the cosine needs a stretch it never doubles back across, which this one is not."
+      ]
+    },
+    {
+      "prompt": "Evaluate $\\arcsin\\left(\\sin 150^{\\circ}\\right)$, then evaluate $\\sin\\left(\\arcsin\\dfrac{1}{2}\\right)$.",
+      "steps": [
+        "Take the risky order first, working from the inside out: $\\sin 150^{\\circ} = \\dfrac{1}{2}$.",
+        "Arcsine answers only from $-90^{\\circ}$ to $90^{\\circ}$ and $150^{\\circ}$ is outside that, so it looks instead for the heading inside its own stretch whose sine is $\\dfrac{1}{2}$.",
+        "That heading is $30^{\\circ}$, so $\\arcsin\\left(\\sin 150^{\\circ}\\right) = 30^{\\circ}$ and the heading has changed on the way through.",
+        "Now the other order. Arcsine turns the reading $\\dfrac{1}{2}$ into $30^{\\circ}$, which is inside the stretch by construction, and the sine of $30^{\\circ}$ is $\\dfrac{1}{2}$ again.",
+        "So $\\sin\\left(\\arcsin\\dfrac{1}{2}\\right) = \\dfrac{1}{2}$, and only the first of the two orders was ever at risk."
+      ]
+    },
+    {
+      "prompt": "A stay runs $5$ paces along for every $12$ paces across. Estimate its bearing against the equal-legs anchor, then give the bearing to three decimal places.",
+      "steps": [
+        "A ratio of two offsets is a tangent, so the bearing satisfies $\\tan\\theta = \\dfrac{5}{12}$ and is therefore $\\theta = \\arctan\\dfrac{5}{12}$.",
+        "Place it against the anchor first. The along offset is the shorter of the two, so the bearing sits below $45^{\\circ}$.",
+        "The ratio works out at about $0.417$, and the tempting reading is that fraction of a quarter turn, which would be roughly $37.5^{\\circ}$.",
+        "So the true bearing is $\\arctan\\dfrac{5}{12} \\approx 22.620^{\\circ}$, well short of the tempting figure: the anchor was right and the proportion was wrong, because a ratio and the bearing behind it do not move in step."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "trg-inverse-order", "gates": true },
+    { "after": 1, "id": "trg-range-label", "gates": true },
+    { "after": 2, "id": "trg-compose-sorter", "gates": true },
+    { "after": 3, "id": "trg-inverse-estimate", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Evaluate $\\arccos(\\cos 300^{\\circ})$, giving the heading in degrees. Enter one number.",
+    "accepted": ["60"],
+    "hint": "Work from the inside out. First turn $\\cos 300^{\\circ}$ into a number, using how far $300^{\\circ}$ sits from a full turn and what the sign of the cosine is out there. Then ask arccosine for the one heading between $0^{\\circ}$ and $180^{\\circ}$ whose cosine is that number, which need not be the heading you started from.",
+    "worked_solution": [
+      "Work from the inside out, so the first job is the reading $\\cos 300^{\\circ}$.",
+      "$300^{\\circ}$ falls $60^{\\circ}$ short of a full turn, in the quarter where the cosine is positive, so $\\cos 300^{\\circ} = \\dfrac{1}{2}$.",
+      "Arccosine may only answer inside $[0^{\\circ}, 180^{\\circ}]$, and $300^{\\circ}$ is not in there, so the heading that went in cannot be the heading that comes out.",
+      "Inside that stretch exactly one heading has a cosine of $\\dfrac{1}{2}$, and it is $60^{\\circ}$.",
+      "So $\\arccos(\\cos 300^{\\circ}) = 60^{\\circ}$."
+    ],
+    "worked_solution_params": { "kind": 0, "deg": 300 },
+    "check": { "answer_type": "numeric", "answer_key": "60" },
+    "variants": { "template_id": "cfu.trg7.compose-principal", "count": 2 }
+  }
+}

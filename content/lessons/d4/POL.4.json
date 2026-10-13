@@ -1,0 +1,109 @@
+{
+  "node_id": "POL.4",
+  "title": "Solve quadratics by completing the square and the quadratic formula",
+  "mini_lesson": [
+    "A mason has an L-shaped piece of ground to make up into a square court: a square of unknown side with two strips of equal width laid along two adjacent edges, so its outline is a square with one corner missing. Paving that corner is what makes the whole piece square, and the width of the strips is the only thing that decides how much paving the corner takes. Turning an expression into a perfect square by supplying exactly the constant it lacks is **completing the square**, and the method takes its name from the piece of ground rather than the other way round.",
+    "The constant that completes a square is fixed by the strips and never chosen: both strips have the same width and together they supply the middle coefficient, so each is half of it. The corner they leave open is that width squared, so for $x^{2} + bx$ the constant that completes the square is $\\left(\\dfrac{b}{2}\\right)^{2}$ and what it produces is $\\left(x + \\dfrac{b}{2}\\right)^{2}$. A negative middle term changes nothing about the size of the corner, since squaring a negative gives a positive.",
+    "A quadratic carrying a perfect square can be solved by taking roots, which is a move already in hand: move the constant across, add the corner to both sides, then root both sides while keeping both signs. Nothing in that run needs the quadratic to split into two brackets, which is the whole point of the method, since it works on every quadratic rather than only on the ones that do. A leading coefficient is divided out before any of it starts.",
+    "Run that same method on $ax^{2} + bx + c = 0$ and it produces one statement that solves every quadratic at once, the **quadratic formula**: $x = \\dfrac{-b \\pm \\sqrt{b^{2} - 4ac}}{2a}$. Nothing in it is new, and it is worth being clear about that, because it is completing the square carried out once in general so that nobody has to carry it out again. Reading $a$, $b$ and $c$ off the equation is the step that goes wrong, and it goes wrong on signs, so the equation has to be gathered at zero before any of the three is read.",
+    "The expression under the root decides what kind of answer the formula will produce, and it can be read before anything is evaluated: it is the **discriminant** $b^{2} - 4ac$, and only its sign matters here. A positive discriminant leaves a real square root to be added and subtracted, so there are two different solutions, while a discriminant of zero leaves nothing to add or subtract, so the two solutions coincide into one. A negative discriminant asks for the square root of a negative quantity, which no real number supplies, so the equation has no real solution and the ground it describes cannot be squared at all."
+  ],
+  "slide_subtitles": [
+    "The missing corner",
+    "Sizing the corner",
+    "Solving by squaring",
+    "One formula for all",
+    "The discriminant's sign"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A square $x$ paces on a side carries two strips of width $3$ along adjacent edges. Complete the square on the ground it covers.",
+      "steps": [
+        "The square is $x^{2}$ and each strip is $3$ by $x$, so the piece covers $x^{2} + 6x$ square paces.",
+        "The open corner measures $3$ by $3$, so filling it takes a further $9$ square paces.",
+        "The finished court then measures $x + 3$ on every side.",
+        "In algebra that reads $x^{2} + 6x + 9 = (x + 3)^{2}$."
+      ]
+    },
+    {
+      "prompt": "Complete the square on $x^{2} - 12x$.",
+      "steps": [
+        "Half the middle coefficient is $\\dfrac{-12}{2} = -6$, so each strip is $6$ wide.",
+        "The corner is that half squared: $(-6)^{2} = 36$.",
+        "So $x^{2} - 12x + 36$ is a perfect square, and it factors as $(x - 6)^{2}$.",
+        "The sign inside the bracket is the sign of the half, while the constant stays positive."
+      ]
+    },
+    {
+      "prompt": "Solve $x^{2} + 6x - 7 = 0$ by completing the square.",
+      "steps": [
+        "Move the constant across: $x^{2} + 6x = 7$.",
+        "Half of $6$ is $3$ and its square is $9$, so add $9$ to both sides: $(x + 3)^{2} = 16$.",
+        "Root both sides while keeping both signs: $x + 3 = 4$ or $x + 3 = -4$.",
+        "So the solutions are $1$ and $-7$, and nothing in that run needed the quadratic to split into two brackets."
+      ]
+    },
+    {
+      "prompt": "Solve $2x^{2} - 9x + 4 = 0$ with the quadratic formula.",
+      "steps": [
+        "The equation is already gathered at zero, so the three coefficients read off directly: $a = 2$, $b = -9$ and $c = 4$.",
+        "The sign travels with the coefficient, so $b$ is $-9$ rather than $9$.",
+        "Substituting gives $x = \\dfrac{9 \\pm \\sqrt{81 - 32}}{4}$.",
+        "Under the root that is $49$, whose square root is $7$.",
+        "So $x = \\dfrac{9 + 7}{4} = 4$ or $x = \\dfrac{9 - 7}{4} = \\dfrac{1}{2}$."
+      ]
+    },
+    {
+      "prompt": "Say how many real solutions $2x^{2} - 6x + 5 = 0$ has, without solving it.",
+      "steps": [
+        "Read the coefficients with their signs: $a = 2$, $b = -6$ and $c = 5$.",
+        "The discriminant is $(-6)^{2} - 4 \\times 2 \\times 5 = 36 - 40$.",
+        "That comes to $-4$, which is negative.",
+        "A negative discriminant asks for the root of a negative quantity, so this equation has no real solution."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "complete-square-drag", "gates": true },
+    { "after": 1, "id": "complete-square-table", "gates": true },
+    { "after": 2, "id": "complete-square-solver", "gates": true },
+    { "after": 3, "id": "formula-parts-label", "gates": true },
+    { "after": 4, "id": "discriminant-sorter", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Solve $2x^{2} + 5x - 12 = 0$ with the quadratic formula, and list both solutions.",
+    "accepted": [
+      "{-4, 3/2}",
+      "{3/2, -4}",
+      "-4, 3/2",
+      "3/2, -4",
+      "-4, 1.5",
+      "1.5, -4",
+      "-4, 6/4",
+      "6/4, -4",
+      "{-4, 6/4}",
+      "{6/4, -4}",
+      "-4, 9/6",
+      "9/6, -4",
+      "{-4, 9/6}",
+      "{9/6, -4}",
+      "-4, 12/8",
+      "12/8, -4",
+      "{-4, 12/8}",
+      "{12/8, -4}"
+    ],
+    "hint": "Read the three coefficients off the equation with their signs before substituting anything, and note that the equation is already gathered at zero. The quantity under the root decides how many solutions there are to write down.",
+    "worked_solution": [
+      "The equation is already gathered at zero, so the coefficients read off directly: $a = 2$, $b = 5$ and $c = -12$.",
+      "The discriminant is $5^{2} - 4 \\times 2 \\times (-12) = 25 + 96 = 121$, whose square root is $11$.",
+      "So $x = \\dfrac{-5 \\pm 11}{4}$.",
+      "The plus branch gives $x = \\dfrac{6}{4} = \\dfrac{3}{2}$ and the minus branch gives $x = \\dfrac{-16}{4} = -4$, so the solutions are $-4, 3/2$."
+    ],
+    "worked_solution_params": { "a": 2, "p": 3, "q": 4, "b": 5, "c": -12 },
+    "check": { "answer_type": "solution_set", "answer_key": "{-4, 3/2}" },
+    "variants": {
+      "template_id": "d4.pol4.formula.l3",
+      "count": 2
+    }
+  }
+}

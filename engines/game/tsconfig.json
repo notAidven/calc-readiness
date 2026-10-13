@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist", "rootDir": "src" },
+  "include": ["src/**/*"],
+  "//": "The era-trial population check derives its population by reading source with node:fs. The repo ships no @types/node (node built-ins live in .mjs scripts, not tsc-built TS), so it is excluded from tsc typechecking and runs under vitest's node runtime — the same treatment packages/economy gives its INV-COS-1 dependency check.",
+  "exclude": ["src/era-trial-population.test.ts"],
+  "references": [
+    { "path": "../../packages/shared-state-schema" },
+    { "path": "../../packages/skill-graph" },
+    { "path": "../../packages/shared-mastery-service" },
+    { "path": "../../packages/item-bank" },
+    { "path": "../../packages/shared-components" }
+  ]
+}

@@ -1,0 +1,6 @@
+# the fuel ladder, across-the-island (1x of the default dolly), 1024x580
+# changed pixels between rungs, and the box they sit in, over the island strip from x=484
+# read claimed here: true
+3->2: 13424px in 90x367
+2->1: 8398px in 90x251
+3->1: 15616px in 90x367

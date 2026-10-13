@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  @keyframes oru-bob { from { transform: translateY(0.7%); } to { transform: translateY(-1.4%); } }
+  @keyframes oru-blink { 0%,92%,100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
+  @keyframes oru-sway { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(2deg); } }
+  @keyframes oru-point { 0%,100% { transform: rotate(4deg); } 30% { transform: rotate(-34deg); } 60% { transform: rotate(-28deg); } }
+  @keyframes oru-talk { 0%,100% { transform: scaleY(0.32); } 50% { transform: scaleY(1); } }
+  @keyframes oru-float { 0% { transform: translateY(24%) scale(0.7); opacity: 0; } 25% { opacity: 0.9; } 100% { transform: translateY(-120%) scale(1.05); opacity: 0; } }
+  @keyframes oru-thatch { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2.5deg); } }
+  .or-a { position: absolute; box-sizing: border-box; }
+</style>
+</helmet>
+<div style="position:relative;width:100%;height:100%;aspect-ratio:1/1;font-family:'Nunito',sans-serif;overflow:visible;">
+
+  <div class="or-a" style="left:18%;top:22%;width:2.6%;height:2.6%;border-radius:40%;background:#D9622E;transform-origin:center;animation:oru-float 3.4s ease-in-out infinite;"></div>
+  <div class="or-a" style="left:79%;top:31%;width:2.2%;height:2.2%;border-radius:50%;background:#E08A46;transform-origin:center;animation:oru-float 4.1s ease-in-out infinite 1.3s;"></div>
+  <div class="or-a" style="left:74%;top:52%;width:1.9%;height:1.9%;border-radius:40%;background:#D9622E;transform-origin:center;animation:oru-float 3.7s ease-in-out infinite .7s;"></div>
+  <div class="or-a" style="left:23%;top:47%;width:1.7%;height:1.7%;border-radius:50%;background:#E8A05C;transform-origin:center;animation:oru-float 4.5s ease-in-out infinite 2.1s;"></div>
+
+  <div class="or-a" style="left:26%;top:86%;width:49%;height:8%;border-radius:50%;background:rgba(74,58,42,0.24);"></div>
+
+  <div class="or-a" style="inset:0;transform-origin:50% 100%;animation:oru-bob 3s ease-in-out infinite alternate;">
+
+    <div class="or-a" style="left:58.5%;top:20%;width:11.5%;height:11.5%;border-radius:50%;background:#B4AC98;"></div>
+    <div class="or-a" style="left:60.5%;top:23%;width:6.5%;height:6.5%;border-radius:50%;background:#A79E89;"></div>
+
+    <div class="or-a" style="left:35.5%;top:79.5%;width:13.5%;height:7.5%;border-radius:44% 44% 38% 38%;background:#5F4730;"></div>
+    <div class="or-a" style="left:51%;top:79.5%;width:13.5%;height:7.5%;border-radius:44% 44% 38% 38%;background:#5F4730;"></div>
+    <div class="or-a" style="left:40.5%;top:69%;width:8.5%;height:13%;border-radius:40%;background:#7A5C40;"></div>
+    <div class="or-a" style="left:51%;top:69%;width:8.5%;height:13%;border-radius:40%;background:#7A5C40;"></div>
+    <div class="or-a" style="left:40.2%;top:73%;width:9.1%;height:1.9%;border-radius:40%;background:#36695F;"></div>
+    <div class="or-a" style="left:50.7%;top:74.5%;width:9.1%;height:1.9%;border-radius:40%;background:#36695F;"></div>
+
+    <div class="or-a" style="left:63.5%;top:49%;width:9%;height:23%;transform-origin:50% 10%;{{ armAnim }}">
+      <div class="or-a" style="left:0;top:0;width:100%;height:84%;border-radius:45%;background:#C08A5A;"></div>
+      <div class="or-a" style="left:-10%;bottom:-10%;width:120%;height:44%;border-radius:50%;background:#B07A4E;"></div>
+    </div>
+
+    <div class="or-a" style="left:31.5%;top:46%;width:37%;height:36%;border-radius:32% 32% 24% 24%;background:#836444;"></div>
+    <div class="or-a" style="left:30.5%;top:77.5%;width:39%;height:5.5%;border-radius:24%;background:#5F4730;"></div>
+    <div class="or-a" style="left:42%;top:58%;width:8.5%;height:11%;border-radius:44% 30% 40% 34%;background:#585245;opacity:0.42;"></div>
+    <div class="or-a" style="left:29.5%;top:44%;width:41%;height:17%;border-radius:42% 42% 34% 34%;background:#6B563E;"></div>
+    <div class="or-a" style="left:33%;top:57%;width:8%;height:5%;border-radius:50%;background:#6B563E;"></div>
+    <div class="or-a" style="left:59%;top:57.5%;width:8%;height:5%;border-radius:50%;background:#6B563E;"></div>
+    <div class="or-a" style="left:41%;top:43%;width:18%;height:7.5%;border-radius:0 0 58% 58%;background:#59462F;"></div>
+
+    <div class="or-a" style="left:27.5%;top:49.5%;width:9%;height:22%;border-radius:45%;background:#C08A5A;transform:rotate(5deg);transform-origin:50% 10%;"></div>
+    <div class="or-a" style="left:25.5%;top:62%;width:11.5%;height:9.5%;border-radius:50%;background:#B07A4E;"></div>
+
+    <div class="or-a" style="left:44%;top:47.5%;width:3.4%;height:3.4%;border-radius:50%;background:#D6CDB2;"></div>
+    <div class="or-a" style="left:48.3%;top:49%;width:3.4%;height:4.4%;border-radius:50%;background:#CFC5A6;"></div>
+    <div class="or-a" style="left:52.6%;top:47.5%;width:3.4%;height:3.4%;border-radius:50%;background:#D6CDB2;"></div>
+
+    <div class="or-a" style="left:46%;top:39%;width:8%;height:6.5%;border-radius:35%;background:#B07A4E;"></div>
+
+    <div class="or-a" style="left:34%;top:15%;width:32%;height:31%;border-radius:49% 49% 46% 46%;background:radial-gradient(70% 62% at 40% 32%,#CE9C6C 0%,#C08A5A 74%,#AE7748 100%);"></div>
+    <div class="or-a" style="left:32.2%;top:27%;width:5%;height:6.5%;border-radius:50%;background:#C08A5A;"></div>
+    <div class="or-a" style="left:63.2%;top:27%;width:5%;height:6.5%;border-radius:50%;background:#C08A5A;"></div>
+    <div class="or-a" style="left:33.4%;top:12.5%;width:33.2%;height:9.5%;border-radius:52% 52% 34% 34%;background:#C4BCA8;"></div>
+    <div class="or-a" style="left:32.6%;top:19%;width:5.6%;height:8%;border-radius:50% 20% 40% 50%;background:#BAB29D;"></div>
+    <div class="or-a" style="left:61.8%;top:19%;width:5.6%;height:8%;border-radius:20% 50% 50% 40%;background:#BAB29D;"></div>
+    <div class="or-a" style="left:39.4%;top:24.2%;width:7.2%;height:1.7%;border-radius:3px;background:#9A9280;transform:rotate(-5deg);"></div>
+    <div class="or-a" style="left:53.4%;top:24.2%;width:7.2%;height:1.7%;border-radius:3px;background:#9A9280;transform:rotate(5deg);"></div>
+    <div class="or-a" style="left:38.6%;top:32.5%;width:8.6%;height:1.4%;border-radius:3px;background:#A9744A;opacity:0.55;transform:rotate(9deg);"></div>
+    <div class="or-a" style="left:52.8%;top:32.5%;width:8.6%;height:1.4%;border-radius:3px;background:#A9744A;opacity:0.55;transform:rotate(-9deg);"></div>
+
+    <div class="or-a" style="left:0;top:0;width:100%;height:100%;{{ eyeOpenStyle }}">
+      <div class="or-a" style="left:40.4%;top:27.8%;width:4.8%;height:6%;border-radius:50%;background:#2A251E;transform-origin:center;animation:oru-blink 5.2s ease-in-out infinite;">
+        <div class="or-a" style="left:30%;top:16%;width:36%;height:26%;border-radius:50%;background:#F7F1E2;"></div>
+      </div>
+      <div class="or-a" style="left:54.8%;top:27.8%;width:4.8%;height:6%;border-radius:50%;background:#2A251E;transform-origin:center;animation:oru-blink 5.2s ease-in-out infinite;">
+        <div class="or-a" style="left:30%;top:16%;width:36%;height:26%;border-radius:50%;background:#F7F1E2;"></div>
+      </div>
+    </div>
+    <div class="or-a" style="left:0;top:0;width:100%;height:100%;{{ eyeNarrowStyle }}">
+      <div class="or-a" style="left:39.6%;top:29.5%;width:6.4%;height:1.8%;border-radius:60% 60% 20% 20%;background:#2A251E;"></div>
+      <div class="or-a" style="left:54%;top:29.5%;width:6.4%;height:1.8%;border-radius:60% 60% 20% 20%;background:#2A251E;"></div>
+    </div>
+
+    <div class="or-a" style="left:48.6%;top:31.2%;width:2.8%;height:4.4%;border-radius:44% 44% 50% 50%;background:#B07A4E;"></div>
+    <div class="or-a" style="left:37.8%;top:35.8%;width:6.8%;height:1.8%;border-radius:2px;background:#A83A16;opacity:0.92;transform:rotate(8deg);"></div>
+    <div class="or-a" style="left:55.4%;top:35.8%;width:6.8%;height:1.8%;border-radius:2px;background:#A83A16;opacity:0.92;transform:rotate(-8deg);"></div>
+    <div class="or-a" style="left:49.1%;top:22.4%;width:1.9%;height:4.2%;border-radius:2px;background:#A83A16;opacity:0.9;"></div>
+    <div class="or-a" style="left:60.5%;top:30%;width:4.4%;height:3%;border-radius:40%;background:#585245;opacity:0.4;transform:rotate(-12deg);"></div>
+
+    <div class="or-a" style="left:46.2%;top:39.6%;width:7.6%;height:1.3%;border-radius:999px;background:#7A4034;{{ mouthLineStyle }}"></div>
+    <div class="or-a" style="left:47%;top:39%;width:6%;height:5%;border-radius:44% 44% 50% 50%;background:#6E3226;transform-origin:50% 26%;{{ mouthTalkStyle }}">
+      <div class="or-a" style="left:22%;bottom:8%;width:56%;height:34%;border-radius:50% 50% 40% 40%;background:#B2604C;"></div>
+    </div>
+
+    <div class="or-a" style="left:20.5%;top:6%;width:3.2%;height:86%;border-radius:999px;background:linear-gradient(90deg,#5A412A 0%,#8B6C46 42%,#77593A 100%);"></div>
+    <div class="or-a" style="left:19.4%;top:26%;width:5.4%;height:2%;border-radius:999px;background:#36695F;"></div>
+    <div class="or-a" style="left:19.4%;top:47%;width:5.4%;height:2%;border-radius:999px;background:#A88F63;"></div>
+    <div class="or-a" style="left:19.4%;top:66%;width:5.4%;height:2%;border-radius:999px;background:#36695F;"></div>
+    <div class="or-a" style="left:14%;top:0.5%;width:16%;height:9%;transform-origin:50% 100%;animation:oru-thatch 4.6s ease-in-out infinite;">
+      <div class="or-a" style="left:38%;top:0;width:7%;height:100%;border-radius:999px;background:#A98A52;transform:rotate(-13deg);"></div>
+      <div class="or-a" style="left:46%;top:-4%;width:7%;height:104%;border-radius:999px;background:#BFA268;transform:rotate(-3deg);"></div>
+      <div class="or-a" style="left:54%;top:0;width:7%;height:100%;border-radius:999px;background:#82683B;transform:rotate(8deg);"></div>
+      <div class="or-a" style="left:30%;top:6%;width:6%;height:94%;border-radius:999px;background:#93875F;transform:rotate(-22deg);"></div>
+      <div class="or-a" style="left:62%;top:8%;width:6%;height:92%;border-radius:999px;background:#A98A52;transform:rotate(17deg);"></div>
+      <div class="or-a" style="left:34%;top:76%;width:32%;height:9%;border-radius:999px;background:#36695F;"></div>
+    </div>
+    <div class="or-a" style="left:18.6%;top:60%;width:7%;height:6%;transform:rotate(12deg);">
+      <div class="or-a" style="left:46%;top:0;width:8%;height:64%;border-radius:999px;background:#A88F63;"></div>
+      <div class="or-a" style="left:30%;top:58%;width:40%;height:42%;border-radius:40% 40% 50% 50%;background:#D6CDB2;"></div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:300},&quot;mood&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;idle&quot;,&quot;options&quot;:[&quot;idle&quot;,&quot;talk&quot;,&quot;point&quot;,&quot;squint&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const mood = this.props.mood || 'idle';
+    const talk = mood === 'talk', point = mood === 'point';
+    return {
+      armAnim: point ? 'animation:oru-point 1.6s ease-in-out infinite;' : 'animation:oru-sway 4.2s ease-in-out infinite;',
+      eyeOpenStyle: mood === 'squint' ? 'display:none;' : 'display:block;',
+      eyeNarrowStyle: mood === 'squint' ? 'display:block;' : 'display:none;',
+      mouthLineStyle: talk ? 'opacity:0;transition:opacity .14s;' : 'opacity:1;transition:opacity .14s;',
+      mouthTalkStyle: talk ? 'opacity:1;animation:oru-talk 0.3s ease-in-out infinite;' : 'opacity:0;',
+    };
+  }
+}
+</script>
+</body>
+</html>

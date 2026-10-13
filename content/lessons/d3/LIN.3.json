@@ -1,0 +1,75 @@
+{
+  "node_id": "LIN.3",
+  "title": "Rearrange a formula to isolate a chosen variable",
+  "mini_lesson": [
+    "The foundry keeps one rule scratched on a clay tablet for the curb round a rectangular casting floor: its total length is $P = 2l + 2w$, where $l$ is the floor's length and $w$ is its width. A **formula** like that is a rule relating several quantities, and it is pointed at whichever quantity stands alone on its own side, so as written it answers only the question of curb length. Rewriting it so that a different chosen quantity stands alone is called **isolating** that quantity, and it is what turns one rule into an answer for every question the rule contains.",
+    "Isolating $w$ takes no new technique, only the balance moves applied to names instead of digits. Nothing gets computed along the way and no measurement is needed, because not one of those moves depends on what the quantities happen to be. What comes out is the rule re-pointed, so it answers its new question for any floor at all rather than for the one in front of you.",
+    "Some rules wrap the wanted quantity inside a group, or park the whole of one side over a divisor: the tablet's rule for the sloping face of a mould is $A = \\dfrac{h(a + b)}{2}$. Peeling the outermost operation off first is what clears that, and it is the same instinct as taking the loose weight off the pan before splitting the ingots. Whatever comes away after it has to come away from the whole side and not from one piece of it.",
+    "A rearranged rule is easy to get subtly wrong, and one trial run catches most of the ways it can happen. Take a set of quantities that already satisfy the original rule, feed the known ones into the rearranged version, and see whether it hands back the one you held out. A single trial cannot prove a rearrangement right, but a wrong version usually fails it loudly rather than by a little."
+  ],
+  "slide_subtitles": [
+    "One rule, many questions",
+    "Moves without numbers",
+    "When a group divides",
+    "Testing a rearrangement"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A new casting floor measures $14$ cubits long and $9$ cubits wide. Use the tablet's rule as it stands to give the curb length.",
+      "steps": [
+        "The rule already has $P$ standing alone, so nothing needs rearranging: $P = 2l + 2w$.",
+        "Put the floor's two measurements in, with $l = 14$ and $w = 9$: $P = 2(14) + 2(9)$.",
+        "$2(14)$ is $28$ and $2(9)$ is $18$.",
+        "Adding those gives $P = 46$, so the curb runs $46$ cubits."
+      ]
+    },
+    {
+      "prompt": "Isolate $w$ in the curb rule $P = 2l + 2w$.",
+      "steps": [
+        "On the right-hand side $2l$ is added to $2w$, so subtracting $2l$ from both sides clears it: $P - 2l = 2w$.",
+        "The whole of $P - 2l$ now equals $2w$, and $w$ is multiplied by $2$.",
+        "One division by $2$ undoes that multiplication: $w = \\dfrac{P - 2l}{2}$."
+      ]
+    },
+    {
+      "prompt": "The same tablet sets a caster's fee at a quarter of the metal he handles, which is the two equal ingots he pours plus the scrap he sends back: $f = \\dfrac{2i + s}{4}$. Isolate the weight $i$ of one ingot.",
+      "steps": [
+        "The whole right-hand side is divided by $4$, so that divisor is the outermost operation: multiplying both sides by $4$ gives $4f = 2i + s$.",
+        "The scrap is added to the whole of that side, so taking $s$ off both sides leaves $4f - s = 2i$.",
+        "What is left is one ingot's weight doubled, so dividing both sides by $2$ gives $i = \\dfrac{4f - s}{2}$."
+      ]
+    },
+    {
+      "prompt": "A mould with $a = 5$, $b = 7$ and $h = 5$ has $A = 30$. Trial $h = \\dfrac{2A}{a + b}$ on it, then trial $h = \\dfrac{2A}{a} + b$.",
+      "steps": [
+        "Confirm the mould satisfies the original rule: $\\dfrac{5(5 + 7)}{2}$ is $\\dfrac{60}{2}$, which is $30$.",
+        "Feed $A = 30$, $a = 5$ and $b = 7$ into the first version: $\\dfrac{2(30)}{5 + 7}$ is $\\dfrac{60}{12}$, which is $5$.",
+        "That is the height the mould started with, so the first version survives the trial.",
+        "The second version gives $\\dfrac{60}{5} + 7$, which is $19$, so it fails the trial loudly and is wrong."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "formula-target-match", "gates": true },
+    { "after": 1, "id": "formula-subject-table", "gates": true },
+    { "after": 2, "id": "formula-isolate-builder", "gates": true },
+    { "after": 3, "id": "formula-check-play", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A crucible rule gives the finished bronze weight as $B = c + t - 2$, where $c$ is the copper charged and $t$ is the tin charged, with $2$ minas lost in the melt. Rearrange it to give the tin, then use it: a melt that finished at $57$ minas was charged with $44$ minas of copper. How much tin went in? Enter one number.",
+    "accepted": ["15"],
+    "hint": "Isolate $t$ before any measurement goes in. Two things stand on its side of the rule: $c$ is added to it and $2$ is subtracted from it, so each of those comes away by its own inverse operation.",
+    "worked_solution": [
+      "Rearrange before any measurement goes in. Subtract $c$ from both sides of $B = c + t - 2$: $B - c = t - 2$.",
+      "Add $2$ to both sides, and the tin stands alone: $t = B - c + 2$.",
+      "Now put the melt's numbers in, with $B = 57$ and $c = 44$: $t = 57 - 44 + 2$.",
+      "$57 - 44$ is $13$, and $13 + 2$ is $15$, so $15$ minas of tin went in."
+    ],
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "15"
+    },
+    "worked_solution_params": { "tin": 15, "copper": 44, "loss": 2, "bar": 57 },
+    "variants": { "template_id": "d3.lin3.melt-tin.l2", "count": 2 }
+  }
+}

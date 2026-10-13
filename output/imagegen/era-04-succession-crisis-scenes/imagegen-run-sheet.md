@@ -1,0 +1,158 @@
+# Era 04 Succession Crisis ? Imagegen Run Sheet
+
+Source README: C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-04-succession-crisis-scenes/README.md
+Style reference: C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md
+
+Paste each prompt into $imagegen and save to the listed filename.
+
+## 1. `wide-master.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: a stylised low-poly isometric toy classical port city on a small round island, under a > hard white noon, during a succession dispute. The port has shut.** > > Two or three timber hulls hold position out past the harbour mouth on slate mist water `#8FA9B8`, > with nothing being unloaded and no boat alongside. **The quay is bare**: the tall jars and the > corded bales are gone. A timber treadwheel crane stands **stopped mid-lift with a squared limestone > block hanging still in its sling.** > > A run of **low squared boundary stones is set into the paving along one of its own joint lines**, > one stone every few modules, enclosing an area without filling it. On one low limestone pedestal > stands a **tall narrow standing stone figure with one arm raised**; on another sits a **wide low > seated stone figure with a knee thrown forward**; **a third pedestal is bare.** A public basin runs > with water and an overflow channel. A line of limbed-up trees stands along one edge with the ground > scuffed bare at their feet. > > The ground is a continuous paved floor of fitted dressed limestone `#DED5C0` over a deeper cut > `#C9BFA6`, its joint lines running straight through the whole open area, cambered, kerbed in > `#A89C82`. Three limestone masses stand on it in body hue `#D2C8AA` under terracotta pan-and-cover > roofs `#B4674A`, each meeting the floor at a dark kerb. > > **What must read: a working port that has stopped working**, and that some pedestals carry a figure > and others do not. The block in the crane's sling must read as **held in the air** rather than as > landed. > > It must not resemble a sacked or abandoned city, a ruin field, a battlefield, a storm scene or a > map with coloured territories. > > Match the camera, the ground and the massing in > `docs/superpowers/specs/crisis-reference-packs/succession/01-wide-master.svg`.
+```
+
+## 2. `plinth-bare.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one low limestone pedestal with an empty top face, filling the frame, standing on a > paved dressed-stone floor.** > > The pedestal is dressed limestone `#D2C8AA`, on a floor of fitted slabs `#DED5C0` over `#C9BFA6` > with the joint lines running straight through and up to its base. Nothing on its top face, nothing > at its foot, the paving around it clear. > > **What must read, and it is the hardest thing on this sheet: a bare pedestal is a positive state.** > *Nothing is going to happen here* rather than *a figure failed to draw*. So the pedestal is > finished stonework: its top face is dressed and level, its edges are crisp, and it is plainly > complete rather than waiting. No socket, no fixing, no dowel hole, no scaffold, no offcut and no > chippings at its foot. > > Take the pedestal's proportions from > `docs/superpowers/specs/crisis-reference-packs/succession/02-plinth-four-states.svg`, first mass.
+```
+
+## 3. `plinth-standing-figure.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one low limestone pedestal carrying a standing stone figure, filling the frame, > standing on a paved dressed-stone floor.** > > The pedestal of frame 2. On it stands a **tall and narrow stone figure with one arm raised clear of > the body**, in the same stone one step darker, about 22 percent down from the pedestal's hue. The > figure is faceted stone. > > **What must read: a vertical, narrow silhouette**, because the whole job of this frame and frame 4 > together is that a standing upright and a seated mass do not resolve into the same pale blob when > the frame is squinted at. The raised arm is part of that outline and must clear the body. > > It must not resemble polished marble, a portrait bust, a religious icon, a chess piece or a trophy. > > Take the figure's silhouette from > `docs/superpowers/specs/crisis-reference-packs/succession/02-plinth-four-states.svg`, second mass.
+```
+
+## 4. `plinth-seated-figure.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one low limestone pedestal carrying a seated stone figure, filling the frame, standing > on a paved dressed-stone floor.** > > The pedestal of frame 2. On it sits a **wide and low stone figure with one knee thrown forward past > the pedestal's front edge**, in the same stone one step darker, about 22 percent down from the > pedestal's hue. Faceted stone. > > **What must read: a horizontal, wide silhouette**, and the knee breaking the pedestal's own outline > is what makes it read as seated rather than as a shorter standing figure. That overhang is the > whole silhouette decision here, as the raised arm is in frame 3. > > It must not resemble polished marble, a portrait bust, a religious icon, a chess piece or a trophy. > > Take the figure's silhouette from > `docs/superpowers/specs/crisis-reference-packs/succession/02-plinth-four-states.svg`, third mass.
+```
+
+## 5. `plinth-block-hoisted.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: a squared stone block hanging in a sling over a low limestone pedestal, filling the > frame, standing on a paved dressed-stone floor.** > > The pedestal of frame 2, straddled by **timber shear-legs**, with a **squared stone block hanging > in a sling** from them. The block is **still clear of the pedestal's top face and not yet set > down**, with daylight visible between the two. > > **What must read: a block being placed, right now, and not yet landed.** The gap between the block > and the top face is the subject, so it must be unambiguous at a glance. > > The block is being placed, not dropped: nothing is falling, nothing is broken, no motion streak, no > dust cloud, no speed line. It must not resemble a demolition, a siege engine, a gallows or a > wrecking ball. > > Take the shear-legs and the block from > `docs/superpowers/specs/crisis-reference-packs/succession/02-plinth-four-states.svg`, fourth mass.
+```
+
+## 6. `plinth-standing-figure-proposed.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one low limestone pedestal carrying a proposed standing stone figure, filling the frame, > standing on a paved dressed-stone floor.** > > The pedestal and the figure of frame 3 exactly, with the figure drawn as a **proposal**: the > identical silhouette, **see-through at a little over half opacity**, made out of the **dark end of > the stone family rather than the pale end**, casting no shadow at all, and never hiding the > pedestal's edge behind it. The pedestal itself is solid and casts its own short hard shadow. > > **What must read: the same object as frame 3, not yet committed.** The only differences from a > committed figure are that it is see-through, darker rather than paler, and casts nothing. > > **It sits over a pale floor, which is the reason it is dark and the reason its opacity is raised.** > Era four's floor at `#DED5C0` is the palest in the run, and a ghost that reasons correctly still > resolves to a pale smear against it. So it must stay clearly visible rather than washing out. > > No proposal is drawn in a different colour from its committed twin, and none is a frame floating in > the air away from the thing it proposes. No dashed line, dotted outline, hatching, crosshair, > reticle, cursor, arrow, bracket or drop shadow behind the ghost. Nothing here may resemble a > hologram, a projection, a blueprint sheet or a UI overlay pasted over the world: **this is a stone > object and its proposal.** > > **There is no plate for this frame, and that is a measured gap rather than an oversight.** `Plinth` > declares a `ghost-standing` state (`tools/generate-winter-crisis-references.ps1:844`) and **no > plate calls it**: the four `Plinth` calls in the plate 02 block are `bare`, `standing`, `seated` > and `hoisted` (`ps1:1950-1953`). Re-measured at `50a917fa`; the previous version of this sheet > cited lines 758 and 1824-1827, which have both moved. Era one's plates do draw a proposal, so the > house has a convention for it and era four's plates simply have none. Take the proposal treatment > from `docs/superpowers/specs/crisis-reference-packs/hard-winter/09-building-protection-states.svg`, > third mass, which is era one's ghosted shield.
+```
+
+## 7. `boundary-stone-unmarked.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one low squared limestone boundary stone with an unmarked top face, filling the frame, > set into a paved dressed-stone floor along one of its joint lines.** > > A plain squared block of dressed limestone `#D2C8AA` standing about knee height, its top face bare. > The floor is fitted slabs `#DED5C0` over `#C9BFA6`, **unbroken and unfilled right up to the stone**, > with its joint lines running straight through and the stone sitting on one of them. > > **What must read: a set boundary stone that has not been claimed**, rather than a stone whose mark > failed to draw. The top face is dressed and finished, and the stone is plainly in place. > > **No fill or tint on the paving on either side of the stone**, so the frame cannot be read as a > coloured territory boundary on a map. > > Take the stone's proportions from > `docs/superpowers/specs/crisis-reference-packs/succession/03-district-boundary-on-paving.svg`.
+```
+
+## 8. `boundary-stone-chevron.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one low squared limestone boundary stone with a single chevron cut into its top face, > filling the frame, set into a paved dressed-stone floor along one of its joint lines.** > > The stone of frame 7, its **top face carrying a single cut chevron**: shallow relief about 44 > percent darker than the stone's own hue, so **a shadow line sits in the cut**. > > **What must read: a groove in stone, at this distance.** The cut is a channel with a dark shadow > inside it, not a line drawn on top of the stone. The chevron must be legible on a small top face > and distinguishable from a ring at a glance. > > Nothing is painted, inked, chalked or inlaid. The mark must not resemble a letter, a numeral, > heraldry, a cross, a rune, a company logo, a road sign or a warning symbol. > > Take the mark from > `docs/superpowers/specs/crisis-reference-packs/succession/03-district-boundary-on-paving.svg`, > second stone.
+```
+
+## 9. `boundary-stone-ring.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one low squared limestone boundary stone with a single ring cut into its top face, > filling the frame, set into a paved dressed-stone floor along one of its joint lines.** > > The stone of frame 7, its **top face carrying a single cut ring**: shallow relief about 44 percent > darker than the stone's own hue, so a shadow line sits in the cut. > > **What must read: a ring, told apart from a chevron by shape at a glance**, and a groove rather > than a drawn circle. The ring closes; it is a complete ring and not an arc. > > Nothing is painted, inked, chalked or inlaid. It must not resemble a letter, a numeral, heraldry, a > rune, a company logo, a road sign or a warning symbol. > > Take the mark from > `docs/superpowers/specs/crisis-reference-packs/succession/03-district-boundary-on-paving.svg`, > third stone.
+```
+
+## 10. `boundary-stone-both.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one low squared limestone boundary stone carrying both a cut chevron and a cut ring on > its top face, filling the frame, set into a paved dressed-stone floor along one of its joint > lines.** > > The stone of frame 7, its **top face carrying the chevron of frame 8 and the ring of frame 9 > together**, both in shallow relief about 44 percent darker than the stone, each with its own shadow > line. > > **What must read: two marks, both countable, on one small top face.** Neither may be crowded out by > the other, and the pair must not merge into a single compound device. > > Nothing is painted, inked, chalked or inlaid, and the pair must not resemble a letter, a monogram, > heraldry or a logo. > > Take both marks from > `docs/superpowers/specs/crisis-reference-packs/succession/03-district-boundary-on-paving.svg`, > fourth stone.
+```
+
+## 11. `drift-block-at-the-foot.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: a squared stone block resting on the paving at the foot of a low limestone pedestal, > with timber shear-legs standing over it and the sling hanging slack, filling the frame.** > > The pedestal of frame 2, its top face still empty. At its foot, **a squared stone block resting on > the paving** with **a cut ring on the block's upward face**. **Timber shear-legs stand over the > block**, their **sling hanging slack**, nothing lifted yet. > > **What must read: somebody is about to raise a statue here.** The slack sling is the whole tell, > so it must hang visibly loose rather than taut. > > **The mark cut into the block's face must be legible enough to say whose block it is** and not only > that a block is there. It is a groove with a shadow line, about 44 percent darker than the stone. > > No clock, dial, countdown, progress bar or timer of any kind, and nothing that reads as elapsed > time. No arrow, no chevron pointing anywhere, no motion streak, no dust cloud, no speed line. > Nothing is broken, nothing is falling and nothing is burning. > > Take the shear-legs geometry and the block from > `docs/superpowers/specs/crisis-reference-packs/succession/04-drift-warning.svg`, second mass.
+```
+
+## 12. `civic-building-open.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one colonnaded limestone civic building as built and open, filling the frame, standing > on a paved dressed-stone floor.** > > A colonnaded limestone mass in body hue `#D2C8AA` under a terracotta pan-and-cover roof `#B4674A`, > standing on a paved floor `#DED5C0` over `#C9BFA6` and meeting it at a dark kerb `#A89C82`, with > **the same repeated bay spacing across every elevation**. Its bays are clear and its door is open. > > **What must read: a working civic building**, and the bay rhythm, because the bay module is what > frames 13 and 14 change and it must be established here. > > Nothing is damaged: no collapsed wall, no fallen column, no missing roof, no gap in the silhouette, > no rubble, no scorch, no crack, no soot, no weed and no scaffold. No tint on any wall to show who > holds the building. > > Take the building and its bay spacing from > `docs/superpowers/specs/crisis-reference-packs/succession/05-civic-building-states.svg`, first mass.
+```
+
+## 13. `civic-building-shuttered.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one colonnaded limestone civic building shuttered across every opening, filling the > frame, standing on a paved dressed-stone floor.** > > The building of frame 12, **shuttered**: **squared timber boards set between the columns of its own > bay** across every opening the camera can see, **standing proud of the wall so the silhouette > changes**, plus **a barred panel across the door**, plus **a small milestone-shaped stone marker at > its front lower corner** with a single mark cut into it. > > **What must read: the whole silhouette kept and the openings lost.** The boards work the era's own > module, so the building is plainly the same building with its bays filled rather than a different > building. > > **This is the frame most likely to be drawn as a ruin, and it is not one.** No collapsed wall, no > fallen column, no missing roof, no gap in the silhouette, no rubble, no scorch, no crack, no soot, > no weed, no scaffold. **The boards are new squared timber, not salvage.** No painted device on the > shutters, no chalked mark on any door and no plague cross. > > Take the shuttering and the corner marker from > `docs/superpowers/specs/crisis-reference-packs/succession/05-civic-building-states.svg`, second > mass.
+```
+
+## 14. `civic-building-inscription.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one colonnaded limestone civic building as built and open, carrying a carved inscription > panel on a stone bracket beside its door, filling the frame, standing on a paved dressed-stone > floor.** > > The building of frame 12, open and undamaged, with **a carved inscription panel on a stone bracket > fixed to the wall beside its door**, its face **cut with a single chevron** and nothing else. > > **What must read: a building that has gained a small object at its wall and nothing else.** The > building is otherwise identical to frame 12, so the panel is the only difference between them. > > **No readable letters or numerals in the panel:** it carries one cut chevron, as a groove with a > shadow line, and nothing more. No tint on any wall. Nothing is damaged and nothing is a ruin. > > Take the panel and its bracket from > `docs/superpowers/specs/crisis-reference-packs/succession/05-civic-building-states.svg`, third > mass.
+```
+
+## 15. `civic-building-inscription-proposed.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one colonnaded limestone civic building carrying a proposed inscription panel beside its > door, filling the frame, standing on a paved dressed-stone floor.** > > The building and the wall of frame 14, with the panel drawn as a **proposal**: **a raised outline of > the panel's shape only**, with **the wall visible through the middle of it**, no cut chevron and no > filled face, casting no shadow. > > **What must read: the same panel as frame 14, not yet cut.** The outline is the panel's own > silhouette at the same size and in the same place on the wall. > > **It sits over a pale wall, so it is made out of the dark end of the stone family** and must stay > clearly visible rather than washing out into a faint smear. > > No dashed line, dotted outline, hatching, crosshair, reticle, cursor, arrow, bracket or drop > shadow. It must not resemble a hologram, a projection, a blueprint sheet or a UI overlay pasted > over the world. > > **There is no plate for this frame**, for the same measured reason as frame 6. Take the panel from > `docs/superpowers/specs/crisis-reference-packs/succession/05-civic-building-states.svg`, third > mass, and the proposal treatment from > `docs/superpowers/specs/crisis-reference-packs/hard-winter/09-building-protection-states.svg`, > third mass.
+```
+
+## 16. `counting-slab-empty.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one marble counting slab with all its cells bare, filling the frame, lying on a paved > dressed-stone floor.** > > A low rectangular slab of pale faceted marble in the era's stone `#D2C8AA`, **ruled into a shallow > grid of cells by grooves about 40 percent darker than the slab**, lying flat on a paved floor > `#DED5C0` over `#C9BFA6`. Every ruled cell is bare. > > **What must read: a slab that is ruled and ready and holds nothing.** The ruling must be legible as > a grid of cells, because it is what makes frames 17 and 18 countable. > > No numerals, tally strokes, written figures, dial, gauge, meter, bar chart or progress bar. The > marble is pale and faceted and must not resemble polished or veined marble, and it reflects > nothing. > > Take the slab's proportions and its ruled grid from > `docs/superpowers/specs/crisis-reference-packs/succession/06-influence-counting-board.svg`, first > slab.
+```
+
+## 17. `counting-slab-one-row.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one marble counting slab holding four counters seated in a single row, filling the > frame, lying on a paved dressed-stone floor.** > > The slab of frame 16, holding **four counters seated in one row, filling from one end**. Counters > are **round stone discs** of the same family, about 30 percent darker on their top face and 52 > percent darker on their sides, **seated flush down in the ruled cells**. > > **What must read: four, countable at a glance**, and the row filling from one end rather than > scattered. > > **Nothing is stacked**: every counter sits flush in its own cell. The counters must not resemble > coins, gaming chips, dominoes, an abacus on a frame or a board game. No numerals and no tally > strokes. > > Take the counters and their seating from > `docs/superpowers/specs/crisis-reference-packs/succession/06-influence-counting-board.svg`, second > slab.
+```
+
+## 18. `counting-slab-second-row.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: one marble counting slab holding enough counters to run past the end of its first row > and start a second, filling the frame, lying on a paved dressed-stone floor.** > > The slab of frame 16 with its **first row full and a second row started**, the counters of frame 17 > seated flush in the ruled cells. > > **What must read, and it is the only thing this frame is for: a second row that reads as a second > row** rather than as a wider first row. The ruling's own geometry has to carry that, so the row > break must be unmistakable and the second row must plainly begin at the same end the first did. > > Nothing is stacked, and no counter sits between cells or on a groove. No numerals and no tally > strokes. > > Take the arrangement from > `docs/superpowers/specs/crisis-reference-packs/succession/06-influence-counting-board.svg`, third > slab.
+```
+
+## 19. `counter-in-the-pedestal-socket.png`
+
+```text
+Use the exact rendering quality/style of C:/Users/<user>/Downloads/calc-readiness/output/imagegen/era-02-neolithic-ten-buildings/README.md and especially the material readability quality of 07-granary.png. Isometric low-poly presentation on parchment #ECE4D3, three flat tone steps per surface, crisp silhouettes, no ambient occlusion/specular/rim light/gradient/glow. Center subject, full object visible, clear margins, no clipping, no labels/UI/watermark.
+
+**Subject: the base of a limestone pedestal with one counter seated in a socket cut into it, > filling the frame, standing on a paved dressed-stone floor.** > > The **base of a limestone pedestal** `#D2C8AA`, with **one round stone counter seated in a socket > cut into that base**, off any slab. The counter is the same object as the ones in frames 17 and 18: > the same disc, the same tones, about 30 percent darker on its top face and 52 percent darker on its > sides. The socket is cut into the stone, with a shadow line in the cut. > > **What must read: a counter that has been spent.** It is unmistakably the same object as the ones on > the slabs, moved, and it is unmistakably seated in the pedestal rather than resting on it. > > No numeral, tally, dial or gauge, and nothing that says how many were spent. The counter must not > resemble a coin dropped in a slot, a gaming chip or a plug. > > **The pedestal socket is not in plate 06** and is described here in full. Take the counter from > `docs/superpowers/specs/crisis-reference-packs/succession/06-influence-counting-board.svg` and the > pedestal base from > `docs/superpowers/specs/crisis-reference-packs/succession/02-plinth-four-states.svg`.
+```

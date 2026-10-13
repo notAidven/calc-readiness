@@ -1,0 +1,70 @@
+{
+  "node_id": "NUM.3",
+  "title": "Field properties / distributive",
+  "mini_lesson": [
+    "Each group sitting on the swept ground is handed the same bundle of tools, so the camp counts its totals in whatever order is easiest. Two properties make that safe: **commutative** swaps the order of terms, and **associative** changes which terms are grouped together. Neither one moves the value, so you are free to reshape a sum into whichever arrangement is simplest to add.",
+    "The **distributive property** hands a factor outside the parentheses to every term inside, not just to the first one. That is what turns a product into a sum: one grouped expression becomes a string of separate terms you can work with one at a time. It reads the same over a difference, where the minus sign belongs to the term behind it and travels into that product.",
+    "Every number has **identities**: adding $0$ or multiplying by $1$ hands the number straight back, unchanged. It also has **inverses**, its opposite and its reciprocal, which undo the number instead of preserving it. Each inverse collapses onto the identity of its own operation, and clearing a term or a factor that way is the move behind solving an equation."
+  ],
+  "slide_subtitles": [
+    "Commutative and associative",
+    "The distributive property",
+    "Identities and inverses"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Reshape $8 + 7 + 2$ into an easier arrangement, then add it.",
+      "steps": [
+        "Start from the sum $8 + 7 + 2$, read left to right.",
+        "The commutative property swaps two of the terms: $8 + 2 + 7$.",
+        "The associative property groups the first pair: $(8 + 2) + 7$.",
+        "Add inside the grouping: $8 + 2 = 10$, which leaves $10 + 7$.",
+        "The total is $17$, exactly what $8 + 7 + 2$ gives in its original order."
+      ]
+    },
+    {
+      "prompt": "Distribute $5(t - 3)$ into separate terms.",
+      "steps": [
+        "Take $5(t - 3)$, one factor standing outside a difference.",
+        "The factor meets the first term on its own: $5 \\times t = 5t$.",
+        "It meets the second term with the sign attached: $5 \\times (-3) = -15$.",
+        "Writing the two products in a row gives $5t - 15$."
+      ]
+    },
+    {
+      "prompt": "Evaluate $8 \\times \\dfrac{1}{8} \\times 13$ without working left to right.",
+      "steps": [
+        "Take $8 \\times \\dfrac{1}{8} \\times 13$.",
+        "The first two factors are multiplicative inverses of each other, so $8 \\times \\dfrac{1}{8} = 1$.",
+        "That leaves $1 \\times 13$, a number standing beside the multiplicative identity.",
+        "Multiplying by $1$ changes nothing, so the value is $13$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "commutative-associative-play", "gates": true },
+    { "after": 1, "id": "distribute-builder", "gates": true },
+    { "after": 2, "id": "identity-inverse-match", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Each of the $3$ groups on the swept ground needs the same $x + 4$ tools. Expand $3(x + 4)$ to find the total.",
+    "accepted": [
+      "3x+12",
+      "12+3x",
+      "3*x+12",
+      "12+3*x",
+      "x*3+12",
+      "12+x*3",
+      "+3x+12",
+      "+12+3x"
+    ],
+    "hint": "Use the distributive property: multiply the $3$ by **each** term inside the parentheses separately, the $x$ and the $4$. Work out both products, then write them as a sum. What expanded form do you get?",
+    "worked_solution": [
+      "Distributing means the $3$ meets each term inside the parentheses on its own: $3 \\times x$ and $3 \\times 4$.",
+      "Work the two products out: $3 \\times x = 3x$, and $3 \\times 4 = 12$.",
+      "Written as a sum, the $3$ groups need $3x + 12$ tools."
+    ],
+    "worked_solution_params": { "a": 3, "b": 4, "varIndex": 0, "order": 0 },
+    "variants": { "template_id": "d1.num-3.l1", "count": 2 }
+  }
+}

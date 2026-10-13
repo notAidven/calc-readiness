@@ -1,0 +1,128 @@
+{
+  "node_id": "LF.1",
+  "title": "Slope as a constant rate of change",
+  "mini_lesson": [
+    "A gauge on the control hall's dial board climbs by the same amount every minute, so one number is enough to describe the whole run. Slope is a **constant rate of change**: on a straight line every equal step in $x$ produces the same change in $y$, and that one number is the slope $m$. A table of points whose ratio $\\dfrac{\\Delta y}{\\Delta x}$ changes from pair to pair has no single rate, so its points do not lie on a line at all.",
+    "On a graph that rate shows up as a triangle: **run** across from one point until you are lined up with a second, then **rise** up or down to reach it, and the slope is $m = \\dfrac{\\text{rise}}{\\text{run}}$. A rise that goes down counts as negative. Any pair of points on the line gives the same ratio, so the triangle can be drawn small or large without changing the answer.",
+    "The **sign** of the slope classifies the line as $x$ increases: a positive slope rises so the line is increasing, a negative slope falls so it is decreasing, and a slope of $0$ is level so the line is constant. A vertical line is the exception: its run is $0$, and dividing by $0$ leaves its slope undefined. The sign alone settles the classification, so the direction can be named before the fraction is reduced.",
+    "Given two points and no picture, compute $m = \\dfrac{y_2 - y_1}{x_2 - x_1}$. Subtract in the **same order** on the top and on the bottom, starting from the same point in both differences, because reversing only one of them flips the sign and turns a falling line into a rising one. Reversing both is harmless, since the two sign changes cancel, so either point may be taken first."
+  ],
+  "slide_subtitles": [
+    "A constant rate",
+    "Rise over run",
+    "The sign of slope",
+    "Slope from two points"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A table records $(2, 5)$, $(4, 13)$ and $(7, 25)$. Decide whether those points lie on a line.",
+      "steps": [
+        "Take the first pair, $(2, 5)$ and $(4, 13)$: $y$ climbs by $13 - 5 = 8$ while $x$ steps by $4 - 2 = 2$.",
+        "That ratio is $\\dfrac{8}{2} = 4$.",
+        "Take the next pair, $(4, 13)$ and $(7, 25)$: $y$ climbs by $25 - 13 = 12$ while $x$ steps by $7 - 4 = 3$.",
+        "That ratio is $\\dfrac{12}{3} = 4$ as well, the same rate across a wider step.",
+        "Both pairs give $4$, so one number describes the whole run and the three points do lie on a line."
+      ]
+    },
+    {
+      "prompt": "Find the slope of the line through $(1, 5)$ and $(4, -1)$.",
+      "steps": [
+        "Rise: $-1 - 5 = -6$.",
+        "Run: $4 - 1 = 3$.",
+        "Slope: Divide rise by run: $m = \\dfrac{\\text{rise}}{\\text{run}} = \\dfrac{-6}{3} = -2$."
+      ]
+    },
+    {
+      "prompt": "Find the slope of the line through $(4, 1)$ and $(4, 6)$, and of the line through $(2, 3)$ and $(7, 3)$.",
+      "steps": [
+        "The first two points share $x = 4$: the rise is $6 - 1 = 5$ and the run is $4 - 4 = 0$.",
+        "That leaves $m = \\dfrac{5}{0}$, and dividing by $0$ has no value, so this vertical line has an undefined slope.",
+        "The other two points share $y = 3$: the rise is $3 - 3 = 0$ and the run is $7 - 2 = 5$.",
+        "That gives $m = \\dfrac{0}{5} = 0$, so this horizontal line is constant.",
+        "A $0$ on the top of the fraction is a level line; a $0$ underneath it is no slope at all."
+      ]
+    },
+    {
+      "prompt": "Find the slope of the line through $(-1, -2)$ and $(3, 6)$.",
+      "steps": [
+        "Take $(-1, -2)$ as the first point, so $(x_1, y_1) = (-1, -2)$ and $(x_2, y_2) = (3, 6)$.",
+        "The top is $6 - (-2) = 8$, because subtracting a negative adds its size.",
+        "The bottom keeps that same order: $3 - (-1) = 4$.",
+        "So $m = \\dfrac{8}{4} = 2$, a line rising $2$ units for every step to the right.",
+        "Starting from $(3, 6)$ instead reverses both differences, $\\dfrac{-2 - 6}{-1 - 3} = \\dfrac{-8}{-4}$, and still gives $2$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "linear-slope-ratio-table", "gates": true },
+    { "after": 1, "id": "linear-slope-triangle-play", "gates": true },
+    { "after": 2, "id": "linear-slope-direction-classify", "gates": true },
+    { "after": 3, "id": "linear-slope-walkthrough", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A line passes through $(-3, 7)$ and $(5, 3)$. Find its slope $m$, then say whether the line is increasing, decreasing, or constant. Type the slope first, then the word, like `2/3, increasing`.",
+    "accepted": [
+      "-1/2, decreasing",
+      "-1/2 decreasing",
+      "-1/2; decreasing",
+      "-1/2, decreasing.",
+      "m = -1/2, decreasing",
+      "m = -1/2; decreasing",
+      "slope -1/2, decreasing",
+      "slope = -1/2, decreasing",
+      "-1/2, the line is decreasing",
+      "-1/2, decreasing line",
+      "-0.5, decreasing",
+      "-.5, decreasing",
+      "-2/4, decreasing",
+      "-3/6, decreasing",
+      "-4/8, decreasing",
+      "decreasing, -1/2",
+      "\\dfrac{-1}{2}, decreasing",
+      "-\\dfrac{1}{2}, decreasing",
+      "-1/2 and decreasing",
+      "-1/2; decreasing.",
+      "-1/2 and decreasing.",
+      "m = -1/2 and decreasing",
+      "slope -1/2; decreasing",
+      "slope -1/2 and decreasing",
+      "slope = -1/2; decreasing",
+      "slope = -1/2 and decreasing",
+      "-1/2; the line is decreasing",
+      "-1/2 and the line is decreasing",
+      "-1/2; decreasing line",
+      "-1/2 and decreasing line",
+      "-0.5; decreasing",
+      "-0.5 and decreasing",
+      "-.5; decreasing",
+      "-.5 and decreasing",
+      "-2/4; decreasing",
+      "-2/4 and decreasing",
+      "-3/6; decreasing",
+      "-3/6 and decreasing",
+      "-4/8; decreasing",
+      "-4/8 and decreasing",
+      "decreasing; -1/2",
+      "decreasing and -1/2",
+      "\\frac{-1}{2}, decreasing",
+      "\\dfrac{-1}{2}; decreasing",
+      "\\dfrac{-1}{2} and decreasing",
+      "-\\frac{1}{2}, decreasing",
+      "-\\dfrac{1}{2}; decreasing",
+      "-\\dfrac{1}{2} and decreasing",
+      "\\frac{-1}{2}; decreasing",
+      "\\frac{-1}{2} and decreasing",
+      "-\\frac{1}{2}; decreasing",
+      "-\\frac{1}{2} and decreasing"
+    ],
+    "hint": "Match the subtraction order on the top and the bottom. Taking $(x_1, y_1) = (-3, 7)$ and $(x_2, y_2) = (5, 3)$, the numerator is $3 - 7$ and the denominator is $5 - (-3)$, so subtracting a negative coordinate adds its size. Reduce the fraction, then let its sign choose the word.",
+    "worked_solution": [
+      "Slope is rise over run: $m = \\dfrac{y_2 - y_1}{x_2 - x_1}$. Take $(-3, 7)$ as the first point and keep that choice on the top and the bottom.",
+      "Rise: $3 - 7 = -4$. Run: $5 - (-3) = 8$, because subtracting a negative adds its size.",
+      "$m = \\dfrac{-4}{8}$, and dividing the top and the bottom by $4$ gives $-\\dfrac{1}{2}$.",
+      "A negative slope falls from left to right, so the line is decreasing: `-1/2, decreasing`."
+    ],
+    "worked_solution_params": { "x1": -3, "y1": 7, "dx": 8, "dy": -4, "kind": 2 },
+    "variants": { "template_id": "cfu.lf1.slope-direction", "count": 2 }
+  }
+}

@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`interactive pool content pin (a template edit that changes the pool must be explicit) > pins the frozen interactive pool ids + content hashes 1`] = `
+[
+  {
+    "difficulty": 1,
+    "hash": "e3e93db9",
+    "id": "int.nl.point.l1:practice:42000",
+    "node": "NL.DEMO",
+  },
+  {
+    "difficulty": 2,
+    "hash": "c71e435e",
+    "id": "int.nl.closed.l2:practice:42001",
+    "node": "NL.DEMO",
+  },
+  {
+    "difficulty": 2,
+    "hash": "2624b409",
+    "id": "int.nl.two-points.l2:practice:42002",
+    "node": "NL.DEMO",
+  },
+  {
+    "difficulty": 3,
+    "hash": "a1b35525",
+    "id": "int.nl.half-open.l3:practice:42003",
+    "node": "NL.DEMO",
+  },
+  {
+    "difficulty": 3,
+    "hash": "0d3984ba",
+    "id": "int.nl.right-open.l3:practice:42004",
+    "node": "NL.DEMO",
+  },
+]
+`;

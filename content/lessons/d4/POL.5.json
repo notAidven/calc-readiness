@@ -1,0 +1,103 @@
+{
+  "node_id": "POL.5",
+  "title": "Graph quadratics: vertex, intercepts, min/max",
+  "mini_lesson": [
+    "The accumulator tower's weight case is hauled up the shaft and let go, and a recorder traces its height against time: the trace rises, stops, and comes back down, and the shape it makes is a **parabola**, the graph of a rule whose highest power is a square. Every parabola has exactly one place where it stops going one way and starts going the other (its **vertex**), and which kind of turning point it is comes from one number. Far from the vertex the squared term dwarfs everything else in the rule, so its coefficient decides where both arms go: positive and they both rise, so the vertex is the lowest point and its height is the **minimum** value; negative and they both fall, so the vertex is the highest point and its height is the **maximum**.",
+    "Some rules hand the vertex over without any work: **vertex form** is $a(x - h)^{2} + k$, and $(x - h)^{2}$ is never negative, so it is zero at exactly one input and positive everywhere else. The rule is therefore at its most extreme where the bracket vanishes, and that input is $h$ while the height there is $k$, so the vertex is the point $(h, k)$: the lowest point if $a$ is positive and the highest if $a$ is negative. Only one of the two coordinates flips: the height is read exactly as written, and the position is the value that makes the bracket zero rather than the number printed inside it, because the bracket SUBTRACTS.",
+    "**Standard form** is $ax^{2} + bx + c$, and it shows the vertex nowhere, so what gets it back is symmetry. A parabola is a mirror image of itself about the vertical line through its vertex (its **axis of symmetry**), and the coefficients place that line at $x = -\\dfrac{b}{2a}$. The formula gives a position and not yet a height, and the height only exists once the position is put back into the rule, so stopping at the axis answers a question about a minimum with a number measured along the wrong axis.",
+    "The last two readings are the **intercepts**, and they are found by setting different things to zero. The $y$-intercept is where the curve meets the vertical axis, which is where the INPUT is zero, so it is one substitution: $f(0)$, and in standard form that is just $c$. The $x$-intercepts are where the curve meets the horizontal axis, which is where the OUTPUT is zero, so they need $f(x) = 0$ solved, and swapping those two zeros is the mistake the names invite."
+  ],
+  "slide_subtitles": [
+    "The turning point",
+    "Vertex form",
+    "The axis of symmetry",
+    "The two intercepts"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Say whether the graph of $f(x) = 9 + 4x - 2x^{2}$ has a lowest point or a highest one.",
+      "steps": [
+        "The highest power in the rule is a square, so the graph is a parabola and it turns exactly once.",
+        "The squared term is written last here, so the first number on the page is $9$ rather than the coefficient that decides the question.",
+        "The coefficient of $x^{2}$ is $-2$, sign included.",
+        "A negative coefficient sends both arms downward, so the curve has to come up to meet in the middle.",
+        "The turning point is therefore the highest point on the graph, and its height is a maximum value."
+      ]
+    },
+    {
+      "prompt": "Read the vertex off $f(x) = 2\\left(x + 3\\right)^{2} + 5$.",
+      "steps": [
+        "The rule is already in vertex form, with the square multiplied by $2$ and $5$ added on the end.",
+        "The bracket $x + 3$ vanishes at $x = -3$, so the turning point sits at that input.",
+        "A bracket that ADDS a number is zero at the negative of it, which is why $2\\left(x - 3\\right)^{2} + 5$ would instead turn at $3$.",
+        "The number standing outside the bracket is the height and it is read exactly as written, so the height is $5$.",
+        "So the vertex is $\\left(-3,\\, 5\\right)$, and the $2$ in front is positive, which makes that the lowest point on the graph."
+      ]
+    },
+    {
+      "prompt": "Find the minimum value of $f(x) = x^{2} - 8x + 11$.",
+      "steps": [
+        "Read the two coefficients with their signs: $a = 1$ and $b = -8$, while the constant $11$ takes no part in placing the axis.",
+        "The axis of symmetry is $x = -\\dfrac{-8}{2 \\times 1} = 4$, where the denominator is $2a$ rather than $a$ and the sign flips after the division.",
+        "A position is not a height, so put $x = 4$ back into the rule: $f(4) = 16 - 32 + 11$.",
+        "That comes to $-5$.",
+        "The squared term's coefficient is positive, so the arms rise and $-5$ is the minimum value."
+      ]
+    },
+    {
+      "prompt": "Read both intercepts and the axis of symmetry off $f(x) = \\left(x - 1\\right)\\left(x - 5\\right)$.",
+      "steps": [
+        "The $y$-intercept sets the input to zero: $f(0) = (-1) \\times (-5) = 5$.",
+        "The $x$-intercepts set the output to zero, and a product is zero exactly when one of its brackets is.",
+        "So $x - 1 = 0$ or $x - 5 = 0$, which puts the crossings at $1$ and $5$.",
+        "Symmetry puts the axis exactly halfway between the two crossings, at $x = 3$, and the rule evaluated there gives the turning point's height: $f(3) = 2 \\times (-2) = -4$.",
+        "So the curve meets the vertical axis at $y = 5$, meets the horizontal axis at $1$ and $5$, and turns at $\\left(3,\\, -4\\right)$."
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "after": 0,
+      "id": "parabola-opening-sorter",
+      "gates": true
+    },
+    {
+      "after": 1,
+      "id": "vertex-form-read-table",
+      "gates": true
+    },
+    {
+      "after": 2,
+      "id": "extreme-value-order",
+      "gates": true
+    },
+    {
+      "after": 3,
+      "id": "intercept-route-match",
+      "gates": true
+    }
+  ],
+  "cfu": {
+    "prompt": "The graph of $f(x) = 5\\left(x + 2\\right)^{2} - 7$ is a parabola. At what value of $y$ does it cross the $y$-axis? Enter one number, with its sign.",
+    "accepted": ["13"],
+    "hint": "A graph meets the $y$-axis where the input is zero, so this is one substitution rather than an equation to solve. Work the rule from the inside out: the bracket first, then the square, then the multiplication, then the number added on the end. The number outside the bracket is the height of the vertex, which is a different point on the curve.",
+    "worked_solution": [
+      "The graph crosses the $y$-axis where $x = 0$, so evaluate the rule there.",
+      "Inside the bracket: $0 + 2 = 2$.",
+      "Square it and multiply by the number in front: $5 \\times 2^{2} = 20$.",
+      "Add the number standing outside the bracket: $20 - 7 = 13$.",
+      "So the graph crosses the $y$-axis at $y = 13$."
+    ],
+    "worked_solution_params": {
+      "a": 5,
+      "h": -2,
+      "k": -7,
+      "value": 13
+    },
+    "check": { "answer_type": "numeric", "answer_key": "13" },
+    "variants": {
+      "template_id": "d4.pol5.y-intercept-vertex-form.l2",
+      "count": 2
+    }
+  }
+}

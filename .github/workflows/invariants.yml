@@ -1,0 +1,1283 @@
+name: invariants
+
+# Runs the graph/scope/lesson-shell invariant test on every push and PR.
+# This is the permanent guard against the closure/count errors: the MVP set
+# must stay prereq-closed and the counts must stay consistent with the registry.
+# A red check blocks the merge.
+#
+# THE SHAPE OF THIS FILE, AND THE ONE THING NOT TO CHANGE ABOUT IT.
+#
+# `code-quality` is the SOLE required status check on `integration` (read off the
+# API, not assumed: `required_status_checks.contexts` is exactly
+# `["code-quality"]`, one context, app 15368). A check context is matched BY
+# NAME, so renaming or removing that job stops the required check ever
+# reporting, and every open pull request in the repository becomes unmergeable
+# until somebody with admin rights edits branch protection. So `code-quality` is
+# kept as a job id, and it is now the AGGREGATOR: it runs no gate of its own, it
+# depends on every gate below, and it fails if any of them did not succeed.
+# Branch protection therefore needed no edit for this split, and needs none for
+# any future one, as long as the aggregator keeps its name and keeps depending on
+# everything.
+#
+# WHY THE GATES ARE SIBLINGS RATHER THAN STEPS. They used to be twenty steps of
+# one job, so they ran one after another and the wall clock was their sum.
+# Measured on run 30835661685 (green, pull request, 1419s end to end): the two
+# suites were 561s (`test:unit`) and 746s (`test:browser`), i.e. 92% of it, and
+# every other gate together came to 68s. Nothing made them sequential except the
+# job they shared. Fourteen consecutive full runs put `test:unit` at 434-678s and
+# `test:browser` at 601-862s, so that ratio is the ordinary shape of a run and
+# not one slow outlier.
+#
+# A SKIPPED JOB IS NOT A PASSED JOB, and that is the whole risk of this shape.
+# GitHub SKIPS a job whose dependency failed; it does not fail it. A required
+# check that reports `skipped` can be treated as neutral, so an aggregator
+# written as a bare `needs:` would go green over a tree where every gate was
+# skipped. That is not a hypothetical here. Over 2026-08-01T21:12 to
+# 2026-08-03T00:38, TWELVE push runs on `integration` reported `success` with
+# 15-16 of their steps skipped and not one gate run (30718635388, 30720289053,
+# 30721971289, 30729352402, 30729361653, 30759013785, 30762101646, 30762455029,
+# 30763848864, 30766437712, 30770927262, 30774957231), which is the defect #436
+# fixed; and nineteen more push runs were cancelled with ZERO jobs allocated,
+# which is the one #430 fixed. Both of those were green-or-nothing badges over
+# unverified history. So the aggregator carries `if: always()` and inspects its
+# dependencies' results EXPLICITLY, and treats `skipped` and `cancelled` as
+# failures alongside `failure`.
+
+on:
+  push:
+    branches: [main, integration]
+  pull_request:
+
+# Every job bills separately and rounds UP to the whole minute, which is the
+# price of this split and the reason the job count below is argued rather than
+# arbitrary. Measured against run 30835661685: one job of 1419s billed 24
+# minutes, where the thirteen jobs this file grew to billed about 34 for the
+# same work. Of those ten extra minutes only ~2 are real duplicated work (a
+# checkout plus `npm ci`, 25-35s per job, and the npm cache keeps `npm ci` at
+# 9-16s); the rest is GitHub's per-job rounding on jobs that finish in well
+# under a minute. The trade bought is the wall clock: ~1419s becomes ~320s,
+# because the tail is a suite rather than both suites end to end.
+#
+# THE SHARD COUNTS CAME BACK DOWN ON 2026-08-04, and one sentence this comment
+# used to carry was simply wrong: it said lowering them "costs wall time and
+# saves nothing in billed minutes". It saves a great deal. Measured over the 185
+# full-gate runs of that day, three shards per suite billed 41.16 minutes per
+# run of 49.84 -- three roundings and three setups each, plus a sharding tax of
+# 1.09x on the unit suite's compute and 1.28x on the browser suite's, since a
+# third of the files is not a third of the work.
+# `docs/2026-08-04-ci-cost-measurement.md` prices that as T2 and the two suite
+# jobs below are that trade taken: one job per suite, +wall clock, no change to
+# what is tested.
+#
+# TWO COSTS THAT ARE NOT BILLED MINUTES, both named so the next reader does not
+# have to rediscover them:
+#   1. A PROSE-ONLY RUN IS NO LONGER ONE ROUNDED MINUTE. The scope filter below
+#      skips the gates for changes nothing reads, and each gate job still starts,
+#      skips its steps in a few seconds and bills its own minute: one per job in
+#      the file. That measured 2.0% of post-split pull-request runs, not the 20%
+#      this comment used to claim -- the filter's own base-ref question is the
+#      reason, and it is filed as T8 rather than fixed. The alternative -- a
+#      job-level `if:` -- is refused on purpose; see the scope step's own
+#      comment.
+#   2. SEVERAL TIMES THE CONCURRENT-RUNNER DEMAND. Peak simultaneous invariants
+#      runs over that same window was 19, i.e. 19 jobs, so a fleet that was
+#      comfortably feeding one job per run may queue on the jobs below. That
+#      risk can be retired on the measurement rather than watched: median job
+#      queue time was 4s both before and after the split, p90 11s -> 12s, and
+#      only p99 moved (15s -> 50s).
+#
+# `cancel-in-progress` is deliberately TRUE for pull_request only. A push run on
+# main/integration is the ONLY record of whether that merged commit is good, and
+# cancelling it would leave shared history with no verdict; a cancelled run also
+# reports as failed, which would read as a broken main.
+#
+# EXEMPTING PUSH FROM `cancel-in-progress` DOES NOT DELIVER THAT ON ITS OWN, and
+# the group expression is the other half of it -- do not "tidy" the group back to
+# a bare `github.ref`. GitHub allows ONE PENDING RUN PER CONCURRENCY GROUP
+# (`queue` defaults to `single`): when a third run arrives while one is in
+# progress and one is pending, the PENDING one is cancelled and the newcomer
+# takes its slot. `cancel-in-progress` governs the in-progress run and says
+# nothing about that path. So for as long as every push run on integration shared
+# the single group `invariants-refs/heads/integration`, a cluster of merges
+# evicted the intermediate commits' runs, exemption and all.
+#
+# MEASURED, NOT SUSPECTED, over all 403 push runs on integration the Actions API
+# still holds (2026-07-20 to 2026-08-02): 26 were cancelled; all 26 were
+# cancelled 0-2s (median 1s) after the NEXT push run on the same branch was
+# created; all 26 allocated ZERO jobs, so not one of them was a running job that
+# somebody stopped; and the last run of every cluster survived. None was ever
+# re-run, so 26 commits reached integration with no verdict of any kind -- among
+# them 3586f1d0 and 2c5b13a1, both lost inside one 28-second cluster of three
+# merges on 2026-08-02.
+#
+# That measurement also retires the sentence this comment used to carry, which
+# was what made the exemption alone look sufficient: "Merges to those branches
+# are serialised anyway, so there is little to reclaim there." They are not
+# serialised. 14% of those 403 pushes arrived within 60s of the previous one, in
+# 40 separate clusters of 2 to 5 merges.
+#
+# THE GROUP THEREFORE KEYS ON THE COMMIT FOR PUSH, and on `github.ref` for
+# everything else. Three properties, each evaluated with GitHub's own
+# implementation of the expression language rather than argued:
+#   1. A PR STILL CANCELS ITS OWN SUPERSEDED RUNS. `pull_request` takes the
+#      `github.ref` branch of the expression and gets
+#      `invariants-refs/pull/<n>/merge`, the identical string to before this
+#      change, with cancel-in-progress still true. That saving is live and worth
+#      keeping intact: runs 30760013849 and 30759773977 were cancelled 17s after
+#      a successor appeared on their own branch, mid-`test:unit` and
+#      mid-`test:browser` respectively.
+#   2. A PUSH TO INTEGRATION STILL CANNOT SHARE A GROUP WITH A PR OPENED *FROM*
+#      INTEGRATION. That is why `github.ref` was chosen over the conventional
+#      `head_ref || ref`, and it is why the fallback half is left untouched. A
+#      push group is now a bare 40-hex sha and a PR group starts `refs/pull/`,
+#      so the two cannot meet for any commit or any PR number.
+#   3. A LATER PUSH CANNOT CANCEL AN EARLIER ONE, because two pushes of distinct
+#      commits are never in one group, so there is no pending run there to
+#      evict. ONE RESIDUAL IS NAMED AND LEFT: the same commit on both watched
+#      branches -- a fast-forward of main to integration's tip -- does share a
+#      group. That run WAITS, since cancel-in-progress is false for push, so it
+#      is a delayed verdict and not a lost one, and evicting it would take a
+#      THIRD push of that one commit. Keying on `github.ref`-plus-sha would
+#      close it, at the price of property 1's group no longer being the
+#      byte-identical string it is above.
+#
+# `queue: max` is the other documented fix and is worse here. It serialises
+# integration's runs instead of letting them overlap, so the third commit of a
+# cluster of three waits out two full runs and its verdict arrives long after
+# the merge, for the same billed minutes; and the docs forbid combining it with
+# `cancel-in-progress: true`, which this workflow sets by expression -- an
+# interaction no PR can test without shipping it first.
+#
+# THE COST IS REAL AND IS THE POINT. Every merged commit now bills its own run
+# instead of only the last of a cluster: at ~34 billed minutes a full run, a
+# cluster of three is ~100 billed minutes rather than ~34. Read that as a floor
+# and not a fixed price, because runner variance is wide: `test:unit` measured
+# 434-678s and `test:browser` 601-862s across fourteen consecutive full runs, so
+# the shards below inherit that same spread.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'push' && github.sha || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  # THE DECISION JOB. It answers one question -- can this change affect the code
+  # gates -- and hands the answer to every gate below as a job output. It runs
+  # no gate itself, deliberately: everything else depends on it, so a gate
+  # failing here would skip every sibling and the run page would say
+  # nothing about the rest of the tree. Keeping it decision-only is also what
+  # makes the "scope failed, so every gate was skipped" path a genuinely
+  # exceptional one rather than an everyday content error.
+  scope:
+    runs-on: ubuntu-latest
+    # ~19-22s of real work (checkout at full depth is 12-19s of it). Ten minutes
+    # is a hang cap and nothing else: the default is 360 minutes PER JOB, so a
+    # wedged git fetch could otherwise burn six hours of the month's allowance.
+    timeout-minutes: 10
+    outputs:
+      # What every gate job below gates its steps on. A job output is a string,
+      # so the consumers compare against 'true'; the aggregator additionally
+      # refuses to pass if this arrives as anything but 'true' or 'false',
+      # because an unresolved verdict would silently skip every gate and report
+      # success over a tree nothing read.
+      code: ${{ steps.scope.outputs.code }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history so the scope and work-log steps below can diff base..head.
+          # THIS JOB ONLY. The gate jobs never diff, so they take the default
+          # shallow checkout and save 7-14s each.
+          fetch-depth: 0
+
+      # Decides whether this change can affect any of the code gates.
+      #
+      # ON A PULL REQUEST ONLY, and that restriction is load-bearing rather than
+      # tidy. A pull-request run and a push run to a watched branch ask different
+      # questions, and only the first of them has a scope at all. A PR run asks
+      # "can THIS DIFF break the code?", where attributing risk to the changed
+      # paths is exactly the right move and is what everything below does. A push
+      # run on main/integration asks "IS THIS BRANCH GREEN?", and the honest
+      # answer to that never depends on what the last merge happened to touch: a
+      # breakage produced by COMBINING two separately-green changes belongs to
+      # neither side's paths, so no path filter can see it. Scoping a push run
+      # therefore does not skip a run that would have passed. It withholds the
+      # only verdict anyone ever gets on the merged tree, and reports success.
+      #
+      # THREE TIMES ON 2026-08-02, and the first of them is recorded in this
+      # repository's own history, by an author who had to find it by hand:
+      #   1. efd60e79's commit message. #388 removed "safe" from CRISIS_STATUSES;
+      #      #392 added frostCrustSilhouette.browser.test.tsx nine minutes later,
+      #      written against the three-value type. Each was green alone and
+      #      together they do not typecheck. The next merge was #398, docs-only,
+      #      so trunk's last run "reported success over a tree that does not
+      #      compile" -- its words, and it names this filter as the reason.
+      #   2. #397 landed a copy guard banning em-dashes and #427 landed an
+      #      em-dash into its population. Same shape, caught by `test:unit`
+      #      rather than `typecheck`, red on integration as this was written.
+      #   3. Run 30762101646 on f1149558 (#429, docs-only) reported SUCCESS with
+      #      steps 5-20 skipped, `typecheck` and `test:unit` among them, over the
+      #      tree instance 2 had already broken. Run 30762455029 on bcc4e865
+      #      (#431) then did it again. Two green badges, no gate run between them.
+      # A green push run that ran no gate is worse than a red one: it is a false
+      # statement about shared history, and the next author reads it as a floor.
+      # Twelve of them are enumerated in this file's header comment; #436 closed
+      # the class, and the aggregator at the foot of this file now refuses to
+      # pass a non-pull-request run that took the cheap path, so the same defect
+      # cannot come back by a different door.
+      #
+      # THE COST IS REAL, AND IS THE POINT. Driving this step's own script over
+      # the last 60 first-parent commits on integration, 20 of them classify
+      # prose-only -- one merge in three. Those runs used to finish in 12-13s and
+      # bill the 1-minute minimum (30762101646: 12s; 30762455029: 13s), where a
+      # full run bills ~50 minutes across the jobs in this file. The split made
+      # the cheap path dearer -- one rounded minute per job that starts and skips
+      # everything -- and the header comment carries that trade.
+      #
+      # THE GATES ARE SKIPPED AS STEPS, AND NEVER AS JOBS, and that is now the
+      # load-bearing half of this design rather than a stylistic preference. A
+      # job-level `if:` reports `skipped`, and the aggregator treats `skipped` as
+      # a FAILURE -- it must, because a skipped job is how a failed dependency
+      # looks -- so gating the jobs would turn every prose-only pull request red
+      # and make the required check unpassable. Gating the STEPS keeps every gate
+      # job reporting a real success/failure conclusion on every run, which is
+      # what lets the aggregator's rule stay absolute. A workflow-level
+      # `paths-ignore` is refused for the older reason: the run would not exist
+      # at all, and a required check that never appears is indistinguishable from
+      # one that never passes.
+      #
+      # It also fails OPEN: anything it cannot resolve runs the full gate set.
+      - name: Decide whether this change can affect the code gates
+        id: scope
+        shell: bash
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -u
+
+          run_everything() {
+            echo "::notice::${1} - running the full gate set."
+            echo "code=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          }
+
+          # THE ONE PLACE THAT DISTINCTION IS DRAWN; the header says why. Every
+          # line below answers "which paths did this change touch", which is a
+          # question only a pull request is asking.
+          #
+          # Written as "is not a pull request" rather than "is a push" so that it
+          # fails open the way the rest of this step does: a workflow_dispatch, a
+          # merge_group run, anything a later edit adds to the `on:` block above,
+          # all run the full set until somebody argues otherwise. Note that
+          # `GITHUB_EVENT_NAME` is a default runner variable, so unlike the
+          # `github.event.*` values it needs no `env:` line to be here.
+          if [ "${GITHUB_EVENT_NAME:-}" != "pull_request" ]; then
+            run_everything "A '${GITHUB_EVENT_NAME:-unknown}' run on ${GITHUB_REF_NAME:-an unnamed ref} asks whether that tree is green, which no diff can answer"
+          fi
+
+          # Only a pull request reaches this line, so base and head are the PR
+          # payload's and `github.event.before` is no longer read here. (The
+          # work-log reminder below still reads it and still needs its `env:`
+          # line: that step runs on every event, and it is advisory and gates
+          # nothing.)
+          #
+          # Collapsing the old two-branch resolution to this is the SECOND
+          # guarantee that a push cannot take the cheap path, and the reason not
+          # to keep the push branch around for symmetry with the reminder below.
+          # Delete the guard above and a push run has an empty PR_BASE_SHA, which
+          # the fail-open test immediately below catches and answers code=true
+          # anyway. `test/ciScopeFilter.test.ts` proves that by deleting it.
+          BASE="${PR_BASE_SHA:-}"
+          HEAD="${PR_HEAD_SHA:-${GITHUB_SHA:-HEAD}}"
+
+          # `^0`, NOT `^{commit}` -- do not "tidy" this back. The two are the same
+          # peel, but MSYS2's git brace-expands its own argv depending on how it is
+          # invoked: from an interactive Windows shell `<sha>^{commit}` reaches it
+          # as `<sha>^commit`, so the guard rejects a perfectly good commit and this
+          # script silently fails open. It behaves under `bash script.sh`, and the
+          # ubuntu-latest runner is unaffected, so this is a hand-replay papercut
+          # and never a CI bug -- but `^0` costs nothing and cannot be re-parsed.
+          # Checked, not assumed: identical to `^{commit}` for commits,
+          # abbreviations and annotated tags, and identically REJECTING trees,
+          # blobs and unknown shas, which is all this guard is here to do.
+          if [ -z "$BASE" ] || printf '%s' "$BASE" | grep -Eq '^0+$' \
+             || ! git rev-parse --verify --quiet "${BASE}^0" >/dev/null \
+             || ! git rev-parse --verify --quiet "${HEAD}^0" >/dev/null; then
+            run_everything "No reliable base ref to diff against"
+          fi
+
+          git diff --name-only "$BASE" "$HEAD" > changed-files.txt || true
+          [ -s changed-files.txt ] || run_everything "No changed files resolved"
+
+          echo "Changed files in this change:"
+          sed 's/^/  /' changed-files.txt
+
+          # File types that provably cannot affect format:check, lint, typecheck,
+          # test:unit, test:browser, the web build or the graph invariants:
+          #   .md    MOST markdown, and NOT ALL OF IT -- see TEST_INPUT_MARKDOWN
+          #          below, which takes a named set of paths back out of this set,
+          #          and read this entry as conditional on it. The size of that set
+          #          is deliberately not restated here: it said "eleven" and the
+          #          Art Bible made it twelve. Read the pattern, not this line.
+          #          Biome has no Markdown language, so `biome format .` and
+          #          `biome lint .` report "0 files" for docs/, work-log/ and the
+          #          root *.md. The property that matters is WHICH docs a module
+          #          can import, and the count of `?raw` call sites is not: this
+          #          comment said "there are four, in three files" and by
+          #          2026-07-28 it was eight across five. Re-derive with
+          #          `rg -n "\?raw"` and read each glob PATTERN; a `?raw` glob that
+          #          reaches a .md not carved out below is what breaks this entry.
+          #          Re-derived at 952a098 on 2026-07-30: 27 `import.meta.glob`
+          #          call sites across 20 files, whose patterns are *.glb,
+          #          content/lessons/*/*.json, *.{ts,tsx}, *.tsx, visuals.tsx and
+          #          *.dc.html, none of which could reach a .md. That is no longer
+          #          the whole story: diagnostic/skillNames.test.ts globs
+          #          `../../../../docs/Node_Spine_v4.md` with `?raw`, and
+          #          audio/musicSlots.test.ts globs the era-and-crisis music
+          #          generation prompts the same way, so Vite IS a markdown
+          #          reader now and both docs are named in TEST_INPUT_MARKDOWN
+          #          below. `node:fs` was always the bigger hole and is the
+          #          reason "Biome and Vite ignore it" was never a complete
+          #          argument for this entry.
+          #   .mdc   Cursor rule files under .cursor/rules/. Read by the Cursor
+          #          editor only: `biome check .cursor/rules/qa-verification.mdc`
+          #          reports "Checked 0 files" and names the path as ignored, no
+          #          import.meta.glob pattern matches .mdc, and nothing in
+          #          apps/ packages/ engines/ services/ scripts/ db/ opens one.
+          #          By the same reasoning as .md above, and the reason this
+          #          entry exists: `.mdc` fails `\.md$` on the trailing `c`, so a
+          #          rule-only edit used to bill the full gate set (seen on #149).
+          #   .dot .docx .pdf .png .jpg .jpeg .gif .webp .svg
+          #          design refs and generated diagrams. Nothing imports them, and
+          #          biome.json already excludes **/*.svg outright.
+          #
+          # Matching on EXTENSION rather than on directory is what makes this safe:
+          # a .ts/.tsx/.json/.css file is treated as code wherever it lands,
+          # including under docs/. Note content/lessons/**/*.json is deliberately
+          # NOT inert - the web app loads those packs via import.meta.glob, so a
+          # lesson edit must still face the browser suite and the build.
+          #
+          # Other extensions AUDITED AND DELIBERATELY LEFT OUT of the inert set,
+          # so that the next reader does not mistake their absence for an oversight:
+          #   .glb  four `import.meta.glob(..., '?url', eager)` patterns bundle these
+          #         (city/buildingAssets.ts, city/townHall.ts, city/roadModels.ts,
+          #         city/three/GridworkModelPreview.tsx) and buildingAssets.test.ts
+          #         asserts an exact URL count. Load-bearing for build AND tests.
+          #   .ogg .mp3   not imported, but they live under apps/web/public/, which
+          #         `vite build` copies verbatim, so the build genuinely reads them.
+          #   .snap vitest compares against these on every `test:unit` run.
+          #   .py   `graph_invariants.py` IS the graph gate.
+          #   .sh   `scripts/check-lesson-packs.sh` IS the lesson-pack gate.
+          #   .yml  this file configures the gates themselves.
+          #   .gitignore  `biome.json` sets `vcs.useIgnoreFile: true`, so Biome's file
+          #         set is a function of this file and an edit here changes what
+          #         `format:check` and `lint` even inspect (a .css probe under an
+          #         ignored dir reports "provided but ignored"; outside one, it is
+          #         formatted). Extensionless, so it already falls through to
+          #         code=true -- this entry exists to keep it that way.
+          # An inert misclassification is silent (gates skip a real change and it
+          # ships green), whereas a code misclassification only costs a few billed
+          # minutes. So the bar for adding an extension here is proof that nothing
+          # reads it, not the absence of a Biome handler - Biome saying "0 files"
+          # is evidence about FORMATTING only, never about who imports the file.
+          #
+          # ONE RESIDUAL IS KNOWN AND LEFT, and it belongs to the whole inert set
+          # rather than to markdown, which is why it is recorded here and not in
+          # TEST_INPUT_MARKDOWN below. `test/repoFileCasing.test.ts` takes its
+          # input from `git ls-files`, so its subject is the tracked PATH LIST and
+          # every extension above is in it. It never opens any of these files, so
+          # no edit to a file's CONTENTS can move its verdict; only an ADD or a
+          # RENAME can, by creating a path (or a directory) that another tracked
+          # path collides with once case is folded. Gating on "an inert file was
+          # added" would classify every work-log entry as code, since the
+          # convention is one NEW .md per PR, and that is the whole prose saving.
+          # So: content edits are covered, adds and renames of inert files are not,
+          # the escaping defect shadows a doc on a case-insensitive checkout and
+          # breaks no build, and the next code-touching PR turns the check red.
+          # Do not "fix" this by re-implementing the collision fold in bash - a
+          # partial second copy of a test is worse than a named residual.
+          #
+          # Subtracting the inert set and testing for a REMAINDER is what makes a
+          # mixed docs+code change run everything: one non-inert file is enough.
+          #
+          # ---------------------------------------------------------------------
+          # THE MARKDOWN THAT IS NOT INERT.
+          #
+          # `.md` above is an EXTENSION rule and it is wrong for every path this
+          # branch names. Tests open these docs and parse them at runtime - five
+          # with `node:fs` and one through Vite's `?raw` glob - so for the paths
+          # they read, "Biome ignores it and no module imports it" is simply the
+          # wrong question. The reader is the test:
+          #
+          #   test/eraCivicCatalogueDominance.test.ts
+          #   test/eraCivicCatalogueParity.test.ts
+          #     Both derive their era population from `readdirSync` on
+          #     docs/superpowers/specs/eras/ (entries matching `era-NN-`) and then
+          #     parse `<era>/civic-buildings.md`'s table. They enforce live design
+          #     rulings: that no civic building is weakly dominated by another, and
+          #     that the ten authored catalogues agree with the TypeScript
+          #     catalogue in packages/economy/src/civicCatalogue.ts.
+          #   test/eraDecisionCount.test.ts
+          #     Parses docs/superpowers/specs/2026-07-27-era-progression-design.md
+          #     for its `D-ERA<n>` ids and checks §16's spelled-out tally and the
+          #     status banner's highest id against them.
+          #   test/eraPaletteLadder.test.ts
+          #     Parses every era folder's `style-guide.md` for its body hue and
+          #     accent, and docs/superpowers/specs/City_Art_Bible.md for §2's
+          #     three-tone face model, which it needs because the ladder's floor is
+          #     measured on shaded faces rather than on raw swatches. The era folders
+          #     are already covered by the first branch below; the Art Bible is a
+          #     SINGLE named file and is added as its own alternative rather than by
+          #     widening to `docs/superpowers/specs/`, because that prefix would
+          #     swallow the prose this filter exists to keep cheap -- including
+          #     `2026-07-29-era-trial-contract.md`, which ciScopeFilter.test.ts's
+          #     PROSE_SAMPLE asserts stays cheap.
+          #   test/interactionSuffixAllowlistParity.test.ts
+          #     Parses the interaction-suffix enumeration out of
+          #     .cursor/skills/author/reference.md and asserts it equals
+          #     INTERACTION_KINDS plus KIND_ALIASES in
+          #     .cursor/skills/author/scripts/validate-lesson-pack.mjs, in both
+          #     directions, plus the alias mapping. That doc is the copy an author
+          #     acts on before naming a widget, and the validator's own comment on
+          #     INTERACTION_KINDS records three copies of that list having already
+          #     diverged on one line. A .md edit alone can therefore turn the
+          #     lesson-pack gate from passing to failing.
+          #   apps/web/src/diagnostic/skillNames.test.ts
+          #     The one Vite reader. Globs docs/Node_Spine_v4.md with `?raw` and
+          #     asserts that each of the fourteen spine-sourced skill names
+          #     recorded in skillNames.ts is still literally present in a node
+          #     table there. Those names ship to the learner - the roster's third
+          #     span, the floating 3D rooftop label, the completion roll - and
+          #     fourteen of them are QUOTES from this doc, transcribed by
+          #     hand at ef1f80a6. Reword a row and the quote silently becomes
+          #     false, which is a claim about provenance that nothing else in the
+          #     tree can check. Named as a SINGLE file for the same reason as the
+          #     Art Bible: `docs/` is where this repository keeps its prose, and
+          #     the prefix would swallow all of it.
+          #   test/successionMechanicInventory.test.ts
+          #     Parses the 24-row mechanic inventory out of §3 of
+          #     docs/superpowers/specs/crisis-reference-packs/README.md and asserts
+          #     SET EQUALITY, both ways, against era four's answers in
+          #     engines/game/src/succession-mechanics.ts. That inventory exists
+          #     because era one's art brief silently skipped the mechanics the
+          #     player operates and the omission was invisible in review, so a row
+          #     added to or renamed in that table has to reach the engine's answer
+          #     sheet -- and an edit to the table alone is exactly the change that
+          #     turns that gate from passing to failing. A SINGLE named file, added
+          #     as its own alternative rather than by widening to the pack folder,
+          #     for the `reference.md` reason below: one parser opens one named
+          #     file, so the folder is not an input and the four pack subfolders
+          #     beside it are plates and prose nothing parses.
+          #
+          # MEASURED, NOT SUSPECTED. #292 merged as 5bbb326 with a markdown-only
+          # diff that included era-06-early-modern/civic-buildings.md. Its run
+          # finished in 13 seconds with 15 of 19 steps skipped, so its green check
+          # ran neither parser; it happened to be fine only because the author ran
+          # the suite by hand. These parsers are brittle to table formatting in
+          # exactly the way that matters - a rename once left the dominance parser
+          # reading a cost of "320" out of the cell "320 bronze".
+          #
+          # WHY THE WHOLE ERA FOLDER AND NOT JUST `civic-buildings.md`: because the
+          # era population is a DIRECTORY LISTING, so the existence of a folder is
+          # an input and not only the contents of one file. Git tracks files and
+          # not directories, so a new era folder can only reach a diff as a path
+          # inside it -- and adding `era-11-x/style-guide.md` on its own is enough
+          # to put `era-11-x` in both parsers' population and send them to a
+          # `civic-buildings.md` that is not there. Injected and watched fail, not
+          # argued: both suites go red, `ENOENT ... era-11-x/civic-buildings.md`.
+          # So a style guide is a test input for a reason of its own and not
+          # because it tends to travel with a catalogue edit.
+          #
+          # `eras/2026-07-29-skill-building-rulings.md` sits BESIDE the era
+          # folders rather than inside one, matches neither branch, and stays
+          # inert. `eras/README.md` used to share that status; the final Era 6
+          # palette guard now opens it directly, so it is named below instead.
+          #
+          # WHY `reference.md` ALONE AND NOT `.cursor/skills/author/`: the opposite
+          # of the era reasoning above, and for the opposite reason. Nothing here
+          # is a directory listing - one parser opens one named file - so the
+          # folder is not an input and `SKILL.md` and `examples.md` beside it are
+          # prose nothing parses. Folder-wide would bill the full gate set for
+          # editing a paragraph of authoring guidance, which is the prose saving
+          # this whole rule is spending carefully.
+          #
+          # This is a SUBTRACTION FROM THE INERT SET, never a selection: the two
+          # lists are unioned below, so a path here is added to the remainder and
+          # can only ever cause more to run.
+          #
+          # KEEPING IT TRUE IS NOT THIS COMMENT'S JOB. `test/ciScopeFilter.test.ts`
+          # extracts this step's script and drives it, derives the set of markdown
+          # every tracked source names in executable code, and fails if any of it
+          # classifies inert -- so a further test that starts reading a .md fails
+          # that guard until this line is widened. It also fails if this rule ever
+          # widens to swallow the prose saving. Add a path here only with a reader
+          # to point at; the guard will tell you if you have missed one.
+          #
+          # THAT IS NOT A PREDICTION, IT IS TWICE-MEASURED HISTORY, and the two
+          # arrivals crossed. `eraPaletteLadder.test.ts` and the Art Bible got here
+          # that way. So did `interactionSuffixAllowlistParity.test.ts`: #336 added
+          # it without widening this line, and the guard failed on the runner naming
+          # both the file and its reader. The two branches were authored
+          # independently against the same line and conflicted on merge, which is
+          # the clearest evidence available that this list is a copy and that
+          # deriving the population rather than trusting the comment is the point.
+          #
+          # THE THREE PROMPT SHEETS, added 2026-08-03 with `eraSixBodyHue.test.ts`,
+          # and each named on its own for the `reference.md` reason rather than by
+          # widening to a folder. That guard holds every surface specifying era six's
+          # body hue to one pinned value, after a re-pitch reached the era's building
+          # concepts and not its crisis frames, its plates or its advisor. A prompt
+          # sheet is prose a HUMAN reads before writing the run sheet that reaches an
+          # image tool, so it is upstream of the .jsonl and the .jsonl alone would
+          # have been the narrower population. The two `output/imagegen/era-06-*`
+          # sheets and the plague pack's reading key are all it opens there; the
+          # other imagegen directories, and the three other pack folders, stay inert.
+          #
+          # THE FOUR FINAL-PALETTE RECORDS, added with
+          # `test/eraSixPaletteConsistency.test.ts`: the exact palette ladder and
+          # era index a reviewer reads, the plague art brief that feeds the crisis
+          # sheet, and the advisor wardrobe index whose Era 6 screenshot is now
+          # explicitly historical. Each is named separately because the guard
+          # opens that file, not its directory. The rest of `docs/design-refs/`
+          # and the neighbouring dated specs remain prose-only.
+          # ---------------------------------------------------------------------
+          # ⚑ THE LAST ALTERNATIVE IS A WHOLE TREE, NOT A PATH, and it is the only
+          # one of these that is. `test/cosmeticShopAndXpAreSunset.test.ts` sweeps
+          # every tracked .md under apps/ packages/ engines/ services/ -- fifteen
+          # files -- and fails if one of them documents an export the 2026-08-03
+          # shop-and-XP sunset deleted. It was added because the plain grep found
+          # `packages/economy/README.md` still presenting `applySpend`, `xpLevel`,
+          # `COSMETIC_CATALOG` and seven more as the package's public interface,
+          # which the guard had been silent about because it swept .ts/.tsx/.css/.sql
+          # and not .md.
+          #
+          # THE COST, stated rather than discovered: editing any co-located README
+          # now runs the full gate set, including the audio CREDITS file and the
+          # art-model notes that no test reads. That is the honest answer to "could
+          # this change flip a gate" -- a guard reads the whole tree, so the whole
+          # tree is a test input -- and fifteen rarely-edited files is a price worth
+          # paying over hand-picking which README counts. The prose trees the filter
+          # exists for (docs/, work-log/, root *.md, .cursor/) are untouched.
+          TEST_INPUT_MARKDOWN='^docs/superpowers/specs/eras/era-[0-9][0-9]-[^/]+/|^docs/superpowers/specs/2026-07-27-era-progression-design\.md$|^docs/superpowers/specs/2026-07-30-era-palette-ladder\.md$|^docs/superpowers/specs/2026-08-01-plague-crisis-art-brief\.md$|^docs/superpowers/specs/City_Art_Bible\.md$|^docs/superpowers/specs/eras/README\.md$|^docs/design-refs/advisor-wardrobe/README\.md$|^docs/superpowers/specs/crisis-reference-packs/README\.md$|^docs/superpowers/specs/crisis-reference-packs/plague/README\.md$|^output/imagegen/era-06-plague-crisis-scenes/README\.md$|^output/imagegen/era-06-early-modern-building-briefs/README\.md$|^\.cursor/skills/author/reference\.md$|^docs/Node_Spine_v4\.md$|^docs/superpowers/specs/2026-08-03-era-and-crisis-music-generation-prompts\.md$|^docs/superpowers/specs/2026-08-04-music-pipeline\.md$|^(apps|packages|engines|services)/.*\.md$'
+
+          REMAINDER="$(
+            {
+              grep -Eiv '\.(md|mdc|dot|docx|pdf|png|jpe?g|gif|webp|svg)$' changed-files.txt
+              grep -Ei "$TEST_INPUT_MARKDOWN" changed-files.txt
+            } | LC_ALL=C sort -u || true
+          )"
+
+          if [ -z "$REMAINDER" ]; then
+            echo "::notice::Prose/asset-only change - the code gates read none of these files, so their steps are skipped. This check still reports a conclusion."
+            echo "code=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Non-inert files, so the full gate set runs:"
+            printf '%s\n' "$REMAINDER" | sed 's/^/  /'
+            echo "(A .md listed above is there because a test parses it: see TEST_INPUT_MARKDOWN.)"
+            echo "code=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ---------------------------------------------------------------------
+      # Folded in from the old `work-log-reminder` job.
+      #
+      # ADVISORY ONLY (per Definition of Done): WARNS, never fails, when an
+      # owner's code area changed without a work-log entry of theirs in the same
+      # change. Owner -> path mapping comes from OWNERS.md.
+      #
+      # What counts as "an entry" changed on 2026-07-28, and only that: entries
+      # are now one NEW file per PR at work-log/<owner>/YYYY-MM-DD-slug.md, so
+      # two PRs can no longer collide in one append-to-the-top file. See
+      # work-log/README.md, which is the only place the convention is stated.
+      # The predicate therefore accepts EITHER a per-entry file under
+      # work-log/<owner>/ or a touch of the pre-split archive work-log/<owner>.md
+      # -- the archive is not retired, it is just not appended to any more, and
+      # accepting it keeps this step quiet rather than warning at anyone who
+      # legitimately edits it. Deliberately permissive on the directory side
+      # (`/.+\.md`, any depth): a false warning on a real entry is the worse
+      # failure for an advisory step, since it trains readers to ignore it.
+      #
+      # It shares a job with the scope decision, which CAN fail, so it is made
+      # structurally harmless. Two independent guarantees, either of which
+      # suffices:
+      #   1. `continue-on-error: true` -- GitHub records the step outcome but
+      #      does not fail the job, whatever the script does or how it is later
+      #      edited. This is the load-bearing one.
+      #   2. the script itself still ends in `exit 0` and every early return is
+      #      an explicit `exit 0`.
+      # That matters more here than it did when the gates shared this job: every
+      # gate below depends on this job, so a reminder that could fail it would
+      # skip the entire gate set and take the required check red over a missing
+      # work-log entry.
+      #
+      # It runs UNGATED, unlike the gates in the sibling jobs, and that is not an
+      # oversight. Its owner regexes match `.github/` and four tracked README.md
+      # files (engines/diagnostic, packages/shared-components,
+      # packages/shared-state-schema, packages/skill-graph), so a prose-only
+      # change CAN be an owner-area change. Gating it on `scope.code` would
+      # silently drop the warning for exactly those changes -- and a work-log
+      # entry is itself always .md (per-PR file or archive), i.e. always inert,
+      # so gating this reminder on the code filter would be self-defeating,
+      # before and after the 2026-07-28 split alike. It costs nothing:
+      # a prose-only run finishes well inside the one-minute minimum either way.
+      # ---------------------------------------------------------------------
+      - name: Work-log reminder (advisory; cannot fail this job)
+        continue-on-error: true
+        shell: bash
+        env:
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -u
+
+          # Resolve base/head to diff, degrading gracefully if unavailable.
+          if [ -n "${GITHUB_BASE_REF:-}" ]; then
+            BASE="${PR_BASE_SHA:-}"
+            HEAD="${PR_HEAD_SHA:-${GITHUB_SHA:-HEAD}}"
+          else
+            BASE="${GITHUB_EVENT_BEFORE:-}"
+            HEAD="${GITHUB_SHA:-HEAD}"
+          fi
+
+          # No reliable base (new branch, all-zero SHA, or missing commit): skip.
+          # `^0` not `^{commit}` for the same reason as the scope step above: some
+          # local git builds brace-expand the braced form out of their own argv.
+          if [ -z "$BASE" ] || printf '%s' "$BASE" | grep -Eq '^0+$' \
+             || ! git rev-parse --verify --quiet "${BASE}^0" >/dev/null \
+             || ! git rev-parse --verify --quiet "${HEAD}^0" >/dev/null; then
+            echo "::notice::work-log reminder skipped (no reliable base ref to diff against)"
+            exit 0
+          fi
+
+          git diff --name-only "$BASE" "$HEAD" > changed-files.txt || true
+          if [ ! -s changed-files.txt ]; then
+            echo "::notice::work-log reminder: no changed files detected"
+            exit 0
+          fi
+
+          TODAY="$(date -u +%Y-%m-%d)"
+
+          # owner | regex of that owner's code-area path prefixes (from OWNERS.md).
+          check_owner() {
+            owner="$1"
+            regex="$2"
+            if grep -Eq "$regex" changed-files.txt \
+               && ! grep -Eq "^work-log/${owner}(\.md|/.+\.md)$" changed-files.txt; then
+              echo "::warning::${owner} changed owned code but added no work-log entry in this change. Add work-log/${owner}/${TODAY}-<slug>.md (a NEW file per PR -- see work-log/README.md), or run /progress-update (Definition of Done)."
+            fi
+          }
+
+          check_owner gabe '^(engines/diagnostic|packages/shared-state-schema|packages/shared-components|packages/skill-graph|scripts|\.github)/'
+          check_owner anthony '^(engines/lesson|packages/shared-mastery-service)/'
+          check_owner evan '^(engines/game)/'
+
+          exit 0
+
+  # ---------------------------------------------------------------------
+  # THE LIGHT GATES, IN ONE JOB. `content-gates`, `lint`, `typecheck`, `infra`
+  # and `build` were five sibling jobs from #478 until 2026-08-04; this is T1 of
+  # `docs/2026-08-04-ci-cost-measurement.md`.
+  #
+  # WHY, IN BILLED MINUTES. GitHub bills PER JOB and rounds UP to the whole
+  # minute, and these five did 23-63 seconds of work each behind 34-56 seconds
+  # of identical setup. Measured over the 185 full-gate runs of 2026-08-04,
+  # before this change: 6.43 billed minutes per run between them for well under
+  # two minutes of gate work, because each paid its own rounding on its own
+  # checkout and its own `npm ci`. One job pays one.
+  #
+  # IT COSTS NO WALL CLOCK, and that is the reason this is worth doing at all
+  # rather than a hope. These gates are not the tail and never were: the tail is
+  # a test suite, and the folded job below runs in ~90 seconds against the
+  # suites' quarter of an hour. Every gate still runs on every run.
+  #
+  # WHY `scope` IS NOT IN HERE, since it is a light job too and folding it would
+  # save another billed minute per run. Two reasons, and the second is the one
+  # that decides it:
+  #   1. WALL CLOCK. Both suites depend on `scope`, so they start when it
+  #      finishes -- a 28-second median. Folding the decision into this job
+  #      would hold them until this one finished, which is the ~90 seconds
+  #      above, and T1's whole claim is that it costs no feedback time.
+  #   2. SIGNAL, WHICH IS WORSE. GitHub SKIPS a job whose dependency failed. If
+  #      the suites depended on this job, a lint error would skip both of them
+  #      and the run would say nothing at all about whether the tests pass --
+  #      the sequential-gate behaviour #478 removed, reintroduced through a
+  #      different door. As it stands a failure here stops nothing.
+  # That is ~$1.37/day left on the table on 2026-08-04's volume, deliberately.
+  #
+  # EVERY GATE RUNS EVEN AFTER AN EARLIER ONE FAILS. `!cancelled()` and not
+  # `always()`: `always()` would keep the steps running through a CANCELLED run
+  # too, and `cancel-in-progress` is on for pull requests, so that would bill
+  # minutes for a verdict nobody will read. What this buys is the property the
+  # five jobs had for free -- a lint error and a type error are both reported by
+  # one run rather than the lint error hiding the rest. The setup steps above
+  # them are NOT `!cancelled()`, so a failed `npm ci` still reports as itself.
+  #
+  # THE NEW HOLE THIS OPENS, NAMED, because it is the whole risk of the fold.
+  # While these were jobs, deleting one broke the aggregator's `needs:` list and
+  # `test/ciGateAggregation.test.ts` failed. As STEPS they are invisible to that
+  # arithmetic: delete the `npm run lint` line and nothing structural notices.
+  # So that file now also derives the gate commands transitively from
+  # package.json's own `check` and `build` scripts -- the repository's own
+  # definition of "run everything" -- and fails if the workflow stops invoking
+  # one of them. A gate silently dropped from this job is a test failure, which
+  # is what the `needs:` list used to be.
+  #
+  # NO `continue-on-error` ON A GATE STEP, ever, and that is now asserted rather
+  # than left to review: inside a folded job it is a one-word edit that would
+  # turn a red gate green while the job still reported success. The only step in
+  # the file allowed to carry it is the work-log reminder, which is advisory by
+  # design, and the guard names it as an exception and fails in BOTH directions.
+  #
+  # ---------------------------------------------------------------------
+  # WHAT THE INDIVIDUAL GATES ARE. Kept from the five jobs this replaces,
+  # because the reasoning does not change when the packaging does.
+  #
+  # THE TWO CONTENT GATES need no `npm ci` at all: `graph_invariants.py` is a
+  # stdlib-only Python script over a single JSON file, and
+  # `scripts/check-lesson-packs.sh` imports `node:fs` and `node:path` and
+  # nothing else, on the runner-preinstalled Node rather than the pinned one
+  # (verified in a fresh worktree with no node_modules present; the script
+  # echoes `node --version` so each run records which interpreter it got).
+  # Together they are ~2s of real work, which is why paying them a whole billed
+  # minute of their own stopped being worth it.
+  #
+  # THEY ARE GATED on the prose filter, and that is safe by construction rather
+  # than by luck. `graph_invariants.py` reads exactly one file --
+  # `open(sys.argv[1])` on packages/skill-graph/src/skill_graph.json -- with no
+  # globs and no imports outside the stdlib, so the gate's only two inputs are
+  # that .json and the .py itself. The validator's inputs are
+  # content/lessons/**/*.json, apps/web/src/lessons/visuals.tsx (widget
+  # captions, for R8), packages/skill-graph/src/skill_graph.json (node ids, for
+  # R18), and the .mjs and .sh themselves. NONE of .json, .tsx, .mjs, .py or .sh
+  # is in the inert set, so any change that can alter what either gate concludes
+  # leaves a remainder, sets code=true and runs it; the filter also fails open.
+  #
+  # What the lesson-pack step enforces is the validator's ERROR tier, and what
+  # it prints without enforcing is the warning tier. The two tiers are
+  # enumerated, rule by rule with the R-number each implements, in
+  # `.cursor/skills/author/scripts/validate-lesson-pack.mjs`'s own header block
+  # and in `.cursor/skills/author/reference.md` section 7 -- read them there.
+  # This comment deliberately does not restate either list or its length: it
+  # did, as "16 checks", "the ELEVEN error-tier rules" and "the five
+  # warning-tier rules", and by 2026-07-28 the tally was 11 + 6 + 1 self-check
+  # while the catalogue those rules are drawn from had grown past R26 to R33.
+  #
+  # The division of labour is the part that does not expire: the validator is
+  # not the whole of the `author` rule catalogue. Rules it cannot check
+  # mechanically stay human review items, and several are structural elsewhere
+  # rather than unchecked -- `objective` is a required prop, so typecheck
+  # carries R17, and the widgetTaskOrder / binaryRowMarks / spotTheErrorPalette
+  # browser tests pin others. Which rule sits where is `reference.md` section
+  # 7's table to answer.
+  #
+  # ERROR TIER ONLY. `--strict` is deliberately NOT passed and must not be
+  # added, for the reason `scripts/check-lesson-packs.sh` gives at length: the
+  # warning tier is advisory by design, so it is not a gate every content PR
+  # must clear. That reason does not move when the counts do, and this comment
+  # previously argued it from counts that did move -- it quoted "warnings 23 / 0
+  # / 25 / 17" and concluded D1, D5 and D7 "then exit 1" under `--strict`, both
+  # of which #201 falsified on 2026-07-28 by clearing the tier to zero. Read the
+  # current numbers off a run, never off this file.
+  #
+  # THE WEB BUILD stays a step of its own rather than being folded into
+  # `typecheck`, even here. The root `npm run build` script is
+  # `typecheck && build -w @cr/web`, so calling that would mean a typecheck
+  # failure hides whether the bundle builds -- which is the sequential-gate
+  # behaviour this file keeps refusing. `!cancelled()` is what makes the two
+  # independent again now that they share a job. `vite build` measured 3-5s.
+  # ---------------------------------------------------------------------
+  light-gates:
+    needs: scope
+    runs-on: ubuntu-latest
+    # ~50s of gate over a ~40s setup. Fifteen minutes is a hang cap and nothing
+    # else; the five jobs this replaces were capped at 5, 10, 10, 15 and 10, and
+    # the sum of their caps would be 50, which the aggregation guard refuses.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        if: needs.scope.outputs.code == 'true'
+      - uses: actions/setup-node@v4
+        if: needs.scope.outputs.code == 'true'
+        with:
+          node-version: "24"
+          cache: npm
+          # The same lockfile set in EVERY job that sets up node. The cache key
+          # is a hash of these paths, so listing a different set here than in
+          # the suite jobs below would give them a key of their own: two caches
+          # to warm, two to evict, and a miss on whichever ran first. One key
+          # shared by every job keeps `npm ci` at the 9-16s the measurements in
+          # this file assume.
+          cache-dependency-path: |
+            package-lock.json
+      - name: Set up Python for the graph invariants
+        if: needs.scope.outputs.code == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: npm ci
+        if: needs.scope.outputs.code == 'true'
+
+      # Each gate below carries `!cancelled()`, so one failing gate reports
+      # itself and the rest still run. The commands are byte-identical to the
+      # ones the five jobs ran; only the packaging moved. Each carries an `id:`
+      # so the roll-call at the foot of this job can name its outcome.
+      - name: Formatting (biome)
+        id: format
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run format:check
+      - name: Lint (biome)
+        id: lint
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run lint
+      - name: Typecheck (tsc --build over the project references)
+        id: typecheck
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run typecheck
+      - name: Web build (vite)
+        id: build
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run build -w @cr/web
+      - name: Run graph + scope + lesson-shell invariants
+        id: graph
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: python3 packages/skill-graph/test/graph_invariants.py packages/skill-graph/src/skill_graph.json
+      - name: Validate the lesson packs (error tier; warnings advisory)
+        id: lessons
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: bash scripts/check-lesson-packs.sh
+
+      # ---------------------------------------------------------------------
+      # THE ROLL-CALL, and it exists because of what the fold takes away from
+      # the RUN PAGE rather than from the tree.
+      #
+      # `code-quality` prints "Gate results, as GitHub reported them" over its
+      # `needs:`, and before T1 that list named all eight gates. It now names
+      # four, because five of them are steps and no `needs:` context can see a
+      # step. So the one place a reader could previously see every gate account
+      # for itself no longer does, and the measurement document's warning
+      # applies exactly here: a run whose jobs never started reports `failure`
+      # having executed zero steps, which is indistinguishable in the checks UI
+      # from a real gate failure, so READ THE LOG AND NOT THE BADGE. This is the
+      # log to read for the folded five.
+      #
+      # It is not decorative, and the difference is the empty case. A step whose
+      # `id` is mistyped renders `steps.<id>.outcome` as the EMPTY STRING rather
+      # than failing, so a roll-call that only printed would quietly print a
+      # blank beside a gate and read as reassurance. Anything but success or
+      # failure is therefore an error here: `skipped` cannot legitimately happen
+      # while this step is running, because it carries the same condition as the
+      # gates above it, and empty means the reference is broken.
+      #
+      # `test/ciGateAggregation.test.ts` holds this list and the set of gate
+      # steps in this job to one another in both directions, so a gate added as
+      # a step without being added here fails there.
+      # ---------------------------------------------------------------------
+      - name: Every folded gate reported an outcome
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        shell: bash
+        env:
+          GATE_OUTCOMES: |
+            format:check   ${{ steps.format.outcome }}
+            lint           ${{ steps.lint.outcome }}
+            typecheck      ${{ steps.typecheck.outcome }}
+            build          ${{ steps.build.outcome }}
+            check:graph    ${{ steps.graph.outcome }}
+            check:lessons  ${{ steps.lessons.outcome }}
+        run: |
+          set -uo pipefail
+
+          echo "Gate outcomes, as GitHub reported them:"
+          verdict=0
+          while read -r gate outcome; do
+            [ -n "$gate" ] || continue
+            printf '  %-14s %s\n' "$gate" "${outcome:-<nothing>}"
+            case "${outcome:-}" in
+              success | failure) ;;
+              *)
+                echo "::error::${gate} reported '${outcome:-}' rather than a verdict. An empty outcome means this roll-call's step reference is broken, so the gate above it may not have run at all."
+                verdict=1
+                ;;
+            esac
+          done <<<"$GATE_OUTCOMES"
+
+          exit "$verdict"
+
+  # ---------------------------------------------------------------------
+  # The unit suite, IN ONE JOB. It was three matrix shards from #478 until
+  # 2026-08-04; the shard count is the lever
+  # `docs/2026-08-04-ci-cost-measurement.md` prices as T2, and this is that
+  # trade taken.
+  #
+  # WHY THE SHARDS WENT, IN BILLED MINUTES. GitHub bills PER JOB and rounds UP
+  # to the whole minute, so three shards pay three roundings and three setups
+  # (checkout + `npm ci`, 34s median) for one suite's work. Measured over the
+  # 185 full-gate runs of 2026-08-04, before this change: `test-unit` billed
+  # 17.15 minutes per run across its three shards and `test-browser` 24.01, of a
+  # 49.84-minute run. Sharding also costs real COMPUTE and not only rounding --
+  # the same-day measurement in that document's §4 puts three shards at 1.09x
+  # the unsharded unit suite and 1.28x the unsharded browser suite, because a
+  # third of the files is not a third of the work.
+  #
+  # THE COST IS THE TAIL, AND IT IS THE POINT OF THE TRADE. One job runs the
+  # whole suite end to end, so the run's wall clock goes back up; the document
+  # models +8.5 minutes for both suites together, and the work-log entry for
+  # this change records what it actually measured. Nothing about WHAT is tested
+  # moved: not a test deleted, skipped, shortened or filtered.
+  #
+  # NO TEST STOPPED BEING RUN, AND THAT IS MEASURED RATHER THAN ASSUMED.
+  # Sharding is exactly where a test goes quiet, so the collapse is checked in
+  # the currency that would notice: `vitest list` over this config, at the
+  # commit before this change, collected 180 + 179 + 179 = 538 files across
+  # shards 1/3, 2/3 and 3/3, pairwise disjoint; the single job below collects
+  # all 538. The run-level check is the test COUNT vitest itself prints --
+  # summed over the three shards before, read off the one job after. See the
+  # work-log entry for the numbers.
+  #
+  # `fail-fast: false` IS NOT BEING RETIRED, it has nothing left to govern.
+  # It is a matrix property and it decided whether a failing shard cancelled its
+  # SIBLING SHARDS; with no matrix there are no siblings. The behaviour it
+  # bought is untouched: `test-unit` and `test-browser` are separate jobs, so
+  # neither cancels the other and a lint failure still stops nothing.
+  #
+  # WHAT STILL HAS TO BE TRUE, and where it is held: the suite must run in
+  # FULL. `test/ciGateAggregation.test.ts` derives every `test:*` script in
+  # package.json and requires each to be run by a job with NO narrowing
+  # argument -- no `--shard`, no `-t`, no path filter -- or else by a complete
+  # 1..n shard matrix dividing by `strategy.job-total`. So re-sharding later is
+  # allowed and partial sharding still fails, and a suite added to package.json
+  # and never wired in here fails too.
+  # ---------------------------------------------------------------------
+  test-unit:
+    needs: scope
+    runs-on: ubuntu-latest
+    # The whole suite. Measured on 2026-08-04's shards: 313s median per shard
+    # including ~35s of setup, so ~834s of gate work across the three, which the
+    # 1.09x sharding tax puts at ~765s unsharded -- call it 13 minutes plus
+    # setup. Forty is ~3x that, which is the relationship a cap wants: the old
+    # combined job was set to 25 against an observed ~24m and a run was killed
+    # at 25m16s with no verdict, having billed the full cap and forcing a
+    # re-run. THE HEADROOM IS NOW THE THING TO WATCH, because that document's §6
+    # measures the suites growing ~40%/day and an unsharded job spends that
+    # growth against one cap instead of three. Raise it when the suite grows,
+    # never when a run is lost.
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        if: needs.scope.outputs.code == 'true'
+      - uses: actions/setup-node@v4
+        if: needs.scope.outputs.code == 'true'
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+      - run: npm ci
+        if: needs.scope.outputs.code == 'true'
+      - name: Run the unit suite
+        if: needs.scope.outputs.code == 'true'
+        run: npm run test:unit
+
+  # ---------------------------------------------------------------------
+  # The browser suite, IN ONE JOB, for the reasons the unit job above gives at
+  # length. It is the more expensive half of that trade in both currencies: the
+  # biggest single line on the bill (24.01 billed minutes per run of 49.84,
+  # 2026-08-04) and the one whose sharding tax is worst (1.28x, against the unit
+  # suite's 1.09x), so it is where most of T2's saving is -- and it is also the
+  # tail, so it is where most of the added wall clock is.
+  #
+  # THE MEMORY QUESTION DOES NOT REOPEN, and the reason is not sharding. It was
+  # never the shards that made it fit: `vitest.browser.config.ts` sizes its
+  # worker count off `availableParallelism()` on the box it lands on, and the
+  # measurement that settled this was taken on the UNSHARDED job -- a 3588MB
+  # peak of 7938MB, 45%, with 4351MB headroom (see
+  # work-log/gabe/2026-07-28-two-chromium-workers-fit-in-7gb.md). Splitting the
+  # files across runners never raised the per-runner ceiling and rejoining them
+  # does not lower it: the same two Chromium workers run in the same memory,
+  # with more files passing through them.
+  #
+  # ONE THING GETS CHEAPER RATHER THAN DEARER HERE. The Chromium cache was
+  # restored three times per run, once per shard, and on a cache MISS all three
+  # downloaded the browser. That is now one restore and, on a miss, one
+  # download.
+  # ---------------------------------------------------------------------
+  test-browser:
+    needs: scope
+    runs-on: ubuntu-latest
+    # The whole suite. Measured on 2026-08-04's shards: 422s median per shard
+    # including ~56s of setup and Chromium dependencies, so ~1098s of gate work
+    # across the three, which the 1.28x sharding tax puts at ~858s unsharded --
+    # call it 15 minutes plus setup. Forty-five is ~3x that; see the unit job's
+    # cap for why a cap is a multiple and not a neighbour, and for why the
+    # headroom is now the thing to watch. Two shards hit the old 25-minute cap
+    # on 2026-08-03 (runs 30855414018 and 30855593473, the first of them a push
+    # to `integration`, so that commit got no verdict), which is what a cap set
+    # near the observed duration costs.
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        if: needs.scope.outputs.code == 'true'
+      - uses: actions/setup-node@v4
+        if: needs.scope.outputs.code == 'true'
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+      - run: npm ci
+        if: needs.scope.outputs.code == 'true'
+
+      # Key the browser cache on the RESOLVED playwright version rather than a
+      # hand-written string, so a dependency bump invalidates it on its own.
+      - name: Resolve the installed Playwright version
+        id: playwright
+        if: needs.scope.outputs.code == 'true'
+        run: echo "version=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the Playwright browser cache
+        id: playwright-cache
+        if: needs.scope.outputs.code == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          # Exact key, no restore-keys on purpose: a near-miss restore would hand
+          # Playwright a build it rejects and it would redownload anyway, while
+          # masking the miss.
+          key: ms-playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+
+      - name: Install Chromium and its system dependencies
+        if: needs.scope.outputs.code == 'true' && steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+
+      # Cache hit: the browser binary is restored, but `--with-deps` also apt-installs
+      # font packages that live outside ~/.cache/ms-playwright. Install those anyway so
+      # a cache-hit run has the same browser environment as a cache-miss one and the
+      # suite cannot drift between them.
+      - name: Install Chromium system dependencies (browser restored from cache)
+        if: needs.scope.outputs.code == 'true' && steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+
+      # Serialized exporter checks, after this job's existing browser setup. Keeping them here
+      # avoids Chromium exporters inside the parallel unit pool and avoids a new rounded CI job;
+      # `test/era7ExporterReproductionGate.test.ts` holds both commands to this placement.
+      - name: Reproduce the seeded Era 7 production models
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run check:era7-models
+
+      - name: Verify Era 7 exporter safety and rollback
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run test:era7-exporter
+
+      - name: Reproduce the Era 8-10 production models
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run check:era8-10-models
+
+      - name: Verify the Era 8-10 browser asset manifest
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run test:era8-10-manifest
+
+      - name: Verify Era 8-10 exporter safety
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run test:era8-10-exporter
+
+      # Restart the web browser between quarters of its files. The combined #755/#763 tree
+      # lost a different long-lived iframe in three consecutive unsharded hosted runs, after
+      # 2,590, 2,804, and 2,888 passing tests. Two halves stopped the iframe losses, but a
+      # 12-minute second browser still starved unrelated canvas waits near its end. The package
+      # project is small and runs once; four sequential, non-overlapping web shards still run
+      # every file and assertion while bounding each Chromium lifetime.
+      #
+      # `--project web` on EVERY shard command is load-bearing. Vitest shards each project
+      # independently; sharding the multi-project config duplicated files between halves.
+      # These are separate steps so a failure names its partition. Each step remains gated
+      # by the same scope verdict, and any red step makes the one `test-browser` job red.
+      - name: Run the package browser project
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run test:browser -- --project packages
+
+      - name: Run web browser quarter 1
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run test:browser -- --project web --shard=1/4
+
+      - name: Run web browser quarter 2
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run test:browser -- --project web --shard=2/4
+
+      - name: Run web browser quarter 3
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run test:browser -- --project web --shard=3/4
+
+      - name: Run web browser quarter 4
+        if: ${{ !cancelled() && needs.scope.outputs.code == 'true' }}
+        run: npm run test:browser -- --project web --shard=4/4
+
+  # ---------------------------------------------------------------------
+  # THE REQUIRED CHECK, and nothing else. It runs no gate, installs nothing, and
+  # exists to turn every other job's conclusion into the one status context
+  # `integration`'s branch protection requires by name. Do not rename it, do not
+  # give it work to do, and do not remove a gate from its `needs:` list. The
+  # count is deliberately not written down here: it was "twelve" while the file
+  # held thirteen jobs, and the list below is the only place it belongs.
+  #
+  # `if: always()` plus an EXPLICIT inspection of every dependency's result,
+  # because a bare `needs:` would not do the job this exists for. GitHub SKIPS a
+  # job whose dependency failed rather than failing it, a skipped required check
+  # can be read as neutral, and the result would be a green badge over a tree
+  # where nothing ran. `skipped` and `cancelled` are therefore failures here
+  # alongside `failure`: a cancelled job reached no verdict, and thirty-one runs
+  # on `integration` shipped on exactly those two shapes of non-answer over
+  # 2026-08-01 to 2026-08-03 (see this file's header).
+  #
+  # PROVEN ON THE RUNNER rather than read off the YAML, one injected defect at a
+  # time on a throwaway pull request. A green run is no evidence at all for this
+  # job -- the whole risk it exists to close is a false green -- so only an
+  # observed red counts. Re-proven in full when T1 folded five gates into steps,
+  # because that changed which jobs exist and therefore this list:
+  #   30955964960  stray whitespace     -> format:check alone     -> FAILURE
+  #   30955967493  a `debugger;`        -> lint alone             -> FAILURE
+  #   30955967090  a type error         -> typecheck alone        -> FAILURE
+  #   30955968175  a missing entry file -> build alone            -> FAILURE
+  #   30955972906  a dangling prereq    -> check:graph + 2 others -> FAILURE
+  #   30955972631  an over-long slide   -> check:lessons alone    -> FAILURE
+  #   30955972970  `scope` exits 1      -> every gate SKIPPED     -> FAILURE
+  #   30955974892  the scope step's id renamed, so the verdict arrives EMPTY,
+  #                every gate step skips and every gate JOB reports success
+  #                                                                -> FAILURE
+  #   30953568225  a failing test in what used to be shard 2 of each suite
+  #                                     -> both suites            -> FAILURE
+  # and the counterpart, which must stay GREEN:
+  #   30843270041  verdict forced 'false' -> every gate skips its steps -> SUCCESS
+  # That last one is why the gates are skipped as steps: had a prose-only change
+  # reported a skipped gate, this required check would be unpassable and every
+  # docs-only pull request would block forever.
+  #
+  # THE ONE TO READ TWICE IS 30955974892. Every gate job reported `success` there
+  # -- a green board over a tree nothing read -- and only the SCOPE_VERDICT case
+  # below turned it red. It is the only defect in the list that is invisible in
+  # every other currency.
+  #
+  # See work-log/gabe/2026-08-03-the-gates-run-in-parallel-and-a-skipped-gate-is-red.md
+  # and work-log/gabe/2026-08-04-the-light-gates-fold-and-nine-injected-reds.md.
+  # ---------------------------------------------------------------------
+  code-quality:
+    needs:
+      - scope
+      - light-gates
+      - test-unit
+      - test-browser
+    if: always()
+    runs-on: ubuntu-latest
+    # Seconds of `jq` over a JSON object; no checkout, no install.
+    timeout-minutes: 5
+    steps:
+      - name: Fail unless every gate reported success
+        id: aggregate
+        shell: bash
+        env:
+          # The whole `needs` context, so this cannot inspect a subset by
+          # forgetting one of eight hand-written `needs.<job>.result` lines. The
+          # job that gets forgotten is precisely the one whose failure then goes
+          # unreported.
+          GATE_RESULTS: ${{ toJSON(needs) }}
+          SCOPE_VERDICT: ${{ needs.scope.outputs.code }}
+        run: |
+          set -uo pipefail
+
+          # The gates this check speaks for, NAMED rather than counted. A floor
+          # of "at least four results" is satisfied by four of the WRONG jobs,
+          # and by the empty object if `toJSON(needs)` ever comes back empty; a
+          # name is not. Compared against the `needs:` list above in BOTH
+          # directions below, so a gate added to that list without being added
+          # here fails, and a gate named here that is no longer depended on
+          # fails too. `test/ciGateAggregation.test.ts` holds this list, the
+          # `needs:` list and the set of gate jobs in the file to one another.
+          #
+          # THIS LIST IS SHORTER THAN THE GATE SET SINCE T1, and that is the one
+          # thing about it worth understanding. `light-gates` is five gates in
+          # one job, so five of the names that used to be here are now STEPS,
+          # and no `needs:` arithmetic can see whether they still exist. What
+          # watches them instead is `ciGateAggregation.test.ts`, which derives
+          # the gate commands transitively from package.json's own `check` and
+          # `build` scripts and fails if the workflow stops invoking one. Adding
+          # a gate as a step of `light-gates` is therefore safe; deleting one is
+          # a red test, not a quieter green run.
+          EXPECTED_GATES='light-gates scope test-browser test-unit'
+
+          # Sorted and space-joined so two lists compare as strings. `awk NF`
+          # drops blanks and exits 0 on EMPTY input, which matters under the
+          # runner's `-e`: an empty list has to reach the explicit error below
+          # rather than killing this step with no message.
+          words() { tr ' ' '\n' | awk 'NF' | sort | tr '\n' ' '; }
+
+          # Malformed JSON exits jq non-zero and `-e` ends the step: that is the
+          # right direction to fail in.
+          pairs="$(jq -r 'to_entries[] | "\(.key)=\(.value.result)"' <<<"$GATE_RESULTS" | sort)"
+
+          echo "Gate results, as GitHub reported them:"
+          printf '%s\n' "$pairs" | awk -F= 'NF { printf "  %-14s %s\n", $1, $2 }'
+          echo
+
+          observed="$(printf '%s\n' "$pairs" | awk -F= 'NF { print $1 }' | words)"
+          expected="$(printf '%s\n' "$EXPECTED_GATES" | words)"
+          if [ "$observed" != "$expected" ]; then
+            echo "::error::This required check is not watching the gates it claims to. It depends on [${observed}] and speaks for [${expected}]. A gate missing from \`needs:\` reports nothing here, so its failure would be invisible and this check would go green over it."
+            exit 1
+          fi
+
+          verdict=0
+          for pair in $pairs; do
+            job="${pair%%=*}"
+            result="${pair#*=}"
+            case "$result" in
+              success)
+                ;;
+              skipped)
+                echo "::error::${job} was SKIPPED, which is not a pass. A job whose dependency failed is skipped rather than failed, so a skipped gate means the tree was never checked -- and treating that as neutral is how twelve push runs on integration reported success having run no gate at all."
+                verdict=1
+                ;;
+              cancelled)
+                echo "::error::${job} was CANCELLED, so it reached no verdict at all. That is not a pass either: nineteen push runs on integration were cancelled with zero jobs allocated, and every one of those commits merged unverified."
+                verdict=1
+                ;;
+              *)
+                echo "::error::${job} reported '${result}'."
+                verdict=1
+                ;;
+            esac
+          done
+
+          # THE VERDICT HAS TO HAVE RESOLVED. Every gate job gates its steps on
+          # `needs.scope.outputs.code == 'true'`, so if that output ever arrives
+          # empty -- a broken `outputs:` mapping, a renamed step id -- every one
+          # of them skips its own steps, reports success, and this check goes
+          # green over a tree nothing read. That is the one new false-green path
+          # this split introduces, and this is where it is closed.
+          case "$SCOPE_VERDICT" in
+            true)
+              echo "Scope verdict: code=true, so every gate above ran its steps."
+              ;;
+            false)
+              echo "Scope verdict: code=false, so the gates above skipped their steps (prose/asset-only change)."
+              ;;
+            *)
+              echo "::error::The scope job handed down no verdict (code='${SCOPE_VERDICT}'), so every gate job silently skipped its own steps and reported success over a tree that was never read."
+              verdict=1
+              ;;
+          esac
+
+          # #436, KEPT STRUCTURAL. A push run asks whether the branch is green,
+          # and "we did not look" is not an answer to that: twelve push runs on
+          # integration reported success having run no gate before that guard
+          # landed. `test/ciScopeFilter.test.ts` holds the classifier to it; this
+          # holds the RUN to it, so the defect cannot return through a later edit
+          # to the scope script that the classifier's own tests do not cover.
+          if [ "${GITHUB_EVENT_NAME:-}" != 'pull_request' ] && [ "$SCOPE_VERDICT" != 'true' ]; then
+            echo "::error::A '${GITHUB_EVENT_NAME:-unknown}' run took the prose-only path (code='${SCOPE_VERDICT}'). Only a pull request has a scope; a push run's question is whether this tree is green, which no diff can answer. See #436."
+            verdict=1
+          fi
+
+          if [ "$verdict" -ne 0 ]; then
+            echo
+            echo "::error::code-quality is RED: at least one gate did not report success. The list above says which."
+            exit 1
+          fi
+
+          echo
+          echo "Every gate reported success."

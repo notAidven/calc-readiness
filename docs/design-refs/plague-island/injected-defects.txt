@@ -1,0 +1,103 @@
+Era six's guards, observed RED under an injected defect before they were accepted.
+
+`.cursor/rules/qa-verification.mdc`: an assertion added without a demonstrated red is not
+evidence, because a test written green may be asserting nothing. Every defect below was
+injected into the source at this branch's tip, the named file was run, the failure was
+recorded, and the source was reverted. Thirteen defects, thirteen reds.
+
+Reproduced by /tmp/inject.py's shape: replace one line, run one test file, revert.
+
+--------------------------------------------------------------------------------------
+
+ 1. THE ANCHOR GOES BACK TO THE SHEET'S 1.02
+    ANCHOR = PERSON_HEIGHT * STONE_OF_A_PERSON  ->  ANCHOR = SHEET_ANCHOR
+    plagueMetrics.test.ts, two rows:
+      x re-declares exactly the shipped constants it says it re-declares
+      x puts the barrier stone thigh-high on the figure this island actually draws
+      AssertionError: expected 0.5484313725490196 to be greater than 0.55
+
+ 2. THE SCALE CORRECTION IS APPLIED TO A RATIO AS WELL AS TO A LENGTH
+    PANEL.barSpan: FACE  ->  FACE * SHEET_TO_ISLAND
+    plagueMetrics.test.ts:
+      x applies the correction to lengths and never to a ratio
+      AssertionError: expected 0.3986666666666667 to be 0.68
+
+ 3a. THE NOTCH COUNT MOVES
+    BAND.NOTCHES: 7  ->  5
+    plagueMetrics.test.ts and plagueScene.test.ts:
+      x applies the correction to lengths and never to a ratio
+      x cuts seven notches, always seven, clustered at the source end
+      AssertionError: expected 5 to be 7
+
+    ⚑ THIS ONE WAS GREEN THE FIRST TIME AND IS WHY THE ROW EXISTS TWICE. Every assertion
+    in plagueScene.test.ts measured the built count against BAND.NOTCHES, which is the
+    constant that had moved, so the guard was circular and said nothing. The literal 7 is
+    asserted beside the derived count now.
+
+ 3b. THE NOTCH COUNT VARIES WITH THE BAND'S LENGTH
+    a long band gets nine notches instead of seven
+    plagueScene.test.ts:
+      x cuts seven notches, always seven, clustered at the source end
+      AssertionError: a band 60 long: expected 9 to be 7
+
+ 4. THE BAND IS ONE PLATE RATHER THAN TWO, so an inlay becomes a stripe painted on the floor
+    BAND.JOINT: 0.075 * ANCHOR  ->  0
+    plagueScene.test.ts:
+      x shows one joint of seat on each side of the band, which is what makes it an inlay
+      AssertionError: expected 0.04485 to be close to +0
+
+ 5. THE DURATION LADDER COMES OFF THE TOP FACE and goes back on the sides alone
+    the cut plate's holes are dropped
+    plagueScene.test.ts:
+      x cuts the same count across the top face, in the same two named tones
+      AssertionError: 1: expected +0 to be 1
+
+ 6. THE ENCLOSURE FILLS WHAT IT ENCLOSES, so the town reads as a map
+    one extra mesh spanning the ring
+    plagueScene.test.ts:
+      x encloses a set on the floor's own grid, and never fills it
+      AssertionError: expected [ ...(5) ] to have a length of 4 but got 5
+
+ 7. THE ROUTER BENDS A BAND round what stands between its two ends
+    a clipped run is offset by two units
+    plagueIslandPlan.test.ts, two rows:
+      x bends nowhere, and has no parameter that could bend it
+      x stops clear of a plot it passes under rather than dying on its wall
+      AssertionError: expected 0.6803351500546848 to be less than 0.000001
+
+ 8. THE DRAWING PULLS A LINKED BUILDING'S OWN FURNITURE TOWARD ITS PARTNER
+    plagueMarkStand(stand).addScalar(valence * 0.4)
+    plagueIslandLayer.test.ts:
+      x draws every building's own furniture in the same place under two different link sets
+      AssertionError: expected [ ...(2) ] to deeply equal [ ...(2) ]
+
+ 9. A BAND'S END IS MEASURED FROM THE PLOT rather than from the opening it leaves by
+    best.at  ->  stand.at
+    plagueIslandPlan.test.ts:
+      x measures a band's end from the opening and never from the plot
+      AssertionError: expected 3.3279615923264494 to be close to 0.5594
+
+10. THE PROPOSAL TAKES ERA FOUR'S GHOST TONE, which lands on the wrong rung
+    PROPOSAL.DARKEN: 0.5166  ->  0.55
+    plagueScene.test.ts:
+      x lands in the one empty rung of era six's ground family, at the SHIPPED opacity
+      AssertionError: expected 0.5505792941176471 to be close to 0.5363819607843137
+
+11. A TYPE CUTS TWO WIDTHS OF OPENING, so the widest lands on the back of the building
+    the market's five bays share per FACE rather than per type, so the two-bay side is wider
+    plagueIslandPlan.test.ts:
+      x gives every type an opening set with an extent, a middle and an outward normal
+      AssertionError: covered_market cuts 2 widths of opening: expected 2 to be 1
+
+    ⚑ THIS IS THE DEFECT AS IT SHIPPED IN THE FIRST RUN OF THE FRAMES, found by looking at
+    frame 05 and asking where the mark had gone. The widest opening is where the mark
+    stands and where the barred panel goes, so both were on the far side of the market.
+
+12. THE FRAME'S OWN MEASUREMENT, observed red before the ladder was moved onto the top face
+    plagueIslandShots.browser.test.tsx, over the ladder as the sheet specifies it:
+      x measures whether the four rungs at least rank in order on the frame
+      AssertionError: two courses against one course: expected 0.4545 to be less than 0.4451
+    and, with the ends compared:
+      AssertionError: expected -0.001252372949179792 to be greater than 0.05
+    Both readings are on the board in play rather than on the comparison plate, and both
+    are recorded in measured-1024x580.txt as the reason frames 02 and 03 are plates.

@@ -1,0 +1,185 @@
+/* -------------------------------------------------------------------------- */
+/* Era two's advisor character — the Neolithic grain keeper's drawing.         */
+/* Scoped under `.maka-advisor`; motion is CSS keyed off `data-mood` and gated */
+/* by prefers-reduced-motion. Ported from                                     */
+/* `city/art/sources/MakaAdvisor.dc.html`, whose keyframe names (`mk-*`) are   */
+/* kept verbatim so the port reads against its original line for line.        */
+/*                                                                            */
+/* ## Its own file rather than a block in `styles.css`                        */
+/*                                                                            */
+/* `eraCeremony.css`, `crisisCall.css`, `hard-winter.css` and                  */
+/* `eraAdvanceDoor.css` set the precedent: a surface that arrives whole gets   */
+/* its own stylesheet, imported by the one component that owns it. Oru's block */
+/* lives in `styles.css` because it predates that pattern, and its block is    */
+/* pinned there by `cityGuidePreserved.browser.test.tsx` — nothing pins this   */
+/* one to that file, and the two advisors share no selector, so there is no    */
+/* cascade reason to sit beside it.                                            */
+/* -------------------------------------------------------------------------- */
+@keyframes mk-bob {
+  from {
+    transform: translateY(0.7%);
+  }
+  to {
+    transform: translateY(-1.4%);
+  }
+}
+@keyframes mk-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.1);
+  }
+}
+@keyframes mk-sway {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes mk-point {
+  0%,
+  100% {
+    transform: rotate(4deg);
+  }
+  30% {
+    transform: rotate(-36deg);
+  }
+  60% {
+    transform: rotate(-29deg);
+  }
+}
+@keyframes mk-talk {
+  0%,
+  100% {
+    transform: scaleY(0.32);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes mk-dust {
+  0% {
+    transform: translateY(18%) scale(0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-110%) scale(1.05);
+    opacity: 0;
+  }
+}
+@keyframes mk-wheel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.maka-advisor {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: visible;
+}
+
+.maka-advisor__part {
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.maka-advisor__body {
+  transform-origin: 50% 100%;
+  animation: mk-bob 3.2s ease-in-out infinite alternate;
+}
+
+/* The four chaff motes are the root's first four children; each drifts on its own clock. */
+.maka-advisor__mote {
+  transform-origin: center;
+  animation: mk-dust 3.6s ease-in-out infinite;
+}
+.maka-advisor__mote:nth-child(2) {
+  animation-duration: 4.2s;
+  animation-delay: 1.1s;
+}
+.maka-advisor__mote:nth-child(3) {
+  animation-duration: 3.9s;
+  animation-delay: 0.6s;
+}
+.maka-advisor__mote:nth-child(4) {
+  animation-duration: 4.6s;
+  animation-delay: 2.2s;
+}
+
+/* The handcart's wheel turns continuously, at every mood. */
+.maka-advisor__wheel {
+  transform-origin: 50% 100%;
+  animation: mk-wheel 7s linear infinite;
+}
+
+/* The free arm sways, and swings up to point on the "point" mood. */
+.maka-advisor__arm {
+  transform-origin: 50% 10%;
+  animation: mk-sway 4.4s ease-in-out infinite;
+}
+.maka-advisor[data-mood="point"] .maka-advisor__arm {
+  animation: mk-point 1.6s ease-in-out infinite;
+}
+
+.maka-advisor__eye {
+  transform-origin: center;
+  animation: mk-blink 5.6s ease-in-out infinite;
+}
+
+/* Open eyes by default; the "squint" mood swaps to the narrowed pair. */
+.maka-advisor__eyes-narrow {
+  display: none;
+}
+.maka-advisor[data-mood="squint"] .maka-advisor__eyes-open {
+  display: none;
+}
+.maka-advisor[data-mood="squint"] .maka-advisor__eyes-narrow {
+  display: block;
+}
+
+/* A closed mouth line by default; the "talk" mood fades to the chattering mouth. */
+.maka-advisor__mouth-line {
+  opacity: 1;
+  transition: opacity 0.14s;
+}
+.maka-advisor__mouth-talk {
+  opacity: 0;
+  transform-origin: 50% 26%;
+}
+.maka-advisor[data-mood="talk"] .maka-advisor__mouth-line {
+  opacity: 0;
+}
+.maka-advisor[data-mood="talk"] .maka-advisor__mouth-talk {
+  opacity: 1;
+  animation: mk-talk 0.3s ease-in-out infinite;
+}
+
+/* Respect reduced motion: hold her still, the cart wheel and the mouth's crossfade too. */
+@media (prefers-reduced-motion: reduce) {
+  .maka-advisor__body,
+  .maka-advisor__mote,
+  .maka-advisor__wheel,
+  .maka-advisor__arm,
+  .maka-advisor__eye,
+  .maka-advisor__mouth-talk {
+    animation: none;
+  }
+  .maka-advisor__mouth-line {
+    transition: none;
+  }
+}

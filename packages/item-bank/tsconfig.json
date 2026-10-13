@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist", "rootDir": "src" },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../../packages/shared-state-schema" },
+    { "path": "../../packages/shared-components" },
+    { "path": "../../packages/skill-graph" },
+    { "path": "../../engines/diagnostic" }
+  ]
+}

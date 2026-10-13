@@ -1,0 +1,10 @@
+# neolithic -> bronze_age, at 1024x580, reduced motion
+
+authored grass radius: 38 before, 43 after
+lagoon radius: 73.5
+island span on screen: 518px before, 524px after (both FITTED, so the two spans are alike by design)
+view offset the camera was given: 1.4783x before, 1.7004x after, at an unchanged distance of 87.4
+drawn ring radius recovered from the frame: 40.3 before, 45.6 after
+ratio 1.132 against the authored 1.119
+whole-frame pixels changed across the beat: 439890 (74.07%)
+lagoon left round the grown island: top 27px, bottom 29px, left 187px, right 206px

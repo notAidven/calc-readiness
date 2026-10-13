@@ -1,0 +1,79 @@
+{
+  "node_id": "FUN.8",
+  "title": "Inverse functions",
+  "mini_lesson": [
+    "On the workshop floor a machine takes one setting and hands back one reading, and the useful question is whether it can be run the other way. An **inverse function** is that machine reversed: if $f$ sends $a$ to $b$, then $f^{-1}$ sends $b$ back to $a$. Undoing a chain of steps happens in **reverse order**, because the last thing the machine did is the first thing that has to come off.",
+    "There is a mechanical way to write the inverse down: put $y = f(x)$, **swap** $x$ and $y$, then solve the swapped equation for $y$. Swapping turns the pairing around, and solving is the undoing done in symbols. Watch the notation while you do it, because $f^{-1}(x)$ is the inverse function and **not** the reciprocal $\\dfrac{1}{f(x)}$, so the $-1$ names an undoing and never means a power.",
+    "Not every rule can be run backwards. A rule is **one to one** when no two different inputs ever land on the same output, and only a one to one rule has an inverse, because a shared output cannot say which of its inputs produced it. On a graph the check is the **horizontal-line test**: if any horizontal line meets the graph more than once, two inputs are sharing an output and there is nothing for an inverse to hand back.",
+    "Because $f^{-1}$ trades the two coordinates of every pair, its graph is a mirror image of $f$'s: a point $(a,\\, b)$ on the graph of $f$ becomes the point $(b,\\, a)$ on the graph of $f^{-1}$, and the mirror is the line $y = x$. Points already sitting on that line do not move, which is what makes it the mirror rather than some other line. Composition is the other proof that two rules really are a pair, because $f(f^{-1}(x)) = x$ and $f^{-1}(f(x)) = x$ each put back exactly what the other took away."
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A machine triples its setting and then adds $4$, and it has just handed back $19$. What setting was it given?",
+      "steps": [
+        "Running the machine backwards means taking its steps off in reverse order, because the last thing it did is the first thing standing between you and the setting.",
+        "The last thing it did was add $4$, so that comes off first: $19 - 4 = 15$.",
+        "The tripling was done before that, so it comes off second: $15 \\div 3 = 5$.",
+        "The setting was $5$. Taking the steps off in the order they went on would have given $19 \\div 3$ first, which is not a whole setting and not the answer."
+      ]
+    },
+    {
+      "prompt": "Find the inverse of $f(x) = 3x - 7$.",
+      "steps": [
+        "Write the rule with $y$ standing in for $f(x)$: $y = 3x - 7$.",
+        "Swap the two variables, which is what turns the pairing around: $x = 3y - 7$.",
+        "Add $7$ to both sides, since the subtraction is the last thing the forward rule did: $x + 7 = 3y$.",
+        "Divide both sides by $3$, so $f^{-1}(x) = \\dfrac{x + 7}{3}$."
+      ]
+    },
+    null,
+    {
+      "prompt": "The point $(2,\\, 9)$ lies on the graph of $f(x) = 4x + 1$. Where does it sit on the graph of $f^{-1}$, and how does the line $y = x$ show that?",
+      "steps": [
+        "The inverse reads the same pairing the other way, so it trades the two coordinates: $(2,\\, 9)$ becomes $(9,\\, 2)$.",
+        "Check that against the rule itself. Solving $y = 4x + 1$ the other way gives $f^{-1}(x) = \\dfrac{x - 1}{4}$, and $f^{-1}(9) = \\dfrac{8}{4} = 2$, which is the input $f$ started from.",
+        "Now the mirror. The midpoint of $(2,\\, 9)$ and $(9,\\, 2)$ averages each coordinate: $\\dfrac{2 + 9}{2} = 5.5$ across and $\\dfrac{9 + 2}{2} = 5.5$ up.",
+        "Both coordinates came out the same, so that midpoint sits on $y = x$. Every traded pair does this, which is what makes $y = x$ the mirror rather than some other line."
+      ]
+    }
+  ],
+  "slide_subtitles": [
+    "Running a machine backwards",
+    "Swap, then solve",
+    "One to one",
+    "The mirror line"
+  ],
+  "visuals": [
+    { "after": 0, "id": "inverse-reverse-play", "gates": true },
+    { "after": 1, "id": "inverse-build", "gates": true },
+    { "after": 2, "id": "inverse-one-to-one-classify", "gates": true },
+    { "after": 3, "id": "inverse-reflect-explore", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "For $f(x) = \\dfrac{x + 5}{4}$, find the rule for $f^{-1}(x)$, then use that rule to work out $f^{-1}(3)$. Type the rule first, then the value, like `3x - 1, 8`.",
+    "accepted": [
+      "4x - 5, 7",
+      "4*x - 5, 7",
+      "x*4 - 5, 7",
+      "-5 + 4x, 7",
+      "-5 + 4*x, 7",
+      "4x - 5; 7",
+      "4x - 5 and 7",
+      "4x - 5, 7.0",
+      "f^-1(x) = 4x - 5, 7",
+      "y = 4x - 5, 7",
+      "7, 4x - 5",
+      "4x - 5, 7."
+    ],
+    "hint": "Write $y = \\dfrac{x + 5}{4}$ and trade the two variables, which gives $x = \\dfrac{y + 5}{4}$. Multiplying both sides by $4$ clears the bar in one move, and what is left is a one-step solve for $y$. The second part is then just a substitution into the rule you built.",
+    "worked_solution": [
+      "Write the rule with $y$ in place of $f(x)$: $y = \\dfrac{x + 5}{4}$.",
+      "Swap $x$ and $y$, because the inverse reads the same pairing the other way: $x = \\dfrac{y + 5}{4}$.",
+      "Multiply both sides by $4$ to clear the bar: $4x = y + 5$.",
+      "Subtract $5$ from both sides: $y = 4x - 5$, so $f^{-1}(x) = 4x - 5$.",
+      "Put $3$ into that rule: $f^{-1}(3) = 4 \\cdot 3 - 5 = 7$. The answer is `4x - 5, 7`."
+    ],
+    "worked_solution_params": { "m": 4, "c": 5, "v": 3 },
+    "variants": { "template_id": "cfu.fun8.find-inverse", "count": 2 }
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "node_id": "EXP.1",
+  "title": "Exponent rules and positive exponents",
+  "mini_lesson": [
+    "Seed held back in the granary doubles each season it stays in store, so one sack at planting time becomes two, then four, then eight. Counting the store ten seasons on means multiplying ten $2$s together, and a **power** is the short way of writing a repeated multiplication like that: the **base** is the number being multiplied and the **exponent** is the small raised number above it. The exponent's only job is to count how many copies of the base are multiplied together, so it is a count and never a factor.",
+    "Now, what if the granary held seed for five seasons, was emptied, and filled again for two more? Multiplying two powers of the same base only puts their copies end to end, so the counts add: $x^{a} \\cdot x^{b} = x^{a+b}$. Division goes the other way, because every copy on the bottom cancels one on top: $\\dfrac{x^{a}}{x^{b}} = x^{a-b}$.",
+    "And what if the granary doubled for three seasons running, and then the whole three-season stretch happened twice over? A power raised to another power is copies of copies, and what gets copied is the inner power. Every one of those copies is built on the same base, so the exponents they carry add up the way any product of like bases does.",
+    "Adding an exponent to itself over and over is what multiplying that exponent means, so the copies-of-copies count can be read off in a single move. That shortcut is $\\left(x^{a}\\right)^{b} = x^{ab}$, the same arithmetic as before with the repeated addition already done. Multiplying the two exponents therefore never gives a different answer from counting the copies out, only a faster one.",
+    "Now, what if the store halved each season after the granary was emptied? Every step down the powers of $2$ lowers the exponent by one and halves the value, and nothing about that pattern changes when the exponent reaches $0$. **Any base to the power $0$ is $1$**, not because anyone decided it should be, but because that is where the halving lands.",
+    "Halving does not stop once the exponent reaches $0$, and nothing prevents it going below. Lower the exponent past zero and the values keep halving into fractions, so a negative exponent makes a number **small** rather than negative. Halving a positive number never carries it past zero however many times you do it, which is why every one of those values stays positive.",
+    "A positive exponent says multiply by the base. A negative exponent is that same instruction turned round: it says **divide** by the base instead, so the sign of an exponent picks the operation while its size counts how many times. Dividing $1$ by the base over and over is exactly what a fraction records, which is where $x^{-k} = \\dfrac{1}{x^{k}}$ comes from rather than from a second rule bolted on afterwards.",
+    "The rules will simplify anything now, but none of them says when to stop. An answer is finished once **no negative exponents** are left in it, and reaching that takes two passes: combine the powers that share a base, then read the sign of each total. A positive total stays where it is, while a negative one sends its whole power to the bottom of a fraction.",
+    "Two **different** variables change that first pass, because there is nothing to combine. No exponent rule reaches across unlike bases, so each one is handled on its own and only the sign of its own exponent decides where it sits. Adding the exponents anyway would name a completely different number."
+  ],
+  "slide_subtitles": [
+    "Powers, bases and exponents",
+    "Multiplying and dividing powers",
+    "Powers of powers",
+    "Counting the copies",
+    "What happens at zero?",
+    "Negative exponents",
+    "Multiply or divide?",
+    "A finished answer",
+    "Two different bases"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The store doubles for ten seasons running. Write that repeated multiplication as a power, and name its base and exponent.",
+      "steps": [
+        "Each season multiplies the store by $2$, so ten seasons multiply it by $2 \\cdot 2 \\cdot 2$ and onward until ten $2$s have been used.",
+        "The number being copied is $2$, so that is the base.",
+        "Counting the copies is the exponent's job, and there are ten of them.",
+        "Ten seasons of doubling is therefore $2^{10}$, a power with base $2$ and exponent $10$."
+      ]
+    },
+    {
+      "prompt": "The store grows by $2^{5}$, then by $2^{2}$. Write $2^{5} \\cdot 2^{2}$ as a single power, then do the same for $\\dfrac{2^{5}}{2^{2}}$.",
+      "steps": [
+        "Write each power out as its copies: $2^{5}$ is five $2$s and $2^{2}$ is two more.",
+        "Multiplying puts all of those copies in one row, so there are $5 + 2 = 7$ of them, giving $2^{5} \\cdot 2^{2} = 2^{7}$.",
+        "Dividing reads the same row in reverse, because every copy on the bottom cancels one on top.",
+        "Two copies cancel from the five, so $\\dfrac{2^{5}}{2^{2}} = 2^{3}$."
+      ]
+    },
+    {
+      "prompt": "Simplify $\\left(x^{3}\\right)^{2}$, a three-season stretch that happens twice over.",
+      "steps": [
+        "The outer exponent counts copies of $x^{3}$, and there are two of them: $x^{3} \\cdot x^{3}$.",
+        "Both copies are built on the base $x$, so their exponents add: $3 + 3 = 6$.",
+        "That gives $\\left(x^{3}\\right)^{2} = x^{6}$."
+      ]
+    },
+    {
+      "prompt": "Simplify $\\left(x^{4}\\right)^{3}$ twice over, once by counting copies and once by multiplying the exponents.",
+      "steps": [
+        "Counting copies first: the outer $3$ means $x^{4} \\cdot x^{4} \\cdot x^{4}$.",
+        "Those three share a base, so their exponents add: $4 + 4 + 4 = 12$, giving $x^{12}$.",
+        "Multiplying the exponents instead: $4 \\cdot 3 = 12$, giving $x^{12}$ again.",
+        "Adding $4$ to itself three times is what $4 \\cdot 3$ means, so both routes land on $x^{12}$."
+      ]
+    },
+    {
+      "prompt": "Count the store down from $2^{3}$ one season at a time to find $2^{0}$.",
+      "steps": [
+        "Start at the top of the count: $2^{3} = 8$.",
+        "One season lower halves it: $2^{2} = 4$.",
+        "Lower again, and the halving continues: $2^{1} = 2$.",
+        "One more step lowers the exponent to $0$ and halves $2$, so $2^{0} = 1$."
+      ]
+    },
+    {
+      "prompt": "Carry that same halving below zero to find $2^{-1}$ and $2^{-2}$.",
+      "steps": [
+        "The count reached $2^{0} = 1$, so take one more step down.",
+        "Lowering the exponent to $-1$ halves $1$: $2^{-1} = \\dfrac{1}{2}$.",
+        "Another step down halves it again: $2^{-2} = \\dfrac{1}{4}$.",
+        "Both values are positive fractions, so the negative exponents shrank the number without changing its sign."
+      ]
+    },
+    {
+      "prompt": "Read $2^{-3}$ as an instruction, then work out its value.",
+      "steps": [
+        "The exponent is negative, so the instruction is to divide rather than multiply, and its size $3$ says how many times.",
+        "Start from $1$ and divide by $2$ three times over.",
+        "Dividing $1$ by $2$ three times is exactly what $\\dfrac{1}{2^{3}}$ records.",
+        "Working the bottom out gives $2^{-3} = \\dfrac{1}{2^{3}} = \\dfrac{1}{8}$."
+      ]
+    },
+    {
+      "prompt": "Simplify $x^{3} \\cdot x^{-8}$ so that no negative exponent is left in it.",
+      "steps": [
+        "Both powers are built on the base $x$, so their exponents combine.",
+        "Add them: $3 + (-8) = -5$, which gives $x^{-5}$.",
+        "That total came out negative, so the answer is not finished yet.",
+        "A negative total sends its whole power to the bottom: $x^{-5} = \\dfrac{1}{x^{5}}$, and nothing negative is left."
+      ]
+    },
+    {
+      "prompt": "Simplify $x^{3} \\cdot y^{-4}$ with positive exponents only.",
+      "steps": [
+        "The bases $x$ and $y$ are different, so no exponent here adds to another.",
+        "Take $x^{3}$ on its own: its exponent is already positive, so it stays on top.",
+        "Take $y^{-4}$ on its own: its exponent is negative, so that power moves to the bottom as $y^{4}$.",
+        "Putting the two pieces back together gives $\\dfrac{x^{3}}{y^{4}}$."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "power-parts-label", "gates": true },
+    { "after": 1, "id": "exponent-laws-builder", "gates": true },
+    { "after": 2, "id": "power-of-power-walkthrough", "gates": true },
+    { "after": 3, "id": "power-of-power-match", "gates": true },
+    { "after": 4, "id": "zero-exponent-table", "gates": true },
+    { "after": 5, "id": "negative-exponent-estimate", "gates": true },
+    { "after": 6, "id": "negative-exponent-play", "gates": true },
+    { "after": 7, "id": "positive-exponent-solver", "gates": true },
+    { "after": 8, "id": "unlike-base-spot", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Simplify $(x^{2})^{3} \\cdot x^{-8}$. Write your answer with positive exponents only.",
+    "accepted": [
+      "1/x^2",
+      "1/x^{2}",
+      "1/(x^2)",
+      "1/(x^{2})",
+      "1/x**2",
+      "\\frac{1}{x^2}",
+      "\\frac{1}{x^{2}}",
+      "\\dfrac{1}{x^2}",
+      "\\dfrac{1}{x^{2}}"
+    ],
+    "hint": "The power-of-a-power rule and the product rule both apply here. The prompt asks for positive exponents only, so read the sign of the total before you write it down.",
+    "worked_solution": [
+      "A power raised to a power multiplies the two exponents: $(x^{2})^{3} = x^{6}$.",
+      "Multiplying powers of the same base adds the exponents: $x^{6} \\cdot x^{-8} = x^{6 + (-8)}$, which is $x^{-2}$.",
+      "The total came out negative, and the prompt asks for positive exponents, so take the reciprocal: $x^{-2} = \\dfrac{1}{x^{2}}$."
+    ],
+    "worked_solution_params": { "varIndex": 0, "inner": 2, "outer": 3, "power": 2 },
+    "variants": { "template_id": "cfu.exp1.negative-total", "count": 2 }
+  }
+}

@@ -1,0 +1,17 @@
+-- THE ENUM VALUE, ALONE IN ITS OWN MIGRATION, AND THAT IS THE WHOLE POINT OF THE FILE.
+--
+-- Postgres refuses to USE a new enum value inside the transaction that added it:
+-- `unsafe use of new value "record" of enum type crisis_damage_subject`, SQLSTATE 55P04.
+-- `db/apply.mjs` applies each file in ONE transaction, so a single file that both adds
+-- 'record' and writes a check constraint mentioning it can never succeed on a cluster
+-- that does not already have the value — which is every fresh cluster.
+--
+-- Splitting it is therefore not tidiness. This file commits the value; the file that
+-- references it (`0009_intrusion_record_scar.sql`) is a separate transaction and is free
+-- to use it. THE ORDER IS LOAD-BEARING and comes from the runner's lexical sort:
+-- `0009_c...` sorts before `0009_i...`. Renaming either file can break the pair.
+--
+-- `if not exists` keeps this a no-op on any cluster that already took the value through
+-- the original combined migration, so applying it there records the file and changes
+-- nothing.
+alter type public.crisis_damage_subject add value if not exists 'record';

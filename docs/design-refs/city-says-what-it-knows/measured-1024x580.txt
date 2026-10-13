@@ -1,0 +1,7 @@
+1-callout-contribution: callout 340x338 at (342,187), 19% of the window, line "Homes for 26 of your people."
+2-before-the-crossing: callout line "Homes for 10 of your people, and 26 at mastery."
+3-after-the-crossing: callout line "Homes for 26 of your people."
+3-after-the-crossing: ANNOUNCED (visually-hidden live region) "Order of operations complete! Its building, Dwellings, is built. Homes for 26 of your people."
+3-after-the-crossing: 66842 px differ from frame 2 over the whole window (11.25%), of which 0 fall in the island-only band 700,70 240x410; mounted reducedMotion
+4-crisis-damage-before: repair panel 320x177 at (688,201)
+5-recovery-milestone: note 320x35 at (688,272), 2% of the window, line "Your city is back on its feet."

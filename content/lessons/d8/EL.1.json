@@ -1,0 +1,76 @@
+{
+  "node_id": "EL.1",
+  "title": "Evaluate exponential models, including base e",
+  "mini_lesson": [
+    "A throughput panel on the chip-fabrication line reads $40$ wafers at nine in the morning, and every hour that count doubles. Adding a fixed amount each hour fails immediately, because the amount being doubled is larger at every step, so the only thing holding steady is the multiplying. An **exponential function** records that instead: $f(x) = ab^{x}$ holds the **initial amount** $a$ and the **base** $b$ doing the multiplying, with the exponent counting how many times the base is applied.",
+    "A set of measurements arrives as bare numbers with no multiplier attached, so the base has to be recovered from the numbers themselves. Dividing each value by the one before it does exactly that: when the same ratio comes back every time, it is the **growth factor**, and it is the base of the exponential function those numbers follow. Once you hold it, one more step is one more multiplication instead of a fresh calculation from the beginning.",
+    "Every base so far has been larger than $1$, and nothing about the form $ab^{x}$ changes when the base drops below it, only the direction the amounts travel. A base between $0$ and $1$ leaves a share of the amount surviving each step, which is **exponential decay**, while a base above $1$ gives growth. The dividing line is $1$ itself, which multiplies nothing and leaves the amount flat forever.",
+    "Growth has arrived in whole steps so far, one per hour or one per year, but a year's growth can be chopped into smaller pieces and applied more often. Each piece is worked out on an amount that already carries the growth before it, which is what **compounding** means, so a finer chop compounds more often while adding less and less, and the values run into a ceiling instead of growing without bound. That ceiling is **the number $e$**, roughly $2.71828$, and it is the base of every continuously growing quantity: a starting amount $P$ growing continuously at rate $r$ for time $t$ reaches $A = Pe^{rt}$."
+  ],
+  "slide_subtitles": [
+    "Why does adding fail?",
+    "Reading the growth factor",
+    "When the base shrinks",
+    "The ceiling on compounding"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The panel reads $40$ wafers at nine in the morning and the count doubles every hour. How many wafers does it read eight hours later?",
+      "steps": [
+        "Adding $40$ an hour would give $40 + 8 \\times 40 = 360$, but by ten o'clock the panel already reads $80$, so the next hour adds $80$ rather than $40$.",
+        "What holds steady is the multiplying, since every hour multiplies the count by $2$.",
+        "Eight hours is eight doublings applied to the starting count, written $40 \\cdot 2^{8}$.",
+        "Since $2^{8} = 256$, the panel reads $40 \\times 256 = 10240$ wafers."
+      ]
+    },
+    {
+      "prompt": "Hourly counts read $6$, then $18$, then $54$. Find the growth factor, then predict the next count.",
+      "steps": [
+        "Divide the second count by the first: $18 \\div 6 = 3$.",
+        "Divide the third by the second as a check: $54 \\div 18 = 3$, the same ratio both times.",
+        "That constant ratio is the growth factor, so these counts follow $f(x) = 6 \\cdot 3^{x}$.",
+        "One more step is one more multiplication: $54 \\times 3 = 162$."
+      ]
+    },
+    {
+      "prompt": "A queue of $800$ jobs is cut in half each pass. Name the base, then give the count after three passes.",
+      "steps": [
+        "Half surviving each pass means multiplying by $\\dfrac{1}{2}$, so the base is $b = \\dfrac{1}{2}$.",
+        "The base sits between $0$ and $1$, so the model is decay: $f(x) = 800 \\left(\\dfrac{1}{2}\\right)^{x}$.",
+        "Applying it pass by pass takes $800$ to $400$, then to $200$, then to $100$.",
+        "After three passes the queue holds $100$ jobs."
+      ]
+    },
+    {
+      "prompt": "One unit grows at $100\\%$ for a year. Compare that year applied in one step, in two half-year steps, and monthly.",
+      "steps": [
+        "Applied once, the whole rate lands at the end of the year: $(1 + 1)^{1} = 2$.",
+        "In two half-year steps each piece is half the rate, applied twice: $\\left(1 + \\dfrac{1}{2}\\right)^{2} = 2.25$.",
+        "Monthly, each piece is a twelfth of the rate, applied twelve times: $\\left(1 + \\dfrac{1}{12}\\right)^{12} \\approx 2.613$.",
+        "Each finer chop adds less than the one before it, so the values press up toward $e \\approx 2.71828$ rather than growing without bound."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "exp-growth-table", "gates": true },
+    { "after": 1, "id": "exp-factor-slider", "gates": true },
+    { "after": 2, "id": "exp-decay-classify", "gates": true },
+    { "after": 3, "id": "exp-continuous-walkthrough", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Hourly readings from a draining queue run $4096$ jobs, then $1024$, then $256$. Two hours after the last reading, how many jobs are left? Enter one number.",
+    "accepted": ["16", "16.0"],
+    "hint": "Divide each reading by the one before it, and the same factor should come back. The readings are falling, so that factor lies between $0$ and $1$. Apply it to the last reading, and then apply it once more.",
+    "worked_solution": [
+      "Divide each reading by the one before it: $1024 \\div 4096 = \\dfrac{1}{4}$, and $256 \\div 1024 = \\dfrac{1}{4}$. The same factor comes back.",
+      "Apply that factor once to reach the next hour: $256 \\times \\dfrac{1}{4} = 64$.",
+      "Apply it once more for the hour after: $64 \\times \\dfrac{1}{4} = 16$, so $16$ jobs are left."
+    ],
+    "worked_solution_params": { "m": 16, "b": 4, "x": 4, "start": 4096 },
+    "check": {
+      "answer_type": "numeric",
+      "answer_key": "16"
+    },
+    "variants": { "template_id": "d8.el1.decay-value.l2", "count": 2 }
+  }
+}

@@ -1,0 +1,33 @@
+viewport 1024x580, reduced motion, learner's mount (no ?dev)
+
+== ?winter ==
+  surface mounted: true
+  reads: MID-ERA CRISIS · PROTOTYPE The Hard Winter ← Back to my cityTalk to Oru Round 1 of 3 1 step of frost this round This city: Spread out 6 standing Real practice q
+  dev instruments on the surface: 1
+    {"x":774,"y":10,"w":240} "Dev only, not on the learner buildSkip the questionshideCommit an acti"
+  a control headed "Skip the questions": false
+  frame -> docs/design-refs/demo-console/crises/winter-1024x580.png
+
+== ?succession ==
+  surface mounted: true
+  reads: THE SUCCESSION · CYCLE 1 The city has no successor Talk to Oru —The board holds. No district decides next cycle. 0 banked 0 of 6 decided 0 strength (0 held) 0 s
+  dev instruments on the surface: 1
+    {"x":8,"y":8,"w":336} "Dev only, not on the learner buildSkip the questionshideClose cycle 1 "
+  a control headed "Skip the questions": false
+  frame -> docs/design-refs/demo-console/crises/succession-1024x580.png
+
+== ?plague ==
+  surface mounted: true
+  reads: MID-ERA CRISIS · PROTOTYPE The Plague ← Back to my cityTalk to Oru Day 1 ▲ 1 of those routes runs from somewhere you have not been shown. 2 routes still open to
+  dev instruments on the surface: 1
+    {"x":748,"y":8,"w":268} "Dev only, not on the learner buildSkip the questionshideArm a closure "
+  a control headed "Skip the questions": false
+  frame -> docs/design-refs/demo-console/crises/plague-1024x580.png
+
+== ?intrusion ==
+  surface mounted: true
+  reads: INFORMATION AGE · MID-ERA CRISIS The Intrusion 4 diagnostics left What you know Sorted by reading, worst first, so what you have found sits together. the Distri
+  dev instruments on the surface: 1
+    {"x":8,"y":356,"w":232} "Dev only, not on the learner buildSkip the questions (hide)Aim atthe D"
+  a control headed "Skip the questions": false
+  frame -> docs/design-refs/demo-console/crises/intrusion-1024x580.png

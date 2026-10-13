@@ -1,0 +1,104 @@
+{
+  "node_id": "POL.7",
+  "title": "Analyze polynomial graphs: real zeros, multiplicity, turning points",
+  "mini_lesson": [
+    "A surveyor's traverse is plotted as a curve against a base line, and what is wanted from the drawing is where the curve meets that line. A value of $x$ at which $f(x) = 0$ is a **real zero**, and on the graph it is a point where the curve touches or crosses the horizontal axis. Factored form hands them over directly, because a product is zero exactly when one of the things being multiplied is zero, and each bracket is solved on its own with the sign flipping on the way.",
+    "The exponent on a factor is not idle: how many times a factor appears is the **multiplicity** of its zero, and it is the parity of that count rather than its size that decides what the curve does on arrival. An odd multiplicity changes the sign of the polynomial as the input passes the zero, and a sign change forces the curve onto the other side of the axis, so it crosses. An even multiplicity leaves the sign alone, so the curve has to return to the side it came from and turns back off.",
+    "The degree puts a ceiling on how many times the curve can change direction. A place where the curve stops going one way and starts going the other is a **turning point**, and a polynomial of degree $n$ has at most $n - 1$ of them. On a factored form the degree is not the number of brackets but the sum of their exponents, and the bound it gives is a ceiling rather than a promise, so a curve may well turn fewer times than the degree allows.",
+    "Every reading so far has gone from a factored form to its graph, and each of them runs the other way as well, which is the test of whether both directions are really held. Each zero becomes a bracket carrying the opposite sign, a zero the curve turns back off gets an even exponent, and the smallest even number is $2$. The check worth making at the end is the degree against the ends of the curve, because writing a factor once where it needed an even exponent changes the parity of the degree and with it whether the two ends agree."
+  ],
+  "slide_subtitles": [
+    "Zeros from the factors",
+    "Crossing or turning back",
+    "Bounding the turning points",
+    "Factors from the zeros"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "List the real zeros of $f(x) = 4(x - 2)(x + 7)^{2}$.",
+      "steps": [
+        "A product is zero only when one of its factors is, so each part is set to zero on its own.",
+        "The constant $4$ is never zero, so it contributes no zero at all.",
+        "Solving $x - 2 = 0$ gives $x = 2$.",
+        "Solving $x + 7 = 0$ takes the $7$ across, so that bracket gives $x = -7$ and not $x = 7$.",
+        "So the real zeros are $-7$ and $2$, two of them from a polynomial of degree three."
+      ]
+    },
+    {
+      "prompt": "Say what the graph of $f(x) = (x - 7)^{2}(x + 5)^{3}$ does at each of its two zeros.",
+      "steps": [
+        "The zeros are $x = 7$ from the first bracket and $x = -5$ from the second.",
+        "The factor belonging to $7$ carries an exponent of $2$, which is even, so the sign of the polynomial does not change there.",
+        "With no sign change the curve must come back to the side it arrived on, so it turns back off the axis at $7$.",
+        "The factor belonging to $-5$ carries an exponent of $3$, which is odd, so the sign does change and the curve has to go through.",
+        "So the curve turns back off at $7$ and crosses at $-5$, flattening against the axis on the way through because the exponent there is above one."
+      ]
+    },
+    {
+      "prompt": "Give the greatest number of turning points the graph of $f(x) = (x + 3)^{2}(x - 6)^{4}$ can have.",
+      "steps": [
+        "Counting the brackets gives $2$, and that is the answer to guard against, because the number of brackets is not the degree.",
+        "The degree is the sum of the exponents: $2 + 4 = 6$.",
+        "A polynomial of degree $n$ changes direction at most $n - 1$ times, so the bound here is $6 - 1 = 5$.",
+        "So the graph can turn at most $5$ times, which is $3$ more than counting the brackets suggested."
+      ]
+    },
+    {
+      "prompt": "Write the polynomial of least degree whose graph has zeros at $-5$, $2$ and $6$ and turns back off the axis at $-5$.",
+      "steps": [
+        "Each zero becomes a bracket carrying the opposite sign, so the three brackets are $(x + 5)$, $(x - 2)$ and $(x - 6)$.",
+        "The curve turns back off at $-5$, so that factor needs an even number of copies, and least degree makes it $2$.",
+        "The other two zeros are passed straight through, so one copy of each bracket is enough.",
+        "The exponents then sum to $4$, which is even, so both ends of the curve go the same way and that agrees with turning back off the axis once.",
+        "So the polynomial is $(x + 5)^{2}(x - 2)(x - 6)$, with any leading coefficient in front."
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "after": 0,
+      "id": "zeros-from-factors-table",
+      "gates": true
+    },
+    {
+      "after": 1,
+      "id": "multiplicity-cross-sorter",
+      "gates": true
+    },
+    {
+      "after": 2,
+      "id": "turning-points-estimate",
+      "gates": true
+    },
+    {
+      "after": 3,
+      "id": "build-from-graph-order",
+      "gates": true
+    }
+  ],
+  "cfu": {
+    "prompt": "The polynomial $f(x) = (x + 2)^{4}(x - 5)^{3}(x - 1)$ has a zero at $x = -2$. What is the multiplicity of that zero? Enter one number.",
+    "accepted": ["4"],
+    "hint": "Find which bracket is zero at the value named, being careful with the sign, and then read the exponent on that bracket rather than on any other. A bracket with no exponent written on it appears once.",
+    "worked_solution": [
+      "The bracket that is zero at $x = -2$ is $(x + 2)$, because a bracket adding a number is zero at the negative of it.",
+      "In this product that bracket is written as $(x + 2)^{4}$, so it appears $4$ times.",
+      "That count is the multiplicity, and being even it also says the graph turns back off the axis there rather than crossing it.",
+      "So the multiplicity is $4$."
+    ],
+    "worked_solution_params": {
+      "r0": -2,
+      "r1": 1,
+      "r2": 5,
+      "m0": 4,
+      "m1": 1,
+      "m2": 3,
+      "asked": 0
+    },
+    "check": { "answer_type": "numeric", "answer_key": "4" },
+    "variants": {
+      "template_id": "d4.pol7.multiplicity-at-zero.l2",
+      "count": 2
+    }
+  }
+}

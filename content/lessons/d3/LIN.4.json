@@ -1,0 +1,87 @@
+{
+  "node_id": "LIN.4",
+  "title": "Solve linear and compound inequalities; interval notation",
+  "mini_lesson": [
+    "The bonded store will not take a load of copper under $40$ minas, because anything lighter is not worth the clerk's tally, and that rule sets no upper limit at all. An **inequality** is a statement that one amount is at least or at most another rather than exactly equal to it, so where an equation usually pins its answer to a single value an inequality names a whole stretch of the scale. The boundary itself decides real loads and is the easy part to lose: $w \\ge 40$ takes $40$ in, while $w > 40$ leaves it out.",
+    "Every move that worked on an equation works here too, with one exception worth meeting head on rather than memorising. Multiplying or dividing both sides by a negative number leaves them exactly as far apart as they were and swaps which of the two is larger, so the written sign has to change with it. Nothing else in the whole method reverses a sign, so that one step is the only place to watch.",
+    "A solved inequality still has to be written where a clerk can read it, and **interval notation** is the standard short form: the two ends of the stretch in order, separated by a comma, wrapped in brackets that say whether each end is part of it. Each of those two numbers is an **endpoint**, and whether one is **closed** (inside the stretch) or **open** (outside it) is decided by the sign that produced it: $\\ge$ and $\\le$ take their endpoint in, while a **strict** sign like $>$ or $<$ leaves it out. A stretch with no limit on one side carries the infinity symbol $\\infty$ there, typed out as $\\text{inf}$, and infinity is never a number so it is never taken in.",
+    "Most real rules have a floor and a ceiling together, which is two inequalities holding at the same time and goes on one line. A statement built that way is a **compound inequality**, and the word joining the two halves decides the shape of the answer. Joined by **and**, only the amounts satisfying both halves count, so the answer is the single stretch where the two overlap; joined by **or**, either half is enough on its own, and if the two stretches do not touch the answer is two separate pieces joined by the **union** symbol $\\cup$.",
+    "A rule is rarely handed over already solved, so the ordinary work comes first and the interval is written afterwards. Nothing about that work is new: clear the plain number off, then divide by the coefficient, reversing the sign only if that divisor is negative. The bracket at the end still carries real weight, and the algebra stops at the interval, while a clerk would also note that a count of ingots cannot run below zero, which is true of the goods and not of the inequality."
+  ],
+  "slide_subtitles": [
+    "What the store accepts",
+    "Multiplying by a negative",
+    "Writing a stretch down",
+    "Two limits at once",
+    "Solving before writing"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "The store's rule for copper is $w \\ge 40$. Decide whether loads of $39$, $40$ and $41$ minas are accepted.",
+      "steps": [
+        "The sign is the at-least kind, so a load qualifies when it weighs $40$ or more.",
+        "A load of $39$ minas weighs less than $40$, so the clerk turns it away.",
+        "A load of exactly $40$ is the case the sign has to settle, and the at-least kind counts it, so it passes.",
+        "A load of $41$ weighs more than $40$ and passes too, so the accepted loads are $40$ and everything above it."
+      ]
+    },
+    {
+      "prompt": "Multiply both sides of $4 < 10$ by $-1$, then solve $-2x > 6$.",
+      "steps": [
+        "Start from something plainly true: $4 < 10$.",
+        "Multiplying both sides by $-1$ turns the left into $-4$ and the right into $-10$.",
+        "On the scale $-4$ sits to the right of $-10$, so $-4$ is the larger of the two and the true statement is $-4 > -10$.",
+        "Now divide $-2x > 6$ by $-2$, reversing the sign on that same step: $x < -3$."
+      ]
+    },
+    {
+      "prompt": "Write $3 \\le x < 7$ and $x \\ge 40$ in interval notation.",
+      "steps": [
+        "For $3 \\le x < 7$ the two endpoints are $3$ and $7$, and they go in that order.",
+        "The $\\le$ takes $3$ in, so its bracket is square, and the strict $<$ leaves $7$ out, so its bracket is round: $[3, 7)$.",
+        "For $x \\ge 40$ the lower endpoint is $40$ and it is taken in, so that end is square.",
+        "Nothing limits the stretch above, so it runs to $\\infty$, which is never taken in: the interval is $[40, \\infty)$."
+      ]
+    },
+    {
+      "prompt": "The charcoal bay takes a load weighing at least $11$ minas and no more than $28$. Write the accepted loads as an interval, then the rejected ones.",
+      "steps": [
+        "Two limits hold at once, so the accepted loads are $11 \\le w \\le 28$.",
+        "Both endpoints are taken in and the two conditions overlap in one stretch: $[11, 28]$.",
+        "A load is rejected when it fails either limit, giving $w < 11$ or $w > 28$.",
+        "Those two stretches never touch, and neither endpoint belongs to them, so the rejected loads are $(-\\infty, 11) \\cup (28, \\infty)$."
+      ]
+    },
+    {
+      "prompt": "A load of $x$ ingots owes $4x + 11$ minas of duty, and the trader holds $39$ minas. Solve $4x + 11 \\le 39$ and write the answer as an interval.",
+      "steps": [
+        "Clear the plain number off the left by subtracting $11$ from both sides: $4x \\le 28$.",
+        "Divide both sides by $4$. That divisor is positive, so the sign keeps its direction: $x \\le 7$.",
+        "Nothing in the inequality bounds the count from below, so the interval opens at $-\\infty$, which is never taken in.",
+        "The $\\le$ takes $7$ itself in, so that end is square: the answer is `(-inf, 7]`."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "inequality-endpoint-drag", "gates": true },
+    { "after": 1, "id": "negative-flip-play", "gates": true },
+    { "after": 2, "id": "interval-parts-label", "gates": true },
+    { "after": 3, "id": "compound-band-sorter", "gates": true },
+    { "after": 4, "id": "interval-write-builder", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "A load of $x$ ingots owes $7x + 6$ minas of duty, and the trader has at most $34$ minas. Solve $7x + 6 \\le 34$ and give the answer in interval notation.",
+    "accepted": ["(-inf, 4]", "(-infinity, 4]", "(-∞, 4]"],
+    "hint": "Clear the plain number off the left first, then divide by the coefficient. Both of those numbers are positive, so the direction of the sign does not move, and what still needs deciding is which bracket the endpoint takes.",
+    "worked_solution": [
+      "Clear the plain number off the left by subtracting $6$ from both sides: $7x \\le 28$.",
+      "Divide both sides by $7$. It is positive, so the sign keeps its direction: $x \\le 4$.",
+      "Nothing bounds the duty from below, so the interval opens at $-\\infty$, which always takes a round bracket.",
+      "The $\\le$ includes $4$ itself, so that end takes a square bracket: the answer is `(-inf, 4]`."
+    ],
+    "worked_solution_template": "d3.lin4.two-step.l2",
+    "worked_solution_params": { "a": 7, "b": 6, "bound": 4, "closed": 1, "upward": 0 },
+    "check": { "answer_type": "interval", "answer_key": "(-inf, 4]" },
+    "variants": { "template_id": "d3.lin4.compound-or.l2", "count": 2 }
+  }
+}

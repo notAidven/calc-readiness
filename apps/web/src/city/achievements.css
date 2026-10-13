@@ -1,0 +1,211 @@
+/* -------------------------------------------------------------------------- */
+/* Achievements: the moment one is earned, and the card that remembers them.  */
+/*                                                                            */
+/* Both surfaces borrow chrome rather than inventing it. The moment is the     */
+/* `hud-milestone` note's box (a glass card with a coloured left rule) because */
+/* it occupies the same slot in the same register: one sentence that arrives,  */
+/* is read, and goes. The card is `coc-popup`/`coc-card`, which is How to      */
+/* play's, because it is the same kind of thing: an opt-in reference opened    */
+/* from the menu.                                                             */
+/*                                                                            */
+/* THERE IS NO RULE HERE FOR A COUNT, A TOTAL, A TIER OR A PROGRESS BAR, and   */
+/* that is deliberate. `test/achievementsAreNotAScore.test.ts` sweeps this     */
+/* file for exactly those class names, because a `.achievements-progress` is a */
+/* score before anybody has written the component that renders one.           */
+/* -------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------- the moment */
+
+/*
+  TOP-CENTRE-RIGHT and not the middle of the screen.
+
+  Measured against what it must not cover at 1024x580: the island's own HUD runs
+  down the right edge (the chip lane) and along the bottom (the dock), and the
+  crisis-damage panel and the recovery note both take the vertical middle of the
+  right side. This sits above that, clear of the dock, and narrow enough that the
+  island reads behind it on both sides.
+*/
+/*
+  IT IS WARM, AND THAT IS A CORRECTION MADE FROM A FRAME RATHER THAN A PREFERENCE.
+
+  The first version was the `hud-milestone` box unchanged: the same glass fill as the
+  Mastered chip and the City Life panel, distinguished only by a 4px rule. On the
+  1024x580 shot it read as a FOURTH HUD PANEL arriving, which is the opposite of the
+  failure anybody expects from this feature and just as bad — an achievement nobody
+  notices earning is a row in a table. So the surface is tinted toward the reward gold
+  and the eyebrow and the mark are gold too, which is enough to tell it apart from the
+  informational panels at a glance.
+
+  It stays quiet: no burst, no scale, no sound, and the same short rise it had.
+  `Game_Visual_Design_Brief.md` keeps celebration amplitude low and earned, and this beat
+  interrupts whatever the player was doing when they earned it.
+*/
+.achievement-note {
+  top: calc(var(--space-lg) + 54px);
+  left: 50%;
+  z-index: 24;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: center;
+  width: min(348px, 74vw);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--game-gold-strong);
+  border-left: 5px solid var(--game-gold-strong);
+  border-radius: var(--panel-radius);
+  background: color-mix(in srgb, var(--game-gold) 22%, var(--glass-fill));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--panel-shadow);
+  color: var(--glass-text);
+  text-align: left;
+  transform: translateX(-50%);
+  animation: achievement-note-in 320ms ease-out both;
+}
+
+/* The list's own tick, so the moment and the row a learner finds later look like the
+   same thing. Decorative: the eyebrow says in words what has happened. */
+.achievement-note__mark svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--game-gold-strong);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.achievement-note__eyebrow {
+  margin: 0;
+  color: color-mix(in srgb, var(--game-gold-strong) 70%, var(--game-blue-ink));
+}
+
+.achievement-note__line {
+  margin: 2px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* One short rise and settle. Low amplitude on purpose: the visual brief keeps
+   celebration quiet and earned, and this beat interrupts something. */
+@keyframes achievement-note-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Held still both ways: the prop (which the surface threads from its own
+   reduced-motion read) and the media query, so neither alone is load-bearing. */
+.achievement-note[data-reduced-motion="true"] {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achievement-note {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ the card */
+
+.achievements-card {
+  --coc-card-width: 520px;
+}
+
+.achievements-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-height: min(52vh, 420px);
+  overflow-y: auto;
+  text-align: left;
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*
+  A row is mark / sentence / state, and the state column is fixed so the words
+  line up down the card: "Earned" and "Not yet" reading as a column is what makes
+  the card skimmable without a count anywhere on it.
+*/
+.achievements-row {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px var(--space-md);
+  border: 1px solid var(--game-panel-line);
+  border-radius: 12px;
+  background: var(--game-panel);
+}
+
+.achievements-row__mark svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.achievements-row__line {
+  font-size: 0.94rem;
+  line-height: 1.4;
+}
+
+.achievements-row__state {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+/*
+  EARNED IS WARMER, NOT BRIGHTER, AND UNEARNED IS NOT DIMMED MUCH.
+
+  An unearned row carries an invitation a learner is meant to read, so greying it
+  out would hide the half of the card that is doing the work — the reasoning the
+  cut Timeline recorded for the nine eras ahead of a new city, and the one thing
+  worth carrying forward from it. So the earned rows gain a gold rule and the
+  unearned ones keep full-strength prose with a dashed edge, which reads as
+  "not yet" rather than as "off".
+*/
+.achievements-row[data-earned="true"] {
+  border-color: var(--game-gold-strong);
+  background: color-mix(in srgb, var(--game-gold) 16%, var(--glass-fill-strong));
+  box-shadow: inset 3px 0 0 var(--game-gold-strong);
+}
+
+.achievements-row[data-earned="true"] .achievements-row__mark {
+  color: var(--game-gold-strong);
+}
+
+.achievements-row[data-earned="true"] .achievements-row__state {
+  color: var(--game-blue-ink);
+  opacity: 1;
+}
+
+.achievements-row[data-earned="false"] {
+  border-style: dashed;
+}
+
+.achievements-row[data-earned="false"] .achievements-row__mark {
+  opacity: 0.4;
+}

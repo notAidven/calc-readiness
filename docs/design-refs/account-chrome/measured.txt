@@ -1,0 +1,11 @@
+Measured on the frames in docs/design-refs/account-chrome, under an emulated
+prefers-reduced-motion: reduce, by accountChromeReservation.browser.test.tsx.
+Every box is in CSS pixels, in the viewport named at the start of its line.
+Both surfaces are mounted through the real AccountBoundary with the Cognito service
+injected as a prop, so the account chrome and the city/Bay are the shipped article.
+
+1024x580 Stone HUD: chrome at (435, 10)-(589, 56), HUD at (16, 64)-(121, 100), overlap=0px²
+1024x580 Bay masthead: chrome at (435, 10)-(589, 56), masthead at (297, 64)-(727, 146), overlap=0px²
+390x580 Stone HUD: chrome at (118, 10)-(272, 56), HUD at (16, 64)-(121, 100), overlap=0px²
+390x580 Bay masthead: chrome at (118, 10)-(272, 56), masthead at (8, 64)-(330, 126), overlap=0px²
+keyboard: Sign out at (511, 17) 69x32px

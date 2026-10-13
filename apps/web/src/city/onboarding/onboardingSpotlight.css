@@ -1,0 +1,120 @@
+/* -------------------------------------------------------------------------- */
+/* THE ONBOARDING SPOTLIGHT — the ring round the control the advisor names.    */
+/*                                                                             */
+/* Two rules do the work and they are not interchangeable. The RING is drawn   */
+/* by `.ob-spotlight`, a fixed overlay at the anchor's rect. The LIFT is       */
+/* `.hud[data-spotlit]`, and without it the ring would frame a speech bubble:  */
+/* the advisor stage is `z-index: 30` across the whole screen and `.hud` is 5, */
+/* so the Build pill sits BEHIND the bubble that is talking about it.          */
+/*                                                                             */
+/* See `OnboardingSpotlight.tsx` for why the panel rather than the control is  */
+/* the thing raised (`.hud` is a stacking context, so a child of it cannot     */
+/* climb past the stage on its own).                                          */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/* THE LIFT                                                                    */
+/* -------------------------------------------------------------------------- */
+
+/* THE ATTRIBUTE'S PRESENCE, NOT ITS VALUE. It carries "true" on a modal moment and "live" on
+   the one that stands the stage down and needs the control clickable; the lift and the
+   dimming apply to both, and only the pointer rule below discriminates. */
+.hud[data-spotlit] {
+  z-index: 40;
+}
+
+/* ⚑ THE PANEL IS WHAT CAN BE RAISED, SO A CONTROL BRINGS ITS SIBLINGS FORWARD WITH IT.
+   Everything in a lifted panel that does not hold the ring is held back. It is opacity alone,
+   and it is scoped to a lit panel, so nothing here reaches a control outside the moment it
+   belongs to.
+
+   `:has()` is what scopes it to the branch the ring is NOT in. Where it is unsupported the
+   whole selector is invalid and dropped, which costs the emphasis and breaks nothing. */
+.hud[data-spotlit] > *:not([data-spotlit]):not(:has([data-spotlit])) {
+  opacity: 0.42;
+}
+
+/* ⚑ LIFTED FOR THE PICTURE, NOT FOR THE POINTER.
+   Hit testing follows paint order, so a panel raised past the stage would take back every
+   click the `aria-modal` dialogue is supposed to be holding: a learner mid-tutorial could
+   open the Build menu underneath the advisor who is describing it. `.hud > *` hands its
+   children `pointer-events: auto`, so this has to out-specify that rule rather than sit on
+   the panel.
+
+   THE ONE EXCEPTION IS "live", AND IT IS THE PLACEMENT MOMENT. There the stage has stood
+   down, there is no modal to protect, and the control the ring is round is the one the
+   learner has just been told to press. See `OnboardingSpotlight.tsx`. */
+.hud[data-spotlit="true"] > * {
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* THE RING                                                                    */
+/*                                                                             */
+/* Above the stage (30) and above a lifted panel (40), so it frames the        */
+/* control whatever is behind it. It is `aria-hidden` and takes no pointer     */
+/* events: the moment's own sentence names the control in words, so nothing    */
+/* here carries meaning a reader could miss.                                   */
+/*                                                                             */
+/* THE STROKE IS INSIDE THE BOX. `OnboardingSpotlight` grows the anchor's rect */
+/* by a halo and clips it to the window, and a `box-shadow` spread would then  */
+/* put the lower stroke off-screen on the bottom dock, where the control would */
+/* read as underlined rather than as ringed.                                   */
+/*                                                                             */
+/* AMBER, NOT THE FOCUS BLUE AND NOT THE CORRECTNESS GREEN. `--game-ember` is  */
+/* the focus ring, and a spotlight that looks like focus reads as "you are     */
+/* here" rather than "look here"; green and red report on a learner's answer   */
+/* and nothing has been answered. `--signal` is the token for a standing mark  */
+/* that is not a verdict, which is what this is.                              */
+/* -------------------------------------------------------------------------- */
+
+.ob-spotlight {
+  position: fixed;
+  z-index: 45;
+  box-sizing: border-box;
+  border: 3px solid var(--signal-deep);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.92),
+    0 0 0 2px rgba(255, 255, 255, 0.92),
+    0 8px 20px rgba(24, 38, 54, 0.34);
+  pointer-events: none;
+}
+
+/* THE BREATHING HALO, and it is opacity only. A ring that scaled or moved would drift off
+   the control it is drawn round on every frame of the animation, which is the one thing a
+   spotlight may not do. */
+.ob-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 3px solid var(--signal);
+  border-radius: 20px;
+  animation: ob-spotlight-breathe 1800ms ease-in-out infinite;
+}
+
+@keyframes ob-spotlight-breathe {
+  0%,
+  100% {
+    opacity: 0.16;
+  }
+  50% {
+    opacity: 0.86;
+  }
+}
+
+/* Reduced motion keeps the ring and loses the breath. Both routes are wired because the app
+   resolves the preference in JS as well as in CSS, and a harness can set one without the
+   other; the outcome is identical either way, which is what makes the ring rather than the
+   pulse the thing carrying the meaning. */
+@media (prefers-reduced-motion: reduce) {
+  .ob-spotlight::after {
+    animation: none;
+    opacity: 0.62;
+  }
+}
+
+.ob-spotlight[data-reduced-motion="true"]::after {
+  animation: none;
+  opacity: 0.62;
+}

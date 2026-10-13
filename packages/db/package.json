@@ -1,0 +1,15 @@
+{
+  "name": "@cr/db",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Gabe. AWS-native data access: a thin typed wrapper over the RDS Data API (Aurora Serverless v2 Postgres) — parameterized queries, jsonb params, and multi-statement transactions — plus the hand-written row types. The persistence dependency for server contexts only (the browser never connects to the DB).",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --build"
+  },
+  "dependencies": {
+    "@aws-sdk/client-rds-data": "^3.1092.0",
+    "@cr/state-schema": "*"
+  }
+}

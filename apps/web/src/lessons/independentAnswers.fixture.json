@@ -1,0 +1,4744 @@
+[
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l1",
+    "seed": 901200,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l1",
+    "seed": 901201,
+    "answer": "9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l2",
+    "seed": 900500,
+    "answer": "22",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l2",
+    "seed": 900501,
+    "answer": "9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l2b",
+    "seed": 902800,
+    "answer": "14",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l2b",
+    "seed": 902801,
+    "answer": "19",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l3",
+    "seed": 900900,
+    "answer": "61",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l3",
+    "seed": 900901,
+    "answer": "62",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l3b",
+    "seed": 902200,
+    "answer": "15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-2.l3b",
+    "seed": 902201,
+    "answer": "30",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l1",
+    "seed": 900200,
+    "answer": "4t + 32",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l1",
+    "seed": 900201,
+    "answer": "5n + 25",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l1b",
+    "seed": 902300,
+    "answer": "5/2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l1b",
+    "seed": 902301,
+    "answer": "3/5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l2",
+    "seed": 900600,
+    "answer": "12x + 6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l2",
+    "seed": 900601,
+    "answer": "10y + 15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l2b",
+    "seed": 902400,
+    "answer": "6n + 20",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l2b",
+    "seed": 902401,
+    "answer": "6t + 43",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l2c",
+    "seed": 902500,
+    "answer": "5y",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l2c",
+    "seed": 902501,
+    "answer": "6n",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l3",
+    "seed": 901700,
+    "answer": "6n + 16",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l3",
+    "seed": 901701,
+    "answer": "6n + 15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l3b",
+    "seed": 903100,
+    "answer": "3x + 36",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-3.l3b",
+    "seed": 903101,
+    "answer": "4x + 24",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l1",
+    "seed": 901300,
+    "answer": "9y",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l1",
+    "seed": 901301,
+    "answer": "5t",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l2",
+    "seed": 900700,
+    "answer": "8t - 9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l2",
+    "seed": 900701,
+    "answer": "7x - 6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l2b",
+    "seed": 902600,
+    "answer": "2x + 5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l2b",
+    "seed": 902601,
+    "answer": "2t + 9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l3",
+    "seed": 901000,
+    "answer": "7x - 4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l3",
+    "seed": 901001,
+    "answer": "5n - 12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l3b",
+    "seed": 903200,
+    "answer": "7t + 16",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-4.l3b",
+    "seed": 903201,
+    "answer": "7t + 6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l1",
+    "seed": 901400,
+    "answer": "16",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l1",
+    "seed": 901401,
+    "answer": "55",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l2",
+    "seed": 900800,
+    "answer": "36",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l2",
+    "seed": 900801,
+    "answer": "24",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l2b",
+    "seed": 902700,
+    "answer": "75",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l2b",
+    "seed": 902701,
+    "answer": "10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l3",
+    "seed": 901100,
+    "answer": "13.50",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l3",
+    "seed": 901101,
+    "answer": "17.50",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l3b",
+    "seed": 903300,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-5.l3b",
+    "seed": 903301,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l1",
+    "seed": 900100,
+    "answer": "1/6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l1",
+    "seed": 900101,
+    "answer": "4/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l2",
+    "seed": 900400,
+    "answer": "13/20",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l2",
+    "seed": 900401,
+    "answer": "11/10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l2b",
+    "seed": 902100,
+    "answer": "4/9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l2b",
+    "seed": 902101,
+    "answer": "4/15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l3",
+    "seed": 901600,
+    "answer": "41/36",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l3",
+    "seed": 901601,
+    "answer": "9/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l3b",
+    "seed": 903000,
+    "answer": "1/6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-f.l3b",
+    "seed": 903001,
+    "answer": "1/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l1",
+    "seed": 900000,
+    "answer": "-9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l1",
+    "seed": 900001,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l1b",
+    "seed": 901800,
+    "answer": "11",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l1b",
+    "seed": 901801,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l2",
+    "seed": 900300,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l2",
+    "seed": 900301,
+    "answer": "-4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l2b",
+    "seed": 901900,
+    "answer": "-19",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l2b",
+    "seed": 901901,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l2c",
+    "seed": 902000,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l2c",
+    "seed": 902001,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l3",
+    "seed": 901500,
+    "answer": "10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l3",
+    "seed": 901501,
+    "answer": "-15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l3b",
+    "seed": 902900,
+    "answer": "14",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d1",
+    "template_id": "d1.num-s.l3b",
+    "seed": 902901,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.angle-third.l2",
+    "seed": 931400,
+    "answer": "132",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.angle-third.l2",
+    "seed": 931402,
+    "answer": "75",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.exact-diagonal.l3",
+    "seed": 931500,
+    "answer": "4*sqrt(5)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.exact-diagonal.l3",
+    "seed": 931501,
+    "answer": "3*sqrt(5)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.hypotenuse.l1",
+    "seed": 931200,
+    "answer": "29",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.hypotenuse.l1",
+    "seed": 931201,
+    "answer": "20",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.leg.l2",
+    "seed": 931300,
+    "answer": "15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.leg.l2",
+    "seed": 931301,
+    "answer": "6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.similar-side.l3",
+    "seed": 931600,
+    "answer": "20",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo1.similar-side.l3",
+    "seed": 931601,
+    "answer": "45.5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.cylinder-volume-exact.l3",
+    "seed": 932000,
+    "answer": "567*pi",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.cylinder-volume-exact.l3",
+    "seed": 932001,
+    "answer": "162*pi",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.perimeter.l2",
+    "seed": 931800,
+    "answer": "40",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.perimeter.l2",
+    "seed": 931801,
+    "answer": "44",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.prism-surface-area.l3",
+    "seed": 932100,
+    "answer": "280",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.prism-surface-area.l3",
+    "seed": 932101,
+    "answer": "400",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.prism-volume.l2",
+    "seed": 931900,
+    "answer": "147",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.prism-volume.l2",
+    "seed": 931901,
+    "answer": "30",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.rect-area.l1",
+    "seed": 931700,
+    "answer": "156",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d10",
+    "template_id": "d10.geo2.rect-area.l1",
+    "seed": 931701,
+    "answer": "112",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.build.l3",
+    "seed": 903800,
+    "answer": {
+      "prose": "Base token n with a single exponent of 5, i.e. n^5: the exponent slot holds the positive integer 5 and the base slot holds n."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.build.l3",
+    "seed": 903801,
+    "answer": {
+      "prose": "Base token n with a single exponent of 3, i.e. n^3: the exponent slot holds the positive integer 3 and the base slot holds n."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.net.l2",
+    "seed": 903500,
+    "answer": "1/x^2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.net.l2",
+    "seed": 903501,
+    "answer": "x^2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.power.l2",
+    "seed": 903600,
+    "answer": "y^8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.power.l2",
+    "seed": 903601,
+    "answer": "x^6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.product.l1",
+    "seed": 903400,
+    "answer": "x^6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.product.l1",
+    "seed": 903401,
+    "answer": "x^5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.quotient.l2",
+    "seed": 903900,
+    "answer": "y^3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.quotient.l2",
+    "seed": 903901,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.twovar.l3",
+    "seed": 903700,
+    "answer": "x^4/y^5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.exp.twovar.l3",
+    "seed": 903701,
+    "answer": "x^5/y^2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.build.l3",
+    "seed": 904400,
+    "answer": {
+      "prose": "Coefficient 2 times a square root of radicand 3 with root index 2, i.e. 2*sqrt(3): coefficient slot 2, radicand slot 3, index slot 2."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.build.l3",
+    "seed": 904401,
+    "answer": {
+      "prose": "Coefficient 5 times a square root of radicand 13 with root index 2, i.e. 5*sqrt(13): coefficient slot 5, radicand slot 13, index slot 2."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.coeff.l3",
+    "seed": 904300,
+    "answer": "8*sqrt(3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.coeff.l3",
+    "seed": 904301,
+    "answer": "8*sqrt(6)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.eval.l1",
+    "seed": 904000,
+    "answer": "10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.eval.l1",
+    "seed": 904001,
+    "answer": "11",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.quotient.l2",
+    "seed": 904200,
+    "answer": "sqrt(15)/2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.quotient.l2",
+    "seed": 904201,
+    "answer": "sqrt(7)/2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.simplify.l2",
+    "seed": 904100,
+    "answer": "2*sqrt(11)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad1.simplify.l2",
+    "seed": 904101,
+    "answer": "5*sqrt(11)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.build.l3",
+    "seed": 905000,
+    "answer": {
+      "prose": "Coefficient 8 times a square root of radicand 6 with root index 2, i.e. 8*sqrt(6): coefficient slot 8, radicand slot 6, index slot 2."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.build.l3",
+    "seed": 905001,
+    "answer": {
+      "prose": "Coefficient 8 times a square root of radicand 7 with root index 2, i.e. 8*sqrt(7): coefficient slot 8, radicand slot 7, index slot 2."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.combine-like.l1",
+    "seed": 904500,
+    "answer": "6*sqrt(11)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.combine-like.l1",
+    "seed": 904501,
+    "answer": "6*sqrt(11)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.rationalize-coeff.l3",
+    "seed": 904900,
+    "answer": "4*sqrt(3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.rationalize-coeff.l3",
+    "seed": 904901,
+    "answer": "2*sqrt(3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.rationalize-unit.l2",
+    "seed": 904700,
+    "answer": "sqrt(2)/2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.rationalize-unit.l2",
+    "seed": 904701,
+    "answer": "sqrt(5)/5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.simplify-combine.l2",
+    "seed": 904600,
+    "answer": "7*sqrt(7)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.simplify-combine.l2",
+    "seed": 904601,
+    "answer": "6*sqrt(7)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.unlike.l2",
+    "seed": 904800,
+    "answer": "4*sqrt(6)+2*sqrt(15)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad2.unlike.l2",
+    "seed": 904801,
+    "answer": "4*sqrt(11)+3*sqrt(7)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.eval.l1",
+    "seed": 905100,
+    "answer": "16",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.eval.l1",
+    "seed": 905101,
+    "answer": "32",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.negeval.l3",
+    "seed": 905400,
+    "answer": "1/8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.negeval.l3",
+    "seed": 905401,
+    "answer": "1/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.simplify.l3",
+    "seed": 905500,
+    "answer": {
+      "prose": "Base x with exponent numerator 8 and denominator 15, i.e. x^(8/15), already in lowest terms since 8 and 15 share no factor."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.simplify.l3",
+    "seed": 905502,
+    "answer": {
+      "prose": "Base x with exponent numerator 3 and denominator 4, i.e. x^(3/4), already in lowest terms."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.to-exponent.l2",
+    "seed": 905300,
+    "answer": {
+      "prose": "Base x with exponent numerator 4 and denominator 3, i.e. x^(4/3)."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.to-exponent.l2",
+    "seed": 905301,
+    "answer": {
+      "prose": "Base x with exponent numerator 2 and denominator 5, i.e. x^(2/5)."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.to-radical.l2",
+    "seed": 905200,
+    "answer": {
+      "prose": "Radicand slot holds x^3 (base x, power 3) under a root whose index slot is 4, i.e. root(x^3, 4), the fourth root of x cubed."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad3.to-radical.l2",
+    "seed": 905201,
+    "answer": {
+      "prose": "Radicand slot holds x^4 (base x, power 4) under a root whose index slot is 5, i.e. root(x^4, 5), the fifth root of x to the fourth."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.extract.l2",
+    "seed": 905700,
+    "answer": "y^2*sqrt(y)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.extract.l2",
+    "seed": 905701,
+    "answer": "n^2*sqrt(n)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.magnitude.l1",
+    "seed": 905600,
+    "answer": "abs(n^3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.magnitude.l1",
+    "seed": 905601,
+    "answer": "n^2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.mixed.l3",
+    "seed": 905900,
+    "answer": "3*t^2*sqrt(5*t)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.mixed.l3",
+    "seed": 905901,
+    "answer": "2*x^3*sqrt(7*x)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.realroot.l2",
+    "seed": 905800,
+    "answer": "-5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.realroot.l2",
+    "seed": 905801,
+    "answer": "-2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.twovar.l3",
+    "seed": 906000,
+    "answer": "3*abs(m)*n^2*sqrt(6*n)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d2",
+    "template_id": "d2.rad4.twovar.l3",
+    "seed": 906001,
+    "answer": "2*abs(p)*t^3*sqrt(5*t)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.balance-word.l2",
+    "seed": 906200,
+    "answer": "4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.balance-word.l2",
+    "seed": 906201,
+    "answer": "6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.both-sides.l2",
+    "seed": 906300,
+    "answer": "-3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.both-sides.l2",
+    "seed": 906301,
+    "answer": "7",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.distribute.l3",
+    "seed": 906400,
+    "answer": "2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.distribute.l3",
+    "seed": 906401,
+    "answer": "-4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.negative-coefficient.l3",
+    "seed": 906500,
+    "answer": "4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.negative-coefficient.l3",
+    "seed": 906501,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.two-step.l1",
+    "seed": 906100,
+    "answer": "2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin1.two-step.l1",
+    "seed": 906101,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.assay-edge.l3",
+    "seed": 907000,
+    "answer": "35",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.assay-edge.l3",
+    "seed": 907001,
+    "answer": "26",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.duty-count.l2",
+    "seed": 906800,
+    "answer": "12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.duty-count.l2",
+    "seed": 906801,
+    "answer": "10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.kerb-width.l1",
+    "seed": 906600,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.kerb-width.l1",
+    "seed": 906601,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.melt-tin.l2",
+    "seed": 906700,
+    "answer": "23",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.melt-tin.l2",
+    "seed": 906701,
+    "answer": "19",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.mould-face.l3",
+    "seed": 906900,
+    "answer": "9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin3.mould-face.l3",
+    "seed": 906901,
+    "answer": "14",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.compound-and.l3",
+    "seed": 907500,
+    "answer": "[1, 10]",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.compound-and.l3",
+    "seed": 907501,
+    "answer": "[0, 4]",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.compound-or.l2",
+    "seed": 907400,
+    "answer": "(-inf, 7] U (14, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.compound-or.l2",
+    "seed": 907401,
+    "answer": "(-inf, 7] U (13, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.compound-or.l3",
+    "seed": 907600,
+    "answer": "(-inf, 0] U [9, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.compound-or.l3",
+    "seed": 907601,
+    "answer": "(-inf, 0] U (10, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.negative-coefficient.l2",
+    "seed": 907300,
+    "answer": "(-inf, 7)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.negative-coefficient.l2",
+    "seed": 907301,
+    "answer": "[9, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.one-step.l1",
+    "seed": 907100,
+    "answer": "(-4, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.one-step.l1",
+    "seed": 907101,
+    "answer": "(-2, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.two-step.l2",
+    "seed": 907200,
+    "answer": "(-inf, -3]",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin4.two-step.l2",
+    "seed": 907201,
+    "answer": "(-inf, 4)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.coefficient.l2",
+    "seed": 907800,
+    "answer": "{-3, 5}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.coefficient.l2",
+    "seed": 907801,
+    "answer": "{-13, -1}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.degenerate.l3",
+    "seed": 908000,
+    "answer": "14",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.degenerate.l3",
+    "seed": 908001,
+    "answer": "{}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.isolate.l2",
+    "seed": 907900,
+    "answer": "{15, 29}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.isolate.l2",
+    "seed": 907901,
+    "answer": "{2, 24}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.scaled.l3",
+    "seed": 908100,
+    "answer": "{-10, -4}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.scaled.l3",
+    "seed": 908101,
+    "answer": "{0, 16}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.shift.l1",
+    "seed": 907700,
+    "answer": "{-5, 19}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin5.shift.l1",
+    "seed": 907701,
+    "answer": "{2, 20}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.band.l1",
+    "seed": 908200,
+    "answer": "[14, 20]",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.band.l1",
+    "seed": 908201,
+    "answer": "(9, 25)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.scaled-band.l2",
+    "seed": 908400,
+    "answer": "(-2, 16)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.scaled-band.l2",
+    "seed": 908401,
+    "answer": "(-4, 14)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.scaled-union.l3",
+    "seed": 908500,
+    "answer": "(-inf, 3] U [5, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.scaled-union.l3",
+    "seed": 908501,
+    "answer": "(-inf, -1] U [3, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.set-builder.l3",
+    "seed": 908600,
+    "answer": "{x | -9 < x < -5}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.set-builder.l3",
+    "seed": 908601,
+    "answer": "{x | x < 12 or x > 26}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.union.l2",
+    "seed": 908300,
+    "answer": "(-inf, 4) U (24, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d3",
+    "template_id": "d3.lin6.union.l2",
+    "seed": 908301,
+    "answer": "(-inf, 13] U [35, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.binomial.l2",
+    "seed": 908900,
+    "answer": "x^2 + 6x + 8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.binomial.l2",
+    "seed": 908901,
+    "answer": "x^2 + 8x + 15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.combine.l1",
+    "seed": 908700,
+    "answer": "7x^2 + 8x + 14",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.combine.l1",
+    "seed": 908701,
+    "answer": "8x^2 + 13x + 19",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.leading.l3",
+    "seed": 909000,
+    "answer": "20x^2 + 19x + 3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.leading.l3",
+    "seed": 909001,
+    "answer": "4x^2 + 18x + 14",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.subtract.l2",
+    "seed": 908800,
+    "answer": "6x^2 + 9x - 16",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.subtract.l2",
+    "seed": 908801,
+    "answer": "5x^2 + 10x - 14",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.two-variable.l3",
+    "seed": 909100,
+    "answer": "26",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol1.two-variable.l3",
+    "seed": 909101,
+    "answer": "10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.difference.l2",
+    "seed": 909400,
+    "answer": "(x + 2)(x - 2)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.difference.l2",
+    "seed": 909401,
+    "answer": "(x + 3)(x - 3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.gcf.l1",
+    "seed": 909200,
+    "answer": "2(3x + 5)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.gcf.l1",
+    "seed": 909201,
+    "answer": "4(7x + 9)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.grouping.l3",
+    "seed": 909600,
+    "answer": "(x + 9)(x^2 + 13)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.grouping.l3",
+    "seed": 909601,
+    "answer": "(x + 2)(x^2 + 3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.leading.l3",
+    "seed": 909500,
+    "answer": "(2x + 5)(x + 1)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.leading.l3",
+    "seed": 909501,
+    "answer": "(5x + 2)(x + 2)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.trinomial.l2",
+    "seed": 909300,
+    "answer": "(x + 6)(x + 9)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol2.trinomial.l2",
+    "seed": 909301,
+    "answer": "(x + 8)^2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.area.l3",
+    "seed": 910000,
+    "answer": "{-11, 4}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.area.l3",
+    "seed": 910001,
+    "answer": "{-11, 7}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.factor.l2",
+    "seed": 909900,
+    "answer": "{-3, 5}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.factor.l2",
+    "seed": 909901,
+    "answer": "{-6, 3}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.lost-root.l3",
+    "seed": 910100,
+    "answer": "{0, 8}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.lost-root.l3",
+    "seed": 910101,
+    "answer": "{0, 12}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.shifted-square.l2",
+    "seed": 909800,
+    "answer": "{1, 11}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.shifted-square.l2",
+    "seed": 909801,
+    "answer": "{-3, 11}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.square-root.l1",
+    "seed": 909700,
+    "answer": "{-15, 15}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol3.square-root.l1",
+    "seed": 909701,
+    "answer": "{-5, 5}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.complete-solve.l3",
+    "seed": 910500,
+    "answer": "{-15, -1}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.complete-solve.l3",
+    "seed": 910501,
+    "answer": "{-6, 2}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.complete.l1",
+    "seed": 910200,
+    "answer": "81",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.complete.l1",
+    "seed": 910201,
+    "answer": "81",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.discriminant.l2",
+    "seed": 910300,
+    "answer": "68",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.discriminant.l2",
+    "seed": 910301,
+    "answer": "16",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.formula.l3",
+    "seed": 910600,
+    "answer": "{-7, 7/5}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.formula.l3",
+    "seed": 910601,
+    "answer": "{-9, 6/5}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.right-side.l2",
+    "seed": 910400,
+    "answer": "12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol4.right-side.l2",
+    "seed": 910401,
+    "answer": "42",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.extreme-from-factored.l3",
+    "seed": 912600,
+    "answer": "-27",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.extreme-from-factored.l3",
+    "seed": 912601,
+    "answer": "-12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.extreme-value-standard.l2",
+    "seed": 912300,
+    "answer": "49",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.extreme-value-standard.l2",
+    "seed": 912301,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.vertex-x-standard.l1",
+    "seed": 912200,
+    "answer": "2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.vertex-x-standard.l1",
+    "seed": 912201,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.x-intercepts-expanded.l3",
+    "seed": 912500,
+    "answer": "{-4, -3}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.x-intercepts-expanded.l3",
+    "seed": 912501,
+    "answer": "{-5, 1}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.y-intercept-vertex-form.l2",
+    "seed": 912400,
+    "answer": "-24",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol5.y-intercept-vertex-form.l2",
+    "seed": 912401,
+    "answer": "4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.degree-standard.l1",
+    "seed": 911200,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.degree-standard.l1",
+    "seed": 911201,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.ends-after-transform.l3",
+    "seed": 911600,
+    "answer": "up",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.ends-after-transform.l3",
+    "seed": 911601,
+    "answer": "down",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.leading-coefficient-jumbled.l2",
+    "seed": 911300,
+    "answer": "-4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.leading-coefficient-jumbled.l2",
+    "seed": 911301,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.leading-term-factored.l2",
+    "seed": 911400,
+    "answer": "-15x^3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.leading-term-factored.l2",
+    "seed": 911401,
+    "answer": "-4x^4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.product-leading-term.l3",
+    "seed": 911500,
+    "answer": "-10x^6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol6.product-leading-term.l3",
+    "seed": 911501,
+    "answer": "-9x^5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.build-from-graph.l3",
+    "seed": 912100,
+    "answer": "-2(x + 1)^2(x - 3)(x - 5)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.build-from-graph.l3",
+    "seed": 912101,
+    "answer": "3(x + 3)(x - 1)(x - 4)^2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.multiplicity-at-zero.l2",
+    "seed": 911800,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.multiplicity-at-zero.l2",
+    "seed": 911801,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.turning-points-max.l2",
+    "seed": 911900,
+    "answer": "4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.turning-points-max.l2",
+    "seed": 911901,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.zeros-from-expanded.l3",
+    "seed": 912000,
+    "answer": "{-2, 0, 1}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.zeros-from-expanded.l3",
+    "seed": 912001,
+    "answer": "{-5, -3, 0}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.zeros-from-factored.l1",
+    "seed": 911700,
+    "answer": "{-5, 3}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol7.zeros-from-factored.l1",
+    "seed": 911701,
+    "answer": "{-3, 3}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.leading-remainder.l3",
+    "seed": 911000,
+    "answer": "0",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.leading-remainder.l3",
+    "seed": 911001,
+    "answer": "94",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.missing-power.l3",
+    "seed": 911100,
+    "answer": "x^2 + 3x - 5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.missing-power.l3",
+    "seed": 911101,
+    "answer": "x^2 + 3x - 7",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.quotient-linear.l2",
+    "seed": 910800,
+    "answer": "x + 5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.quotient-linear.l2",
+    "seed": 910801,
+    "answer": "x + 9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.remainder.l1",
+    "seed": 910700,
+    "answer": "-6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.remainder.l1",
+    "seed": 910701,
+    "answer": "-21",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.synthetic-cubic.l2",
+    "seed": 910900,
+    "answer": "x^2 - 7x - 3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d4",
+    "template_id": "d4.pol8.synthetic-cubic.l2",
+    "seed": 910901,
+    "answer": "x^2 - 5x + 8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.difference.l2",
+    "seed": 912900,
+    "answer": {
+      "expression": "x-10",
+      "excluded_values": "-10"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.difference.l2",
+    "seed": 912901,
+    "answer": {
+      "expression": "x+7",
+      "excluded_values": "7"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.factor-out.l2",
+    "seed": 912800,
+    "answer": {
+      "expression": "5*x",
+      "excluded_values": "-2"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.factor-out.l2",
+    "seed": 912801,
+    "answer": {
+      "expression": "8*x",
+      "excluded_values": "6"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.monomial.l1",
+    "seed": 912700,
+    "answer": {
+      "expression": "6*x/5",
+      "excluded_values": "0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.monomial.l1",
+    "seed": 912701,
+    "answer": {
+      "expression": "3*x^2/4",
+      "excluded_values": "0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.partial-cancel.l3",
+    "seed": 913100,
+    "answer": {
+      "expression": "(x+2)/(x+5)",
+      "excluded_values": "-5, 8"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.partial-cancel.l3",
+    "seed": 913101,
+    "answer": {
+      "expression": "(x+6)/(x+8)",
+      "excluded_values": "-8, 6"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.scaled.l3",
+    "seed": 913000,
+    "answer": {
+      "expression": "4*(x-7)",
+      "excluded_values": "3"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat1.scaled.l3",
+    "seed": 913001,
+    "answer": {
+      "expression": "2*(x-2)",
+      "excluded_values": "8"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.alloy.l3",
+    "seed": 913500,
+    "answer": {
+      "expression": "(x+5)*(x-5)",
+      "excluded_values": "-5, 1"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.alloy.l3",
+    "seed": 913501,
+    "answer": {
+      "expression": "(x+6)*(x-2)",
+      "excluded_values": "-4, -2"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.billet.l3",
+    "seed": 913600,
+    "answer": {
+      "expression": "(x-7)*(x+5)",
+      "excluded_values": "-5, 3"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.billet.l3",
+    "seed": 913601,
+    "answer": {
+      "expression": "(x-6)*(x-7)",
+      "excluded_values": "4, 7"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.charm.l1",
+    "seed": 913200,
+    "answer": {
+      "expression": "15*x",
+      "excluded_values": "0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.charm.l1",
+    "seed": 913201,
+    "answer": {
+      "expression": "6*x",
+      "excluded_values": "0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.scale.l2",
+    "seed": 913300,
+    "answer": {
+      "expression": "x-2",
+      "excluded_values": "3"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.scale.l2",
+    "seed": 913301,
+    "answer": {
+      "expression": "x-1",
+      "excluded_values": "-2"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.vial.l2",
+    "seed": 913400,
+    "answer": {
+      "expression": "x+5",
+      "excluded_values": "-5, 6"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat2.vial.l2",
+    "seed": 913401,
+    "answer": {
+      "expression": "x-7",
+      "excluded_values": "4, 7"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.factorlcd.l3",
+    "seed": 914100,
+    "answer": {
+      "expression": "(8*x+30)/(x*(x+3))",
+      "excluded_values": "-3, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.factorlcd.l3",
+    "seed": 914101,
+    "answer": {
+      "expression": "(2*x+20)/(x*(x+6))",
+      "excluded_values": "-6, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.numerator.l2",
+    "seed": 913800,
+    "answer": {
+      "expression": "(2*x-3)/(x+8)",
+      "excluded_values": "-8"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.numerator.l2",
+    "seed": 913801,
+    "answer": {
+      "expression": "(x-2)/(x+4)",
+      "excluded_values": "-4"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.samedenom.l1",
+    "seed": 913700,
+    "answer": {
+      "expression": "17/(x+4)",
+      "excluded_values": "-4"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.samedenom.l1",
+    "seed": 913701,
+    "answer": {
+      "expression": "14/(x+3)",
+      "excluded_values": "-3"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.subtract.l3",
+    "seed": 914000,
+    "answer": {
+      "expression": "(3*x+21)/((x+1)*(x+4))",
+      "excluded_values": "-4, -1"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.subtract.l3",
+    "seed": 914001,
+    "answer": {
+      "expression": "(x+10)/((x+2)*(x+4))",
+      "excluded_values": "-4, -2"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.unlike.l2",
+    "seed": 913900,
+    "answer": {
+      "expression": "(5*x+3)/(x*(x+1))",
+      "excluded_values": "-1, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat3.unlike.l2",
+    "seed": 913901,
+    "answer": {
+      "expression": "(11*x+12)/(x*(x+3))",
+      "excluded_values": "-3, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.clear.l2",
+    "seed": 914400,
+    "answer": {
+      "expression": "(x+7)/(x-6)",
+      "excluded_values": "0, 6"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.clear.l2",
+    "seed": 914401,
+    "answer": {
+      "expression": "(x+1)/(x-8)",
+      "excluded_values": "0, 8"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.divisor-top.l2",
+    "seed": 914300,
+    "answer": {
+      "expression": "(x+4)/x",
+      "excluded_values": "-4, -1, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.divisor-top.l2",
+    "seed": 914301,
+    "answer": {
+      "expression": "(x+3)/x",
+      "excluded_values": "-4, -3, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.mixture-divisor.l3",
+    "seed": 914600,
+    "answer": {
+      "expression": "(9*x+36)/(2*x+4)",
+      "excluded_values": "-4, -2, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.mixture-divisor.l3",
+    "seed": 914601,
+    "answer": {
+      "expression": "(7*x+98)/(2*x+14)",
+      "excluded_values": "-14, -7, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.nested-sum.l3",
+    "seed": 914500,
+    "answer": {
+      "expression": "(12*x+15)/(5*x)",
+      "excluded_values": "-3, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.nested-sum.l3",
+    "seed": 914501,
+    "answer": {
+      "expression": "(10*x+21)/(6*x)",
+      "excluded_values": "-3, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.stack.l1",
+    "seed": 914200,
+    "answer": {
+      "expression": "2*(x+5)/(9*x)",
+      "excluded_values": "-5, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat4.stack.l1",
+    "seed": 914201,
+    "answer": {
+      "expression": "2*(x+3)/(7*x)",
+      "excluded_values": "-3, 0"
+    },
+    "answer_form": "rational"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.crossing.l3",
+    "seed": 915100,
+    "answer": "(2, 0)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.crossing.l3",
+    "seed": 915101,
+    "answer": "(-2, 0)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.domain.l1",
+    "seed": 914700,
+    "answer": "{x | x != -5}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.domain.l1",
+    "seed": 914701,
+    "answer": "{x | x != -1}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.hole.l3",
+    "seed": 915000,
+    "answer": "(2, 2)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.hole.l3",
+    "seed": 915001,
+    "answer": "(-3, -1)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.level.l2",
+    "seed": 914900,
+    "answer": "0",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.level.l2",
+    "seed": 914901,
+    "answer": "8/7",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.vertical.l2",
+    "seed": 914800,
+    "answer": "-5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat5.vertical.l2",
+    "seed": 914801,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.alloy.l2",
+    "seed": 915400,
+    "answer": "11",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.alloy.l2",
+    "seed": 915401,
+    "answer": "21",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.clear.l1",
+    "seed": 915200,
+    "answer": "11",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.clear.l1",
+    "seed": 915201,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.cursed.l3",
+    "seed": 915500,
+    "answer": "4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.cursed.l3",
+    "seed": 915501,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.forge.l3",
+    "seed": 915600,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.forge.l3",
+    "seed": 915601,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.rate.l2",
+    "seed": 915300,
+    "answer": "24/11",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d5",
+    "template_id": "d5.rat6.rate.l2",
+    "seed": 915301,
+    "answer": "30/11",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.distance.l3",
+    "seed": 916000,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.distance.l3",
+    "seed": 916001,
+    "answer": "13",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.intercept-span.l3",
+    "seed": 916100,
+    "answer": "20",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.intercept-span.l3",
+    "seed": 916101,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.intercept.l2",
+    "seed": 915800,
+    "answer": "(0, -8)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.intercept.l2",
+    "seed": 915801,
+    "answer": "(8, 0)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.other-endpoint.l2",
+    "seed": 915900,
+    "answer": "(-6, 6)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.other-endpoint.l2",
+    "seed": 915901,
+    "answer": "(2, 6)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.plot-offset.l1",
+    "seed": 915700,
+    "answer": "(-4, 9)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.cg1.plot-offset.l1",
+    "seed": 915701,
+    "answer": "(-2, -5)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.evaluate-negative.l2",
+    "seed": 916300,
+    "answer": "-27",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.evaluate-negative.l2",
+    "seed": 916301,
+    "answer": "-19",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.evaluate-rule.l1",
+    "seed": 916200,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.evaluate-rule.l1",
+    "seed": 916201,
+    "answer": "17",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.log-function-count.l2",
+    "seed": 916400,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.log-function-count.l2",
+    "seed": 916401,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.opposite-inputs.l3",
+    "seed": 916600,
+    "answer": "34",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.opposite-inputs.l3",
+    "seed": 916601,
+    "answer": "72",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.solve-setting.l3",
+    "seed": 916500,
+    "answer": "9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun1.solve-setting.l3",
+    "seed": 916501,
+    "answer": "-9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.deviation.l1",
+    "seed": 920200,
+    "answer": "7",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.deviation.l1",
+    "seed": 920201,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.range.l3",
+    "seed": 920500,
+    "answer": "[4, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.range.l3",
+    "seed": 920501,
+    "answer": "[-8, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.reach.l2",
+    "seed": 920400,
+    "answer": "{2, 8}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.reach.l2",
+    "seed": 920401,
+    "answer": "{4, 10}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.setpoint.l3",
+    "seed": 920600,
+    "answer": "{0, 2}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.setpoint.l3",
+    "seed": 920601,
+    "answer": "{-3, -1}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.vertex.l2",
+    "seed": 920300,
+    "answer": "(3, 4)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun10.vertex.l2",
+    "seed": 920301,
+    "answer": "(7, -3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.output-range.l2",
+    "seed": 916900,
+    "answer": "(-inf, -9]",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.output-range.l2",
+    "seed": 916901,
+    "answer": "[-5, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.quotient-domain.l2",
+    "seed": 916800,
+    "answer": "(-inf, 8) U (8, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.quotient-domain.l2",
+    "seed": 916801,
+    "answer": "(-inf, 2) U (2, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.root-domain.l1",
+    "seed": 916700,
+    "answer": "[6, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.root-domain.l1",
+    "seed": 916701,
+    "answer": "[-3, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.root-flip-domain.l3",
+    "seed": 917000,
+    "answer": "(-inf, -7]",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.root-flip-domain.l3",
+    "seed": 917001,
+    "answer": "(-inf, -1]",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.root-over-linear.l3",
+    "seed": 917100,
+    "answer": "[2, 9) U (9, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun2.root-over-linear.l3",
+    "seed": 917101,
+    "answer": "[7, 8) U (8, inf)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.across-pieces-sum.l3",
+    "seed": 918500,
+    "answer": "60",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.across-pieces-sum.l3",
+    "seed": 918501,
+    "answer": "88",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.boundary-eval.l2",
+    "seed": 918300,
+    "answer": "9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.boundary-eval.l2",
+    "seed": 918301,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.square-piece-eval.l3",
+    "seed": 918600,
+    "answer": "-3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.square-piece-eval.l3",
+    "seed": 918601,
+    "answer": "-32",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.three-piece-eval.l2",
+    "seed": 918400,
+    "answer": "-4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.three-piece-eval.l2",
+    "seed": 918401,
+    "answer": "9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.two-piece-eval.l1",
+    "seed": 918200,
+    "answer": "-2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun3.two-piece-eval.l1",
+    "seed": 918201,
+    "answer": "18",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.absolute-extreme.l3",
+    "seed": 919500,
+    "answer": "11",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.absolute-extreme.l3",
+    "seed": 919501,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.direction.l1",
+    "seed": 919200,
+    "answer": "constant",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.direction.l1",
+    "seed": 919201,
+    "answer": "constant",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.fall-union.l3",
+    "seed": 919600,
+    "answer": "(4, 7) U (10, 14)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.fall-union.l3",
+    "seed": 919601,
+    "answer": "(2, 6) U (10, 14)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.peak-value.l2",
+    "seed": 919400,
+    "answer": "9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.peak-value.l2",
+    "seed": 919401,
+    "answer": "12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.rising-interval.l2",
+    "seed": 919300,
+    "answer": "(0, 6)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun4.rising-interval.l2",
+    "seed": 919301,
+    "answer": "(6, 12)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.chart-window.l2",
+    "seed": 917900,
+    "answer": "-5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.chart-window.l2",
+    "seed": 917901,
+    "answer": "-4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.function-rule.l2",
+    "seed": 917800,
+    "answer": "-3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.function-rule.l2",
+    "seed": 917801,
+    "answer": "10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.missing-reading.l3",
+    "seed": 918100,
+    "answer": "15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.missing-reading.l3",
+    "seed": 918101,
+    "answer": "4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.two-readings.l1",
+    "seed": 917700,
+    "answer": "2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.two-readings.l1",
+    "seed": 917701,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.two-windows.l3",
+    "seed": 918000,
+    "answer": "12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun5.two-windows.l3",
+    "seed": 918001,
+    "answer": "-12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.factored-point.l3",
+    "seed": 921100,
+    "answer": "3h + 31",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.factored-point.l3",
+    "seed": 921101,
+    "answer": "2h + 1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.linear.l1",
+    "seed": 920700,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.linear.l1",
+    "seed": 920701,
+    "answer": "-3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.numerator.l2",
+    "seed": 920800,
+    "answer": "2h^2 + 16h",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.numerator.l2",
+    "seed": 920801,
+    "answer": "4h^2 + 40h",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.point-full.l3",
+    "seed": 921000,
+    "answer": "4h + 25",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.point-full.l3",
+    "seed": 921001,
+    "answer": "5h + 15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.square-point.l2",
+    "seed": 920900,
+    "answer": "6h + 48",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun6.square-point.l2",
+    "seed": 920901,
+    "answer": "4h + 40",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.linear-formula.l2",
+    "seed": 917400,
+    "answer": "30x - 32",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.linear-formula.l2",
+    "seed": 917401,
+    "answer": "6x + 8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.order-value.l2",
+    "seed": 917300,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.order-value.l2",
+    "seed": 917301,
+    "answer": "-4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.series-value.l1",
+    "seed": 917200,
+    "answer": "87",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.series-value.l1",
+    "seed": 917201,
+    "answer": "97",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.square-inner.l3",
+    "seed": 917600,
+    "answer": "4x^2 + 25",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.square-inner.l3",
+    "seed": 917601,
+    "answer": "2x^2 + 10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.square-outer.l3",
+    "seed": 917500,
+    "answer": "9x^2 - 12x + 13",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun7.square-outer.l3",
+    "seed": 917501,
+    "answer": "4x^2 - 8x + 5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.inverse-value.l2",
+    "seed": 918800,
+    "answer": "-3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.inverse-value.l2",
+    "seed": 918801,
+    "answer": "-6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.not-one-to-one.l3",
+    "seed": 919100,
+    "answer": "2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.not-one-to-one.l3",
+    "seed": 919101,
+    "answer": "0",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.swap-solve-divide.l3",
+    "seed": 919000,
+    "answer": "4x - 36",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.swap-solve-divide.l3",
+    "seed": 919001,
+    "answer": "6x - 36",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.swap-solve-group.l2",
+    "seed": 918900,
+    "answer": "5x + 3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.swap-solve-group.l2",
+    "seed": 918901,
+    "answer": "6x + 8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.table-swap.l1",
+    "seed": 918700,
+    "answer": "11",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun8.table-swap.l1",
+    "seed": 918701,
+    "answer": "7",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.inside-outside-value.l2",
+    "seed": 919800,
+    "answer": "16",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.inside-outside-value.l2",
+    "seed": 919801,
+    "answer": "27",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.order-value.l3",
+    "seed": 920100,
+    "answer": "-47",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.order-value.l3",
+    "seed": 920101,
+    "answer": "46",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.parity-test.l2",
+    "seed": 919900,
+    "answer": "odd",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.parity-test.l2",
+    "seed": 919901,
+    "answer": "even",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.shift-point.l1",
+    "seed": 919700,
+    "answer": "(4, 0)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.shift-point.l1",
+    "seed": 919701,
+    "answer": "(2, 1)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.stretch-point.l3",
+    "seed": 920000,
+    "answer": "(-1, 12)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d6",
+    "template_id": "d6.fun9.stretch-point.l3",
+    "seed": 920001,
+    "answer": "(2, 2)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.direction.l2",
+    "seed": 921400,
+    "answer": "decreasing",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.direction.l2",
+    "seed": 921401,
+    "answer": "increasing",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.rate-context.l3",
+    "seed": 921600,
+    "answer": "-17",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.rate-context.l3",
+    "seed": 921601,
+    "answer": "65",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.rise-run.l2",
+    "seed": 921300,
+    "answer": "-11/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.rise-run.l2",
+    "seed": 921301,
+    "answer": "-6/5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.table-rate.l1",
+    "seed": 921200,
+    "answer": "-2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.table-rate.l1",
+    "seed": 921201,
+    "answer": "-5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.two-point.l3",
+    "seed": 921500,
+    "answer": "4/5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf1.two-point.l3",
+    "seed": 921501,
+    "answer": "5/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.pair-classify.l2",
+    "seed": 921900,
+    "answer": "neither",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.pair-classify.l2",
+    "seed": 921901,
+    "answer": "parallel",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.parallel-point.l2",
+    "seed": 921800,
+    "answer": "2x - 6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.parallel-point.l2",
+    "seed": 921801,
+    "answer": "2x + 1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.perpendicular-standard.l3",
+    "seed": 922100,
+    "answer": "-5x - 3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.perpendicular-standard.l3",
+    "seed": 922101,
+    "answer": "-3x + 7",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.point-slope.l3",
+    "seed": 922000,
+    "answer": "3x - 3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.point-slope.l3",
+    "seed": 922001,
+    "answer": "-3x - 1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.slope-intercept.l1",
+    "seed": 921700,
+    "answer": "4x - 4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf2.slope-intercept.l1",
+    "seed": 921701,
+    "answer": "-x - 1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.describe-model.l1",
+    "seed": 922200,
+    "answer": "9x + 25",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.describe-model.l1",
+    "seed": 922201,
+    "answer": "4x + 50",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.point-rate-model.l3",
+    "seed": 922600,
+    "answer": "-9x + 46",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.point-rate-model.l3",
+    "seed": 922601,
+    "answer": "-3x + 36",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.predict.l2",
+    "seed": 922400,
+    "answer": "85",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.predict.l2",
+    "seed": 922401,
+    "answer": "92",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.table-model.l2",
+    "seed": 922300,
+    "answer": "6x + 10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.table-model.l2",
+    "seed": 922301,
+    "answer": "6x + 45",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.table-predict.l3",
+    "seed": 922500,
+    "answer": "114",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf3.table-predict.l3",
+    "seed": 922501,
+    "answer": "125",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.classify.l2",
+    "seed": 922900,
+    "answer": "one solution",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.classify.l2",
+    "seed": 922901,
+    "answer": "infinitely many",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.elimination.l2",
+    "seed": 922800,
+    "answer": "(4, 3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.elimination.l2",
+    "seed": 922801,
+    "answer": "(3, 0)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.elimination.l3",
+    "seed": 923000,
+    "answer": "(-2, -4)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.elimination.l3",
+    "seed": 923001,
+    "answer": "(3, 1)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.isolate.l3",
+    "seed": 923100,
+    "answer": "-5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.isolate.l3",
+    "seed": 923101,
+    "answer": "-4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.substitution.l1",
+    "seed": 922700,
+    "answer": "(-4, -5)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d7",
+    "template_id": "d7.lf4.substitution.l1",
+    "seed": 922701,
+    "answer": "(-5, -4)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.classify.l2",
+    "seed": 923400,
+    "answer": "decay",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.classify.l2",
+    "seed": 923401,
+    "answer": "growth",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.continuous.l3",
+    "seed": 923600,
+    "answer": "3813.75",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.continuous.l3",
+    "seed": 923601,
+    "answer": "6499.72",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.decay-value.l2",
+    "seed": 923300,
+    "answer": "12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.decay-value.l2",
+    "seed": 923301,
+    "answer": "4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.evaluate.l1",
+    "seed": 923200,
+    "answer": "162",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.evaluate.l1",
+    "seed": 923201,
+    "answer": "16",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.percent-growth.l3",
+    "seed": 923500,
+    "answer": "245.01",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el1.percent-growth.l3",
+    "seed": 923501,
+    "answer": "210.38",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.anchor-point.l2",
+    "seed": 923900,
+    "answer": "(0, 9)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.anchor-point.l2",
+    "seed": 923901,
+    "answer": "(0, 7)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.asymptote.l1",
+    "seed": 923700,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.asymptote.l1",
+    "seed": 923701,
+    "answer": "-6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.intercept.l2",
+    "seed": 923800,
+    "answer": "-4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.intercept.l2",
+    "seed": 923801,
+    "answer": "1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.transform-rhs.l3",
+    "seed": 924000,
+    "answer": "x + 3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.transform-rhs.l3",
+    "seed": 924001,
+    "answer": "x - 1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.which-transform.l3",
+    "seed": 924100,
+    "answer": "reflect over the x-axis",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el2.which-transform.l3",
+    "seed": 924101,
+    "answer": "shift up",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.evaluate-base.l2",
+    "seed": 924300,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.evaluate-base.l2",
+    "seed": 924301,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.evaluate-common.l1",
+    "seed": 924200,
+    "answer": "6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.evaluate-common.l1",
+    "seed": 924202,
+    "answer": "2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.evaluate-natural.l3",
+    "seed": 924500,
+    "answer": "-4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.evaluate-natural.l3",
+    "seed": 924501,
+    "answer": "-5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.missing-base.l3",
+    "seed": 924600,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.missing-base.l3",
+    "seed": 924601,
+    "answer": "2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.reciprocal-base.l2",
+    "seed": 926200,
+    "answer": "-2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.reciprocal-base.l2",
+    "seed": 926201,
+    "answer": "-2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.to-exponential.l2",
+    "seed": 924400,
+    "answer": "27",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el3.to-exponential.l2",
+    "seed": 924401,
+    "answer": "125",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.asymptote.l1",
+    "seed": 924700,
+    "answer": "2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.asymptote.l1",
+    "seed": 924701,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.domain-shift.l3",
+    "seed": 925000,
+    "answer": "{x | x < 6}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.domain-shift.l3",
+    "seed": 925001,
+    "answer": "{x | x < -1}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.domain.l2",
+    "seed": 924800,
+    "answer": "{x | x > 7}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.domain.l2",
+    "seed": 924801,
+    "answer": "{x | x > 6}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.evaluate-point.l3",
+    "seed": 925100,
+    "answer": "-1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.evaluate-point.l3",
+    "seed": 925101,
+    "answer": "-1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.x-intercept.l2",
+    "seed": 924900,
+    "answer": "(-5, 0)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el4.x-intercept.l2",
+    "seed": 924901,
+    "answer": "(6, 0)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.change-base-value.l3",
+    "seed": 925600,
+    "answer": "2.044",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.change-base-value.l3",
+    "seed": 925601,
+    "answer": "1.896",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.condense-sum.l2",
+    "seed": 925400,
+    "answer": "log(p*v)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.condense-sum.l2",
+    "seed": 925401,
+    "answer": "log(a*v)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.expand-power.l2",
+    "seed": 925300,
+    "answer": "5*log(y) + log(m)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.expand-power.l2",
+    "seed": 925301,
+    "answer": "5*log(b) + log(m)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.expand-product.l1",
+    "seed": 925200,
+    "answer": "log(b) + log(m)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.expand-product.l1",
+    "seed": 925201,
+    "answer": "log(n) + log(m)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.expand-quotient.l3",
+    "seed": 925500,
+    "answer": "log(x) - 2*log(m)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el5.expand-quotient.l3",
+    "seed": 925501,
+    "answer": "log(a) - 5*log(n)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.exp-quadratic.l3",
+    "seed": 926100,
+    "answer": "{ln(4), ln(8)}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.exp-quadratic.l3",
+    "seed": 926101,
+    "answer": "{ln(3), ln(6)}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.extraneous.l3",
+    "seed": 926000,
+    "answer": "{8}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.extraneous.l3",
+    "seed": 926001,
+    "answer": "{2}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.log-single.l2",
+    "seed": 925800,
+    "answer": "59",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.log-single.l2",
+    "seed": 925801,
+    "answer": "22",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.same-base.l1",
+    "seed": 925700,
+    "answer": "6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.same-base.l1",
+    "seed": 925701,
+    "answer": "3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.take-log.l2",
+    "seed": 925900,
+    "answer": "2.631",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d8",
+    "template_id": "d8.el6.take-log.l2",
+    "seed": 925901,
+    "answer": "4.907",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.arc-length.l3",
+    "seed": 926700,
+    "answer": "15pi/2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.arc-length.l3",
+    "seed": 926701,
+    "answer": "16pi/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.coterminal-degree.l2",
+    "seed": 926500,
+    "answer": "15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.coterminal-degree.l2",
+    "seed": 926501,
+    "answer": "345",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.coterminal-radian.l3",
+    "seed": 926600,
+    "answer": "7pi/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.coterminal-radian.l3",
+    "seed": 926601,
+    "answer": "pi/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.deg-to-rad.l1",
+    "seed": 926300,
+    "answer": "5pi/12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.deg-to-rad.l1",
+    "seed": 926301,
+    "answer": "2pi/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.rad-to-deg.l2",
+    "seed": 926400,
+    "answer": "75",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg1.rad-to-deg.l2",
+    "seed": 926401,
+    "answer": "45",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.cofunction-angle.l3",
+    "seed": 927200,
+    "answer": "24",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.cofunction-angle.l3",
+    "seed": 927201,
+    "answer": "33",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.exact-side-radical.l3",
+    "seed": 927100,
+    "answer": "8*sqrt(3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.exact-side-radical.l3",
+    "seed": 927101,
+    "answer": "12*sqrt(2)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.missing-side.l2",
+    "seed": 927000,
+    "answer": "26",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.missing-side.l2",
+    "seed": 927001,
+    "answer": "20",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.ratio-from-sides.l1",
+    "seed": 926800,
+    "answer": "4/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.ratio-from-sides.l1",
+    "seed": 926801,
+    "answer": "3/5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.special-exact.l2",
+    "seed": 926900,
+    "answer": "sqrt(3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg2.special-exact.l2",
+    "seed": 926901,
+    "answer": "sqrt(3)/2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.coordinates.l3",
+    "seed": 927700,
+    "answer": "210",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.coordinates.l3",
+    "seed": 927701,
+    "answer": "315",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.exact-value-circle.l3",
+    "seed": 927600,
+    "answer": "-1/2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.exact-value-circle.l3",
+    "seed": 927602,
+    "answer": "-1/2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.quadrant-sign.l2",
+    "seed": 927500,
+    "answer": "negative",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.quadrant-sign.l2",
+    "seed": 927501,
+    "answer": "positive",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.reference-degree.l1",
+    "seed": 927300,
+    "answer": "64",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.reference-degree.l1",
+    "seed": 927301,
+    "answer": "56",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.reference-radian.l2",
+    "seed": 927400,
+    "answer": "5pi/12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg3.reference-radian.l2",
+    "seed": 927401,
+    "answer": "pi/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.compound-evaluate.l3",
+    "seed": 928200,
+    "answer": "12/5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.compound-evaluate.l3",
+    "seed": 928201,
+    "answer": "-8/15",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.identity-name.l2",
+    "seed": 928000,
+    "answer": "pythagorean",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.identity-name.l2",
+    "seed": 928002,
+    "answer": "quotient",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.pythagorean-solve.l3",
+    "seed": 928100,
+    "answer": "-9/41",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.pythagorean-solve.l3",
+    "seed": 928101,
+    "answer": "12/13",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.quotient-value.l2",
+    "seed": 927900,
+    "answer": "-40/9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.quotient-value.l2",
+    "seed": 927901,
+    "answer": "-35/12",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.reciprocal-value.l1",
+    "seed": 927800,
+    "answer": "25/7",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg4.reciprocal-value.l1",
+    "seed": 927801,
+    "answer": "40/41",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.amplitude.l1",
+    "seed": 928300,
+    "answer": "5",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.amplitude.l1",
+    "seed": 928301,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.features.l3",
+    "seed": 928700,
+    "answer": "8",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.features.l3",
+    "seed": 928701,
+    "answer": "11",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.midline.l2",
+    "seed": 928500,
+    "answer": "-1",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.midline.l2",
+    "seed": 928501,
+    "answer": "2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.period-radian.l2",
+    "seed": 928400,
+    "answer": "2pi/9",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.period-radian.l2",
+    "seed": 928401,
+    "answer": "pi/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.phase-shift.l3",
+    "seed": 928600,
+    "answer": "pi/2",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg5.phase-shift.l3",
+    "seed": 928601,
+    "answer": "-2pi/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.asymptote-degree.l2",
+    "seed": 928900,
+    "answer": "{0, 180}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.asymptote-degree.l2",
+    "seed": 928902,
+    "answer": "{90, 270}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.asymptote-radian.l3",
+    "seed": 929200,
+    "answer": "pi/18",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.asymptote-radian.l3",
+    "seed": 929201,
+    "answer": "pi/10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.reciprocal-exact.l3",
+    "seed": 929100,
+    "answer": "sqrt(3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.reciprocal-exact.l3",
+    "seed": 929101,
+    "answer": "-sqrt(3)",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.secant-defined.l2",
+    "seed": 929000,
+    "answer": "defined",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.secant-defined.l2",
+    "seed": 929001,
+    "answer": "undefined",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.tangent-period.l1",
+    "seed": 928800,
+    "answer": "pi/10",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg6.tangent-period.l1",
+    "seed": 928801,
+    "answer": "pi/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.arccos-radian.l2",
+    "seed": 929400,
+    "answer": "5pi/6",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.arccos-radian.l2",
+    "seed": 929401,
+    "answer": "pi/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.arcsin-degree.l1",
+    "seed": 929300,
+    "answer": "-90",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.arcsin-degree.l1",
+    "seed": 929301,
+    "answer": "-60",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.arctan-round.l3",
+    "seed": 929700,
+    "answer": "53.13",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.arctan-round.l3",
+    "seed": 929702,
+    "answer": "66.80",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.compose-principal.l3",
+    "seed": 929600,
+    "answer": "45",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.compose-principal.l3",
+    "seed": 929602,
+    "answer": "-60",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.principal-degree.l2",
+    "seed": 930800,
+    "answer": "60",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.principal-degree.l2",
+    "seed": 930801,
+    "answer": "30",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.range-interval.l2",
+    "seed": 929500,
+    "answer": "[-90, 90]",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.range-interval.l2",
+    "seed": 929502,
+    "answer": "[0, 180]",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.signed-radian.l2",
+    "seed": 930900,
+    "answer": "-pi/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg7.signed-radian.l2",
+    "seed": 930901,
+    "answer": "-pi/3",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.cosine-negative.l2",
+    "seed": 929900,
+    "answer": "{120, 240}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.cosine-negative.l2",
+    "seed": 929901,
+    "answer": "{135, 225}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.linear-in-trig.l3",
+    "seed": 930100,
+    "answer": "{30, 210}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.linear-in-trig.l3",
+    "seed": 930101,
+    "answer": "{30, 150}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.quadratic-in-form.l3",
+    "seed": 930200,
+    "answer": "{210, 270, 330}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.quadratic-in-form.l3",
+    "seed": 930201,
+    "answer": "{60, 180, 300}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.signed-window.l2",
+    "seed": 931100,
+    "answer": "{-135, 135}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.signed-window.l2",
+    "seed": 931101,
+    "answer": "{-30, 150}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.sine-basic.l1",
+    "seed": 929800,
+    "answer": "{60, 120}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.sine-basic.l1",
+    "seed": 929802,
+    "answer": "{30, 150}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.tangent-basic.l2",
+    "seed": 930000,
+    "answer": "{150, 330}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.tangent-basic.l2",
+    "seed": 930001,
+    "answer": "{30, 210}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.two-turn-window.l2",
+    "seed": 931000,
+    "answer": "{240, 300, 600, 660}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg8.two-turn-window.l2",
+    "seed": 931001,
+    "answer": "{120, 240, 480, 600}",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.compound-angle.l3",
+    "seed": 930700,
+    "answer": "-253/325",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.compound-angle.l3",
+    "seed": 930701,
+    "answer": "-333/725",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.double-cosine.l3",
+    "seed": 930600,
+    "answer": "-527/625",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.double-cosine.l3",
+    "seed": 930601,
+    "answer": "-119/169",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.double-sine.l2",
+    "seed": 930400,
+    "answer": "-24/25",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.double-sine.l2",
+    "seed": 930401,
+    "answer": "840/841",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.formula-name.l2",
+    "seed": 930500,
+    "answer": "double-angle",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.formula-name.l2",
+    "seed": 930501,
+    "answer": "double-angle",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.sum-exact.l1",
+    "seed": 930300,
+    "answer": "(sqrt(6)+sqrt(2))/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "d9",
+    "template_id": "d9.trg9.sum-exact.l1",
+    "seed": 930301,
+    "answer": "(sqrt(6)+sqrt(2))/4",
+    "answer_form": "string"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.closed.l2",
+    "seed": 932300,
+    "answer": {
+      "prose": "One shaded segment spanning from -1 to 1, with BOTH ends FILLED (closed) circles: a filled endpoint at -1, a filled endpoint at 1, and the whole stretch between them shaded. The shading stops dead at each endpoint and does not continue toward -inf or +inf."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.closed.l2",
+    "seed": 932302,
+    "answer": {
+      "prose": "One shaded segment spanning from -4 to 0, with BOTH ends FILLED (closed) circles: a filled endpoint at -4, a filled endpoint at 0, and the stretch between them shaded. No shading continues past either end toward -inf or +inf."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.half-open.l3",
+    "seed": 932500,
+    "answer": {
+      "prose": "One shaded segment from -1 to 2 with MISMATCHED ends: the left end at -1 is an OPEN (hollow) circle, the right end at 2 is a FILLED (closed) circle, and the stretch between them is shaded. The shading stops at both ends and does not run to -inf or +inf."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.half-open.l3",
+    "seed": 932501,
+    "answer": {
+      "prose": "One shaded segment from -2 to 2 with MISMATCHED ends: an OPEN (hollow) circle at -2, a FILLED (closed) circle at 2, and the region between them shaded. Nothing extends beyond either endpoint toward -inf or +inf."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.point.l1",
+    "seed": 932200,
+    "answer": {
+      "prose": "One single point placed at -6, drawn as a FILLED (closed) circle. No segment is drawn, no second point is placed, and no region is shaded; the line is bare everywhere except at -6, with nothing extending toward -inf or +inf."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.point.l1",
+    "seed": 932201,
+    "answer": {
+      "prose": "One single point placed at 2, drawn as a FILLED (closed) circle. No segment, no other point, and no shading anywhere; nothing runs to -inf or +inf."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.right-open.l3",
+    "seed": 932600,
+    "answer": {
+      "prose": "One shaded segment from -1 to 2 with MISMATCHED ends: the left end at -1 is a FILLED (closed) circle, the right end at 2 is an OPEN (hollow) circle, and the span between them is shaded. No shading continues past either end toward -inf or +inf."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.right-open.l3",
+    "seed": 932601,
+    "answer": {
+      "prose": "One shaded segment from -5 to 0 with MISMATCHED ends: a FILLED (closed) circle at -5, an OPEN (hollow) circle at 0, and the stretch between them shaded. The shading terminates at both markers and does not run to -inf or +inf."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.two-points.l2",
+    "seed": 932400,
+    "answer": {
+      "prose": "TWO separate points, both FILLED (closed) circles: one at -3 and one at 5. No segment joins them, the space between them is NOT shaded, and nothing extends to -inf or +inf."
+    },
+    "answer_form": "prose"
+  },
+  {
+    "domain": "interactive",
+    "template_id": "int.nl.two-points.l2",
+    "seed": 932401,
+    "answer": {
+      "prose": "TWO separate points, both FILLED (closed) circles: one at -4 and one at 2. No segment between them, no shading anywhere, and no ray to -inf or +inf."
+    },
+    "answer_form": "prose"
+  }
+]

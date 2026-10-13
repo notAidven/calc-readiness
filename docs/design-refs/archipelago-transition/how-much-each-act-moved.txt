@@ -1,0 +1,9 @@
+How much of the island-only frame each act changed, at 1024x580, under reduced motion,
+against a floor of 2376px (0.4%). Written by archipelagoBeats.browser.test.tsx.
+
+01-act-one-open -> 02-gather: 472564px (79.57% of the frame)
+02-gather -> 03-route: 527907px (88.89% of the frame)
+03-route -> 04-raise: 5226px (0.88% of the frame)
+04-raise -> 05-settle: 9113px (1.53% of the frame)
+02-gather -> 02a-route-part-open: 494770px
+02a-route-part-open -> 03-route: 506171px

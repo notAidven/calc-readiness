@@ -1,0 +1,24 @@
+{
+  "name": "@cr/diagnostic-runtime",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Gabe. Diagnostic engine runtime + persistence. Main entry is transport-agnostic (engine composition, in-memory doubles, the browser_auth server shell + types) and browser-safe; the server-only ./aurora entry adds the AWS-native adapters (Aurora RDS Data API store/response/placement + measurement read), Cognito JWT auth, and the createAuroraDiagnosticServer composition root.",
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./aurora": "./src/aurora.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --build"
+  },
+  "dependencies": {
+    "@cr/components": "*",
+    "@cr/db": "*",
+    "@cr/diagnostic": "*",
+    "@cr/item-bank": "*",
+    "@cr/scorer": "*",
+    "@cr/state-schema": "*",
+    "aws-jwt-verify": "^5.1.0"
+  }
+}

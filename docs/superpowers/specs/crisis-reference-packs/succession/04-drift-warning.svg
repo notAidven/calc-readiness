@@ -1,0 +1,62 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900">
+  <!-- Engine reference: fixed 49-degree map camera, FOV 32 feel, flat-shaded low-poly, no textures, no glow. -->
+  <rect width="1400" height="900" fill="#e9e7de"/>
+  <polygon points="-120,510 210,472 555,450 872,462 1212,505 1520,575 1520,940 -120,940" fill="#8fa9b8"/>
+  <polygon points="-120,438 178,410 542,392 903,404 1272,452 1520,510 1520,720 1240,656 922,610 568,594 210,612 -120,660" fill="#dcd9cd" opacity="0.40"/>
+  <polygon points="-120,392 164,368 520,352 886,362 1268,408 1520,458 1520,586 1206,530 884,494 520,482 156,502 -120,542" fill="#e8e6de" opacity="0.46"/>
+  <polygon points="-80,566 184,512 484,486 780,498 1076,560 1480,688 1480,940 -80,940" fill="#a89c82"/>
+  <polygon points="-60,592 214,536 494,514 772,526 1036,584 1456,716 1456,940 -60,940" fill="#c9bfa6"/>
+  <polygon points="-40,616 224,562 498,540 774,554 1030,612 1440,742 1440,940 -40,940" fill="#ded5c0"/>
+  <polygon points="-20,654 244,602 508,584 780,600 1042,662 1424,786 1424,940 -20,940" fill="#e1d9c6"/>
+  <polygon points="-40,636 1400,732 1400,738 -40,642" fill="#bab3a1" opacity="0.30"/>
+  <polygon points="-40,680 1400,776 1400,782 -40,686" fill="#bab3a1" opacity="0.30"/>
+  <polygon points="-40,724 1400,820 1400,826 -40,730" fill="#bab3a1" opacity="0.30"/>
+  <polygon points="-40,768 1400,864 1400,870 -40,774" fill="#bab3a1" opacity="0.30"/>
+  <polygon points="-40,812 1400,908 1400,914 -40,818" fill="#bab3a1" opacity="0.30"/>
+  <polygon points="150,734 264,724 330,795 286,817 108,768" fill="#4f504c" opacity="0.18"/>
+  <polygon points="154,752 256,740 284,764 238,792 126,776" fill="#3e403d" opacity="0.18"/>
+  <polygon points="138,641 210,599 282,641 210,683" fill="#e0d8c4"/>
+  <polygon points="150,647 210,612 270,647 210,682" fill="#ded6c0"/>
+  <polygon points="150,647 210,682 210,770 150,736" fill="#d2c8aa"/>
+  <polygon points="210,682 270,647 270,736 210,770" fill="#97907a"/>
+  <polygon points="150,716 210,750 210,770 150,736" fill="#7a7463"/>
+  <polygon points="210,750 270,716 270,736 210,770" fill="#8f8874"/>
+  
+  <polygon points="570,764 684,754 750,825 706,847 528,798" fill="#4f504c" opacity="0.18"/>
+  <polygon points="574,782 676,770 704,794 658,822 546,806" fill="#3e403d" opacity="0.18"/>
+  <polygon points="558,671 630,629 702,671 630,713" fill="#e0d8c4"/>
+  <polygon points="570,677 630,642 690,677 630,712" fill="#ded6c0"/>
+  <polygon points="570,677 630,712 630,800 570,766" fill="#d2c8aa"/>
+  <polygon points="630,712 690,677 690,766 630,800" fill="#97907a"/>
+  <polygon points="570,746 630,780 630,800 570,766" fill="#7a7463"/>
+  <polygon points="630,780 690,746 690,766 630,800" fill="#8f8874"/>
+  
+    <polygon points="615,588 682,546 688,552 621,594" fill="#8f7a5c"/>
+  <polygon points="750,588 682,546 677,552 744,594" fill="#7a6749"/>
+  <polygon points="680,552 685,552 685,664 680,664" fill="#6f5f46"/>
+  <polygon points="646,754 716,744 782,802 738,824 604,788" fill="#4f504c" opacity="0.16"/>
+  <polygon points="650,772 708,760 736,784 690,812 622,796" fill="#3e403d" opacity="0.18"/>
+  <polygon points="646,714 682,695 719,714 682,734" fill="#ded6c0"/>
+  <polygon points="646,714 682,734 682,768 646,748" fill="#d2c8aa"/>
+  <polygon points="682,734 719,714 719,748 682,768" fill="#97907a"/>
+    <polygon points="668,714 682,707 696,714 682,721" fill="#76705f"/>
+  <polygon points="675,714 682,712 689,714 682,717" fill="#ded6c0"/>
+  <polygon points="1000,794 1114,784 1180,855 1136,877 958,828" fill="#4f504c" opacity="0.18"/>
+  <polygon points="1004,812 1106,800 1134,824 1088,852 976,836" fill="#3e403d" opacity="0.18"/>
+  <polygon points="988,701 1060,659 1132,701 1060,743" fill="#e0d8c4"/>
+  <polygon points="1000,707 1060,672 1120,707 1060,742" fill="#ded6c0"/>
+  <polygon points="1000,707 1060,742 1060,830 1000,796" fill="#d2c8aa"/>
+  <polygon points="1060,742 1120,707 1120,796 1060,830" fill="#97907a"/>
+  <polygon points="1000,776 1060,810 1060,830 1000,796" fill="#7a7463"/>
+  <polygon points="1060,810 1120,776 1120,796 1060,830" fill="#8f8874"/>
+  
+    <polygon points="1045,618 1112,576 1118,582 1051,624" fill="#8f7a5c"/>
+  <polygon points="1180,618 1112,576 1107,582 1174,624" fill="#7a6749"/>
+  <polygon points="1110,582 1115,582 1115,610 1110,610" fill="#6f5f46"/>
+
+  <polygon points="1076,660 1112,641 1149,660 1112,680" fill="#ded6c0"/>
+  <polygon points="1076,660 1112,680 1112,714 1076,694" fill="#d2c8aa"/>
+  <polygon points="1112,680 1149,660 1149,694 1112,714" fill="#97907a"/>
+    <polygon points="1098,660 1112,653 1126,660 1112,667" fill="#76705f"/>
+  <polygon points="1105,660 1112,658 1119,660 1112,663" fill="#ded6c0"/>
+</svg>

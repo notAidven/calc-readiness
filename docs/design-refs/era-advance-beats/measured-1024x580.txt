@@ -1,0 +1,14 @@
+# 1024x580
+
+island visible above the advisor: 32.6% of the frame
+advisor's own height: 255px of 580px
+
+what changed on the island, per beat, over the WHOLE frame,
+measured with the advisor hidden so the bubble's own height cannot count:
+  02-gathering: 83.14%
+  03-expansion: 83.27%
+  04-rebuild: 0.8%
+  05-arrival: 78.44%
+
+the bubble's top edge per state, which is why it has to be hidden to measure:
+  00-opening 189, 01-act-one-open 364, 02-gathering 386, 03-expansion 386, 04-rebuild 364, 05-arrival 332

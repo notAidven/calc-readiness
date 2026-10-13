@@ -1,0 +1,253 @@
+---
+description: Verification and reporting discipline for QA feedback, the evidence each kind of fix requires before it may be called done, how to scope the population a guard measures, and when a recorded finding has gone stale.
+alwaysApply: true
+---
+
+# QA verification discipline
+
+A worker's summary of a sweep is not proof about a named instance, and neither is your own
+note from this morning. Verify the instance, at the current tip, then report per item.
+
+## Match the evidence to the kind of ask
+
+A grep only ever proves a deletion.
+
+| Ask | What counts as evidence |
+|---|---|
+| **Deletion** ("cut this sentence") | Grep the merged result and quote the literal output. |
+| **New behaviour** (a border, a button, a visual state) | A test that fails without the change, or a screenshot of it rendering. Adding a style or a prop is not evidence that it renders. Where the claim is spatial, a passing test is not evidence either: see below. |
+| **Bug fix** | A reproduction written first. If it cannot be made to fail, it cannot credibly be claimed fixed. "Probably already handled" is the tell that no reproduction exists. |
+| **Rewrite** (prose quality) | You read the new prose against the original objection. This cannot be mechanised, and it is not the worker's to self-certify. |
+
+## A spatial claim needs a frame, not a dimension
+
+The new-behaviour row takes a test OR a screenshot. Where the claim is SPATIAL — where a
+thing sits, how much room it leaves, what it covers — the test alone does not discharge
+it, and neither does reading the computed box. A dimension is a claim about CSS; "can you
+see the island behind it" is a claim about a rendered frame, and the first gets
+substituted for the second because it is so much cheaper to obtain. A layout test can
+assert the sheet is `72vw`, pass, and say nothing whatever about whether anything is
+visible around it. So a spatial claim owes a rendered frame that someone LOOKED at, and
+until there is one the claim is unverified, however exactly the box measures.
+
+**The viewport is half the evidence.** The numbers under a spatial claim are usually
+viewport-relative, so they resolve to different screens: `max-height: min(58vh, 480px)` is
+480px on a tall monitor and about 294px in a 1024x580 browser with ~507px of usable
+height. A frame taken at a comfortable developer viewport is therefore exactly as
+misleading as the arithmetic, and misleading for the same reason — it will look fine. Take
+spatial frames at a short, realistic viewport, **~1024x580**, and name the viewport beside
+them, because a frame whose viewport is unstated says nothing about anybody's screen.
+
+**`?dev` is not a fit-faithful surface, so the right viewport is not sufficient either.**
+`WorldScene` gives the dev frame `size="full"`, and `.world-scene--full .coc-card` sets
+`max-height: none` (`styles.css:4043`), overriding the cap a learner gets — `90vh` at
+`styles.css:3910`, or `calc(100vh - 2 * var(--space-sm))` below 760px of viewport, which is
+where any of this matters. Measured on one board at an identical 1024x580: the learner's lesson body
+is 347px and the reviewer's is 409px, 18% more, with half as many controls pushed
+off-screen. The comment at `styles.css:4022` says why — the cap *"cost a scroll on every
+slide"* in dev, so it was lifted for reviewers and left in place for learners. So a frame
+taken through `?dev` understates what a learner loses even when its viewport is short and
+named, and every spatial claim ever checked there is owed a re-take on the learner's mount.
+This is not a small correction: framed on the learner's surface, 0 of 15 gated widgets
+sampled across nine domains fit at 1024x580, and one hid 644px of a 659px board.
+
+**And the well is not one number: the pack's own title decides it.** Measured independently
+over all ten domains on the learner's host at 1024x580 (`docs/qa-shell-fit-measurement.md`),
+the 347px above reproduced exactly — and it was **300px**, 14% less, on the two packs whose
+title wraps the banner to two lines, because a second title line costs 47px of card and the
+card is capped. On one of those, POL.4, that left **15px** of a 483px board on screen. So a
+widget that clears the number a rule quotes can still not fit the well two shipped packs
+give it. This is a caution about the shape of the measurement rather than a second constant
+to quote, because the constants move — and here they moved twice inside a week, in two lanes
+at once. The short-viewport block at `styles.css:3961` trims the banner and clamps that title,
+which took the same sweep to **369px on all ten** with the wrap gone; a separate lane's
+`@media (max-height: 760px)` handed back the scrim gutter, and merged, the sweep reads
+**411px on all ten**. Take the point rather than the number, and re-measure: a figure in a rule
+is a measurement of a tree at a SHA, and the tree moves.
+
+**"No width-pinned guard runs at this height" is a claim about the tree, so go and read it.**
+A rule keyed on `max-height` looks like it cannot disturb a horizontal measurement, and that
+holds only while nothing measures a width at a short viewport. Something does: a guard whose
+viewport is **390x580** is width-pinned AND short, held short because vitest scales a tester
+iframe it cannot fit, and it is exactly the pairing such a survey forgets. A short-screen block
+written with `padding` shorthand — the shorthand sets the inline padding too, later in source
+order than the `max-width: 720px` phone rule — took a 390px reading column from 330.8px to
+306.8px and rewrapped a sentence a guard exists to keep on one line. Trim one axis with
+`padding-block` / `padding-inline`, and before writing "nothing sees this", grep the viewports.
+
+**A local green is not evidence when the measurement is text metrics.** That same defect
+passed locally on Windows and failed deterministically on CI's fonts, because a 24px loss
+rewraps a line here and not there. Where a claim rests on where text lands, a local pass buys
+you very little and the CI run is the reading; do not push it as verified and do not, when it
+goes red, reach for "transient" before reproducing it. It reproduces under injection at the
+same width if it is real.
+
+**A claim about what is visible BEHIND or AROUND an element has to be framed to show the
+other thing.** Cropped to the element that changed, a screenshot proves nothing about
+occlusion: the element is the one part of the picture nobody doubted. The subject of the
+evidence is the surface, not the component.
+
+**A frame is only as faithful as its MOUNT, and a bare mount is missing the theme.** The
+panel tokens (`--glass-fill-strong` and its neighbours) are declared on `.city-shell`
+(`styles.css:1915`), not at `:root`, so a component mounted straight onto `document.body`
+resolves them to nothing and every panel that paints with one comes out TRANSPARENT. A frame
+taken there shows content sliding through boxes that are opaque for every learner, which
+reads as a defect and is not one — and the reverse trap is the one that matters, since a
+genuinely transparent overlay would look no different. Mount inside `.city-shell`, or say in
+the report which tokens the frame is missing.
+
+**A width pinned in a guard is the same substitution with a test standing in for the
+box.** A dozen layout files measure at `FIGURE_CONTENT_CAP` (460px), which is a stylesheet
+cap on figure CONTENT and not a container anything ships; the lesson column a learner and
+a `?dev` reviewer are actually given is 920px, and a 390px phone gives 305px. That gap is
+deliberate and `readingWidths.ts` holds the ruling — 460 is a defensible mid-range spot
+check, and widening it would LOSE the wrap coverage, since nothing wraps at 894 — so this
+is a caution about how to read those files, not a licence to repin them. Read green at a
+pinned width as what it is: a true measurement in a box no container has, which buys no
+more than a correct dimension over an island nobody can see.
+
+## Changing a guard owes the same evidence as a fix
+
+The bug-fix row asks for a failure before a fix. The same failure is owed when the thing
+you changed is the guard. Loosening an assertion to make a feature possible may well
+leave it catching the defect it was written for, but that is an argument, and an
+assertion exists so that nobody has to take the argument on trust: inject that defect and
+watch it fail at the loosened lines. An assertion you add without a demonstrated red is
+not evidence either, because a test written green may be asserting nothing. And a
+containment or subset assertion needs a floor: containment holds trivially over an empty
+collection, so with no count behind it the assertion survives the emptiness it appeared
+to rule out.
+
+## Scope a guard by the behaviour, not by the implementation
+
+**Define a guard's population by who exhibits the behaviour, not by where the behaviour is
+implemented.** Sharing an implementation is a fact about the code. Exhibiting a behaviour
+is a fact about the product, and the second is what the guard is about. So the question to
+answer before writing the population down is not "where does this mechanic live" but "what
+would have to be true of a surface for this defect to be possible there", because a
+surface can carry a mechanic without importing a line of it.
+
+A reveal that destroyed the answers a learner had not yet given reached eighteen boards
+this way, while the guard written for exactly that defect passed every run.
+`revealReAsk.test.ts` required the `othersRemain` prop from the seven widgets built on a
+shared kind, on the reasoning that a shared archetype holds several answers at once. That
+reasoning was correct, and it was equally true of nineteen bespoke widgets holding several
+answers at once behind their own copies of the mechanic. Scoped to the abstraction the
+guard was narrower than the behaviour, so every widget that reimplemented the mechanic
+fell outside it. Measured rather than argued, at `6bdb318`: strip the prop from one
+bespoke widget, run the guard exactly as it shipped, and the file reports **114 passed, 0
+failed** over a source containing zero occurrences of the string it checks. Widen the
+population on that same tree and it is 1 failed, 132 passed (`#219`).
+
+**A derived population with a floor is not sufficient, because it can derive the wrong
+set.** `lesson-qa`'s trap list says do not pin a hardcoded count: derive the population
+from source and floor it. That is right, and this guard obeyed every word of it. Its
+population was derived, from the sources, with a floor under it, and it was still the
+wrong set. **Deriving correctly is a separate question from deriving at all**, and a
+derivation is at its most convincing when it is one clean filter over a real source, which
+is also exactly what a too-narrow filter looks like.
+
+**A floor constrains size, not shape.** A floor of 26 is satisfied by the original seven
+plus nineteen of anything, so a population can drift back to the wrong composition and
+still clear it. Where the composition is the claim, assert the composition: beside its
+floor, `revealReAsk.test.ts` asserts that the population with the shared kinds removed is
+itself at least nineteen, which puts "this sweep is genuinely wider than the layer it used
+to stop at" somewhere it can fail.
+
+**This is not a hypothesis about how guards go wrong.** Thirteen guards in this tree were
+found reporting green while measuring nothing or the wrong thing over 2026-07-28 and
+2026-07-29: six sweeps whose coverage assertion counted their own written-down list
+instead of the tree, two of those already false (`#191`); a validator rule whose
+population had been empty since a design change removed all 63 of its inputs (`#193`);
+eleven error-tier content rules never wired into CI, so a green run covered none of them
+(`#198`); a silence assertion satisfied by a counter that never moves, green over 43 cases
+under a fully muted audio context (`#207`); `tsc --build` exiting 0 over a config file no
+project includes (`#215`); a placeholder cohort table free to drift off the dispatch it
+mirrors (`#217`); a prose rule whose one shape could not match the sentence it was written
+for (`#187`); and the population above (`#219`). Read that as closed history for two dates
+rather than as a live figure. What it is evidence for is the rate: this is the ordinary
+way a guard fails here, not an exotic one, so the population is worth an argument every
+time you write one.
+
+## A legitimate exception is a named list that fails both ways
+
+Some members of a correctly scoped population genuinely do not owe the property the guard
+requires. A member that does not owe it and a member that forgot it look identical from
+outside the guard, so quietly leaving the first out of the population is how the second
+ships. Name them instead, each with its reason, and assert the list in **both**
+directions:
+
+- an entry that stops qualifying fails, so a renamed or deleted member cannot sit in the
+  list forever exempting nothing and hiding that it exempts nothing;
+- a qualifier that adopts the property without leaving the list fails, so the list cannot
+  go on excusing something it has stopped describing.
+
+The second direction is what stops an exception becoming permanent by neglect. The two
+together are also what make an exemption provable rather than assumed: force one false,
+and the sweep fails at the member it was excusing. That is a one-line injection, and it is
+the only way to tell a load-bearing exemption from a decorative one.
+
+Three separate agents converged on this shape over 2026-07-28 and 2026-07-29, so take the
+worked example from one of them rather than inventing it again. All three read at
+`6bdb318`:
+
+- **`apps/web/src/lessons/revealReAsk.test.ts` (`#219`) is the worked example**, and the
+  fullest of the three: two lists, because they are two different claims
+  (`NEVER_HANDS_BACK` for the surfaces that hold one answer, `HAND_BACK_OWED_IN_D1` for
+  boards owing the property in another owner's lane), a disjointness check so nothing is
+  claimed as both, and a floor that fails if the lists grow until they have swallowed the
+  population. Forcing one entry out of `NEVER_HANDS_BACK` fails at *"./cfu.tsx tells the
+  shared layer what is left of its board"*, which is an exemption naming what it excuses; a
+  listed widget that adopts the property fails at *"has not quietly adopted the flag"*; a
+  listed path that no longer exists fails at *"is a declared exception that still exists
+  and still offers a reveal"*.
+- `apps/web/src/lessons/widgetSuccessCoverage.test.ts` (`UNJUDGED`, `#191`) reads each
+  excused widget's source instead of counting the list, so an excuse plus a badge is a
+  stale excuse.
+- `apps/web/src/lessons/answerFormat.test.ts` (`UNREACHED`, `#188`) exempts named
+  placeholders from a count floor, with a set-equality census that fails whichever way the
+  list and the tree come apart.
+
+## Verify the instance, not the class
+
+"I swept for this class of defect" and "I edited this sentence" are different claims. When
+the user quotes a string, that string is the test. Check it at the merged SHA, not in a
+branch and not in a diff.
+
+## A finding expires when the tree moves
+
+A finding is evidence about a SHA, not about the repository. File:line citations are the
+clearest case: their precision is what makes them feel durable, and one merge in that
+area voids all of them at once. So before acting on anything recorded earlier, your own
+inventory as much as a worker's report, re-read it at the current tip. If a merge has
+landed in that area since it was recorded, it is unverified until re-checked, however
+carefully it was verified the first time. The costs are not symmetric: re-reading a
+finding costs a minute, and briefing a worker on a stale one verbatim costs their whole
+run.
+
+When two of your own records disagree about whether something is done, that contradiction
+is the finding. A COMPLETED entry and a still-open one covering the same work cannot both
+be current, so resolve them against the tree before doing anything else. Do not let the
+older entry win by being longer or more detailed than the newer one: it reads as more
+authoritative because it was written while the work was still open.
+
+## Report item-by-item
+
+Turn a QA list into a numbered checklist, each item naming its evidence type before work
+starts. Report back per item with that evidence attached, and an explicit **NOT DONE** for
+anything skipped. Never answer one specific line with a paragraph about the general class:
+prose hides the omission that per-item structure exposes.
+
+## Never report done on a summary alone
+
+If it is unverified, say **"claimed but unverified."** Merge state included: read the PR's
+`mergedAt` rather than inferring from pushes, because a push to a shared branch may be
+someone else's merge. Read it before describing what a PR has done to the codebase, too,
+because a PR's contents are not the tree's contents. "#N un-gated these two nodes,"
+written while #N is open, is a true statement about the diff and a false one about
+integration, where the files still record the gate: which is usually why you were reading
+them.
+
+Reviewing a lesson domain: `.cursor/skills/lesson-qa/SKILL.md` owns the methodology
+(invoke it explicitly, it does not auto-load). This rule owns what you are allowed to
+claim.

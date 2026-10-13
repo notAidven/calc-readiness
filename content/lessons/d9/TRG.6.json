@@ -1,0 +1,78 @@
+{
+  "node_id": "TRG.6",
+  "title": "Graph tangent and the reciprocal functions; period and asymptotes",
+  "mini_lesson": [
+    "Out in the dish yard a receiver rides high on a mast, and its beam swings down to meet the deck: measure the swing from the mast's own line and the beam lands $h\\tan\\theta$ out from the foot, where $h$ is the height the dish hangs at. Swing it further and the landing point runs out faster and faster, and there is a swing at which the beam misses the deck entirely, with no landing point anywhere on it however far out you walk. A heading like that one is a vertical asymptote: the function has no value there at all, and its values run away without bound on the way in.",
+    "Tangent is a ratio before it is anything else, since $\\tan\\theta = \\dfrac{\\sin\\theta}{\\cos\\theta}$. Wherever the cosine is zero that ratio asks for a division by zero, so tangent is **undefined** there, and a heading a function has no value at is a heading its graph never reaches. Between two neighboring breaks the tangent climbs from far below zero to far above it, so every branch of the graph is a separate climb rather than part of one curve.",
+    "The last three functions are the reciprocals, and each one breaks wherever the reading underneath it is zero. Secant is $\\dfrac{1}{\\cos\\theta}$, so it breaks exactly where tangent does, while cosecant is $\\dfrac{1}{\\sin\\theta}$ and cotangent is $\\dfrac{\\cos\\theta}{\\sin\\theta}$, so both of those break where the sine is zero instead. Turning a reading over never brings it closer to zero, which is why a meter runs away as it comes up on one of those breaks.",
+    "Tangent and cotangent repeat twice as fast as everything else, because half a turn swings the beam from aiming one way to aiming the exact opposite way and a ratio of two lengths cannot tell those apart. Secant and cosecant have no such shortcut, since each one inherits its repeat from the reading it inverts and comes back around exactly when that reading does. A coefficient sitting inside squeezes any of the six by the same factor."
+  ],
+  "slide_subtitles": [
+    "A heading with nothing",
+    "Where tangent breaks",
+    "The three reciprocals",
+    "How fast each repeats"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Work $f(x) = \\dfrac{1}{x}$ at $x = \\dfrac{1}{10}$, at $x = \\dfrac{1}{1000}$, and at $x = 0$.",
+      "steps": [
+        "At $x = \\dfrac{1}{10}$ the rule gives $1 \\div \\dfrac{1}{10} = 10$.",
+        "At $x = \\dfrac{1}{1000}$ it gives $1000$, so a smaller input returns a larger reading with no ceiling on how large.",
+        "At $x = 0$ the rule asks for $1 \\div 0$, and no number answers that, so $f$ has no value there.",
+        "So $x = 0$ is a vertical asymptote: nothing at all at the heading itself, and readings running away on the approach to it."
+      ]
+    },
+    {
+      "prompt": "Work out $\\tan 120^{\\circ}$ and $\\tan 150^{\\circ}$ from the two readings at each heading.",
+      "steps": [
+        "At $120^{\\circ}$ the readings are $\\sin\\theta = \\dfrac{\\sqrt{3}}{2}$ and $\\cos\\theta = -\\dfrac{1}{2}$, and the cosine is not zero, so the ratio can be worked out.",
+        "Dividing, $\\dfrac{\\sqrt{3}}{2} \\div \\left(-\\dfrac{1}{2}\\right) = -\\sqrt{3}$.",
+        "At $150^{\\circ}$ the readings are $\\sin\\theta = \\dfrac{1}{2}$ and $\\cos\\theta = -\\dfrac{\\sqrt{3}}{2}$, so $\\tan 150^{\\circ} = -\\dfrac{1}{\\sqrt{3}}$, which is written $-\\dfrac{\\sqrt{3}}{3}$.",
+        "So $\\tan 120^{\\circ} = -\\sqrt{3}$ and $\\tan 150^{\\circ} = -\\dfrac{\\sqrt{3}}{3}$, and both headings reported a value because neither divisor was zero, which is the only thing that ever stops the ratio."
+      ]
+    },
+    {
+      "prompt": "One heading reports $\\sin\\theta = \\dfrac{1}{4}$ and another reports $\\sin\\theta = \\dfrac{1}{100}$. Give the cosecant at each.",
+      "steps": [
+        "Cosecant is $\\dfrac{1}{\\sin\\theta}$, so it is nothing more than the reading underneath it turned over.",
+        "Turning $\\dfrac{1}{4}$ over gives $\\csc\\theta = 4$.",
+        "Turning $\\dfrac{1}{100}$ over gives $\\csc\\theta = 100$.",
+        "So the two cosecants are $4$ and $100$, and the closer a sine comes to zero the further its cosecant runs from zero, with nothing to stop it, which is the run-away the graph shows on both sides of a break."
+      ]
+    },
+    {
+      "prompt": "Give the period of $y = \\tan(4x)$ and the period of $y = \\csc(2x)$.",
+      "steps": [
+        "Tangent repeats every half turn, so the length it starts from is $\\pi$.",
+        "The coefficient $4$ runs the argument through that cycle four times as fast, so $y = \\tan(4x)$ closes in $\\dfrac{\\pi}{4}$.",
+        "Cosecant inherits the sine's repeat, so the length it starts from is $2\\pi$ instead.",
+        "Sharing that out by $2$ gives $y = \\csc(2x)$ a period of $\\pi$, which is the same division carried out over a different starting length."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "trg-tangent-explore", "gates": true },
+    { "after": 1, "id": "trg-asymptote-table", "gates": true },
+    { "after": 2, "id": "trg-secant-sorter", "gates": true },
+    { "after": 3, "id": "trg-cycle-match", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "For $y = \\tan(3x)$, give the smallest positive value of $x$ at which the graph has a vertical asymptote. Give an exact answer in terms of $\\pi$ rather than a decimal. Type pi for $\\pi$, so $\\dfrac{2\\pi}{3}$ would be typed 2pi/3.",
+    "accepted": ["pi/6"],
+    "hint": "The break belongs to the whole argument rather than to $x$ on its own: tangent loses its value when the thing inside it reaches a quarter turn, which is $\\dfrac{\\pi}{2}$ in radians. Here the argument is $3x$, so set $3x$ equal to that quarter turn and see what $x$ has to be.",
+    "worked_solution": [
+      "Tangent is $\\dfrac{\\sin\\theta}{\\cos\\theta}$, so it breaks wherever its argument makes the cosine zero, and the first positive argument that does is $\\theta = \\dfrac{\\pi}{2}$.",
+      "Here the argument is $3x$ rather than $x$, so the first break is where $3x = \\dfrac{\\pi}{2}$.",
+      "Dividing both sides by $3$ gives $x = \\dfrac{\\pi}{2} \\times \\dfrac{1}{3}$.",
+      "So the smallest positive asymptote of $y = \\tan(3x)$ sits at $x = \\dfrac{\\pi}{6}$."
+    ],
+    "worked_solution_params": { "outside": 1, "inside": 3 },
+    "check": {
+      "answer_type": "expression",
+      "answer_key": "pi/6",
+      "allowed_symbols": ["pi"]
+    },
+    "variants": { "template_id": "cfu.trg6.first-asymptote", "count": 2 }
+  }
+}

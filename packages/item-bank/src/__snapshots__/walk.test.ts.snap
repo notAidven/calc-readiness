@@ -1,0 +1,150 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`D1 walk assessment pool (Amendment v2 §8 — 2-of-3 depth) > pins the frozen walk content hashes (a template edit that changes the pool must be explicit) 1`] = `
+[
+  {
+    "hash": "27ffb420",
+    "id": "d1w.num-s.l2:A:10000",
+  },
+  {
+    "hash": "a8dfde6c",
+    "id": "d1w.num-s.l2:A:10001",
+  },
+  {
+    "hash": "ae3adf36",
+    "id": "d1w.num-s.l2:A:10002",
+  },
+  {
+    "hash": "5c1fd539",
+    "id": "d1w.num-f.l2:A:13000",
+  },
+  {
+    "hash": "04d0e77f",
+    "id": "d1w.num-f.l2:A:13001",
+  },
+  {
+    "hash": "0f0e093d",
+    "id": "d1w.num-f.l2:A:13002",
+  },
+  {
+    "hash": "d8bf10a5",
+    "id": "d1w.num-2.l2:A:16000",
+  },
+  {
+    "hash": "13a33f4f",
+    "id": "d1w.num-2.l2:A:16001",
+  },
+  {
+    "hash": "8618b5c1",
+    "id": "d1w.num-2.l2:A:16003",
+  },
+  {
+    "hash": "628d08bb",
+    "id": "d1w.num-3.l2:A:19000",
+  },
+  {
+    "hash": "37d70b86",
+    "id": "d1w.num-3.l2:A:19001",
+  },
+  {
+    "hash": "9f033265",
+    "id": "d1w.num-3.l2:A:19003",
+  },
+  {
+    "hash": "8d309099",
+    "id": "d1w.num-4.l2:A:22000",
+  },
+  {
+    "hash": "79d4be8a",
+    "id": "d1w.num-4.l2:A:22001",
+  },
+  {
+    "hash": "66bda821",
+    "id": "d1w.num-4.l2:A:22002",
+  },
+  {
+    "hash": "c523282e",
+    "id": "d1w.num-5.l2:A:25000",
+  },
+  {
+    "hash": "d2b54c66",
+    "id": "d1w.num-5.l2:A:25001",
+  },
+  {
+    "hash": "5efdfde0",
+    "id": "d1w.num-5.l2:A:25002",
+  },
+  {
+    "hash": "a6842640",
+    "id": "d1w.num-s.l2:B:20000",
+  },
+  {
+    "hash": "47c4c2e8",
+    "id": "d1w.num-s.l2:B:20001",
+  },
+  {
+    "hash": "146f0632",
+    "id": "d1w.num-s.l2:B:20002",
+  },
+  {
+    "hash": "5d6c5b20",
+    "id": "d1w.num-f.l2:B:23000",
+  },
+  {
+    "hash": "1d7ea8c1",
+    "id": "d1w.num-f.l2:B:23001",
+  },
+  {
+    "hash": "2c9dc996",
+    "id": "d1w.num-f.l2:B:23002",
+  },
+  {
+    "hash": "cb4f0b4f",
+    "id": "d1w.num-2.l2:B:26000",
+  },
+  {
+    "hash": "83ecaebe",
+    "id": "d1w.num-2.l2:B:26001",
+  },
+  {
+    "hash": "def75d70",
+    "id": "d1w.num-2.l2:B:26002",
+  },
+  {
+    "hash": "2c4dc688",
+    "id": "d1w.num-3.l2:B:29000",
+  },
+  {
+    "hash": "4a3b2306",
+    "id": "d1w.num-3.l2:B:29001",
+  },
+  {
+    "hash": "df01ce9b",
+    "id": "d1w.num-3.l2:B:29002",
+  },
+  {
+    "hash": "4bdab1d1",
+    "id": "d1w.num-4.l2:B:32000",
+  },
+  {
+    "hash": "1bcb123e",
+    "id": "d1w.num-4.l2:B:32001",
+  },
+  {
+    "hash": "8f6d7fdf",
+    "id": "d1w.num-4.l2:B:32002",
+  },
+  {
+    "hash": "7f5fadd8",
+    "id": "d1w.num-5.l2:B:35000",
+  },
+  {
+    "hash": "040a3d48",
+    "id": "d1w.num-5.l2:B:35001",
+  },
+  {
+    "hash": "a1a38b97",
+    "id": "d1w.num-5.l2:B:35002",
+  },
+]
+`;

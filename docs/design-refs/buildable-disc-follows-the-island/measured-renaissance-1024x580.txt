@@ -1,0 +1,13 @@
+era                  renaissance
+viewport             1024x580
+drawn grass radius   46
+disc before          22
+disc after           38
+buildings before     19
+buildings after      32
+island box           181..886 x 0..548 (identical in both)
+island pixels        242343 before, 240534 after
+bare ground          183462 before, 111729 after (39.1% newly built on)
+frame pixels moved   107509 of 593920 (18.10%)
+change box           221..806 x 35..494, 107509 px
+median frame         204.50ms before, 240.30ms after (1.18x over 60 frames, software-rendered headless Chromium — the RATIO is the transferable figure)

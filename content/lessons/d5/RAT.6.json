@@ -1,0 +1,94 @@
+{
+  "node_id": "RAT.6",
+  "title": "Solve rational equations; reject extraneous solutions",
+  "mini_lesson": [
+    "A timber-house ledger can balance on the slate and still name a measure the work cannot use, so a figure has to be checked against the thing it describes. A rational equation has the variable in a denominator, and it is solved by multiplying both sides by a common denominator that every fraction divides into. The fractions clear and leave an equation you already know how to solve, so write the excluded values down before that multiplication removes any note of them.",
+    "Many rational equations come from rate problems. Two workers finishing one job together do not add their times; they add their **rates**, and a worker's rate is the share of the job finished in one hour, which is one job over the hours that worker takes: $\\dfrac{1}{a} + \\dfrac{1}{b} = \\dfrac{1}{t}$. A shared time is therefore always shorter than either worker's own time, which is a useful check on the answer before any algebra is done.",
+    "Multiplying both sides by the LCD is valid algebra, but it can introduce an **extraneous solution**: a value that makes an original denominator zero. That is the same excluded-value list from simplification, and you check it at the very end. A candidate on that list is extraneous and does not belong in the solution set.",
+    "The procedure has a fixed order. List the excluded values from the **original** denominators, clear the fractions, solve what remains, then test every candidate before you write the solution set. Rejecting a value is not a mistake; it means multiplication introduced a root the original equation never allowed."
+  ],
+  "slide_subtitles": [
+    "Clearing the fractions",
+    "Work and rate problems",
+    "Extraneous solutions",
+    "Solve, then test"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Solve $\\dfrac{2}{x + 1} = \\dfrac{3}{x - 4}$.",
+      "steps": [
+        "Write the barred values first, from the two denominators: $x = -1$ and $x = 4$.",
+        "Multiply both sides by $(x + 1)(x - 4)$, which every fraction divides into: $2(x - 4) = 3(x + 1)$.",
+        "No fraction is left, so finish it as an ordinary linear equation: $2x - 8 = 3x + 3$.",
+        "Take $2x$ from both sides to get $-8 = x + 3$, then take $3$ from both sides.",
+        "The solution is $x = -11$, which is neither of the barred values."
+      ]
+    },
+    {
+      "prompt": "One worker finishes a job in $4$ hours and another takes $12$ hours for the same job. How long do the two take together?",
+      "steps": [
+        "Times do not add, so work in rates: the first finishes $\\dfrac{1}{4}$ of the job each hour and the second $\\dfrac{1}{12}$.",
+        "Together they finish $\\dfrac{1}{4} + \\dfrac{1}{12}$ of the job each hour, which is $\\dfrac{3}{12} + \\dfrac{1}{12} = \\dfrac{4}{12}$.",
+        "That reduces to $\\dfrac{1}{3}$ of the job each hour, so the shared rate reads $\\dfrac{1}{t} = \\dfrac{1}{3}$.",
+        "The pair takes $t = 3$ hours, shorter than either worker alone, as a shared time has to be."
+      ]
+    },
+    {
+      "prompt": "Solve $\\dfrac{x^{2}}{x + 4} = \\dfrac{16}{x + 4}$, then check the candidates.",
+      "steps": [
+        "Both sides sit over $x + 4$, so the barred value is $x = -4$, written down before anything is cleared.",
+        "Multiply both sides by $x + 4$ to clear the fractions: $x^{2} = 16$.",
+        "That offers two candidates, $x = 4$ and $x = -4$, and the second one only exists because of the multiplication.",
+        "Test them against the barred list, where $x = -4$ already sits, so it is extraneous.",
+        "Only $x = 4$ survives, and it checks out: $\\dfrac{16}{8} = 2$ on both sides."
+      ]
+    },
+    {
+      "prompt": "Solve $\\dfrac{2}{x - 1} + \\dfrac{1}{x + 1} = \\dfrac{4}{x^{2} - 1}$.",
+      "steps": [
+        "Factor the last denominator, $x^{2} - 1 = (x - 1)(x + 1)$, so all three denominators are built from the same two factors.",
+        "List the barred values from those factors before clearing: $x = 1$ and $x = -1$.",
+        "Multiply every term by the LCD $(x - 1)(x + 1)$: $2(x + 1) + (x - 1) = 4$.",
+        "Solve what is left: $2x + 2 + x - 1 = 4$, so $3x + 1 = 4$ and $x = 1$.",
+        "Test that candidate against the barred list, where $x = 1$ already sits, so it is extraneous.",
+        "Every candidate has been rejected, so this equation has no solution."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "rational-clear-measure-walkthrough", "gates": true },
+    { "after": 1, "id": "rational-combined-rate-build", "gates": true },
+    { "after": 2, "id": "rational-cursed-root-classify", "gates": true },
+    { "after": 3, "id": "rational-proving-run-solver", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Solve $\\dfrac{x}{x - 2} - \\dfrac{5}{x} = \\dfrac{4}{x(x - 2)}$. List every value in the solution set. Type it the way this example is typed: `{-6, 1}`, and a single value may be typed bare as `7`.",
+    "accepted": [
+      "3",
+      "{3}",
+      "{ 3 }",
+      "3.0",
+      "x = 3",
+      "x=3",
+      "{x = 3}",
+      "{x=3}",
+      "x = 3 only",
+      "3 only",
+      "{3.0}",
+      "{3} (x = 2 is extraneous)",
+      "{3} (2 is extraneous)",
+      "3 (x = 2 is extraneous)"
+    ],
+    "hint": "Write the excluded values first: the original denominators are $x$ and $x - 2$, so $x = 0$ and $x = 2$ are excluded. Now multiply every term by the LCD $x(x - 2)$, which leaves $x^{2} - 5(x - 2) = 4$. Bring that to zero, factor it, and then test each candidate against the excluded values before you write the solution set.",
+    "worked_solution": [
+      "Write the excluded values before solving anything. The original bottoms are $x$ and $x - 2$, so $x = 0$ and $x = 2$ are barred.",
+      "Multiply every term by the LCD $x(x - 2)$ to clear the fractions: $x^{2} - 5(x - 2) = 4$.",
+      "Expand and bring it to zero: $x^{2} - 5x + 10 = 4$, so $x^{2} - 5x + 6 = 0$.",
+      "Factor: $(x - 2)(x - 3) = 0$, which offers the candidates $x = 2$ and $x = 3$.",
+      "Test them against the barred list. $x = 2$ is on it, so it is extraneous and cannot count. The solution set is `{3}`."
+    ],
+    "worked_solution_template": "d5.rat6.forge.l3",
+    "worked_solution_params": { "p": -2, "r": 3, "a": -5, "b": 4 },
+    "variants": { "template_id": "d5.rat6.cursed.l3", "count": 2 }
+  }
+}

@@ -1,0 +1,773 @@
+.island-unlock-modal {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.island-unlock-modal::backdrop {
+  background: transparent;
+}
+
+.island-unlock-exam,
+.island-unlock-founding {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  color: var(--ink, #1f2933);
+}
+
+.city-surface[data-island-exam="true"] .hud,
+.city-shell:has(.city-surface[data-island-exam="true"]) .economy-hud,
+.city-shell:has(.city-surface[data-island-exam="true"]) .demo-mode-notice {
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/*
+ * The exam is a voyage over the destination's own water, not a dark modal scrim. The upper
+ * field and its sand rule are the horizon and shore; every colour comes from island metadata.
+ * The city remains faintly legible through the colour-mixed fields without a blur treatment.
+ */
+.island-unlock-exam {
+  padding: var(--space-md, 16px);
+  background: color-mix(in srgb, var(--unlock-deep-water) 88%, #122a36);
+}
+
+.island-unlock-exam::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 34%;
+  border-bottom: 5px double color-mix(in srgb, var(--unlock-shore) 82%, white);
+  background: color-mix(in srgb, var(--unlock-water) 38%, #dff2f4);
+  box-shadow: 0 7px 0 color-mix(in srgb, var(--unlock-ground) 34%, transparent);
+  content: "";
+  opacity: 0.92;
+}
+
+.island-unlock-exam__card {
+  --exam-gutter: clamp(18px, 3vw, 30px);
+
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  max-height: calc(100dvh - 2 * var(--space-md, 16px));
+  overflow: auto;
+  padding: 0 var(--exam-gutter) var(--exam-gutter);
+  border: 2px solid color-mix(in srgb, var(--unlock-trunk) 48%, #fff);
+  border-radius: 18px 18px 24px 24px;
+  background: #faf7eb;
+  box-shadow:
+    0 5px 0 color-mix(in srgb, var(--unlock-trunk) 32%, transparent),
+    0 22px 55px rgb(2 19 27 / 32%);
+  scrollbar-gutter: stable;
+}
+
+/*
+ * Progress stays on screen while a worked solution scrolls. It is opaque parchment, not glass:
+ * text and route markers never inherit the problem or solution moving underneath.
+ */
+.island-unlock-exam__header {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 16px;
+  margin-inline: calc(-1 * var(--exam-gutter));
+  margin-block-end: 14px;
+  padding: 14px var(--exam-gutter) 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--unlock-trunk) 28%, transparent);
+  background: #faf7eb;
+  box-shadow: 0 5px 8px rgb(31 51 71 / 7%);
+}
+
+.island-unlock-exam__journey {
+  display: flex;
+  min-width: 0;
+  gap: 10px;
+  align-items: center;
+}
+
+.island-unlock-exam__destination {
+  flex: 0 0 58px;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 44px;
+  border: 1px solid color-mix(in srgb, var(--unlock-trunk) 35%, transparent);
+  background: color-mix(in srgb, var(--unlock-ground-pale) 18%, #fff);
+  box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--unlock-ground) 30%, transparent);
+}
+
+.island-unlock-exam__destination svg {
+  width: 50px;
+  height: auto;
+}
+
+.island-unlock-exam__title {
+  min-width: 0;
+}
+
+.island-unlock-eyebrow {
+  margin: 0 0 3px;
+  color: var(--game-blue-deep, #176b87);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.island-unlock-exam h2,
+.island-unlock-founding h2 {
+  margin: 0;
+  color: var(--ink-strong, #13232e);
+  font-family: var(--font-display);
+  font-size: clamp(1.28rem, 3vw, 1.85rem);
+  line-height: 1.08;
+}
+
+.island-unlock-meter {
+  align-self: center;
+  min-width: 112px;
+  padding: 6px 10px;
+  border: 1px solid color-mix(in srgb, var(--unlock-trunk) 34%, transparent);
+  background: color-mix(in srgb, var(--unlock-ground-pale) 16%, white);
+  color: var(--game-blue-deep, #176b87);
+  font-weight: 850;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.island-unlock-meter__score {
+  font-size: 1.28rem;
+}
+
+.island-unlock-meter__label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.island-unlock-delta {
+  display: inline-flex;
+  margin-inline-start: 6px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.island-unlock-delta[data-delta="positive"] {
+  background: #daf3df;
+  color: #176c35;
+}
+
+.island-unlock-delta[data-delta="negative"] {
+  background: #ffe2dc;
+  color: #a33828;
+}
+
+.island-unlock-exam__contract {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 16px;
+  justify-content: space-between;
+  color: var(--ink-muted, #52636d);
+  font-size: 0.77rem;
+  line-height: 1.25;
+}
+
+.island-unlock-exam__contract p {
+  margin: 0;
+}
+
+.island-unlock-exam__contract p:first-child {
+  color: var(--ink-strong, #13232e);
+  font-weight: 850;
+}
+
+/* The door's solid/dashed seam extended into twelve ports: sailed water is solid, ahead is dashed. */
+.island-unlock-route {
+  position: relative;
+  grid-column: 1 / -1;
+  height: 16px;
+  margin-inline: 2px;
+}
+
+.island-unlock-route__line {
+  position: absolute;
+  inset: 7px 4px auto;
+  height: 0;
+  border-top: 2px dashed color-mix(in srgb, var(--unlock-trunk) 34%, transparent);
+}
+
+.island-unlock-route__sailed {
+  position: absolute;
+  inset: -2px auto auto 0;
+  height: 2px;
+  background: var(--game-blue, #3b82b8);
+  transition: width 180ms ease;
+}
+
+.island-unlock-route__ports {
+  position: absolute;
+  inset: 3px 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.island-unlock-route__port {
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid color-mix(in srgb, var(--unlock-trunk) 58%, #fff);
+  border-radius: 50%;
+  background: #faf7eb;
+}
+
+.island-unlock-route__port[data-reached="true"] {
+  border-color: var(--game-blue-deep, #176b87);
+  background: var(--game-blue, #3b82b8);
+  box-shadow: 0 0 0 2px #faf7eb;
+}
+
+.island-unlock-exam__question {
+  padding: 0;
+}
+
+.island-unlock-exam__meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: 8px;
+  color: var(--ink-muted, #52636d);
+  font-weight: 750;
+}
+
+.island-unlock-exam__prompt {
+  margin-block-end: 10px;
+  padding: 11px 14px;
+  border-left: 4px solid color-mix(in srgb, var(--unlock-ground) 74%, var(--game-blue));
+  background: color-mix(in srgb, var(--unlock-ground-pale) 13%, white);
+}
+
+.island-unlock-exam__prompt > :first-child {
+  margin-block-start: 0;
+}
+
+.island-unlock-exam__prompt > :last-child {
+  margin-block-end: 0;
+}
+
+.island-unlock-exam__answer-form {
+  align-items: flex-start;
+}
+
+.island-unlock-exam__answer-control {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.island-unlock-exam__answer-control > legend {
+  margin-block-end: 4px;
+  padding: 0;
+  color: var(--ink-muted, #52636d);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.island-unlock-exam__answer-control > input {
+  width: 100%;
+}
+
+.island-unlock-exam__answer-form > button[type="submit"] {
+  margin-block-start: calc(0.7rem + 4px);
+}
+
+.island-unlock-exam :is(input, button) {
+  min-height: 44px;
+}
+
+.island-unlock-exam__answer-form input {
+  background: #fffdf7;
+}
+
+/* The empty reading reserves no blank "Preview" band on the short exam surface. */
+.island-unlock-exam .cr-math-preview[data-empty="true"] {
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.island-unlock-exam .cr-math-preview[data-empty="true"] > :not(.visually-hidden) {
+  display: none;
+}
+
+.island-unlock-note,
+.island-unlock-error {
+  color: #943726;
+}
+
+.island-unlock-note {
+  margin-block: 9px;
+}
+
+.island-unlock-answer-summary {
+  margin-block: 12px 8px;
+  padding: 9px 12px;
+  border: 1px solid currentColor;
+  border-left-width: 5px;
+  background: #f2f6f4;
+  color: #214d39;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.island-unlock-answer-summary[data-outcome="incorrect"],
+.island-unlock-answer-summary[data-outcome="skipped"] {
+  background: #fff2ed;
+  color: #943726;
+}
+
+.island-unlock-answer-summary:focus-visible {
+  outline: 3px solid var(--game-blue, #3b82b8);
+  outline-offset: 2px;
+}
+
+.island-unlock-exam__actions,
+.island-unlock-choice__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-block-start: 12px;
+}
+
+.island-unlock-exam__actions {
+  margin-block-end: 10px;
+}
+
+.island-unlock-exam__actions button,
+.island-unlock-choice__actions button,
+.island-unlock-founding__card > button {
+  min-height: 44px;
+}
+
+.island-unlock-exit {
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--ink-muted, #52636d);
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/*
+ * Founding uses the real destination medallion at reward scale. The stage is structured sea,
+ * shore and sky fields; there is no generic CSS island ellipse behind a token-sized badge.
+ */
+.island-unlock-founding {
+  overflow: hidden;
+  padding: 0;
+  background: var(--unlock-deep-water);
+}
+
+.island-unlock-founding__world {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--unlock-deep-water) 88%, #17313b);
+}
+
+.island-unlock-founding__world::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 34%;
+  border-bottom: 6px double color-mix(in srgb, var(--unlock-shore) 82%, white);
+  background: color-mix(in srgb, var(--unlock-water) 30%, #dff3f5);
+  content: "";
+}
+
+.island-unlock-founding__wake {
+  position: absolute;
+  inset-block-start: 48px;
+  inset-inline-start: 50%;
+  width: 290px;
+  height: 290px;
+  border: 2px dashed rgb(255 255 255 / 44%);
+  border-radius: 50%;
+  opacity: 0.7;
+  transform: translateX(-50%) scale(1);
+  animation: island-unlock-wake 900ms ease-out both;
+}
+
+.island-unlock-founding__wake::after {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgb(255 255 255 / 35%);
+  border-radius: 50%;
+  content: "";
+}
+
+.island-unlock-founding__world[data-reduced-motion="true"] .island-unlock-founding__wake {
+  animation: none;
+}
+
+@keyframes island-unlock-wake {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.72);
+  }
+}
+
+.island-unlock-founding__landmark {
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 28px;
+  inset-inline-start: 50%;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  place-items: center;
+  width: 220px;
+  min-height: 220px;
+  padding: 18px;
+  border: 6px double color-mix(in srgb, var(--unlock-shore) 86%, white);
+  border-radius: 50%;
+  background: #faf7eb;
+  box-shadow:
+    inset 0 0 0 8px color-mix(in srgb, var(--unlock-ground-pale) 28%, transparent),
+    0 14px 0 color-mix(in srgb, var(--unlock-ground) 48%, transparent),
+    0 24px 42px rgb(8 30 38 / 28%);
+  color: var(--unlock-trunk);
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.island-unlock-founding__seal {
+  display: grid;
+  place-items: center;
+  width: 166px;
+}
+
+.island-unlock-founding__landmark svg {
+  width: 166px;
+  height: auto;
+}
+
+.island-unlock-founding__landmark > span:not(.island-unlock-founding__seal) {
+  margin-block-start: 4px;
+  color: var(--ink-muted, #52636d);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.island-unlock-founding__landmark > strong {
+  color: var(--game-blue-deep, #176b87);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+}
+
+.island-unlock-founding__card {
+  position: absolute;
+  z-index: 3;
+  inset-inline: max(14px, env(safe-area-inset-left)) max(14px, env(safe-area-inset-right));
+  inset-block-end: max(14px, env(safe-area-inset-bottom));
+  width: min(660px, calc(100% - 28px));
+  max-height: calc(100dvh - 28px);
+  overflow: auto;
+  padding: clamp(16px, 2.8vw, 24px);
+  border: 2px solid color-mix(in srgb, var(--unlock-trunk) 45%, white);
+  border-radius: 18px 18px 24px 24px;
+  background: #faf7eb;
+  box-shadow:
+    0 5px 0 color-mix(in srgb, var(--unlock-ground) 50%, transparent),
+    0 18px 48px rgb(8 30 38 / 32%);
+}
+
+.island-unlock-founding__hall {
+  margin: 7px 0;
+  color: var(--game-blue-deep, #176b87);
+  font-weight: 850;
+}
+
+.island-unlock-founding__pending {
+  margin-block-end: 0;
+  font-weight: 750;
+}
+
+.island-unlock-choice {
+  min-width: 0;
+  margin: 10px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.island-unlock-choice > legend {
+  padding: 0;
+  color: var(--ink-strong, #13232e);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.island-unlock-choice > p {
+  margin-block: 5px 8px;
+}
+
+.island-unlock-choice__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.island-unlock-choice__actions button {
+  width: 100%;
+}
+
+@media (max-height: 620px) {
+  .island-unlock-exam {
+    align-items: end;
+    padding: 8px;
+  }
+
+  .island-unlock-exam__card {
+    --exam-gutter: 16px;
+
+    max-height: calc(100dvh - 16px);
+  }
+
+  .island-unlock-exam__header {
+    padding-block: 10px 9px;
+  }
+
+  .island-unlock-exam__prompt {
+    padding-block: 9px;
+  }
+
+  .island-unlock-founding__landmark {
+    inset-block-start: 18px;
+    width: 180px;
+    min-height: 180px;
+    padding: 13px;
+  }
+
+  .island-unlock-founding__seal,
+  .island-unlock-founding__landmark svg {
+    width: 132px;
+  }
+
+  .island-unlock-founding__wake {
+    inset-block-start: 28px;
+    width: 230px;
+    height: 230px;
+  }
+
+  .island-unlock-founding__card {
+    inset-block-end: 8px;
+    max-height: min(310px, calc(100dvh - 214px));
+    padding: 14px 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .island-unlock-exam {
+    align-items: end;
+    padding: 8px;
+  }
+
+  .island-unlock-exam__card {
+    --exam-gutter: 14px;
+
+    max-height: calc(100dvh - 16px);
+    border-radius: 16px 16px 20px 20px;
+  }
+
+  .island-unlock-exam__header {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+    margin-block-end: 10px;
+    padding-block: 9px 8px;
+  }
+
+  .island-unlock-exam__journey {
+    align-items: start;
+    gap: 8px;
+  }
+
+  .island-unlock-exam__destination {
+    flex-basis: 44px;
+    width: 44px;
+    height: 36px;
+  }
+
+  .island-unlock-exam__destination svg {
+    width: 39px;
+  }
+
+  .island-unlock-exam h2 {
+    font-size: 1.15rem;
+  }
+
+  .island-unlock-eyebrow {
+    font-size: 0.62rem;
+  }
+
+  /* On a wrapped phone title the score is a compact line immediately below that title. */
+  .island-unlock-meter {
+    justify-self: start;
+    display: flex;
+    gap: 3px;
+    align-items: baseline;
+    min-width: 0;
+    margin-inline-start: 52px;
+    padding: 2px 7px;
+    text-align: left;
+  }
+
+  .island-unlock-meter__score {
+    font-size: 1rem;
+  }
+
+  .island-unlock-meter__label {
+    display: inline;
+    margin-inline-start: 4px;
+    font-size: 0.56rem;
+  }
+
+  .island-unlock-delta {
+    margin-inline-start: 4px;
+  }
+
+  .island-unlock-exam__contract {
+    display: grid;
+    gap: 1px;
+    font-size: 0.69rem;
+  }
+
+  .island-unlock-route {
+    height: 14px;
+  }
+
+  .island-unlock-route__ports {
+    inset-block-start: 3px;
+  }
+
+  .island-unlock-route__port {
+    width: 8px;
+    height: 8px;
+  }
+
+  .island-unlock-exam__meta {
+    margin-block-end: 6px;
+    font-size: 0.85rem;
+  }
+
+  .island-unlock-exam__prompt {
+    margin-block-end: 8px;
+    padding: 8px 10px;
+  }
+
+  /*
+   * The answer group owns the first grid row in full. Check cannot sit beside the first of
+   * two required fields and visually precede the second; it owns the next full-width row.
+   */
+  .island-unlock-exam .lesson-player__row.island-unlock-exam__answer-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .island-unlock-exam__answer-control,
+  .island-unlock-exam__answer-form > button[type="submit"] {
+    width: 100%;
+    margin: 0;
+  }
+
+  .island-unlock-exam__answer-form .cr-rational-answer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .island-unlock-exam__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .island-unlock-exam__actions > :only-child {
+    grid-column: 1 / -1;
+  }
+
+  .island-unlock-exam__actions button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .island-unlock-exit {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .island-unlock-answer-summary {
+    margin-block-start: 9px;
+  }
+
+  .island-unlock-founding__landmark {
+    inset-block-start: 18px;
+    width: 168px;
+    min-height: 168px;
+    padding: 12px;
+  }
+
+  .island-unlock-founding__seal,
+  .island-unlock-founding__landmark svg {
+    width: 122px;
+  }
+
+  .island-unlock-founding__wake {
+    inset-block-start: 25px;
+    width: 215px;
+    height: 215px;
+  }
+
+  .island-unlock-founding__card {
+    inset-block-end: 8px;
+    width: calc(100% - 16px);
+    max-height: min(330px, calc(100dvh - 210px));
+    padding: 14px;
+    border-radius: 16px 16px 20px 20px;
+  }
+
+  .island-unlock-founding h2 {
+    font-size: 1.28rem;
+  }
+
+  .island-unlock-choice__actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .island-unlock-route__sailed,
+  .island-unlock-founding__wake {
+    transition: none;
+    animation: none;
+  }
+}

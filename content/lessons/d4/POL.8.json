@@ -1,0 +1,89 @@
+{
+  "node_id": "POL.8",
+  "title": "Polynomial long and synthetic division",
+  "mini_lesson": [
+    "A run of quay is set out against a measuring rod, and a length that does not come to a whole number of rods is recorded as so many whole rods with a part left over. Polynomials divide the same way and record the same four quantities: the amount being divided is the **dividend**, the amount it is divided by is the **divisor**, the whole count is the **quotient**, and the part that will not divide is the **remainder**. Rebuilding the dividend from the other three is how a division gets audited, and it is the first thing to reach for when an answer looks wrong.",
+    "Long division of polynomials follows the shape of long division of numbers, one leading term at a time. Ask what the divisor has to be multiplied by to produce the leading term of whatever is left, multiply it out, and subtract, and that leading term is gone. The quotient is the column of multipliers in the order they were found, and each step kills exactly one leading term, which is why the process always stops.",
+    "Two habits keep the arithmetic honest, and both of them are about the writing rather than the dividing. The dividend goes down in standard form, and it also carries a zero for any power it is missing, so the empty column keeps every later subtraction under the terms it belongs to; the second habit is that the whole product comes off with its signs. The **degree** of a polynomial is its highest power, and a remainder always has lower degree than the divisor, because anything of equal or higher degree would still have had a leading term left to kill.",
+    "When the divisor has the shape $x - r$ the whole layout strips down to its coefficients: write them in a row with $r$ at the left, bring the first one straight down, then repeatedly multiply what is at the bottom by $r$ and add it to the next coefficient along. All the results but the last are the quotient's coefficients and the last is the remainder, and that layout is **synthetic division**, in which every number is one the long division produced with the variables and the subtraction signs taken out. It applies only to a divisor of that shape, which is why the long method remains the one that always works.",
+    "Knowing a remainder can be quicker than earning it, and the shortcut agrees with the long way for a reason that is forced rather than lucky. The division statement says the dividend equals $(x - r)$ times the quotient plus the remainder, so substituting $x = r$ into it makes the first product zero and leaves the remainder standing alone. The remainder on dividing by $x - r$ is therefore the value of the dividend at $x = r$, and a remainder of zero says $x - r$ is a factor of it."
+  ],
+  "slide_subtitles": [
+    "What a division records",
+    "Dividing term by term",
+    "Columns and signs",
+    "Stripping it down",
+    "The remainder, by substitution"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "Measure $17$ paces with a rod of $5$. Then audit a reported division of $x^{2} + 7x + 12$ by $x + 2$ that gives a quotient of $x + 5$ and a remainder of $2$.",
+      "steps": [
+        "Seventeen paces measured in fives is three whole rods and two paces over, which is written $17 = 3 \\times 5 + 2$.",
+        "So $17$ is the dividend, $5$ is the divisor, $3$ is the quotient and $2$ is the remainder.",
+        "The reported division names the same four quantities: dividend $x^{2} + 7x + 12$, divisor $x + 2$, quotient $x + 5$, remainder $2$.",
+        "Rebuilding from the last three gives $(x + 2)(x + 5) + 2$, and $(x + 2)(x + 5)$ comes to $x^{2} + 7x + 10$.",
+        "Adding the remainder returns $x^{2} + 7x + 12$, which is the dividend exactly, so the report holds."
+      ]
+    },
+    {
+      "prompt": "Divide $x^{2} + 7x + 10$ by $x + 2$ by long division.",
+      "steps": [
+        "The divisor has to be multiplied by $x$ to produce the leading term $x^{2}$, so $x$ is the first multiplier.",
+        "Multiplying $x + 2$ by $x$ gives $x^{2} + 2x$, and subtracting that clears the leading term and leaves $5x + 10$.",
+        "Ask the same question of what is left: $x + 2$ multiplied by $5$ gives $5x + 10$.",
+        "Subtracting leaves nothing at all, so the quotient is $x + 5$ and the remainder is $0$."
+      ]
+    },
+    {
+      "prompt": "Write $x^{3} - 7x + 6$ down for division by $x - 1$, then take the first product off.",
+      "steps": [
+        "The $x^{2}$ power is missing, so a zero stands in its column: $x^{3} + 0x^{2} - 7x + 6$.",
+        "The first multiplier is $x^{2}$, and $x - 1$ multiplied by $x^{2}$ is $x^{3} - x^{2}$.",
+        "The whole product comes off with its signs, so the subtraction contributes $-x^{3} + x^{2}$.",
+        "That leaves $x^{2} - 7x + 6$, with the empty column holding the later terms under the ones they belong to."
+      ]
+    },
+    {
+      "prompt": "Divide $x^{3} - 4x^{2} + 5x - 2$ by $x - 2$ using synthetic division.",
+      "steps": [
+        "The divisor is $x - 2$, so $r$ is $2$, and the dividend's coefficients are $1$, $-4$, $5$ and $-2$.",
+        "Bring the first coefficient straight down to give $1$.",
+        "Multiply and add along the row: $1 \\times 2 + (-4) = -2$, then $-2 \\times 2 + 5 = 1$, then $1 \\times 2 + (-2) = 0$.",
+        "The first three results are the quotient's coefficients and the last is the remainder, so the quotient is $x^{2} - 2x + 1$ with nothing over."
+      ]
+    },
+    {
+      "prompt": "Find the remainder when $x^{3} - 4x^{2} + 5x - 2$ is divided by $x - 2$, without dividing.",
+      "steps": [
+        "The divisor is zero at $x = 2$, so that is the value to substitute.",
+        "Substituting gives $8 - 16 + 10 - 2$.",
+        "That comes to $0$, so the remainder is $0$ and $x - 2$ is a factor of the dividend.",
+        "The synthetic row on the same dividend ended on $0$ as well, which is the agreement the rule guarantees."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "divide-rebuild-builder", "gates": true },
+    { "after": 1, "id": "long-division-stepper", "gates": true },
+    { "after": 2, "id": "division-check-table", "gates": true },
+    { "after": 3, "id": "synthetic-long-match", "gates": true },
+    { "after": 4, "id": "remainder-estimate", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "Divide $x^{3} - 4x^{2} + x + 6$ by $x - 3$ and give the quotient.",
+    "accepted": ["x^2 - x - 2", "x^{2} - x - 2", "x^2-x-2", "x^2 - 1x - 2"],
+    "hint": "The divisor has the shape $x - r$, so the coefficients on their own carry the whole division, and the value the row uses is the one that makes the divisor zero. Check the dividend for a missing power before writing the coefficients down, because an absent power needs a zero standing in its column.",
+    "worked_solution": [
+      "The divisor $x - 3$ is zero at $x = 3$, so that is the value the synthetic row uses.",
+      "The dividend's coefficients are $1$, $-4$, $1$ and $6$, with no power missing, so no empty column is needed.",
+      "Bring the $1$ down, then multiply and add along the row: $1$, then $-4 + 3 = -1$, then $1 + (-3) = -2$, then $6 + (-6) = 0$.",
+      "The first three are the quotient's coefficients and the last is the remainder, so the quotient is $x^2 - x - 2$ with nothing left over."
+    ],
+    "worked_solution_params": { "r": 3, "m": -1, "n": -2, "b": -4, "c": 1, "d": 6 },
+    "variants": {
+      "template_id": "d4.pol8.synthetic-cubic.l2",
+      "count": 2
+    }
+  }
+}

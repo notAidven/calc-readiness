@@ -1,0 +1,18 @@
+{
+  "name": "@cr/game",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Evan. City-builder lane (renderer is React Three Fiber, in apps/web): rendering, storms, checkpoints. Reads mastery; sets neighborhood_checkpoint_cleared only.",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --build"
+  },
+  "dependencies": {
+    "@cr/state-schema": "*",
+    "@cr/skill-graph": "*",
+    "@cr/mastery-service": "*",
+    "@cr/item-bank": "*",
+    "@cr/components": "*"
+  }
+}

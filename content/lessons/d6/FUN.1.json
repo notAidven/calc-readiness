@@ -1,0 +1,78 @@
+{
+  "node_id": "FUN.1",
+  "title": "Function notation, evaluation, vertical-line test",
+  "mini_lesson": [
+    "On the mill floor the line shafting overhead drives every bench, and each automaton hung from it answers one setting with one motion. A **function** is exactly that kind of rule: it takes an **input** and returns exactly one **output**. Working out what a rule returns for a given input is called **evaluating** it.",
+    "Function notation gives a rule a name, and the name does the answering. Writing $f(7)$ asks what the rule called $f$ returns when its input is $7$, and one number comes back. The brackets are not a multiplication: $f(7)$ never means $f \\times 7$.",
+    "Notation holds a rule in symbols; a grid holds it in a picture. A **relation** is any pairing of inputs with outputs, and a function is the well-behaved kind, so either can be drawn on two axes crossing at the **origin**, each pair becoming one dot: the first number counts across from the origin and the second counts up. If some vertical line would meet two dots at once, one input has been handed two different outputs, and that check is the **vertical-line test**.",
+    "A list of pairs is tested the same way with nothing drawn at all. Read the inputs first, because a relation fails only when one input appears twice with two different outputs. Two different inputs sharing the same output is allowed, since each of them still returns exactly one thing."
+  ],
+  "slide_subtitles": [
+    "One setting, one reading",
+    "Function notation",
+    "The vertical-line test",
+    "Lists of pairs"
+  ],
+  "worked_examples": [
+    {
+      "prompt": "A bench doubles its setting and then adds $9$. What does it return for the setting $6$?",
+      "steps": [
+        "Evaluating means handing the input to the rule and letting the rule do its own steps in order, so the setting is $6$ and nothing else moves.",
+        "Doubling comes first, and twice $6$ is $12$.",
+        "The rule then adds $9$, and $12 + 9 = 21$.",
+        "So the bench returns $21$, and that one number is the only output it gives for this setting."
+      ]
+    },
+    {
+      "prompt": "A bench runs on the rule $h(x) = 5x - 3$. What is $h(4)$?",
+      "steps": [
+        "$h(4)$ asks what the rule called $h$ returns when its input is $4$, so the $4$ takes the place of every $x$: $h(4) = 5(4) - 3$.",
+        "Those brackets carry the input rather than a multiplication by $h$, and inside the rule $5 \\times 4 = 20$.",
+        "Subtracting leaves $20 - 3 = 17$, so $h(4) = 17$."
+      ]
+    },
+    null,
+    {
+      "prompt": "Does the log $\\{(8,\\, 5),\\, (3,\\, 5),\\, (8,\\, 0)\\}$ record a function?",
+      "steps": [
+        "Read the inputs first, ignoring what sits beside them: they are $8$, $3$ and $8$.",
+        "The input $8$ appears twice, once against the output $5$ and once against the output $0$, so this log hands one input two different outputs.",
+        "The repeated $5$ costs nothing, because the two inputs $8$ and $3$ are allowed to share an output.",
+        "One input with two different outputs is enough on its own, so this log does not record a function."
+      ]
+    }
+  ],
+  "visuals": [
+    { "after": 0, "id": "function-machine-solver", "gates": true },
+    { "after": 1, "id": "function-notation-label", "gates": true },
+    { "after": 2, "id": "function-vertical-line-slider", "gates": true },
+    { "after": 3, "id": "function-mapping-classify", "gates": true }
+  ],
+  "cfu": {
+    "prompt": "An automaton runs on the rule $f(x) = 4x - 7$, and a second machine's log records the pairs $\\{(2,\\, 5),\\, (6,\\, 1),\\, (2,\\, 9),\\, (8,\\, 5)\\}$. Find $f(-3)$, then say whether the log records a function. Type the number first, then `yes` or `no`, like `12, yes`.",
+    "accepted": [
+      "-19, no",
+      "-19; no",
+      "-19 and no",
+      "-19, not a function",
+      "-19; not a function",
+      "-19 and not a function",
+      "no, -19",
+      "no; -19",
+      "no and -19",
+      "not a function, -19",
+      "not a function; -19",
+      "not a function and -19"
+    ],
+    "hint": "Take the two halves separately. For the reading, put $(-3)$ in place of every $x$ in the rule, brackets and all, so the multiplication is settled before the subtraction. For the log, look only at the settings and ask whether any one of them is listed twice with two different motions beside it.",
+    "worked_solution": [
+      "$f(-3)$ asks what the rule returns when the input is $-3$, so replace every $x$ with $(-3)$: $f(-3) = 4(-3) - 7$.",
+      "Multiplication is settled before subtraction: $4 \\times (-3) = -12$, which leaves $-12 - 7$.",
+      "$-12 - 7 = -19$, so $f(-3) = -19$.",
+      "Now the log. The setting $2$ is recorded twice, once against $5$ and once against $9$, so one input carries two different outputs.",
+      "The repeated $5$ is harmless, because the settings $2$ and $8$ are allowed to share an output. It is the repeated input that rules the log out, so the answer is `-19, no`."
+    ],
+    "worked_solution_params": { "m": 4, "c": -7, "n": -3, "value": -19, "isFunction": 0 },
+    "variants": { "template_id": "cfu.fun1.evaluate-and-test", "count": 2 }
+  }
+}
