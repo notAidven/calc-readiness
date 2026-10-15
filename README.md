@@ -4,7 +4,7 @@
 
 ![A Bronze Age city: each labeled building is a math skill, stars show mastery, and the panel tracks population, livability and happiness](docs/readme/city.jpg)
 
-> **Team project.** Built in about five weeks (July–August 2026) by a team of three: **Evan Cabrera** (game and city-builder), **Gabriel Xiong** (diagnostic, shared platform, CI) and **Anthony Zheng** (lessons and content). This repository is a public snapshot of our private team repo. Deployment infrastructure and internal team notes were removed, and the app runs fully locally.
+> **Team project.** Built in about five weeks (July–August 2026) by a team of three: **Evan Cabrera** (game design), **Gabriel Xiong** and **Anthony Zheng** (engineering, lessons, the diagnostic and the crisis events). This repository is a public snapshot of our private team repo. Deployment infrastructure and internal team notes were removed, and the app runs fully locally.
 
 ---
 
@@ -18,18 +18,18 @@
 
 The game layer never decides what a student knows. It only *reads* mastery. A single shared service is the only thing allowed to write it, so a cosmetic action like building a road can never stand in for learning.
 
-## My role (Evan): the game and city-builder
+## My role (Evan): game design
 
-I owned the game lane (`engines/game` and the city in `apps/web/src/city`). Highlights:
+I designed most of the game: how a student's progress becomes a city, and the rules that keep that city fair to learning. I did not hand-write the code. The game's implementation was written by AI coding agents (Cursor) that I directed. I specified the behavior, reviewed and playtested the results, and filed fixes. My teammates built the lessons, the placement diagnostic, the crisis events and the shared platform.
 
-- **The 3D city.** A full-screen city built with React Three Fiber (React + three.js): an RTS-style camera, a per-cell placement grid with building footprints and rotation, moving buildings you've already placed, and construction stages driven by mastery. Code: [`CityScene.tsx`](apps/web/src/city/three/CityScene.tsx), [`CitySurface.tsx`](apps/web/src/city/CitySurface.tsx).
-- **The placement rule: no building may be sealed off.** A flood fill over the grid, seeded from the island's outer edge, refuses any placement or move that would leave *any* building unreachable on foot. The same function drives the placement preview, the confirm button and the saved state, so they can never disagree, and refusals are announced to screen readers. Code: [`placementRefusal` in `worldLayout.ts`](apps/web/src/city/worldLayout.ts#L734), tests: [`placementReachability.test.ts`](apps/web/src/city/placementReachability.test.ts).
-- **A simulated population.** Population, livability and happiness are derived from what's built, using a deterministic seeded random number generator so the same city always produces the same citizens. They're drawn as a walking crowd in two GPU draw calls (instanced rendering). Code: [`citizens.ts`](engines/game/src/citizens.ts), [`city-vitality.ts`](engines/game/src/city-vitality.ts), [`Citizens.tsx`](apps/web/src/city/three/Citizens.tsx).
-- **Roads, the Town Hall and the economy.** Roads add happiness without ever blocking learning. The Town Hall hub hosts interleaved review practice, and the in-game currency is earned only through learning.
-- **Onboarding and progression.** A first-run guided tour, coach marks, an advisor character per era, the era-advance "chapter break" and the game's ending.
-- **Art direction across ten eras.** I wrote the [era progression design](docs/superpowers/specs/2026-07-27-era-progression-design.md) and per-era [style guides](docs/superpowers/specs/eras), and ran the concept-art and 3D model (GLB) pipeline that turns building designs into in-game models.
+What I designed:
 
-Over the project I made **~370 commits** to the team repo. The full ownership map is in [`OWNERS.md`](OWNERS.md).
+- **The core loop.** Skills become buildings, mastery raises each building from foundation to construction to finished, and ten eras, from the Prehistoric to a Cyberpunk future, each cover one area of pre-calculus. Spec: [era progression design](docs/superpowers/specs/2026-07-27-era-progression-design.md).
+- **Rules that protect learning.** Rewards never replace mastery: currency is earned only by learning, and roads add happiness but can never block progress.
+- **The placement rule: no building may be walled off.** I made the call that a player can't cram every building into one blob, so every building must stay reachable on foot. It's implemented as a flood fill over the grid: [`placementRefusal` in `worldLayout.ts`](apps/web/src/city/worldLayout.ts#L734), with tests in [`placementReachability.test.ts`](apps/web/src/city/placementReachability.test.ts).
+- **A living city.** Simulated citizens whose population, livability and happiness respond to what the student has built ([`citizens.ts`](engines/game/src/citizens.ts), [`city-vitality.ts`](engines/game/src/city-vitality.ts)), plus the Town Hall hub, roads and the in-game economy.
+- **The player's journey.** A first-run guided tour, an advisor character for each era, era transitions and the game's ending.
+- **Art direction across ten eras.** Per-era [style guides](docs/superpowers/specs/eras), concept-art prompts and the source art for the buildings.
 
 ## Architecture
 
@@ -89,9 +89,9 @@ npm run setup:browsers && npm run test:browser   # ~320 browser test files (Play
 
 ```
 apps/web/          the React app: city, lessons, diagnostic, onboarding
-engines/game/      game rules: city, citizens, economy, crises  (Evan)
-engines/lesson/    lesson engine                                (Anthony)
-engines/diagnostic/ placement diagnostic                        (Gabriel)
+engines/game/      game rules: city, citizens, economy, crises
+engines/lesson/    lesson engine
+engines/diagnostic/ placement diagnostic
 packages/          shared, frozen interfaces: skill graph, mastery service, item bank, schema
 services/          backend API and server-side scoring
 docs/              design specs, contracts and per-era art direction
@@ -101,4 +101,4 @@ More detail: [architecture](docs/Architecture.md), [shared contracts](docs/Contr
 
 ## Credits
 
-Built by Evan Cabrera, Gabriel Xiong and Anthony Zheng. Music was generated with Suno under a commercial license (see [`apps/web/public/audio/CREDITS.md`](apps/web/public/audio/CREDITS.md)). We used AI coding agents (Cursor and Codex) heavily during development. The product, design and architecture decisions were ours.
+Built by Evan Cabrera, Gabriel Xiong and Anthony Zheng. Music was generated with Suno under a commercial license (see [`apps/web/public/audio/CREDITS.md`](apps/web/public/audio/CREDITS.md)). Much of the code was written by AI coding agents (Cursor and Codex) working under the team's direction.
